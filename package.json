@@ -1,0 +1,23 @@
+{
+  "name": "chintwo-artist-portfolio",
+  "version": "1.0.0",
+  "description": "Chintwo - Contemporary & Visual Artist, London - Official Website Portfolio",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "test": "python scripts/test_routes.py"
+  },
+  "keywords": [
+    "chintwo",
+    "artist",
+    "contemporary-art",
+    "visual-art",
+    "fine-art",
+    "london",
+    "canvas",
+    "spatial-installations"
+  ],
+  "author": "Chintwo",
+  "license": "ISC"
+}
