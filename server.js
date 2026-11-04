@@ -37,7 +37,9 @@ function serveFile(res, filePath, statusCode = 200) {
         res.writeHead(statusCode, {
             'Content-Type': contentType,
             'Access-Control-Allow-Origin': '*',
-            'Cache-Control': ext === '.html' ? 'no-cache' : 'public, max-age=31536000'
+            'Cache-Control': 'no-cache, no-store, must-revalidate, max-age=0',
+            'Pragma': 'no-cache',
+            'Expires': '0'
         });
         res.end(data);
     });
