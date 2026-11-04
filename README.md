@@ -1,4 +1,4 @@
-# Chintwo | Contemporary & Visual Artist, London
+# Chintwo — Visual Artist & Illustrator | London
 
 Official portfolio website for **Chintwo**, a London-based contemporary visual artist creating evocative artworks, textured canvases, sculptural forms, and spatial installations.
 
@@ -15,11 +15,11 @@ Chintwo is a London-based multidisciplinary contemporary artist exploring light,
 - **Refined Art Portfolio**: Dedicated showcases across 6 artistic disciplines:
   - **Spaces & Environments**: Architectural Murals & Spatial Works
   - **Sensory & Still Life Art**: Textural & Atmospheric Studies
-  - **Sculptural Objects & Form**: Material & Fine Art Objects
+  - **Archival Giclée & Screenprints**: Material & Fine Art Objects
   - **Conceptual & Editorial**: Creative Direction & Narrative Works
-  - **Figurative Studies & Presence**: Emotive Human Forms & Portraits
+  - **Oil on Linen Panel**: Emotive Human Forms & Portraits
   - **Exhibitions & Live Art**: Gallery Curations & Public Art Activations
-- **Complete 14-Page Site Architecture**: Homepage, About, Portfolio hub, 6 Portfolio project pages, Artist's Journal (Blog), 3 essays/articles, Contact/Commissioning, and 404 page.
+- **Complete 14-Page Site Architecture**: Homepage, About, Portfolio hub, 6 Portfolio project pages, Artist’s Journal (Blog), 3 essays/articles, Contact/Commissioning, and 404 page.
 - **High-Performance Asset Optimization**: All photography and artwork assets optimized with Web-ready progressive compression (reduced from 216 MB down to 19 MB — a 91% reduction in load time with crisp retina clarity).
 - **Client-Side Micro-Interactions**: Framer Motion animation runtime, smooth scrolling, cursor effects, and responsive navigation.
 - **Zero-Dependency Built-In Node Server**: Runs out-of-the-box with Node.js on port 3000.
@@ -45,7 +45,7 @@ artist 2/
 │   ├── portrait-lifestyle-photography/index.html      # Figurative Studies
 │   └── event-brand-photography/index.html             # Exhibitions & Live Art
 ├── blog/
-│   ├── index.html                                     # Artist's Journal (/blog)
+│   ├── index.html                                     # Artist’s Journal (/blog)
 │   ├── airbnb-photography-the-one-investment/index.html
 │   ├── crop-sensor-vs-full-frame-which-camera-is-right-for-you/index.html
 │   └── the-impact-of-stunning-visuals-on-brand-perception/index.html
@@ -98,7 +98,7 @@ python scripts/test_routes.py
 | `/portfolio/portrait-lifestyle-photography` | Figurative Studies | Emotive Human Presence & Portraits |
 | `/portfolio/event-brand-photography` | Exhibitions & Live Art | Public Art Activations & Exhibitions |
 | `/blog` | Journal | Essays on contemporary art and collecting |
-| `/blog/airbnb-photography-the-one-investment` | Essay 1 | *Living with Art: Elevating Spaces* |
+| `/blog/airbnb-photography-the-one-investment` | Essay 1 | *On the Weight of Quiet Images* |
 | `/blog/crop-sensor-vs-full-frame-which-camera-is-right-for-you` | Essay 2 | *Scale, Medium & Texture in Art* |
 | `/blog/the-impact-of-stunning-visuals-on-brand-perception` | Essay 3 | *The Power of Visual Presence* |
 | `/contact` | Contact | Private commissions, studio visits & acquisitions |

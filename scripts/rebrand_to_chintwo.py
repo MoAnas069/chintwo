@@ -130,3 +130,4 @@ for root, dirs, files in os.walk('.'):
                 print(f"Updated {path}")
 
 print(f"\nRebranding completed! Total files modified: {modified_files}")
+
