@@ -1,25 +1,29 @@
 import subprocess
 import time
 import urllib.request
+import urllib.error
 import sys
 
 routes_to_test = [
     '/',
     '/about',
     '/portfolio',
-    '/portfolio/interior-architectural-photography',
-    '/portfolio/food-photography',
-    '/portfolio/product-photography',
-    '/portfolio/editorial-shoot',
-    '/portfolio/portrait-lifestyle-photography',
-    '/portfolio/event-brand-photography',
+    '/portfolio/the-cartographers-dream',
+    '/portfolio/arrival-in-the-cold-mist',
+    '/portfolio/the-silent-hour',
+    '/portfolio/nocturne-for-two-solitudes',
+    '/portfolio/fine-art-editions',
+    '/portfolio/exhibitions-archive',
     '/blog',
-    '/blog/airbnb-photography-the-one-investment',
-    '/blog/crop-sensor-vs-full-frame-which-camera-is-right-for-you',
-    '/blog/the-impact-of-stunning-visuals-on-brand-perception',
+    '/blog/on-the-weight-of-quiet-images',
+    '/blog/the-poetry-of-chiaroscuro',
+    '/blog/monoprint-textures-and-synthesis',
     '/contact',
     '/assets/scripts/script_main.vSW-S8Dy.mjs',
-    '/assets/images/IjGHZWRXoAgh4itRVP4GNn5St88.png'
+    '/assets/images/chintwo_emblem.svg',
+    '/assets/images/fDh0jZF0V8L0VApCB9oAHIFgd8.webp',
+    '/assets/images/LcTxyeMFm5sIiiSm4Iop5zds.webp',
+    '/assets/images/peaa6VBBdWRSL3icJ2tpwsIXZI.webp'
 ]
 
 print("Starting node server.js...")
@@ -58,15 +62,18 @@ try:
     # Test 308 redirect
     try:
         class NoRedirectHandler(urllib.request.HTTPRedirectHandler):
-            def redirect_request(self, req, fp, code, msg, headers, newurl):
-                return None
+            def http_error_308(self, req, fp, code, msg, headers):
+                return fp
         opener = urllib.request.build_opener(NoRedirectHandler)
         resp = opener.open(base + '/about/')
-    except urllib.error.HTTPError as e:
-        if e.code == 308:
-            print(f"[{e.code}] /about/ correctly redirected 308 to {e.headers.get('Location')}")
+        if resp.code == 308:
+            print(f"[{resp.code}] /about/ correctly redirected 308 to /about")
         else:
-            print(f"Redirect test returned {e.code}")
+            print(f"[FAIL] /about/ returned {resp.code}")
+            all_ok = False
+    except Exception as e:
+        print(f"[FAIL] redirect test: {e}")
+        all_ok = False
 
 finally:
     proc.terminate()
@@ -74,6 +81,7 @@ finally:
 
 if all_ok:
     print("\nAll tests passed successfully!")
+    sys.exit(0)
 else:
     print("\nSome tests failed!")
     sys.exit(1)

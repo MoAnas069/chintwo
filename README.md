@@ -53,7 +53,7 @@ artist 2/
 │   └── index.html                                     # Contact & Commissions (/contact)
 ├── 404.html                                           # Custom 404 Page
 ├── assets/
-│   ├── images/                                        # Optimized artwork & photography assets (19 MB)
+│   ├── images/                                        # Optimized artwork & photography assets (6.3 MB)
 │   └── scripts/                                       # Framer runtime & animation modules
 └── scripts/
     ├── build_site.py                                  # Site build & asset mapping script
