@@ -443,20 +443,47 @@
     --diptych-plaque-opacity: 0;
   }
 
-  /* Unnecessary Components Removal */
+  /* Remove All Camera Grid Lines, Viewfinders, Shutter & Reticle Elements */
   .framer-ibumu5, 
   [data-framer-name="Img main"],
   .framer-35gsir,
-  [data-framer-name="Shutter"] {
+  [data-framer-name="Shutter"],
+  [data-framer-name="Grid bottom"],
+  [data-framer-name="Grid top"],
+  [data-framer-name="Grid"],
+  .framer-uvtcm0-container,
+  .framer-drpooh-container,
+  .framer-1chamy1-container,
+  [data-framer-name="All corners"],
+  [data-framer-name="Measure graphic"],
+  [data-framer-name="Scale"],
+  .framer-cmjcv6-container,
+  [data-framer-appear-id="cmjcv6"],
+  .framer-aupszr,
+  .framer-bfvue,
+  .framer-135dton,
+  .framer-1dskx7,
+  .framer-koktsm,
+  .framer-md4viw,
+  .framer-d5lys1,
+  [data-framer-name="filler"] {
     display: none !important;
   }
 
-  /* Hero Section: Sophisticated Gallery Aesthetic */
-  .framer-i5m54n {
-    background: linear-gradient(180deg, #faf9f6 0%, #f3f2ee 100%) !important;
+  /* Canvas Texture & Palette for Landing Page Hero */
+  .framer-i5m54n,
+  .chintwo-hero-pinned-track {
+    background-color: #f5f2eb !important;
+    background-image: 
+      radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.75) 0%, rgba(245, 242, 235, 0.5) 60%, rgba(224, 218, 206, 0.8) 100%),
+      repeating-linear-gradient(90deg, rgba(80, 65, 45, 0.024) 0px, rgba(80, 65, 45, 0.024) 1px, transparent 1px, transparent 4px),
+      repeating-linear-gradient(0deg, rgba(80, 65, 45, 0.024) 0px, rgba(80, 65, 45, 0.024) 1px, transparent 1px, transparent 4px),
+      url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='canvasGrain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.2  0 0 0 0 0.18  0 0 0 0 0.15  0 0 0 0.04 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23canvasGrain)'/%3E%3C/svg%3E") !important;
+    background-repeat: repeat, repeat, repeat, repeat !important;
     position: sticky !important;
     top: 0 !important;
     height: 100vh !important;
+    width: 100% !important;
     overflow: hidden !important;
   }
 
@@ -486,7 +513,7 @@
     pointer-events: none !important;
   }
 
-  /* Left Half of Master Artwork */
+  /* Left Half of Master Artwork - Enlarges as it combines */
   .framer-12z8a2s {
     position: absolute !important;
     top: 50% !important;
@@ -497,16 +524,16 @@
     aspect-ratio: 867 / 1400 !important;
     z-index: 12 !important;
     overflow: hidden !important;
-    border-radius: 4px 0 0 4px !important;
-    box-shadow: -15px 25px 60px rgba(18, 19, 22, 0.35), 0 0 0 1px rgba(0, 0, 0, 0.06) !important;
-    transform: translate(var(--diptych-left-x, calc(-100% - 200px)), -50%) rotate(var(--diptych-rot-left, -5.5deg)) !important;
+    border-radius: var(--diptych-radius-left, 4px 0 0 4px) !important;
+    box-shadow: var(--diptych-shadow-left, -15px 25px 60px rgba(18, 19, 22, 0.35)) !important;
+    transform: translate(var(--diptych-left-x, calc(-100% - 220px)), -50%) rotate(var(--diptych-rot-left, -5.5deg)) scale(var(--diptych-scale, 1)) !important;
     transform-origin: 100% 50% !important;
     will-change: transform !important;
     pointer-events: auto !important;
-    transition: box-shadow 0.4s ease !important;
+    transition: border-radius 0.15s ease !important;
   }
 
-  /* Right Half of Master Artwork */
+  /* Right Half of Master Artwork - Enlarges as it combines */
   .framer-4ijwco {
     position: absolute !important;
     top: 50% !important;
@@ -517,13 +544,13 @@
     aspect-ratio: 867 / 1400 !important;
     z-index: 12 !important;
     overflow: hidden !important;
-    border-radius: 0 4px 4px 0 !important;
-    box-shadow: 15px 25px 60px rgba(18, 19, 22, 0.35), 0 0 0 1px rgba(0, 0, 0, 0.06) !important;
-    transform: translate(var(--diptych-right-x, calc(0% + 200px)), -50%) rotate(var(--diptych-rot-right, 5.5deg)) !important;
+    border-radius: var(--diptych-radius-right, 0 4px 4px 0) !important;
+    box-shadow: var(--diptych-shadow-right, 15px 25px 60px rgba(18, 19, 22, 0.35)) !important;
+    transform: translate(var(--diptych-right-x, calc(0% + 220px)), -50%) rotate(var(--diptych-rot-right, 5.5deg)) scale(var(--diptych-scale, 1)) !important;
     transform-origin: 0% 50% !important;
     will-change: transform !important;
     pointer-events: auto !important;
-    transition: box-shadow 0.4s ease !important;
+    transition: border-radius 0.15s ease !important;
   }
 
   /* Pristine Image Rendering Across Seam */
@@ -553,63 +580,75 @@
     box-shadow: 22px 32px 75px rgba(18, 19, 22, 0.45), 0 0 0 1px rgba(0, 0, 0, 0.08) !important;
   }
 
-  /* Museum Exhibition Plaque */
+  /* Museum Exhibition Plaque: Floating glass pill at bottom of screen */
   .chintwo-diptych-caption {
-    position: absolute;
-    bottom: calc(50% - min(480px, 52vh) / 2 - 58px);
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 25;
-    text-align: center;
-    pointer-events: none;
-    opacity: var(--diptych-plaque-opacity, 0);
-    transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-  }
-
-  @media (max-width: 810px) {
-    .chintwo-diptych-caption {
-      bottom: calc(50% - min(340px, 44vh) / 2 - 54px);
-    }
+    position: absolute !important;
+    bottom: 36px !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    z-index: 25 !important;
+    text-align: center !important;
+    pointer-events: none !important;
+    opacity: var(--diptych-plaque-opacity, 0) !important;
+    transition: opacity 0.3s ease !important;
   }
 
   .chintwo-plaque-inner {
-    display: inline-flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 3px;
-    background: rgba(18, 19, 22, 0.92);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    padding: 8px 24px;
-    border-radius: 999px;
-    border: 1px solid rgba(255, 255, 255, 0.14);
-    box-shadow: 0 14px 40px rgba(0, 0, 0, 0.28);
+    display: inline-flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 12px !important;
+    background: rgba(18, 19, 22, 0.82) !important;
+    backdrop-filter: blur(16px) !important;
+    -webkit-backdrop-filter: blur(16px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.14) !important;
+    padding: 8px 22px !important;
+    border-radius: 999px !important;
+    white-space: nowrap !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35) !important;
   }
 
   .chintwo-plaque-tag {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    font-size: 10px;
-    font-weight: 600;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: #dfba73;
+    font-family: 'Inter', sans-serif !important;
+    font-size: 10px !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.14em !important;
+    text-transform: uppercase !important;
+    color: #bfa15f !important;
+    display: inline-block !important;
   }
 
   .chintwo-plaque-title {
-    font-family: 'Playfair Display', Georgia, serif;
-    font-size: 15px;
-    font-style: italic;
-    font-weight: 500;
-    color: #f7f6f2;
-    margin: 0;
+    font-family: 'Playfair Display', Georgia, serif !important;
+    font-size: 14px !important;
+    font-style: italic !important;
+    font-weight: 500 !important;
+    color: #f7f6f2 !important;
+    display: inline-block !important;
+    margin: 0 !important;
   }
 
   .chintwo-plaque-meta {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    font-size: 11px;
-    letter-spacing: 0.02em;
-    color: rgba(255, 255, 255, 0.7);
-    margin: 0;
+    font-family: 'Inter', sans-serif !important;
+    font-size: 11px !important;
+    color: rgba(247, 246, 242, 0.7) !important;
+    display: inline-block !important;
+    margin: 0 !important;
+  }
+
+  @media (max-width: 768px) {
+    .chintwo-diptych-caption {
+      bottom: 24px !important;
+    }
+    .chintwo-plaque-inner {
+      flex-direction: column !important;
+      gap: 3px !important;
+      padding: 6px 16px !important;
+      white-space: normal !important;
+    }
+    .chintwo-plaque-meta {
+      display: none !important;
+    }
   }
 
   /* Whitespace Fixes Across All Sections */
@@ -678,7 +717,7 @@
   /* PINNED HERO TRACK: Only scroll to next section after full image is formed */
   .chintwo-hero-pinned-track {
     position: relative !important;
-    height: 185vh !important;
+    height: 230vh !important;
     width: 100% !important;
     overflow: visible !important;
   }
@@ -1143,100 +1182,7 @@
     <!-- End of bodyEnd -->
 
 <!-- Chintwo Smooth Scroll Diptych Merge Controller -->
-<script>
-(function() {
-  var root = document.documentElement;
-  var targetScroll = 0;
-  var currentScroll = 0;
-  var isTicking = false;
 
-  function getBaseOffset() {
-    var w = window.innerWidth;
-    if (w > 1200) return 220;
-    if (w > 810) return 160;
-    return Math.min(90, w * 0.24);
-  }
-
-  function getBaseRot() {
-    var w = window.innerWidth;
-    if (w > 810) return 6;
-    return 4;
-  }
-
-  function update() {
-    var mergeDistance = 320;
-    var progress = Math.min(1, Math.max(0, currentScroll / mergeDistance));
-
-    // Smooth cubic easing
-    var ease = progress < 0.5 
-      ? 4 * progress * progress * progress 
-      : 1 - Math.pow(-2 * progress + 2, 3) / 2;
-
-    var baseOffset = getBaseOffset();
-    var offset = (1 - ease) * baseOffset;
-    var baseRot = getBaseRot();
-    var rot = (1 - ease) * baseRot;
-
-    root.style.setProperty('--diptych-offset', offset.toFixed(2) + 'px');
-    root.style.setProperty('--diptych-rot', rot.toFixed(2) + 'deg');
-
-    // Heading opacity: smoothly yields to artwork
-    var headingOp = Math.max(0, 1 - progress * 1.5);
-    root.style.setProperty('--diptych-heading-opacity', headingOp.toFixed(3));
-    root.style.setProperty('--diptych-heading-scale', (1 - progress * 0.08).toFixed(3));
-
-    // Plaque opacity: appears as artwork merges
-    var plaqueOp = progress > 0.7 ? Math.min(1, (progress - 0.7) / 0.3) : 0;
-    root.style.setProperty('--diptych-plaque-opacity', plaqueOp.toFixed(3));
-
-    // Consolidated shadow class
-    var hero = document.querySelector('.framer-i5m54n');
-    if (hero) {
-      if (progress >= 0.98) {
-        hero.classList.add('diptych-merged');
-      } else {
-        hero.classList.remove('diptych-merged');
-      }
-    }
-
-    // Lerp loop for silky smooth response
-    
-  // Taskbar scroll state
-  var taskbar = document.getElementById('chintwo-taskbar');
-  if (taskbar) {
-    if (currentScroll > 40) {
-      taskbar.classList.add('is-scrolled');
-    } else {
-      taskbar.classList.remove('is-scrolled');
-    }
-  }
-
-    if (Math.abs(targetScroll - currentScroll) > 0.5) {
-      currentScroll += (targetScroll - currentScroll) * 0.18;
-      requestAnimationFrame(update);
-    } else {
-      currentScroll = targetScroll;
-      isTicking = false;
-    }
-  }
-
-  function onScroll() {
-    targetScroll = window.scrollY || window.pageYOffset || 0;
-    if (!isTicking) {
-      isTicking = true;
-      requestAnimationFrame(update);
-    }
-  }
-
-  window.addEventListener('scroll', onScroll, { passive: true });
-  window.addEventListener('resize', onScroll, { passive: true });
-
-  // Initialize immediately on load
-  targetScroll = window.scrollY || window.pageYOffset || 0;
-  currentScroll = targetScroll;
-  update();
-})();
-</script>
 
 <script id="chintwo-diptych-script">
 (function() {
@@ -1247,22 +1193,34 @@
 
   function getBaseOffset() {
     var w = window.innerWidth;
-    if (w > 1200) return 220;
-    if (w > 810) return 160;
-    return Math.min(90, w * 0.24);
+    if (w > 1200) return 260;
+    if (w > 810) return 180;
+    return Math.min(100, w * 0.26);
   }
 
   function getBaseRot() {
     var w = window.innerWidth;
-    if (w > 810) return 5.5;
-    return 3.5;
+    if (w > 810) return 6;
+    return 4;
+  }
+
+  function getTargetScale() {
+    var winW = window.innerWidth;
+    var winH = window.innerHeight;
+    var baseH = winW > 810 ? Math.min(480, winH * 0.52) : Math.min(340, winH * 0.44);
+    var halfW = baseH * 0.619285;
+    var totalW = halfW * 2;
+    var scaleX = winW / totalW;
+    var scaleY = winH / baseH;
+    // Cover the full screen with 4% bleed to guarantee edge-to-edge fill
+    return Math.max(scaleX, scaleY) * 1.04;
   }
 
   function update() {
-    var mergeDistance = 340;
+    var mergeDistance = 460;
     var progress = Math.min(1, Math.max(0, currentScroll / mergeDistance));
 
-    // Smooth cubic easing
+    // Smooth cubic easing for silky natural motion
     var ease = progress < 0.5 
       ? 4 * progress * progress * progress 
       : 1 - Math.pow(-2 * progress + 2, 3) / 2;
@@ -1272,21 +1230,36 @@
     var baseRot = getBaseRot();
     var rot = (1 - ease) * baseRot;
 
-    // Subpixel adjustment when fully merged
-    var subpixel = progress >= 0.98 ? 0.5 : 0;
+    var targetScale = getTargetScale();
+    // As the image combines, it enlarges from 1.0 to fill the screen!
+    var scale = 1 + (targetScale - 1) * ease;
+
+    // Subpixel seam lock when fully merged
+    var subpixel = progress >= 0.96 ? 0.75 : 0;
 
     root.style.setProperty('--diptych-left-x', 'calc(-100% - ' + offset.toFixed(2) + 'px + ' + subpixel + 'px)');
     root.style.setProperty('--diptych-right-x', 'calc(0% + ' + offset.toFixed(2) + 'px)');
     root.style.setProperty('--diptych-rot-left', (-rot).toFixed(2) + 'deg');
     root.style.setProperty('--diptych-rot-right', rot.toFixed(2) + 'deg');
+    root.style.setProperty('--diptych-scale', scale.toFixed(4));
 
-    // Heading opacity: smoothly yields to artwork
-    var headingOp = Math.max(0, 1 - progress * 1.5);
+    // Smooth transition of border-radius & box-shadow to 0 as it fills screen
+    var radiusLeft = (4 * (1 - ease)).toFixed(2) + 'px 0 0 ' + (4 * (1 - ease)).toFixed(2) + 'px';
+    var radiusRight = '0 ' + (4 * (1 - ease)).toFixed(2) + 'px ' + (4 * (1 - ease)).toFixed(2) + 'px 0';
+    root.style.setProperty('--diptych-radius-left', radiusLeft);
+    root.style.setProperty('--diptych-radius-right', radiusRight);
+
+    var shadowOpacity = (0.35 * (1 - ease)).toFixed(3);
+    root.style.setProperty('--diptych-shadow-left', '-15px 25px 60px rgba(18, 19, 22, ' + shadowOpacity + ')');
+    root.style.setProperty('--diptych-shadow-right', '15px 25px 60px rgba(18, 19, 22, ' + shadowOpacity + ')');
+
+    // Heading opacity: smoothly yields to artwork early
+    var headingOp = Math.max(0, 1 - progress * 2.2);
     root.style.setProperty('--diptych-heading-opacity', headingOp.toFixed(3));
-    root.style.setProperty('--diptych-heading-scale', (1 - progress * 0.08).toFixed(3));
+    root.style.setProperty('--diptych-heading-scale', (1 - progress * 0.12).toFixed(3));
 
-    // Plaque opacity: appears as artwork merges
-    var plaqueOp = progress > 0.7 ? Math.min(1, (progress - 0.7) / 0.3) : 0;
+    // Plaque opacity: appears when artwork fills the screen
+    var plaqueOp = progress > 0.75 ? Math.min(1, (progress - 0.75) / 0.25) : 0;
     root.style.setProperty('--diptych-plaque-opacity', plaqueOp.toFixed(3));
 
     // Consolidated shadow class
@@ -1299,7 +1272,17 @@
       }
     }
 
-    // Lerp loop for silky smooth response
+    // Taskbar scroll state
+    var taskbar = document.getElementById('chintwo-taskbar');
+    if (taskbar) {
+      if (currentScroll > 40) {
+        taskbar.classList.add('is-scrolled');
+      } else {
+        taskbar.classList.remove('is-scrolled');
+      }
+    }
+
+    // Lerp loop for silky smooth 60fps response
     if (Math.abs(targetScroll - currentScroll) > 0.5) {
       currentScroll += (targetScroll - currentScroll) * 0.18;
       requestAnimationFrame(update);
