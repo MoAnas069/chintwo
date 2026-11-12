@@ -435,6 +435,7 @@
   :root body {
     background-color: #f7f5f0 !important;
     color: #121316 !important;
+    overflow-x: hidden !important;
   }
 
   /* PINNED HERO TRACK & FULL-SCREEN VIEWPORT STAGE */
@@ -455,7 +456,7 @@
     z-index: 10 !important;
     background-color: #f7f5f0 !important;
     background-image: 
-      radial-gradient(ellipse at 50% 48%, rgba(255, 255, 255, 0.95) 0%, rgba(247, 245, 240, 0.70) 50%, rgba(235, 230, 220, 0.90) 100%),
+      radial-gradient(ellipse at 50% 48%, rgba(255, 255, 255, 0.95) 0%, rgba(247, 245, 240, 0.75) 50%, rgba(235, 230, 220, 0.90) 100%),
       linear-gradient(0deg, rgba(18, 19, 22, 0.02) 1px, transparent 1px),
       linear-gradient(90deg, rgba(18, 19, 22, 0.02) 1px, transparent 1px),
       url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='canvasGrain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.78' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.1 0 0 0 0 0.1 0 0 0 0 0.1 0 0 0 0.04 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23canvasGrain)'/%3E%3C/svg%3E") !important;
@@ -484,7 +485,6 @@
     height: min(500px, 54vh) !important;
     overflow: hidden !important;
     will-change: transform, border-radius, box-shadow !important;
-    transform-origin: center center !important;
     backface-visibility: hidden !important;
     -webkit-backface-visibility: hidden !important;
   }
@@ -496,13 +496,16 @@
     }
   }
 
+  /* Anchored at seam edges so scaling expands outward without overlapping */
   .chintwo-diptych-left {
     left: 0 !important;
+    transform-origin: 100% 50% !important;
     transform: translate(-100%, -50%);
   }
 
   .chintwo-diptych-right {
     left: 0 !important;
+    transform-origin: 0% 50% !important;
     transform: translate(0%, -50%);
   }
 
@@ -516,15 +519,15 @@
     background-repeat: no-repeat !important;
   }
 
-  /* CENTER BRAND: Appears when image almost merges */
+  /* CENTER LOGO BRAND: Placed on top of merged image */
   .chintwo-hero-center-brand {
     position: absolute !important;
     top: 50% !important;
     left: 50% !important;
-    transform: translate(-50%, -50%) scale(0.85) !important;
+    transform: translate(-50%, -50%) scale(0.9) !important;
     opacity: 0 !important;
     pointer-events: none !important;
-    z-index: 25 !important;
+    z-index: 30 !important;
     text-align: center !important;
     transition: opacity 0.35s ease, transform 0.35s ease !important;
   }
@@ -534,40 +537,40 @@
     flex-direction: column !important;
     align-items: center !important;
     justify-content: center !important;
-    padding: 24px 42px !important;
-    background: rgba(247, 245, 240, 0.92) !important;
+    padding: 26px 48px !important;
+    background: rgba(247, 245, 240, 0.94) !important;
     backdrop-filter: blur(28px) !important;
     -webkit-backdrop-filter: blur(28px) !important;
-    border-radius: 20px !important;
-    border: 1px solid rgba(191, 161, 95, 0.40) !important;
-    box-shadow: 0 24px 60px rgba(18, 19, 22, 0.18), 0 0 0 1px rgba(255, 255, 255, 0.7) inset !important;
+    border-radius: 22px !important;
+    border: 1px solid rgba(191, 161, 95, 0.45) !important;
+    box-shadow: 0 28px 70px rgba(18, 19, 22, 0.22), 0 0 0 1px rgba(255, 255, 255, 0.8) inset !important;
   }
 
   .chintwo-hero-center-emblem {
-    width: 58px !important;
-    height: 62px !important;
+    width: 68px !important;
+    height: 72px !important;
     object-fit: contain !important;
     margin-bottom: 12px !important;
-    filter: drop-shadow(0 4px 12px rgba(18, 19, 22, 0.12)) !important;
+    filter: drop-shadow(0 4px 12px rgba(18, 19, 22, 0.15)) !important;
   }
 
   .chintwo-hero-center-name {
     font-family: 'Playfair Display', Georgia, serif !important;
-    font-size: 32px !important;
+    font-size: 34px !important;
     font-weight: 700 !important;
-    letter-spacing: 0.24em !important;
+    letter-spacing: 0.25em !important;
     color: #121316 !important;
     margin: 0 0 4px 0 !important;
     line-height: 1.1 !important;
-    text-indent: 0.24em !important;
+    text-indent: 0.25em !important;
   }
 
   .chintwo-hero-center-sub {
     font-family: 'Inter', sans-serif !important;
     font-size: 11px !important;
     font-weight: 600 !important;
-    letter-spacing: 0.26em !important;
-    color: rgba(18, 19, 22, 0.6) !important;
+    letter-spacing: 0.28em !important;
+    color: rgba(18, 19, 22, 0.65) !important;
     text-transform: uppercase !important;
   }
 
@@ -595,7 +598,7 @@
     display: flex !important;
     align-items: center !important;
     justify-content: space-between !important;
-    background: rgba(255, 255, 255, 0.88) !important;
+    background: rgba(255, 255, 255, 0.90) !important;
     backdrop-filter: blur(20px) !important;
     -webkit-backdrop-filter: blur(20px) !important;
     border: 1px solid rgba(18, 19, 22, 0.08) !important;
@@ -609,10 +612,6 @@
     align-items: center !important;
     gap: 10px !important;
     text-decoration: none !important;
-  }
-
-  .chintwo-taskbar-emblem {
-    display: block !important;
   }
 
   .chintwo-taskbar-title {
@@ -697,58 +696,61 @@
     }
   }
 
-  /* SELECTED WORKS: Venetian Plaster & Scroll Reveal from Either Side */
-  .framer-1mxtmm2#work {
+  /* SELECTED WORKS: FlexCarousel Section Ground */
+  .chintwo-work-section {
+    padding: 100px 24px 80px !important;
     background-color: #f5f2eb !important;
     background-image: 
       radial-gradient(ellipse at 50% 0%, rgba(255, 255, 255, 0.75) 0%, transparent 60%),
       url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='plaster'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.1 0 0 0 0 0.1 0 0 0 0 0.1 0 0 0 0.035 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23plaster)'/%3E%3C/svg%3E") !important;
     background-size: 100% 100%, 200px 200px !important;
-    overflow: hidden !important;
-  }
-
-  .chintwo-work-reveal-left {
-    opacity: 0 !important;
-    transform: translateX(-70px) scale(0.96) !important;
-    transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1) !important;
-    will-change: transform, opacity !important;
-  }
-
-  .chintwo-work-reveal-right {
-    opacity: 0 !important;
-    transform: translateX(70px) scale(0.96) !important;
-    transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1) !important;
-    will-change: transform, opacity !important;
-  }
-
-  .chintwo-work-reveal-left.is-inview,
-  .chintwo-work-reveal-right.is-inview {
-    opacity: 1 !important;
-    transform: translate(0, 0) scale(1) !important;
-  }
-
-  /* ABOUT ME: Storytelling Experience Ground & Alternating Reveals */
-  .chintwo-about-section {
-    padding: 130px 24px !important;
-    background-color: #f6f3ec !important;
-    background-image: 
-      radial-gradient(ellipse at 50% 10%, rgba(255, 255, 255, 0.85) 0%, transparent 70%),
-      linear-gradient(rgba(18, 19, 22, 0.015) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(18, 19, 22, 0.015) 1px, transparent 1px) !important;
-    background-size: 100% 100%, 48px 48px, 48px 48px !important;
     position: relative !important;
     overflow: hidden !important;
   }
 
-  .chintwo-about-container {
-    max-width: 1240px !important;
+  .chintwo-work-container {
+    max-width: 1440px !important;
     margin: 0 auto !important;
+  }
+
+  .chintwo-work-header {
+    text-align: center !important;
+    max-width: 820px !important;
+    margin: 0 auto 20px !important;
+  }
+
+  .chintwo-work-footer-cta {
+    text-align: center !important;
+    margin-top: 40px !important;
+  }
+
+  /* ABOUT ME: Full Width, Fine-Art Linen Ground, Zero Black Sections */
+  .chintwo-about-section {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 110px clamp(20px, 4vw, 70px) !important;
+    background-color: #f7f5f0 !important;
+    background-image: 
+      radial-gradient(ellipse at 50% 10%, rgba(255, 255, 255, 0.90) 0%, transparent 70%),
+      linear-gradient(rgba(18, 19, 22, 0.012) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(18, 19, 22, 0.012) 1px, transparent 1px) !important;
+    background-size: 100% 100%, 48px 48px, 48px 48px !important;
+    position: relative !important;
+    overflow: hidden !important;
+    box-sizing: border-box !important;
+  }
+
+  .chintwo-about-container {
+    width: 100% !important;
+    max-width: 1440px !important;
+    margin: 0 auto !important;
+    box-sizing: border-box !important;
   }
 
   .chintwo-story-header {
     text-align: center !important;
     max-width: 820px !important;
-    margin: 0 auto 90px !important;
+    margin: 0 auto 70px !important;
   }
 
   .chintwo-section-tag {
@@ -783,20 +785,22 @@
   .chintwo-story-chapters {
     display: flex !important;
     flex-direction: column !important;
-    gap: 130px !important;
+    gap: 90px !important;
+    width: 100% !important;
   }
 
   .chintwo-story-row {
     display: grid !important;
     grid-template-columns: 1fr 1fr !important;
-    gap: 70px !important;
+    gap: clamp(32px, 5vw, 80px) !important;
     align-items: center !important;
+    width: 100% !important;
   }
 
   .chintwo-story-card {
     background: #ffffff !important;
     border-radius: 12px !important;
-    padding: 18px !important;
+    padding: 16px !important;
     border: 1px solid rgba(191, 161, 95, 0.28) !important;
     box-shadow: 0 18px 44px rgba(18, 19, 22, 0.07) !important;
     transition: transform 0.4s ease, box-shadow 0.4s ease !important;
@@ -863,7 +867,7 @@
     font-size: 11px !important;
     font-weight: 700 !important;
     letter-spacing: 0.14em !important;
-    margin-bottom: 12px !important;
+    margin-bottom: 10px !important;
     border: 1px solid rgba(191, 161, 95, 0.3) !important;
   }
 
@@ -874,35 +878,35 @@
     color: rgba(18, 19, 22, 0.45) !important;
     font-weight: 600 !important;
     text-transform: uppercase !important;
-    margin-bottom: 8px !important;
+    margin-bottom: 6px !important;
   }
 
   .chintwo-story-title {
     font-family: 'Playfair Display', Georgia, serif !important;
-    font-size: 38px !important;
+    font-size: 34px !important;
     font-weight: 600 !important;
     color: #121316 !important;
     line-height: 1.2 !important;
     letter-spacing: -0.02em !important;
-    margin: 0 0 18px 0 !important;
+    margin: 0 0 14px 0 !important;
   }
 
   .chintwo-story-body p {
     font-family: 'Inter', sans-serif !important;
     font-size: 15px !important;
-    line-height: 1.75 !important;
+    line-height: 1.7 !important;
     color: rgba(18, 19, 22, 0.76) !important;
-    margin: 0 0 14px 0 !important;
+    margin: 0 0 12px 0 !important;
   }
 
   .chintwo-story-quote {
     border-left: 2px solid #bfa15f !important;
-    padding-left: 18px !important;
-    margin: 18px 0 !important;
+    padding-left: 16px !important;
+    margin: 14px 0 !important;
     font-family: 'Playfair Display', Georgia, serif !important;
     font-style: italic !important;
-    font-size: 17px !important;
-    line-height: 1.6 !important;
+    font-size: 16px !important;
+    line-height: 1.55 !important;
     color: #121316 !important;
   }
 
@@ -910,7 +914,7 @@
     display: flex !important;
     flex-wrap: wrap !important;
     gap: 8px !important;
-    margin-top: 14px !important;
+    margin-top: 10px !important;
   }
 
   .chintwo-story-tag-pill {
@@ -928,8 +932,8 @@
     display: grid !important;
     grid-template-columns: repeat(3, 1fr) !important;
     gap: 16px !important;
-    margin: 24px 0 !important;
-    padding: 16px 0 !important;
+    margin: 20px 0 !important;
+    padding: 14px 0 !important;
     border-top: 1px solid rgba(18, 19, 22, 0.08) !important;
     border-bottom: 1px solid rgba(18, 19, 22, 0.08) !important;
   }
@@ -1003,29 +1007,29 @@
   /* Story Scroll Reveals: images from left/right */
   .chintwo-story-media--from-left {
     opacity: 0 !important;
-    transform: translateX(-90px) scale(0.95) !important;
-    transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    transform: translateX(-70px) scale(0.96) !important;
+    transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1) !important;
     will-change: transform, opacity !important;
   }
 
   .chintwo-story-media--from-right {
     opacity: 0 !important;
-    transform: translateX(90px) scale(0.95) !important;
-    transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    transform: translateX(70px) scale(0.96) !important;
+    transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1) !important;
     will-change: transform, opacity !important;
   }
 
   .chintwo-story-text--from-left {
     opacity: 0 !important;
-    transform: translateX(-70px) !important;
-    transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    transform: translateX(-50px) !important;
+    transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1) !important;
     will-change: transform, opacity !important;
   }
 
   .chintwo-story-text--from-right {
     opacity: 0 !important;
-    transform: translateX(70px) !important;
-    transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    transform: translateX(50px) !important;
+    transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1) !important;
     will-change: transform, opacity !important;
   }
 
@@ -1040,140 +1044,16 @@
   @media (max-width: 900px) {
     .chintwo-story-row {
       grid-template-columns: 1fr !important;
-      gap: 40px !important;
+      gap: 36px !important;
     }
     .chintwo-story-row--reverse .chintwo-story-media-col {
       order: -1 !important;
     }
     .chintwo-story-title {
-      font-size: 28px !important;
+      font-size: 26px !important;
     }
     .chintwo-story-actions {
       flex-direction: column !important;
-    }
-  }
-
-  /* EXHIBITIONS: Archival Parchment Ledger */
-  .chintwo-exhibitions-section {
-    background-color: #f3efe6 !important;
-    background-image: 
-      radial-gradient(ellipse at 50% 20%, rgba(255, 255, 255, 0.70) 0%, transparent 70%),
-      repeating-linear-gradient(0deg, transparent, transparent 31px, rgba(191, 161, 95, 0.08) 31px, rgba(191, 161, 95, 0.08) 32px),
-      url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='parchment'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.1 0 0 0 0 0.1 0 0 0 0 0.1 0 0 0 0.035 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23parchment)'/%3E%3C/svg%3E") !important;
-    background-size: 100% 100%, 100% 32px, 200px 200px !important;
-    padding: 110px 36px !important;
-    border-top: 1px solid rgba(191, 161, 95, 0.22) !important;
-    border-bottom: 1px solid rgba(191, 161, 95, 0.22) !important;
-    position: relative !important;
-    z-index: 2 !important;
-  }
-  .chintwo-exhibitions-container {
-    max-width: 1240px !important;
-    margin: 0 auto !important;
-  }
-  .chintwo-provenance-grid {
-    display: grid !important;
-    grid-template-columns: 1.15fr 0.85fr !important;
-    gap: 48px !important;
-    margin-top: 54px !important;
-  }
-  .chintwo-provenance-col-title {
-    font-family: 'Playfair Display', Georgia, serif !important;
-    font-size: 22px !important;
-    font-weight: 600 !important;
-    color: #121316 !important;
-    margin-bottom: 24px !important;
-    display: flex !important;
-    align-items: center !important;
-    gap: 12px !important;
-  }
-  .chintwo-provenance-col-title::after {
-    content: '' !important;
-    flex: 1 !important;
-    height: 1px !important;
-    background: rgba(191, 161, 95, 0.35) !important;
-  }
-  .chintwo-ledger-item {
-    display: grid !important;
-    grid-template-columns: 60px 1fr !important;
-    gap: 18px !important;
-    padding: 18px 0 !important;
-    border-bottom: 1px solid rgba(18, 19, 22, 0.08) !important;
-  }
-  .chintwo-ledger-year {
-    font-family: 'Space Mono', monospace !important;
-    font-size: 13px !important;
-    font-weight: 700 !important;
-    color: #8c7340 !important;
-  }
-  .chintwo-ledger-title {
-    font-family: 'Playfair Display', Georgia, serif !important;
-    font-size: 16px !important;
-    font-weight: 600 !important;
-    color: #121316 !important;
-    margin: 0 0 4px 0 !important;
-  }
-  .chintwo-ledger-venue {
-    font-family: 'Inter', sans-serif !important;
-    font-size: 13px !important;
-    color: rgba(18, 19, 22, 0.6) !important;
-    margin: 0 !important;
-  }
-  .chintwo-accolade-card {
-    background: #ffffff !important;
-    border: 1px solid rgba(191, 161, 95, 0.3) !important;
-    border-radius: 8px !important;
-    padding: 22px !important;
-    margin-bottom: 16px !important;
-    box-shadow: 0 4px 16px rgba(18, 19, 22, 0.04) !important;
-  }
-  .chintwo-accolade-year {
-    font-family: 'Space Mono', monospace !important;
-    font-size: 11px !important;
-    font-weight: 700 !important;
-    color: #8c7340 !important;
-    letter-spacing: 0.1em !important;
-  }
-  .chintwo-accolade-title {
-    font-family: 'Playfair Display', Georgia, serif !important;
-    font-size: 16px !important;
-    font-weight: 600 !important;
-    color: #121316 !important;
-    margin: 4px 0 !important;
-  }
-  .chintwo-accolade-org {
-    font-family: 'Inter', sans-serif !important;
-    font-size: 13px !important;
-    color: rgba(18, 19, 22, 0.6) !important;
-    margin: 0 !important;
-  }
-  .chintwo-curatorial-note {
-    background: rgba(191, 161, 95, 0.08) !important;
-    border-left: 3px solid #bfa15f !important;
-    padding: 18px !important;
-    margin-top: 24px !important;
-    border-radius: 0 8px 8px 0 !important;
-  }
-  .chintwo-curatorial-note-title {
-    font-family: 'Space Mono', monospace !important;
-    font-size: 10px !important;
-    font-weight: 700 !important;
-    letter-spacing: 0.12em !important;
-    color: #8c7340 !important;
-    text-transform: uppercase !important;
-    margin-bottom: 6px !important;
-  }
-  .chintwo-curatorial-note p {
-    font-family: 'Inter', sans-serif !important;
-    font-size: 12px !important;
-    line-height: 1.6 !important;
-    color: rgba(18, 19, 22, 0.7) !important;
-    margin: 0 !important;
-  }
-  @media (max-width: 900px) {
-    .chintwo-provenance-grid {
-      grid-template-columns: 1fr !important;
-      gap: 36px !important;
     }
   }
 
@@ -1363,6 +1243,7 @@
     }
   }
 </style>
+<link rel="stylesheet" href="/assets/styles/FlexCarousel.css">
 </head>
 <body>
 
@@ -1416,10 +1297,10 @@
     <!-- The Diptych Canvas Stage (Unification) -->
     <div class="chintwo-diptych-unification-wrapper" id="chintwo-diptych-wrapper">
       <div class="chintwo-diptych-half chintwo-diptych-left" id="chintwo-diptych-left">
-        <div class="chintwo-diptych-img-pane" style="background-image: url('/assets/images/peaa6VBBdWRSL3icJ2tpwsIXZI.webp'); background-position: left center;"></div>
+        <div class="chintwo-diptych-img-pane" style="background-image: url('/assets/images/bg5zKXacbxF9hxgxh95vSeYyKHM.webp'); background-position: left center;"></div>
       </div>
       <div class="chintwo-diptych-half chintwo-diptych-right" id="chintwo-diptych-right">
-        <div class="chintwo-diptych-img-pane" style="background-image: url('/assets/images/peaa6VBBdWRSL3icJ2tpwsIXZI.webp'); background-position: right center;"></div>
+        <div class="chintwo-diptych-img-pane" style="background-image: url('/assets/images/bg5zKXacbxF9hxgxh95vSeYyKHM.webp'); background-position: right center;"></div>
       </div>
     </div>
 
@@ -1433,21 +1314,38 @@
     </div>
 
   </section>
-</div><section class="framer-1mxtmm2" data-framer-name="Work" id="work"><div class="framer-e42qnq" data-framer-name="Container"><div class="framer-iyydv1" data-framer-name="Text"><div class="framer-pki6om" data-border="true" data-framer-name="Top"><div class="framer-8ukp07" data-framer-name="Gallery" data-framer-component-type="RichTextContainer" style="transform:none"><p dir="auto" style="--font-selector:SW50ZXItU2VtaUJvbGQ=;--framer-font-size:14px;--framer-font-weight:600;--framer-letter-spacing:-0.04em;--framer-line-height:22px;--framer-text-color:var(--token-f8c6fc17-6126-48ad-8306-922d51919d56, rgb(17, 17, 18))" class="framer-text">Portfolio</p></div><div class="framer-15vhh48" data-framer-name="02" data-framer-component-type="RichTextContainer" style="transform:none"><p dir="auto" style="--font-selector:SW50ZXItU2VtaUJvbGQ=;--framer-font-size:14px;--framer-font-weight:600;--framer-letter-spacing:-0.04em;--framer-line-height:22px;--framer-text-color:var(--token-f8c6fc17-6126-48ad-8306-922d51919d56, rgb(17, 17, 18))" class="framer-text">01</p></div></div><div class="framer-1p9qk5s" data-framer-name="Heading"><div class="framer-mwz2x9" data-framer-component-type="RichTextContainer" style="will-change:transform;opacity:0;transform:none"><h2 dir="auto" style="--font-selector:SW50ZXItTWVkaXVt;--framer-font-size:74px;--framer-font-weight:500;--framer-letter-spacing:-0.07em;--framer-line-height:0.96em;--framer-text-alignment:left;--framer-text-color:var(--token-f8c6fc17-6126-48ad-8306-922d51919d56, rgb(17, 17, 18))" class="framer-text">Selected Series & Canvases</h2></div><div class="framer-1dhnwm6" data-framer-name="Dedicated to creating resonant works of solitude, memory, and tactile form for private collections and publications." data-framer-component-type="RichTextContainer" style="will-change:transform;opacity:0;transform:none"><p dir="auto" style="--font-selector:SW50ZXItTWVkaXVt;--framer-font-weight:500;--framer-letter-spacing:-0.05em;--framer-line-height:22px;--framer-text-color:var(--token-f8c6fc17-6126-48ad-8306-922d51919d56, rgb(17, 17, 18))" class="framer-text">Explorations of silence, architectural memory, and atmospheric light — tactile works across oil, monoprint, and earth pigment.</p></div></div></div><div class="framer-ucatxt"><!--$--><!--$--><a class="framer-1klobem framer-lux5qc" href="./portfolio/the-silent-hour"><div class="ssr-variant hidden-i58y18"><div class="framer-1nexkgs" data-framer-cursor="v4fkfb" data-framer-name="Image"><div style="position:absolute;border-radius:inherit;corner-shape:inherit;top:0;right:0;bottom:0;left:0;background-repeat:repeat;background-position:left top;background-size:64px auto;background-image:url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22126%22 height=%22126%22><path id=%22a%22 d=%22M126 0v21.584L21.584 126H0v-17.585L108.415 0H126Zm0 108.414V126h-17.586L126 108.414Zm0-84v39.171L63.585 126H24.414L126 24.414Zm0 42v39.17L105.584 126h-39.17L126 66.414ZM105.586 0 0 105.586V66.415L66.415 0h39.171Zm-42 0L0 63.586V24.415L24.415 0h39.171Zm-42 0L0 21.586V0h21.586Z%22 fill=%22rgb(136, 136, 136, 0.2)%22 fill-rule=%22evenodd%22/></svg>')" data-framer-background-image-wrapper="true"></div><div class="framer-rj6xo0" style="will-change:transform;opacity:1;transform:scale(1.1)"><div style="position:absolute;border-radius:inherit;corner-shape:inherit;top:0;right:0;bottom:0;left:0" data-framer-background-image-wrapper="true"><img decoding="async" loading="lazy" width="2000" height="1333" sizes="(min-width: 1400px) max(max((min(100vw - 144px, 1848px) - 60px) / 2, 50px), max((max((min(100vw - 72px, 1848px) - 20px) / 1.5, 1px) - 20px) / 2, 1px)), (min-width: 810px) and (max-width: 1399.98px) max(max((min(100vw - 128px, 1848px) - 40px) / 2, 50px), max((min(100vw - 64px, 1848px) - 32px) / 2, 1px)), (max-width: 809.98px) max(min(100vw - 96px, 1848px), min(100vw - 48px, 1848px))" srcset="/assets/images/LcTxyeMFm5sIiiSm4Iop5zds.webp?scale-down-to=512&amp;width=2000&amp;height=1333 512w,/assets/images/LcTxyeMFm5sIiiSm4Iop5zds.webp?scale-down-to=1024&amp;width=2000&amp;height=1333 1024w,/assets/images/LcTxyeMFm5sIiiSm4Iop5zds.webp?width=2000&amp;height=1333 2000w" src="/assets/images/LcTxyeMFm5sIiiSm4Iop5zds.webp?width=2000&amp;height=1333" alt="The Silent Hour — Gouache &amp; Monoprint on 300gsm Archival Rag (2024–2025)" style="display:block;width:100%;height:100%;border-radius:inherit;corner-shape:inherit;object-position:center;object-fit:cover"></div></div><div class="framer-l4s4zv-container"><div class="framer-5QmUD framer-cg5exn framer-v-cg5exn" data-framer-name="All corners" style="--12eybmm:20px;height:100%;width:100%"><div class="framer-9mvoxu" data-framer-name="top"><div class="framer-kmt8ng" data-border="true" style="--border-bottom-width:0px;--border-color:rgb(255, 255, 255);--border-left-width:1px;--border-right-width:0px;--border-style:solid;--border-top-width:1px"></div><div class="framer-101ek76" data-border="true" style="--border-bottom-width:0px;--border-color:rgb(255, 255, 255);--border-left-width:0px;--border-right-width:1px;--border-style:solid;--border-top-width:1px"></div></div><div class="framer-1qvnj92" data-framer-name="bottom"><div class="framer-4spxv3" data-border="true" style="--border-bottom-width:1px;--border-color:rgb(255, 255, 255);--border-left-width:1px;--border-right-width:0px;--border-style:solid;--border-top-width:0px"></div><div class="framer-1armrbg" data-border="true" style="--border-bottom-width:1px;--border-color:rgb(255, 255, 255);--border-left-width:0px;--border-right-width:1px;--border-style:solid;--border-top-width:0px"></div></div></div></div></div></div><div class="ssr-variant hidden-x29ilp hidden-57x94v"><div class="framer-1nexkgs" data-framer-cursor="v4fkfb" data-framer-name="Image"><div style="position:absolute;border-radius:inherit;corner-shape:inherit;top:0;right:0;bottom:0;left:0;background-repeat:repeat;background-position:left top;background-size:64px auto;background-image:url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22126%22 height=%22126%22><path id=%22a%22 d=%22M126 0v21.584L21.584 126H0v-17.585L108.415 0H126Zm0 108.414V126h-17.586L126 108.414Zm0-84v39.171L63.585 126H24.414L126 24.414Zm0 42v39.17L105.584 126h-39.17L126 66.414ZM105.586 0 0 105.586V66.415L66.415 0h39.171Zm-42 0L0 63.586V24.415L24.415 0h39.171Zm-42 0L0 21.586V0h21.586Z%22 fill=%22rgb(136, 136, 136, 0.2)%22 fill-rule=%22evenodd%22/></svg>')" data-framer-background-image-wrapper="true"></div><div class="framer-rj6xo0" style="will-change:transform;opacity:1;transform:scale(1.1)"><div style="position:absolute;border-radius:inherit;corner-shape:inherit;top:0;right:0;bottom:0;left:0" data-framer-background-image-wrapper="true"><img decoding="async" loading="lazy" width="2000" height="1333" sizes="(min-width: 1400px) max(max((min(100vw - 144px, 1848px) - 60px) / 2, 50px), max((max((min(100vw - 72px, 1848px) - 20px) / 1.5, 1px) - 20px) / 2, 1px)), (min-width: 810px) and (max-width: 1399.98px) max(max((min(100vw - 128px, 1848px) - 40px) / 2, 50px), max((min(100vw - 64px, 1848px) - 32px) / 2, 1px)), (max-width: 809.98px) max(min(100vw - 96px, 1848px), min(100vw - 48px, 1848px))" srcset="/assets/images/LcTxyeMFm5sIiiSm4Iop5zds.webp?scale-down-to=512&amp;width=2000&amp;height=1333 512w,/assets/images/LcTxyeMFm5sIiiSm4Iop5zds.webp?scale-down-to=1024&amp;width=2000&amp;height=1333 1024w,/assets/images/LcTxyeMFm5sIiiSm4Iop5zds.webp?width=2000&amp;height=1333 2000w" src="/assets/images/LcTxyeMFm5sIiiSm4Iop5zds.webp?width=2000&amp;height=1333" alt="The Silent Hour — Gouache &amp; Monoprint on 300gsm Archival Rag (2024–2025)" style="display:block;width:100%;height:100%;border-radius:inherit;corner-shape:inherit;object-position:center;object-fit:cover"></div></div><div class="framer-l4s4zv-container"><div class="framer-5QmUD framer-cg5exn framer-v-cg5exn" data-framer-name="All corners" style="--12eybmm:16px;height:100%;width:100%"><div class="framer-9mvoxu" data-framer-name="top"><div class="framer-kmt8ng" data-border="true" style="--border-bottom-width:0px;--border-color:rgb(255, 255, 255);--border-left-width:1px;--border-right-width:0px;--border-style:solid;--border-top-width:1px"></div><div class="framer-101ek76" data-border="true" style="--border-bottom-width:0px;--border-color:rgb(255, 255, 255);--border-left-width:0px;--border-right-width:1px;--border-style:solid;--border-top-width:1px"></div></div><div class="framer-1qvnj92" data-framer-name="bottom"><div class="framer-4spxv3" data-border="true" style="--border-bottom-width:1px;--border-color:rgb(255, 255, 255);--border-left-width:1px;--border-right-width:0px;--border-style:solid;--border-top-width:0px"></div><div class="framer-1armrbg" data-border="true" style="--border-bottom-width:1px;--border-color:rgb(255, 255, 255);--border-left-width:0px;--border-right-width:1px;--border-style:solid;--border-top-width:0px"></div></div></div></div></div></div><div class="framer-1itojog" data-framer-name="Info" style="will-change:transform;opacity:0;transform:none"><div class="framer-qy109" data-framer-name="Text"><div class="framer-v23ho" data-framer-name="Title" data-framer-component-type="RichTextContainer" style="transform:none"><h3 dir="auto" style="--font-selector:SW50ZXItTWVkaXVt;--framer-font-size:40px;--framer-font-weight:500;--framer-letter-spacing:-0.07em;--framer-line-height:1em;--framer-text-color:var(--token-f8c6fc17-6126-48ad-8306-922d51919d56, rgb(17, 17, 18))" class="framer-text">The Silent Hour</h3></div><div class="framer-nt2d3g" data-framer-name="Category" data-framer-component-type="RichTextContainer" style="transform:none"><p dir="auto" style="--font-selector:SW50ZXItTWVkaXVt;--framer-font-size:15px;--framer-font-weight:500;--framer-letter-spacing:-0.04em;--framer-line-height:20px;--framer-text-color:rgba(17, 17, 18, 0.6)" class="framer-text">Gouache &amp; Monoprint on 300gsm Archival Rag (2024–2025)</p></div></div><div class="ssr-variant hidden-57x94v hidden-i58y18"><div class="framer-ea8z1d" data-framer-name="08 / 24" data-framer-component-type="RichTextContainer" style="transform:none"><p dir="auto" style="--font-selector:SW50ZXItU2VtaUJvbGQ=;--framer-font-size:30px;--framer-font-weight:600;--framer-letter-spacing:-0.07em;--framer-line-height:1em;--framer-text-alignment:right;--framer-text-color:rgba(17, 17, 18, 0.3)" class="framer-text"><time></time></p></div></div><div class="ssr-variant hidden-x29ilp hidden-i58y18"><div class="framer-ea8z1d" data-framer-name="08 / 24" data-framer-component-type="RichTextContainer" style="transform:none"><p dir="auto" style="--font-selector:SW50ZXItU2VtaUJvbGQ=;--framer-font-size:22px;--framer-font-weight:600;--framer-letter-spacing:-0.07em;--framer-line-height:1em;--framer-text-alignment:right;--framer-text-color:rgba(17, 17, 18, 0.3)" class="framer-text"><time></time></p></div></div><div class="ssr-variant hidden-x29ilp hidden-57x94v"><div class="framer-ea8z1d" data-framer-name="08 / 24" data-framer-component-type="RichTextContainer" style="transform:none"><p dir="auto" style="--font-selector:SW50ZXItU2VtaUJvbGQ=;--framer-font-size:18px;--framer-font-weight:600;--framer-letter-spacing:-0.07em;--framer-line-height:1em;--framer-text-alignment:right;--framer-text-color:rgba(17, 17, 18, 0.3)" class="framer-text"><time></time></p></div></div></div></a><!--/$--><!--$--><a class="framer-1klobem framer-lux5qc" href="./portfolio/the-cartographers-dream"><div class="ssr-variant hidden-i58y18"><div class="framer-1nexkgs" data-framer-cursor="v4fkfb" data-framer-name="Image"><div style="position:absolute;border-radius:inherit;corner-shape:inherit;top:0;right:0;bottom:0;left:0;background-repeat:repeat;background-position:left top;background-size:64px auto;background-image:url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22126%22 height=%22126%22><path id=%22a%22 d=%22M126 0v21.584L21.584 126H0v-17.585L108.415 0H126Zm0 108.414V126h-17.586L126 108.414Zm0-84v39.171L63.585 126H24.414L126 24.414Zm0 42v39.17L105.584 126h-39.17L126 66.414ZM105.586 0 0 105.586V66.415L66.415 0h39.171Zm-42 0L0 63.586V24.415L24.415 0h39.171Zm-42 0L0 21.586V0h21.586Z%22 fill=%22rgb(136, 136, 136, 0.2)%22 fill-rule=%22evenodd%22/></svg>')" data-framer-background-image-wrapper="true"></div><div class="framer-rj6xo0" style="will-change:transform;opacity:1;transform:scale(1.1)"><div style="position:absolute;border-radius:inherit;corner-shape:inherit;top:0;right:0;bottom:0;left:0" data-framer-background-image-wrapper="true"><img decoding="async" loading="lazy" width="1280" height="853" sizes="(min-width: 1400px) max((min(100vw - 144px, 1848px) - 60px) / 2, 50px), (min-width: 810px) and (max-width: 1399.98px) max((min(100vw - 128px, 1848px) - 40px) / 2, 50px), (max-width: 809.98px) min(100vw - 96px, 1848px)" srcset="/assets/images/bg5zKXacbxF9hxgxh95vSeYyKHM.webp?scale-down-to=512&amp;width=1280&amp;height=853 512w,/assets/images/bg5zKXacbxF9hxgxh95vSeYyKHM.webp?scale-down-to=1024&amp;width=1280&amp;height=853 1024w,/assets/images/bg5zKXacbxF9hxgxh95vSeYyKHM.webp?width=1280&amp;height=853 1280w" src="/assets/images/bg5zKXacbxF9hxgxh95vSeYyKHM.webp?width=1280&amp;height=853" alt="The Cartographer’s Dream — Earth Pigment Wash, Ochre &amp; Graphite on Wove Linen (2024)" style="display:block;width:100%;height:100%;border-radius:inherit;corner-shape:inherit;object-position:center;object-fit:cover"></div></div><div class="framer-l4s4zv-container"><div class="framer-5QmUD framer-cg5exn framer-v-cg5exn" data-framer-name="All corners" style="--12eybmm:20px;height:100%;width:100%"><div class="framer-9mvoxu" data-framer-name="top"><div class="framer-kmt8ng" data-border="true" style="--border-bottom-width:0px;--border-color:rgb(255, 255, 255);--border-left-width:1px;--border-right-width:0px;--border-style:solid;--border-top-width:1px"></div><div class="framer-101ek76" data-border="true" style="--border-bottom-width:0px;--border-color:rgb(255, 255, 255);--border-left-width:0px;--border-right-width:1px;--border-style:solid;--border-top-width:1px"></div></div><div class="framer-1qvnj92" data-framer-name="bottom"><div class="framer-4spxv3" data-border="true" style="--border-bottom-width:1px;--border-color:rgb(255, 255, 255);--border-left-width:1px;--border-right-width:0px;--border-style:solid;--border-top-width:0px"></div><div class="framer-1armrbg" data-border="true" style="--border-bottom-width:1px;--border-color:rgb(255, 255, 255);--border-left-width:0px;--border-right-width:1px;--border-style:solid;--border-top-width:0px"></div></div></div></div></div></div><div class="ssr-variant hidden-x29ilp hidden-57x94v"><div class="framer-1nexkgs" data-framer-cursor="v4fkfb" data-framer-name="Image"><div style="position:absolute;border-radius:inherit;corner-shape:inherit;top:0;right:0;bottom:0;left:0;background-repeat:repeat;background-position:left top;background-size:64px auto;background-image:url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22126%22 height=%22126%22><path id=%22a%22 d=%22M126 0v21.584L21.584 126H0v-17.585L108.415 0H126Zm0 108.414V126h-17.586L126 108.414Zm0-84v39.171L63.585 126H24.414L126 24.414Zm0 42v39.17L105.584 126h-39.17L126 66.414ZM105.586 0 0 105.586V66.415L66.415 0h39.171Zm-42 0L0 63.586V24.415L24.415 0h39.171Zm-42 0L0 21.586V0h21.586Z%22 fill=%22rgb(136, 136, 136, 0.2)%22 fill-rule=%22evenodd%22/></svg>')" data-framer-background-image-wrapper="true"></div><div class="framer-rj6xo0" style="will-change:transform;opacity:1;transform:scale(1.1)"><div style="position:absolute;border-radius:inherit;corner-shape:inherit;top:0;right:0;bottom:0;left:0" data-framer-background-image-wrapper="true"><img decoding="async" loading="lazy" width="1280" height="853" sizes="(min-width: 1400px) max((min(100vw - 144px, 1848px) - 60px) / 2, 50px), (min-width: 810px) and (max-width: 1399.98px) max((min(100vw - 128px, 1848px) - 40px) / 2, 50px), (max-width: 809.98px) min(100vw - 96px, 1848px)" srcset="/assets/images/bg5zKXacbxF9hxgxh95vSeYyKHM.webp?scale-down-to=512&amp;width=1280&amp;height=853 512w,/assets/images/bg5zKXacbxF9hxgxh95vSeYyKHM.webp?scale-down-to=1024&amp;width=1280&amp;height=853 1024w,/assets/images/bg5zKXacbxF9hxgxh95vSeYyKHM.webp?width=1280&amp;height=853 1280w" src="/assets/images/bg5zKXacbxF9hxgxh95vSeYyKHM.webp?width=1280&amp;height=853" alt="The Cartographer’s Dream — Earth Pigment Wash, Ochre &amp; Graphite on Wove Linen (2024)" style="display:block;width:100%;height:100%;border-radius:inherit;corner-shape:inherit;object-position:center;object-fit:cover"></div></div><div class="framer-l4s4zv-container"><div class="framer-5QmUD framer-cg5exn framer-v-cg5exn" data-framer-name="All corners" style="--12eybmm:16px;height:100%;width:100%"><div class="framer-9mvoxu" data-framer-name="top"><div class="framer-kmt8ng" data-border="true" style="--border-bottom-width:0px;--border-color:rgb(255, 255, 255);--border-left-width:1px;--border-right-width:0px;--border-style:solid;--border-top-width:1px"></div><div class="framer-101ek76" data-border="true" style="--border-bottom-width:0px;--border-color:rgb(255, 255, 255);--border-left-width:0px;--border-right-width:1px;--border-style:solid;--border-top-width:1px"></div></div><div class="framer-1qvnj92" data-framer-name="bottom"><div class="framer-4spxv3" data-border="true" style="--border-bottom-width:1px;--border-color:rgb(255, 255, 255);--border-left-width:1px;--border-right-width:0px;--border-style:solid;--border-top-width:0px"></div><div class="framer-1armrbg" data-border="true" style="--border-bottom-width:1px;--border-color:rgb(255, 255, 255);--border-left-width:0px;--border-right-width:1px;--border-style:solid;--border-top-width:0px"></div></div></div></div></div></div><div class="framer-1itojog" data-framer-name="Info" style="will-change:transform;opacity:0;transform:none"><div class="framer-qy109" data-framer-name="Text"><div class="framer-v23ho" data-framer-name="Title" data-framer-component-type="RichTextContainer" style="transform:none"><h3 dir="auto" style="--font-selector:SW50ZXItTWVkaXVt;--framer-font-size:40px;--framer-font-weight:500;--framer-letter-spacing:-0.07em;--framer-line-height:1em;--framer-text-color:var(--token-f8c6fc17-6126-48ad-8306-922d51919d56, rgb(17, 17, 18))" class="framer-text">The Cartographer’s Dream</h3></div><div class="framer-nt2d3g" data-framer-name="Category" data-framer-component-type="RichTextContainer" style="transform:none"><p dir="auto" style="--font-selector:SW50ZXItTWVkaXVt;--framer-font-size:15px;--framer-font-weight:500;--framer-letter-spacing:-0.04em;--framer-line-height:20px;--framer-text-color:rgba(17, 17, 18, 0.6)" class="framer-text">Earth Pigment Wash, Ochre &amp; Graphite on Wove Linen (2024)</p></div></div><div class="ssr-variant hidden-57x94v hidden-i58y18"><div class="framer-ea8z1d" data-framer-name="08 / 24" data-framer-component-type="RichTextContainer" style="transform:none"><p dir="auto" style="--font-selector:SW50ZXItU2VtaUJvbGQ=;--framer-font-size:30px;--framer-font-weight:600;--framer-letter-spacing:-0.07em;--framer-line-height:1em;--framer-text-alignment:right;--framer-text-color:rgba(17, 17, 18, 0.3)" class="framer-text"><time></time></p></div></div><div class="ssr-variant hidden-x29ilp hidden-i58y18"><div class="framer-ea8z1d" data-framer-name="08 / 24" data-framer-component-type="RichTextContainer" style="transform:none"><p dir="auto" style="--font-selector:SW50ZXItU2VtaUJvbGQ=;--framer-font-size:22px;--framer-font-weight:600;--framer-letter-spacing:-0.07em;--framer-line-height:1em;--framer-text-alignment:right;--framer-text-color:rgba(17, 17, 18, 0.3)" class="framer-text"><time></time></p></div></div><div class="ssr-variant hidden-x29ilp hidden-57x94v"><div class="framer-ea8z1d" data-framer-name="08 / 24" data-framer-component-type="RichTextContainer" style="transform:none"><p dir="auto" style="--font-selector:SW50ZXItU2VtaUJvbGQ=;--framer-font-size:18px;--framer-font-weight:600;--framer-letter-spacing:-0.07em;--framer-line-height:1em;--framer-text-alignment:right;--framer-text-color:rgba(17, 17, 18, 0.3)" class="framer-text"><time></time></p></div></div></div></a><!--/$--><!--$--><a class="framer-1klobem framer-lux5qc" href="./portfolio/nocturne-for-two-solitudes"><div class="ssr-variant hidden-i58y18"><div class="framer-1nexkgs" data-framer-cursor="v4fkfb" data-framer-name="Image"><div style="position:absolute;border-radius:inherit;corner-shape:inherit;top:0;right:0;bottom:0;left:0;background-repeat:repeat;background-position:left top;background-size:64px auto;background-image:url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22126%22 height=%22126%22><path id=%22a%22 d=%22M126 0v21.584L21.584 126H0v-17.585L108.415 0H126Zm0 108.414V126h-17.586L126 108.414Zm0-84v39.171L63.585 126H24.414L126 24.414Zm0 42v39.17L105.584 126h-39.17L126 66.414ZM105.586 0 0 105.586V66.415L66.415 0h39.171Zm-42 0L0 63.586V24.415L24.415 0h39.171Zm-42 0L0 21.586V0h21.586Z%22 fill=%22rgb(136, 136, 136, 0.2)%22 fill-rule=%22evenodd%22/></svg>')" data-framer-background-image-wrapper="true"></div><div class="framer-rj6xo0" style="will-change:transform;opacity:1;transform:scale(1.1)"><div style="position:absolute;border-radius:inherit;corner-shape:inherit;top:0;right:0;bottom:0;left:0" data-framer-background-image-wrapper="true"><img decoding="async" loading="lazy" width="5007" height="3598" sizes="(min-width: 1400px) max((min(100vw - 144px, 1848px) - 60px) / 2, 50px), (min-width: 810px) and (max-width: 1399.98px) max((min(100vw - 128px, 1848px) - 40px) / 2, 50px), (max-width: 809.98px) min(100vw - 96px, 1848px)" srcset="/assets/images/KprYkGkimFEN8DANdFVOfpc2ro.webp?scale-down-to=512&amp;width=5007&amp;height=3598 512w,/assets/images/KprYkGkimFEN8DANdFVOfpc2ro.webp?scale-down-to=1024&amp;width=5007&amp;height=3598 1024w,/assets/images/KprYkGkimFEN8DANdFVOfpc2ro.webp?scale-down-to=2048&amp;width=5007&amp;height=3598 2048w,/assets/images/KprYkGkimFEN8DANdFVOfpc2ro.webp?scale-down-to=4096&amp;width=5007&amp;height=3598 4096w,/assets/images/KprYkGkimFEN8DANdFVOfpc2ro.webp?width=5007&amp;height=3598 5007w" src="/assets/images/KprYkGkimFEN8DANdFVOfpc2ro.webp?width=5007&amp;height=3598" alt="Nocturne for Two Solitudes — Creative" style="display:block;width:100%;height:100%;border-radius:inherit;corner-shape:inherit;object-position:center;object-fit:cover"></div></div><div class="framer-l4s4zv-container"><div class="framer-5QmUD framer-cg5exn framer-v-cg5exn" data-framer-name="All corners" style="--12eybmm:20px;height:100%;width:100%"><div class="framer-9mvoxu" data-framer-name="top"><div class="framer-kmt8ng" data-border="true" style="--border-bottom-width:0px;--border-color:rgb(255, 255, 255);--border-left-width:1px;--border-right-width:0px;--border-style:solid;--border-top-width:1px"></div><div class="framer-101ek76" data-border="true" style="--border-bottom-width:0px;--border-color:rgb(255, 255, 255);--border-left-width:0px;--border-right-width:1px;--border-style:solid;--border-top-width:1px"></div></div><div class="framer-1qvnj92" data-framer-name="bottom"><div class="framer-4spxv3" data-border="true" style="--border-bottom-width:1px;--border-color:rgb(255, 255, 255);--border-left-width:1px;--border-right-width:0px;--border-style:solid;--border-top-width:0px"></div><div class="framer-1armrbg" data-border="true" style="--border-bottom-width:1px;--border-color:rgb(255, 255, 255);--border-left-width:0px;--border-right-width:1px;--border-style:solid;--border-top-width:0px"></div></div></div></div></div></div><div class="ssr-variant hidden-x29ilp hidden-57x94v"><div class="framer-1nexkgs" data-framer-cursor="v4fkfb" data-framer-name="Image"><div style="position:absolute;border-radius:inherit;corner-shape:inherit;top:0;right:0;bottom:0;left:0;background-repeat:repeat;background-position:left top;background-size:64px auto;background-image:url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22126%22 height=%22126%22><path id=%22a%22 d=%22M126 0v21.584L21.584 126H0v-17.585L108.415 0H126Zm0 108.414V126h-17.586L126 108.414Zm0-84v39.171L63.585 126H24.414L126 24.414Zm0 42v39.17L105.584 126h-39.17L126 66.414ZM105.586 0 0 105.586V66.415L66.415 0h39.171Zm-42 0L0 63.586V24.415L24.415 0h39.171Zm-42 0L0 21.586V0h21.586Z%22 fill=%22rgb(136, 136, 136, 0.2)%22 fill-rule=%22evenodd%22/></svg>')" data-framer-background-image-wrapper="true"></div><div class="framer-rj6xo0" style="will-change:transform;opacity:1;transform:scale(1.1)"><div style="position:absolute;border-radius:inherit;corner-shape:inherit;top:0;right:0;bottom:0;left:0" data-framer-background-image-wrapper="true"><img decoding="async" loading="lazy" width="5007" height="3598" sizes="(min-width: 1400px) max((min(100vw - 144px, 1848px) - 60px) / 2, 50px), (min-width: 810px) and (max-width: 1399.98px) max((min(100vw - 128px, 1848px) - 40px) / 2, 50px), (max-width: 809.98px) min(100vw - 96px, 1848px)" srcset="/assets/images/KprYkGkimFEN8DANdFVOfpc2ro.webp?scale-down-to=512&amp;width=5007&amp;height=3598 512w,/assets/images/KprYkGkimFEN8DANdFVOfpc2ro.webp?scale-down-to=1024&amp;width=5007&amp;height=3598 1024w,/assets/images/KprYkGkimFEN8DANdFVOfpc2ro.webp?scale-down-to=2048&amp;width=5007&amp;height=3598 2048w,/assets/images/KprYkGkimFEN8DANdFVOfpc2ro.webp?scale-down-to=4096&amp;width=5007&amp;height=3598 4096w,/assets/images/KprYkGkimFEN8DANdFVOfpc2ro.webp?width=5007&amp;height=3598 5007w" src="/assets/images/KprYkGkimFEN8DANdFVOfpc2ro.webp?width=5007&amp;height=3598" alt="Nocturne for Two Solitudes — Creative" style="display:block;width:100%;height:100%;border-radius:inherit;corner-shape:inherit;object-position:center;object-fit:cover"></div></div><div class="framer-l4s4zv-container"><div class="framer-5QmUD framer-cg5exn framer-v-cg5exn" data-framer-name="All corners" style="--12eybmm:16px;height:100%;width:100%"><div class="framer-9mvoxu" data-framer-name="top"><div class="framer-kmt8ng" data-border="true" style="--border-bottom-width:0px;--border-color:rgb(255, 255, 255);--border-left-width:1px;--border-right-width:0px;--border-style:solid;--border-top-width:1px"></div><div class="framer-101ek76" data-border="true" style="--border-bottom-width:0px;--border-color:rgb(255, 255, 255);--border-left-width:0px;--border-right-width:1px;--border-style:solid;--border-top-width:1px"></div></div><div class="framer-1qvnj92" data-framer-name="bottom"><div class="framer-4spxv3" data-border="true" style="--border-bottom-width:1px;--border-color:rgb(255, 255, 255);--border-left-width:1px;--border-right-width:0px;--border-style:solid;--border-top-width:0px"></div><div class="framer-1armrbg" data-border="true" style="--border-bottom-width:1px;--border-color:rgb(255, 255, 255);--border-left-width:0px;--border-right-width:1px;--border-style:solid;--border-top-width:0px"></div></div></div></div></div></div><div class="framer-1itojog" data-framer-name="Info" style="will-change:transform;opacity:0;transform:none"><div class="framer-qy109" data-framer-name="Text"><div class="framer-v23ho" data-framer-name="Title" data-framer-component-type="RichTextContainer" style="transform:none"><h3 dir="auto" style="--font-selector:SW50ZXItTWVkaXVt;--framer-font-size:40px;--framer-font-weight:500;--framer-letter-spacing:-0.07em;--framer-line-height:1em;--framer-text-color:var(--token-f8c6fc17-6126-48ad-8306-922d51919d56, rgb(17, 17, 18))" class="framer-text">Nocturne for Two Solitudes</h3></div><div class="framer-nt2d3g" data-framer-name="Category" data-framer-component-type="RichTextContainer" style="transform:none"><p dir="auto" style="--font-selector:SW50ZXItTWVkaXVt;--framer-font-size:15px;--framer-font-weight:500;--framer-letter-spacing:-0.04em;--framer-line-height:20px;--framer-text-color:rgba(17, 17, 18, 0.6)" class="framer-text">Oil, Beeswax &amp; Powdered Graphite on Belgian Linen (2023–2024)</p></div></div><div class="ssr-variant hidden-57x94v hidden-i58y18"><div class="framer-ea8z1d" data-framer-name="08 / 24" data-framer-component-type="RichTextContainer" style="transform:none"><p dir="auto" style="--font-selector:SW50ZXItU2VtaUJvbGQ=;--framer-font-size:30px;--framer-font-weight:600;--framer-letter-spacing:-0.07em;--framer-line-height:1em;--framer-text-alignment:right;--framer-text-color:rgba(17, 17, 18, 0.3)" class="framer-text"><time></time></p></div></div><div class="ssr-variant hidden-x29ilp hidden-i58y18"><div class="framer-ea8z1d" data-framer-name="08 / 24" data-framer-component-type="RichTextContainer" style="transform:none"><p dir="auto" style="--font-selector:SW50ZXItU2VtaUJvbGQ=;--framer-font-size:22px;--framer-font-weight:600;--framer-letter-spacing:-0.07em;--framer-line-height:1em;--framer-text-alignment:right;--framer-text-color:rgba(17, 17, 18, 0.3)" class="framer-text"><time></time></p></div></div><div class="ssr-variant hidden-x29ilp hidden-57x94v"><div class="framer-ea8z1d" data-framer-name="08 / 24" data-framer-component-type="RichTextContainer" style="transform:none"><p dir="auto" style="--font-selector:SW50ZXItU2VtaUJvbGQ=;--framer-font-size:18px;--framer-font-weight:600;--framer-letter-spacing:-0.07em;--framer-line-height:1em;--framer-text-alignment:right;--framer-text-color:rgba(17, 17, 18, 0.3)" class="framer-text"><time></time></p></div></div></div></a><!--/$--><!--$--><a class="framer-1klobem framer-lux5qc" href="./portfolio/arrival-in-the-cold-mist"><div class="ssr-variant hidden-i58y18"><div class="framer-1nexkgs" data-framer-cursor="v4fkfb" data-framer-name="Image"><div style="position:absolute;border-radius:inherit;corner-shape:inherit;top:0;right:0;bottom:0;left:0;background-repeat:repeat;background-position:left top;background-size:64px auto;background-image:url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22126%22 height=%22126%22><path id=%22a%22 d=%22M126 0v21.584L21.584 126H0v-17.585L108.415 0H126Zm0 108.414V126h-17.586L126 108.414Zm0-84v39.171L63.585 126H24.414L126 24.414Zm0 42v39.17L105.584 126h-39.17L126 66.414ZM105.586 0 0 105.586V66.415L66.415 0h39.171Zm-42 0L0 63.586V24.415L24.415 0h39.171Zm-42 0L0 21.586V0h21.586Z%22 fill=%22rgb(136, 136, 136, 0.2)%22 fill-rule=%22evenodd%22/></svg>')" data-framer-background-image-wrapper="true"></div><div class="framer-rj6xo0" style="will-change:transform;opacity:1;transform:scale(1.1)"><div style="position:absolute;border-radius:inherit;corner-shape:inherit;top:0;right:0;bottom:0;left:0" data-framer-background-image-wrapper="true"><img decoding="async" loading="lazy" width="6514" height="4672" sizes="(min-width: 1400px) max((min(100vw - 144px, 1848px) - 60px) / 2, 50px), (min-width: 810px) and (max-width: 1399.98px) max((min(100vw - 128px, 1848px) - 40px) / 2, 50px), (max-width: 809.98px) min(100vw - 96px, 1848px)" srcset="/assets/images/HGXt3zFDtrXxquN5BVsRFCkypC4.webp?scale-down-to=512&amp;width=6514&amp;height=4672 512w,/assets/images/HGXt3zFDtrXxquN5BVsRFCkypC4.webp?scale-down-to=1024&amp;width=6514&amp;height=4672 1024w,/assets/images/HGXt3zFDtrXxquN5BVsRFCkypC4.webp?scale-down-to=2048&amp;width=6514&amp;height=4672 2048w,/assets/images/HGXt3zFDtrXxquN5BVsRFCkypC4.webp?scale-down-to=4096&amp;width=6514&amp;height=4672 4096w,/assets/images/HGXt3zFDtrXxquN5BVsRFCkypC4.webp?width=6514&amp;height=4672 6514w" src="/assets/images/HGXt3zFDtrXxquN5BVsRFCkypC4.webp?width=6514&amp;height=4672" alt="Arrival in the Cold Mist — Encaustic, Ink & Cold Wax on Gesso Panel (2023)" style="display:block;width:100%;height:100%;border-radius:inherit;corner-shape:inherit;object-position:center;object-fit:cover"></div></div><div class="framer-l4s4zv-container"><div class="framer-5QmUD framer-cg5exn framer-v-cg5exn" data-framer-name="All corners" style="--12eybmm:20px;height:100%;width:100%"><div class="framer-9mvoxu" data-framer-name="top"><div class="framer-kmt8ng" data-border="true" style="--border-bottom-width:0px;--border-color:rgb(255, 255, 255);--border-left-width:1px;--border-right-width:0px;--border-style:solid;--border-top-width:1px"></div><div class="framer-101ek76" data-border="true" style="--border-bottom-width:0px;--border-color:rgb(255, 255, 255);--border-left-width:0px;--border-right-width:1px;--border-style:solid;--border-top-width:1px"></div></div><div class="framer-1qvnj92" data-framer-name="bottom"><div class="framer-4spxv3" data-border="true" style="--border-bottom-width:1px;--border-color:rgb(255, 255, 255);--border-left-width:1px;--border-right-width:0px;--border-style:solid;--border-top-width:0px"></div><div class="framer-1armrbg" data-border="true" style="--border-bottom-width:1px;--border-color:rgb(255, 255, 255);--border-left-width:0px;--border-right-width:1px;--border-style:solid;--border-top-width:0px"></div></div></div></div></div></div><div class="ssr-variant hidden-x29ilp hidden-57x94v"><div class="framer-1nexkgs" data-framer-cursor="v4fkfb" data-framer-name="Image"><div style="position:absolute;border-radius:inherit;corner-shape:inherit;top:0;right:0;bottom:0;left:0;background-repeat:repeat;background-position:left top;background-size:64px auto;background-image:url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22126%22 height=%22126%22><path id=%22a%22 d=%22M126 0v21.584L21.584 126H0v-17.585L108.415 0H126Zm0 108.414V126h-17.586L126 108.414Zm0-84v39.171L63.585 126H24.414L126 24.414Zm0 42v39.17L105.584 126h-39.17L126 66.414ZM105.586 0 0 105.586V66.415L66.415 0h39.171Zm-42 0L0 63.586V24.415L24.415 0h39.171Zm-42 0L0 21.586V0h21.586Z%22 fill=%22rgb(136, 136, 136, 0.2)%22 fill-rule=%22evenodd%22/></svg>')" data-framer-background-image-wrapper="true"></div><div class="framer-rj6xo0" style="will-change:transform;opacity:1;transform:scale(1.1)"><div style="position:absolute;border-radius:inherit;corner-shape:inherit;top:0;right:0;bottom:0;left:0" data-framer-background-image-wrapper="true"><img decoding="async" loading="lazy" width="6514" height="4672" sizes="(min-width: 1400px) max((min(100vw - 144px, 1848px) - 60px) / 2, 50px), (min-width: 810px) and (max-width: 1399.98px) max((min(100vw - 128px, 1848px) - 40px) / 2, 50px), (max-width: 809.98px) min(100vw - 96px, 1848px)" srcset="/assets/images/HGXt3zFDtrXxquN5BVsRFCkypC4.webp?scale-down-to=512&amp;width=6514&amp;height=4672 512w,/assets/images/HGXt3zFDtrXxquN5BVsRFCkypC4.webp?scale-down-to=1024&amp;width=6514&amp;height=4672 1024w,/assets/images/HGXt3zFDtrXxquN5BVsRFCkypC4.webp?scale-down-to=2048&amp;width=6514&amp;height=4672 2048w,/assets/images/HGXt3zFDtrXxquN5BVsRFCkypC4.webp?scale-down-to=4096&amp;width=6514&amp;height=4672 4096w,/assets/images/HGXt3zFDtrXxquN5BVsRFCkypC4.webp?width=6514&amp;height=4672 6514w" src="/assets/images/HGXt3zFDtrXxquN5BVsRFCkypC4.webp?width=6514&amp;height=4672" alt="Arrival in the Cold Mist — Encaustic, Ink & Cold Wax on Gesso Panel (2023)" style="display:block;width:100%;height:100%;border-radius:inherit;corner-shape:inherit;object-position:center;object-fit:cover"></div></div><div class="framer-l4s4zv-container"><div class="framer-5QmUD framer-cg5exn framer-v-cg5exn" data-framer-name="All corners" style="--12eybmm:16px;height:100%;width:100%"><div class="framer-9mvoxu" data-framer-name="top"><div class="framer-kmt8ng" data-border="true" style="--border-bottom-width:0px;--border-color:rgb(255, 255, 255);--border-left-width:1px;--border-right-width:0px;--border-style:solid;--border-top-width:1px"></div><div class="framer-101ek76" data-border="true" style="--border-bottom-width:0px;--border-color:rgb(255, 255, 255);--border-left-width:0px;--border-right-width:1px;--border-style:solid;--border-top-width:1px"></div></div><div class="framer-1qvnj92" data-framer-name="bottom"><div class="framer-4spxv3" data-border="true" style="--border-bottom-width:1px;--border-color:rgb(255, 255, 255);--border-left-width:1px;--border-right-width:0px;--border-style:solid;--border-top-width:0px"></div><div class="framer-1armrbg" data-border="true" style="--border-bottom-width:1px;--border-color:rgb(255, 255, 255);--border-left-width:0px;--border-right-width:1px;--border-style:solid;--border-top-width:0px"></div></div></div></div></div></div><div class="framer-1itojog" data-framer-name="Info" style="will-change:transform;opacity:0;transform:none"><div class="framer-qy109" data-framer-name="Text"><div class="framer-v23ho" data-framer-name="Title" data-framer-component-type="RichTextContainer" style="transform:none"><h3 dir="auto" style="--font-selector:SW50ZXItTWVkaXVt;--framer-font-size:40px;--framer-font-weight:500;--framer-letter-spacing:-0.07em;--framer-line-height:1em;--framer-text-color:var(--token-f8c6fc17-6126-48ad-8306-922d51919d56, rgb(17, 17, 18))" class="framer-text">Arrival in the Cold Mist</h3></div><div class="framer-nt2d3g" data-framer-name="Category" data-framer-component-type="RichTextContainer" style="transform:none"><p dir="auto" style="--font-selector:SW50ZXItTWVkaXVt;--framer-font-size:15px;--framer-font-weight:500;--framer-letter-spacing:-0.04em;--framer-line-height:20px;--framer-text-color:rgba(17, 17, 18, 0.6)" class="framer-text">Encaustic, Ink & Cold Wax on Gesso Panel (2023)</p></div></div><div class="ssr-variant hidden-57x94v hidden-i58y18"><div class="framer-ea8z1d" data-framer-name="08 / 24" data-framer-component-type="RichTextContainer" style="transform:none"><p dir="auto" style="--font-selector:SW50ZXItU2VtaUJvbGQ=;--framer-font-size:30px;--framer-font-weight:600;--framer-letter-spacing:-0.07em;--framer-line-height:1em;--framer-text-alignment:right;--framer-text-color:rgba(17, 17, 18, 0.3)" class="framer-text"><time></time></p></div></div><div class="ssr-variant hidden-x29ilp hidden-i58y18"><div class="framer-ea8z1d" data-framer-name="08 / 24" data-framer-component-type="RichTextContainer" style="transform:none"><p dir="auto" style="--font-selector:SW50ZXItU2VtaUJvbGQ=;--framer-font-size:22px;--framer-font-weight:600;--framer-letter-spacing:-0.07em;--framer-line-height:1em;--framer-text-alignment:right;--framer-text-color:rgba(17, 17, 18, 0.3)" class="framer-text"><time></time></p></div></div><div class="ssr-variant hidden-x29ilp hidden-57x94v"><div class="framer-ea8z1d" data-framer-name="08 / 24" data-framer-component-type="RichTextContainer" style="transform:none"><p dir="auto" style="--font-selector:SW50ZXItU2VtaUJvbGQ=;--framer-font-size:18px;--framer-font-weight:600;--framer-letter-spacing:-0.07em;--framer-line-height:1em;--framer-text-alignment:right;--framer-text-color:rgba(17, 17, 18, 0.3)" class="framer-text"><time></time></p></div></div></div></a><!--/$--><!--$--><a class="framer-1klobem framer-lux5qc" href="./portfolio/fine-art-editions"><div class="ssr-variant hidden-i58y18"><div class="framer-1nexkgs" data-framer-cursor="v4fkfb" data-framer-name="Image"><div style="position:absolute;border-radius:inherit;corner-shape:inherit;top:0;right:0;bottom:0;left:0;background-repeat:repeat;background-position:left top;background-size:64px auto;background-image:url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22126%22 height=%22126%22><path id=%22a%22 d=%22M126 0v21.584L21.584 126H0v-17.585L108.415 0H126Zm0 108.414V126h-17.586L126 108.414Zm0-84v39.171L63.585 126H24.414L126 24.414Zm0 42v39.17L105.584 126h-39.17L126 66.414ZM105.586 0 0 105.586V66.415L66.415 0h39.171Zm-42 0L0 63.586V24.415L24.415 0h39.171Zm-42 0L0 21.586V0h21.586Z%22 fill=%22rgb(136, 136, 136, 0.2)%22 fill-rule=%22evenodd%22/></svg>')" data-framer-background-image-wrapper="true"></div><div class="framer-rj6xo0" style="will-change:transform;opacity:1;transform:scale(1.1)"><div style="position:absolute;border-radius:inherit;corner-shape:inherit;top:0;right:0;bottom:0;left:0" data-framer-background-image-wrapper="true"><img decoding="async" loading="lazy" width="7008" height="4672" sizes="(min-width: 1400px) max((min(100vw - 144px, 1848px) - 60px) / 2, 50px), (min-width: 810px) and (max-width: 1399.98px) max((min(100vw - 128px, 1848px) - 40px) / 2, 50px), (max-width: 809.98px) min(100vw - 96px, 1848px)" srcset="/assets/images/coNU5GEVyZAGUw45WDGQjFl1OPI.webp?scale-down-to=512&amp;width=7008&amp;height=4672 512w,/assets/images/coNU5GEVyZAGUw45WDGQjFl1OPI.webp?scale-down-to=1024&amp;width=7008&amp;height=4672 1024w,/assets/images/coNU5GEVyZAGUw45WDGQjFl1OPI.webp?scale-down-to=2048&amp;width=7008&amp;height=4672 2048w,/assets/images/coNU5GEVyZAGUw45WDGQjFl1OPI.webp?scale-down-to=4096&amp;width=7008&amp;height=4672 4096w,/assets/images/coNU5GEVyZAGUw45WDGQjFl1OPI.webp?width=7008&amp;height=4672 7008w" src="/assets/images/coNU5GEVyZAGUw45WDGQjFl1OPI.webp?width=7008&amp;height=4672" alt="Fine Art & Editions — Limited Archival Prints &amp; Hand-Pulled Silkscreens (Editions of 50)" style="display:block;width:100%;height:100%;border-radius:inherit;corner-shape:inherit;object-position:center;object-fit:cover"></div></div><div class="framer-l4s4zv-container"><div class="framer-5QmUD framer-cg5exn framer-v-cg5exn" data-framer-name="All corners" style="--12eybmm:20px;height:100%;width:100%"><div class="framer-9mvoxu" data-framer-name="top"><div class="framer-kmt8ng" data-border="true" style="--border-bottom-width:0px;--border-color:rgb(255, 255, 255);--border-left-width:1px;--border-right-width:0px;--border-style:solid;--border-top-width:1px"></div><div class="framer-101ek76" data-border="true" style="--border-bottom-width:0px;--border-color:rgb(255, 255, 255);--border-left-width:0px;--border-right-width:1px;--border-style:solid;--border-top-width:1px"></div></div><div class="framer-1qvnj92" data-framer-name="bottom"><div class="framer-4spxv3" data-border="true" style="--border-bottom-width:1px;--border-color:rgb(255, 255, 255);--border-left-width:1px;--border-right-width:0px;--border-style:solid;--border-top-width:0px"></div><div class="framer-1armrbg" data-border="true" style="--border-bottom-width:1px;--border-color:rgb(255, 255, 255);--border-left-width:0px;--border-right-width:1px;--border-style:solid;--border-top-width:0px"></div></div></div></div></div></div><div class="ssr-variant hidden-x29ilp hidden-57x94v"><div class="framer-1nexkgs" data-framer-cursor="v4fkfb" data-framer-name="Image"><div style="position:absolute;border-radius:inherit;corner-shape:inherit;top:0;right:0;bottom:0;left:0;background-repeat:repeat;background-position:left top;background-size:64px auto;background-image:url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22126%22 height=%22126%22><path id=%22a%22 d=%22M126 0v21.584L21.584 126H0v-17.585L108.415 0H126Zm0 108.414V126h-17.586L126 108.414Zm0-84v39.171L63.585 126H24.414L126 24.414Zm0 42v39.17L105.584 126h-39.17L126 66.414ZM105.586 0 0 105.586V66.415L66.415 0h39.171Zm-42 0L0 63.586V24.415L24.415 0h39.171Zm-42 0L0 21.586V0h21.586Z%22 fill=%22rgb(136, 136, 136, 0.2)%22 fill-rule=%22evenodd%22/></svg>')" data-framer-background-image-wrapper="true"></div><div class="framer-rj6xo0" style="will-change:transform;opacity:1;transform:scale(1.1)"><div style="position:absolute;border-radius:inherit;corner-shape:inherit;top:0;right:0;bottom:0;left:0" data-framer-background-image-wrapper="true"><img decoding="async" loading="lazy" width="7008" height="4672" sizes="(min-width: 1400px) max((min(100vw - 144px, 1848px) - 60px) / 2, 50px), (min-width: 810px) and (max-width: 1399.98px) max((min(100vw - 128px, 1848px) - 40px) / 2, 50px), (max-width: 809.98px) min(100vw - 96px, 1848px)" srcset="/assets/images/coNU5GEVyZAGUw45WDGQjFl1OPI.webp?scale-down-to=512&amp;width=7008&amp;height=4672 512w,/assets/images/coNU5GEVyZAGUw45WDGQjFl1OPI.webp?scale-down-to=1024&amp;width=7008&amp;height=4672 1024w,/assets/images/coNU5GEVyZAGUw45WDGQjFl1OPI.webp?scale-down-to=2048&amp;width=7008&amp;height=4672 2048w,/assets/images/coNU5GEVyZAGUw45WDGQjFl1OPI.webp?scale-down-to=4096&amp;width=7008&amp;height=4672 4096w,/assets/images/coNU5GEVyZAGUw45WDGQjFl1OPI.webp?width=7008&amp;height=4672 7008w" src="/assets/images/coNU5GEVyZAGUw45WDGQjFl1OPI.webp?width=7008&amp;height=4672" alt="Fine Art & Editions — Limited Archival Prints &amp; Hand-Pulled Silkscreens (Editions of 50)" style="display:block;width:100%;height:100%;border-radius:inherit;corner-shape:inherit;object-position:center;object-fit:cover"></div></div><div class="framer-l4s4zv-container"><div class="framer-5QmUD framer-cg5exn framer-v-cg5exn" data-framer-name="All corners" style="--12eybmm:16px;height:100%;width:100%"><div class="framer-9mvoxu" data-framer-name="top"><div class="framer-kmt8ng" data-border="true" style="--border-bottom-width:0px;--border-color:rgb(255, 255, 255);--border-left-width:1px;--border-right-width:0px;--border-style:solid;--border-top-width:1px"></div><div class="framer-101ek76" data-border="true" style="--border-bottom-width:0px;--border-color:rgb(255, 255, 255);--border-left-width:0px;--border-right-width:1px;--border-style:solid;--border-top-width:1px"></div></div><div class="framer-1qvnj92" data-framer-name="bottom"><div class="framer-4spxv3" data-border="true" style="--border-bottom-width:1px;--border-color:rgb(255, 255, 255);--border-left-width:1px;--border-right-width:0px;--border-style:solid;--border-top-width:0px"></div><div class="framer-1armrbg" data-border="true" style="--border-bottom-width:1px;--border-color:rgb(255, 255, 255);--border-left-width:0px;--border-right-width:1px;--border-style:solid;--border-top-width:0px"></div></div></div></div></div></div><div class="framer-1itojog" data-framer-name="Info" style="will-change:transform;opacity:0;transform:none"><div class="framer-qy109" data-framer-name="Text"><div class="framer-v23ho" data-framer-name="Title" data-framer-component-type="RichTextContainer" style="transform:none"><h3 dir="auto" style="--font-selector:SW50ZXItTWVkaXVt;--framer-font-size:40px;--framer-font-weight:500;--framer-letter-spacing:-0.07em;--framer-line-height:1em;--framer-text-color:var(--token-f8c6fc17-6126-48ad-8306-922d51919d56, rgb(17, 17, 18))" class="framer-text">Fine Art & Editions</h3></div><div class="framer-nt2d3g" data-framer-name="Category" data-framer-component-type="RichTextContainer" style="transform:none"><p dir="auto" style="--font-selector:SW50ZXItTWVkaXVt;--framer-font-size:15px;--framer-font-weight:500;--framer-letter-spacing:-0.04em;--framer-line-height:20px;--framer-text-color:rgba(17, 17, 18, 0.6)" class="framer-text">Limited Archival Prints &amp; Hand-Pulled Silkscreens (Editions of 50)</p></div></div><div class="ssr-variant hidden-57x94v hidden-i58y18"><div class="framer-ea8z1d" data-framer-name="08 / 24" data-framer-component-type="RichTextContainer" style="transform:none"><p dir="auto" style="--font-selector:SW50ZXItU2VtaUJvbGQ=;--framer-font-size:30px;--framer-font-weight:600;--framer-letter-spacing:-0.07em;--framer-line-height:1em;--framer-text-alignment:right;--framer-text-color:rgba(17, 17, 18, 0.3)" class="framer-text"><time></time></p></div></div><div class="ssr-variant hidden-x29ilp hidden-i58y18"><div class="framer-ea8z1d" data-framer-name="08 / 24" data-framer-component-type="RichTextContainer" style="transform:none"><p dir="auto" style="--font-selector:SW50ZXItU2VtaUJvbGQ=;--framer-font-size:22px;--framer-font-weight:600;--framer-letter-spacing:-0.07em;--framer-line-height:1em;--framer-text-alignment:right;--framer-text-color:rgba(17, 17, 18, 0.3)" class="framer-text"><time></time></p></div></div><div class="ssr-variant hidden-x29ilp hidden-57x94v"><div class="framer-ea8z1d" data-framer-name="08 / 24" data-framer-component-type="RichTextContainer" style="transform:none"><p dir="auto" style="--font-selector:SW50ZXItU2VtaUJvbGQ=;--framer-font-size:18px;--framer-font-weight:600;--framer-letter-spacing:-0.07em;--framer-line-height:1em;--framer-text-alignment:right;--framer-text-color:rgba(17, 17, 18, 0.3)" class="framer-text"><time></time></p></div></div></div></a><!--/$--><!--$--><a class="framer-1klobem framer-lux5qc" href="./portfolio/exhibitions-archive"><div class="ssr-variant hidden-i58y18"><div class="framer-1nexkgs" data-framer-cursor="v4fkfb" data-framer-name="Image"><div style="position:absolute;border-radius:inherit;corner-shape:inherit;top:0;right:0;bottom:0;left:0;background-repeat:repeat;background-position:left top;background-size:64px auto;background-image:url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22126%22 height=%22126%22><path id=%22a%22 d=%22M126 0v21.584L21.584 126H0v-17.585L108.415 0H126Zm0 108.414V126h-17.586L126 108.414Zm0-84v39.171L63.585 126H24.414L126 24.414Zm0 42v39.17L105.584 126h-39.17L126 66.414ZM105.586 0 0 105.586V66.415L66.415 0h39.171Zm-42 0L0 63.586V24.415L24.415 0h39.171Zm-42 0L0 21.586V0h21.586Z%22 fill=%22rgb(136, 136, 136, 0.2)%22 fill-rule=%22evenodd%22/></svg>')" data-framer-background-image-wrapper="true"></div><div class="framer-rj6xo0" style="will-change:transform;opacity:1;transform:scale(1.1)"><div style="position:absolute;border-radius:inherit;corner-shape:inherit;top:0;right:0;bottom:0;left:0" data-framer-background-image-wrapper="true"><img decoding="async" loading="lazy" width="7008" height="4672" sizes="(min-width: 1400px) max((min(100vw - 144px, 1848px) - 60px) / 2, 50px), (min-width: 810px) and (max-width: 1399.98px) max((min(100vw - 128px, 1848px) - 40px) / 2, 50px), (max-width: 809.98px) min(100vw - 96px, 1848px)" srcset="/assets/images/art_silent_hour.webp?scale-down-to=512&amp;width=7008&amp;height=4672 512w,/assets/images/art_silent_hour.webp?scale-down-to=1024&amp;width=7008&amp;height=4672 1024w,/assets/images/art_silent_hour.webp?scale-down-to=2048&amp;width=7008&amp;height=4672 2048w,/assets/images/art_silent_hour.webp?scale-down-to=4096&amp;width=7008&amp;height=4672 4096w,/assets/images/art_silent_hour.webp?width=7008&amp;height=4672 7008w" src="/assets/images/art_silent_hour.webp?width=7008&amp;height=4672" alt="Exhibitions &amp; Archive — Solo &amp; Curated Group Exhibitions" style="display:block;width:100%;height:100%;border-radius:inherit;corner-shape:inherit;object-position:center;object-fit:cover"></div></div><div class="framer-l4s4zv-container"><div class="framer-5QmUD framer-cg5exn framer-v-cg5exn" data-framer-name="All corners" style="--12eybmm:20px;height:100%;width:100%"><div class="framer-9mvoxu" data-framer-name="top"><div class="framer-kmt8ng" data-border="true" style="--border-bottom-width:0px;--border-color:rgb(255, 255, 255);--border-left-width:1px;--border-right-width:0px;--border-style:solid;--border-top-width:1px"></div><div class="framer-101ek76" data-border="true" style="--border-bottom-width:0px;--border-color:rgb(255, 255, 255);--border-left-width:0px;--border-right-width:1px;--border-style:solid;--border-top-width:1px"></div></div><div class="framer-1qvnj92" data-framer-name="bottom"><div class="framer-4spxv3" data-border="true" style="--border-bottom-width:1px;--border-color:rgb(255, 255, 255);--border-left-width:1px;--border-right-width:0px;--border-style:solid;--border-top-width:0px"></div><div class="framer-1armrbg" data-border="true" style="--border-bottom-width:1px;--border-color:rgb(255, 255, 255);--border-left-width:0px;--border-right-width:1px;--border-style:solid;--border-top-width:0px"></div></div></div></div></div></div><div class="ssr-variant hidden-x29ilp hidden-57x94v"><div class="framer-1nexkgs" data-framer-cursor="v4fkfb" data-framer-name="Image"><div style="position:absolute;border-radius:inherit;corner-shape:inherit;top:0;right:0;bottom:0;left:0;background-repeat:repeat;background-position:left top;background-size:64px auto;background-image:url('data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22126%22 height=%22126%22><path id=%22a%22 d=%22M126 0v21.584L21.584 126H0v-17.585L108.415 0H126Zm0 108.414V126h-17.586L126 108.414Zm0-84v39.171L63.585 126H24.414L126 24.414Zm0 42v39.17L105.584 126h-39.17L126 66.414ZM105.586 0 0 105.586V66.415L66.415 0h39.171Zm-42 0L0 63.586V24.415L24.415 0h39.171Zm-42 0L0 21.586V0h21.586Z%22 fill=%22rgb(136, 136, 136, 0.2)%22 fill-rule=%22evenodd%22/></svg>')" data-framer-background-image-wrapper="true"></div><div class="framer-rj6xo0" style="will-change:transform;opacity:1;transform:scale(1.1)"><div style="position:absolute;border-radius:inherit;corner-shape:inherit;top:0;right:0;bottom:0;left:0" data-framer-background-image-wrapper="true"><img decoding="async" loading="lazy" width="7008" height="4672" sizes="(min-width: 1400px) max((min(100vw - 144px, 1848px) - 60px) / 2, 50px), (min-width: 810px) and (max-width: 1399.98px) max((min(100vw - 128px, 1848px) - 40px) / 2, 50px), (max-width: 809.98px) min(100vw - 96px, 1848px)" srcset="/assets/images/art_silent_hour.webp?scale-down-to=512&amp;width=7008&amp;height=4672 512w,/assets/images/art_silent_hour.webp?scale-down-to=1024&amp;width=7008&amp;height=4672 1024w,/assets/images/art_silent_hour.webp?scale-down-to=2048&amp;width=7008&amp;height=4672 2048w,/assets/images/art_silent_hour.webp?scale-down-to=4096&amp;width=7008&amp;height=4672 4096w,/assets/images/art_silent_hour.webp?width=7008&amp;height=4672 7008w" src="/assets/images/art_silent_hour.webp?width=7008&amp;height=4672" alt="Exhibitions &amp; Archive — Solo &amp; Curated Group Exhibitions" style="display:block;width:100%;height:100%;border-radius:inherit;corner-shape:inherit;object-position:center;object-fit:cover"></div></div><div class="framer-l4s4zv-container"><div class="framer-5QmUD framer-cg5exn framer-v-cg5exn" data-framer-name="All corners" style="--12eybmm:16px;height:100%;width:100%"><div class="framer-9mvoxu" data-framer-name="top"><div class="framer-kmt8ng" data-border="true" style="--border-bottom-width:0px;--border-color:rgb(255, 255, 255);--border-left-width:1px;--border-right-width:0px;--border-style:solid;--border-top-width:1px"></div><div class="framer-101ek76" data-border="true" style="--border-bottom-width:0px;--border-color:rgb(255, 255, 255);--border-left-width:0px;--border-right-width:1px;--border-style:solid;--border-top-width:1px"></div></div><div class="framer-1qvnj92" data-framer-name="bottom"><div class="framer-4spxv3" data-border="true" style="--border-bottom-width:1px;--border-color:rgb(255, 255, 255);--border-left-width:1px;--border-right-width:0px;--border-style:solid;--border-top-width:0px"></div><div class="framer-1armrbg" data-border="true" style="--border-bottom-width:1px;--border-color:rgb(255, 255, 255);--border-left-width:0px;--border-right-width:1px;--border-style:solid;--border-top-width:0px"></div></div></div></div></div></div><div class="framer-1itojog" data-framer-name="Info" style="will-change:transform;opacity:0;transform:none"><div class="framer-qy109" data-framer-name="Text"><div class="framer-v23ho" data-framer-name="Title" data-framer-component-type="RichTextContainer" style="transform:none"><h3 dir="auto" style="--font-selector:SW50ZXItTWVkaXVt;--framer-font-size:40px;--framer-font-weight:500;--framer-letter-spacing:-0.07em;--framer-line-height:1em;--framer-text-color:var(--token-f8c6fc17-6126-48ad-8306-922d51919d56, rgb(17, 17, 18))" class="framer-text">Exhibitions &amp; Archive</h3></div><div class="framer-nt2d3g" data-framer-name="Category" data-framer-component-type="RichTextContainer" style="transform:none"><p dir="auto" style="--font-selector:SW50ZXItTWVkaXVt;--framer-font-size:15px;--framer-font-weight:500;--framer-letter-spacing:-0.04em;--framer-line-height:20px;--framer-text-color:rgba(17, 17, 18, 0.6)" class="framer-text">Solo &amp; Curated Group Exhibitions</p></div></div><div class="ssr-variant hidden-57x94v hidden-i58y18"><div class="framer-ea8z1d" data-framer-name="08 / 24" data-framer-component-type="RichTextContainer" style="transform:none"><p dir="auto" style="--font-selector:SW50ZXItU2VtaUJvbGQ=;--framer-font-size:30px;--framer-font-weight:600;--framer-letter-spacing:-0.07em;--framer-line-height:1em;--framer-text-alignment:right;--framer-text-color:rgba(17, 17, 18, 0.3)" class="framer-text"><time></time></p></div></div><div class="ssr-variant hidden-x29ilp hidden-i58y18"><div class="framer-ea8z1d" data-framer-name="08 / 24" data-framer-component-type="RichTextContainer" style="transform:none"><p dir="auto" style="--font-selector:SW50ZXItU2VtaUJvbGQ=;--framer-font-size:22px;--framer-font-weight:600;--framer-letter-spacing:-0.07em;--framer-line-height:1em;--framer-text-alignment:right;--framer-text-color:rgba(17, 17, 18, 0.3)" class="framer-text"><time></time></p></div></div><div class="ssr-variant hidden-x29ilp hidden-57x94v"><div class="framer-ea8z1d" data-framer-name="08 / 24" data-framer-component-type="RichTextContainer" style="transform:none"><p dir="auto" style="--font-selector:SW50ZXItU2VtaUJvbGQ=;--framer-font-size:18px;--framer-font-weight:600;--framer-letter-spacing:-0.07em;--framer-line-height:1em;--framer-text-alignment:right;--framer-text-color:rgba(17, 17, 18, 0.3)" class="framer-text"><time></time></p></div></div></div></a><!--/$--><!--/$--></div></div><!--$--><div class="ssr-variant hidden-57x94v hidden-i58y18"><div class="framer-pr4h4p-container" style="will-change:transform;opacity:0;transform:none"><!--$--><a class="framer-Qdoal framer-19j73b framer-v-19j73b framer-1lqby05" data-border="true" data-framer-name="Desktop dark" data-highlight="true" href="./portfolio" tabindex="0" style="--border-bottom-width:2px;--border-color:var(--token-f8c6fc17-6126-48ad-8306-922d51919d56, rgb(17, 17, 18));--border-left-width:0px;--border-right-width:0px;--border-style:solid;--border-top-width:0px;height:100%;width:100%"><div class="framer-19v1yll" data-framer-name="Text"><div class="framer-15p0w9d" data-framer-name="Explore Selected Works" data-framer-component-type="RichTextContainer" style="--extracted-r6o4lv:var(--token-f8c6fc17-6126-48ad-8306-922d51919d56, rgb(17, 17, 18));--framer-paragraph-spacing:0px;transform:none"><p class="framer-text" style="--font-selector:SW50ZXItU2VtaUJvbGQ=;--framer-font-size:22px;--framer-font-weight:600;--framer-letter-spacing:-0.05em;--framer-line-height:1.6em;--framer-text-color:var(--extracted-r6o4lv, var(--token-f8c6fc17-6126-48ad-8306-922d51919d56, rgb(17, 17, 18)))">Explore Selected Works</p></div></div><div data-framer-component-type="SVG" data-framer-name="Arrow dark" parentsize="0" _constraints="[object Object]" rotation="0" shadows class="framer-1fdebci" aria-hidden="true" style="image-rendering:pixelated;flex-shrink:0;fill:rgba(0,0,0,1);color:rgba(0,0,0,1);transform:none"><div class="svgContainer" style="width:100%;height:100%;aspect-ratio:inherit"><svg style="width:100%;height:100%;" viewBox="0 0 13 13"><use href="#svg1992126621_925"/></svg></div></div></a><!--/$--></div></div><div class="ssr-variant hidden-x29ilp hidden-i58y18"><div class="framer-pr4h4p-container" style="will-change:transform;opacity:0;transform:none"><!--$--><a class="framer-Qdoal framer-19j73b framer-v-b1m3ha framer-1lqby05" data-border="true" data-framer-name="Tablet dark" data-highlight="true" href="./portfolio" tabindex="0" style="--border-bottom-width:2px;--border-color:var(--token-f8c6fc17-6126-48ad-8306-922d51919d56, rgb(17, 17, 18));--border-left-width:0px;--border-right-width:0px;--border-style:solid;--border-top-width:0px;height:100%"><div class="framer-19v1yll" data-framer-name="Text"><div class="framer-15p0w9d" data-framer-name="Explore Selected Works" data-framer-component-type="RichTextContainer" style="--extracted-r6o4lv:var(--token-f8c6fc17-6126-48ad-8306-922d51919d56, rgb(17, 17, 18));--framer-paragraph-spacing:0px;transform:none"><p class="framer-text" style="--font-selector:SW50ZXItU2VtaUJvbGQ=;--framer-font-size:20px;--framer-font-weight:600;--framer-letter-spacing:-0.05em;--framer-line-height:1.6em;--framer-text-color:var(--extracted-r6o4lv, var(--token-f8c6fc17-6126-48ad-8306-922d51919d56, rgb(17, 17, 18)))">Explore Selected Works</p></div></div><div data-framer-component-type="SVG" data-framer-name="Arrow dark" parentsize="0" _constraints="[object Object]" rotation="0" shadows class="framer-1fdebci" aria-hidden="true" style="image-rendering:pixelated;flex-shrink:0;fill:rgba(0,0,0,1);color:rgba(0,0,0,1);transform:none"><div class="svgContainer" style="width:100%;height:100%;aspect-ratio:inherit"><svg style="width:100%;height:100%;" viewBox="0 0 13 13"><use href="#svg1992126621_925"/></svg></div></div></a><!--/$--></div></div><div class="ssr-variant hidden-x29ilp hidden-57x94v"><div class="framer-pr4h4p-container" style="will-change:transform;opacity:0;transform:none"><!--$--><a class="framer-Qdoal framer-19j73b framer-v-1dedgg2 framer-1lqby05" data-border="true" data-framer-name="Phone dark" data-highlight="true" href="./portfolio" tabindex="0" style="--border-bottom-width:2px;--border-color:var(--token-f8c6fc17-6126-48ad-8306-922d51919d56, rgb(17, 17, 18));--border-left-width:0px;--border-right-width:0px;--border-style:solid;--border-top-width:0px;height:100%"><div class="framer-19v1yll" data-framer-name="Text"><div class="framer-15p0w9d" data-framer-name="Explore Selected Works" data-framer-component-type="RichTextContainer" style="--extracted-r6o4lv:var(--token-f8c6fc17-6126-48ad-8306-922d51919d56, rgb(17, 17, 18));--framer-paragraph-spacing:0px;transform:none"><p class="framer-text" style="--font-selector:SW50ZXItU2VtaUJvbGQ=;--framer-font-size:17px;--framer-font-weight:600;--framer-letter-spacing:-0.05em;--framer-line-height:0.9em;--framer-text-color:var(--extracted-r6o4lv, var(--token-f8c6fc17-6126-48ad-8306-922d51919d56, rgb(17, 17, 18)))">Explore Selected Works</p></div></div><div data-framer-component-type="SVG" data-framer-name="Arrow dark" parentsize="0" _constraints="[object Object]" rotation="0" shadows class="framer-1fdebci" aria-hidden="true" style="image-rendering:pixelated;flex-shrink:0;fill:rgba(0,0,0,1);color:rgba(0,0,0,1);transform:none"><div class="svgContainer" style="width:100%;height:100%;aspect-ratio:inherit"><svg style="width:100%;height:100%;" viewBox="0 0 13 13"><use href="#svg1992126621_925"/></svg></div></div></a><!--/$--></div></div><!--/$--></section>
+</div><section class="chintwo-work-section" id="work" aria-label="Selected Works">
+  <div class="chintwo-work-container">
+    <div class="chintwo-work-header">
+      <span class="chintwo-section-tag">01 / SELECTED WORKS</span>
+      <h2 class="chintwo-section-heading">Selected Works &amp; Editions</h2>
+      <p class="chintwo-section-sub">Interactive liquid lens gallery • Drag, scroll, or click to explore the collection</p>
+    </div>
+
+    <!-- FlexCarousel Container from React Bits -->
+    <div class="chintwo-carousel-outer" style="width: 100%; height: 580px; position: relative; margin: 30px 0 20px;">
+      <div id="flex-carousel-root" style="width: 100%; height: 100%; position: relative;"></div>
+    </div>
+
+    <div class="chintwo-work-footer-cta">
+      <a href="/portfolio" class="chintwo-btn-primary">Explore Full Portfolio Archive →</a>
+    </div>
+  </div>
+</section>
 <section id="about" class="chintwo-about-section" aria-label="About the Artist">
   <div class="chintwo-about-container">
     
-    <!-- Section Introduction Header -->
+    <!-- Section Header -->
     <div class="chintwo-story-header">
       <span class="chintwo-section-tag">02 / THE ARTIST'S STORY</span>
-      <h2 class="chintwo-section-heading">A Story Told in Ink, Atmosphere &amp; Memory</h2>
-      <p class="chintwo-section-sub">Scroll to journey through the studio practice, material alchemy, and philosophical origins of Chintwo.</p>
+      <h2 class="chintwo-section-heading">A Story in Ink, Atmosphere &amp; Memory</h2>
+      <p class="chintwo-section-sub">The studio practice, material alchemy, and philosophical origins of Chintwo.</p>
     </div>
 
-    <!-- Storytelling Chapters Container -->
+    <!-- Storytelling Chapters (Full Width, Concise Poetic Narrative) -->
     <div class="chintwo-story-chapters">
 
-      <!-- CHAPTER 1: Image Left, Story Right -->
+      <!-- CHAPTER 1 -->
       <article class="chintwo-story-chapter chintwo-story-row" data-story-index="1">
         <div class="chintwo-story-media-col chintwo-story-media--from-left">
           <div class="chintwo-story-card">
@@ -1456,38 +1354,36 @@
             </div>
             <div class="chintwo-story-card-caption">
               <span class="chintwo-story-caption-tag">STUDIO ARCHIVE • LONDON</span>
-              <p class="chintwo-story-caption-text">Chintwo at work on raw linen studies, 2024</p>
+              <p class="chintwo-story-caption-text">Chintwo at work on linen studies</p>
             </div>
           </div>
         </div>
 
         <div class="chintwo-story-text-col chintwo-story-text--from-right">
           <div class="chintwo-story-badge">CHAPTER 01</div>
-          <span class="chintwo-story-kicker">THE EARLY GENESIS</span>
+          <span class="chintwo-story-kicker">EARLY GENESIS</span>
           <h3 class="chintwo-story-title">The Language of Quiet Spaces</h3>
           <div class="chintwo-story-body">
-            <p>Long before monumental canvases entered museum galleries, my practice was forged in total silence—studying how winter twilight softens the angular geometries of London streets and historic facades.</p>
-            <p>I found myself drawn not to what is starkly illuminated, but to the ambiguity of shadows: the subtle gradations where form dissolves into memory. That threshold became my lifelong subject.</p>
+            <p>Observing how winter twilight softens London's historic geometries, my practice began in stillness—drawn to the subtle threshold where architectural shadow dissolves into memory.</p>
           </div>
           <blockquote class="chintwo-story-quote">
-            “In every quiet room, the dust motes and shadows hold an unwritten narrative.”
+            “In every quiet space, the shadows tell an unwritten narrative.”
           </blockquote>
         </div>
       </article>
 
-      <!-- CHAPTER 2: Story Left, Image Right -->
+      <!-- CHAPTER 2 -->
       <article class="chintwo-story-chapter chintwo-story-row chintwo-story-row--reverse" data-story-index="2">
         <div class="chintwo-story-text-col chintwo-story-text--from-left">
           <div class="chintwo-story-badge">CHAPTER 02</div>
           <span class="chintwo-story-kicker">MATERIAL ALCHEMY</span>
           <h3 class="chintwo-story-title">Earth, Charcoal &amp; Belgian Linen</h3>
           <div class="chintwo-story-body">
-            <p>A painting must possess physical presence and tactile gravity. In our studio, raw Belgian linen is hand-stretched over custom tulipwood bars, then primed with traditional rabbit-skin glue and chalk gesso.</p>
-            <p>Raw mineral pigments—bone black, lapis lazuli dust, natural burnt umbers, and graphite washes—are ground by hand and layered across days. The tooth of the fabric catches every granular stroke, creating a luminous optical depth impossible to replicate digitally.</p>
+            <p>Raw Belgian linen is hand-stretched and primed with traditional rabbit-skin glue and chalk gesso. Hand-ground mineral pigments and graphite washes are layered to create an optical depth that digital mediums cannot achieve.</p>
           </div>
           <div class="chintwo-story-tags">
-            <span class="chintwo-story-tag-pill">Raw Mineral Pigments</span>
             <span class="chintwo-story-tag-pill">Belgian Linen</span>
+            <span class="chintwo-story-tag-pill">Mineral Pigments</span>
             <span class="chintwo-story-tag-pill">Graphite Wash</span>
           </div>
         </div>
@@ -1498,23 +1394,23 @@
               <img src="/assets/images/art_process.webp" alt="Traditional pigment grinding and atelier process" class="chintwo-story-img" loading="lazy">
             </div>
             <div class="chintwo-story-card-caption">
-              <span class="chintwo-story-caption-tag">ATELIER PROCESS • PIGMENTS</span>
-              <p class="chintwo-story-caption-text">Hand-ground pigments &amp; textured impasto studies</p>
+              <span class="chintwo-story-caption-tag">ATELIER PROCESS</span>
+              <p class="chintwo-story-caption-text">Hand-ground pigments &amp; impasto studies</p>
             </div>
           </div>
         </div>
       </article>
 
-      <!-- CHAPTER 3: Image Left, Story Right -->
+      <!-- CHAPTER 3 -->
       <article class="chintwo-story-chapter chintwo-story-row" data-story-index="3">
         <div class="chintwo-story-media-col chintwo-story-media--from-left">
           <div class="chintwo-story-card">
             <div class="chintwo-story-mat">
-              <img src="/assets/images/LcTxyeMFm5sIiiSm4Iop5zds.webp" alt="The Poetry of Chiaroscuro in Book Covers and Artwork" class="chintwo-story-img" loading="lazy">
+              <img src="/assets/images/LcTxyeMFm5sIiiSm4Iop5zds.webp" alt="The Poetry of Chiaroscuro" class="chintwo-story-img" loading="lazy">
             </div>
             <div class="chintwo-story-card-caption">
               <span class="chintwo-story-caption-tag">EDITORIAL &amp; NARRATIVE</span>
-              <p class="chintwo-story-caption-text">Chiaroscuro book cover composition &amp; editorial studies</p>
+              <p class="chintwo-story-caption-text">Chiaroscuro book cover composition</p>
             </div>
           </div>
         </div>
@@ -1524,24 +1420,22 @@
           <span class="chintwo-story-kicker">ATMOSPHERE AS PROTAGONIST</span>
           <h3 class="chintwo-story-title">The Poetry of Chiaroscuro</h3>
           <div class="chintwo-story-body">
-            <p>For me, atmosphere is never decorative background—it is the living protagonist. Whether crafting an evocative cover for literary fiction or developing a standalone oil diptych, the psychological weight of the atmosphere is sculpted first.</p>
-            <p>The human figure or lone architectural silhouette merely inhabits a mood already pulsating in the pigments. This balance of intense darkness and tender luminosity invites the beholder into contemplation.</p>
+            <p>Atmosphere is never decorative background—it is the living protagonist. Before any figure or structure emerges, the psychological weight of the space is sculpted in deep chiaroscuro.</p>
           </div>
           <blockquote class="chintwo-story-quote">
-            “Silence in visual art operates like rest in music: it bestows meaning upon every mark that surrounds it.”
+            “Silence in visual art gives meaning to every mark that surrounds it.”
           </blockquote>
         </div>
       </article>
 
-      <!-- CHAPTER 4: Story Left, Image Right -->
+      <!-- CHAPTER 4 -->
       <article class="chintwo-story-chapter chintwo-story-row chintwo-story-row--reverse" data-story-index="4">
         <div class="chintwo-story-text-col chintwo-story-text--from-left">
           <div class="chintwo-story-badge">CHAPTER 04</div>
           <span class="chintwo-story-kicker">GLOBAL HORIZON</span>
           <h3 class="chintwo-story-title">From London Studio to Global Collections</h3>
           <div class="chintwo-story-body">
-            <p>Today, the studio's works are held in private collections across London, Paris, Zurich, and New York. Each original canvas and strictly limited hand-signed archival edition carries a complete certificate of provenance.</p>
-            <p>As the visual narrative expands, our commitment remains unwavering: creating timeless works of enduring emotional resonance that reward slow, quiet contemplation.</p>
+            <p>From private London ateliers to international collections, each monumental canvas and hand-pulled limited edition remains an intimate dialogue between maker and beholder.</p>
           </div>
 
           <!-- Studio Metrics -->
@@ -1561,7 +1455,7 @@
           </div>
 
           <div class="chintwo-story-actions">
-            <a href="/about" class="chintwo-btn-primary">Explore Full Biography &amp; Practice →</a>
+            <a href="/about" class="chintwo-btn-primary">Explore Full Biography →</a>
             <a href="/contact" class="chintwo-btn-secondary">Inquire for Private Commission</a>
           </div>
         </div>
@@ -1582,103 +1476,7 @@
     </div>
   </div>
 </section>
-<section id="exhibitions" class="chintwo-exhibitions-section" aria-label="Curated Exhibitions and Provenance">
-  <div class="chintwo-exhibitions-container">
-    <div class="chintwo-exhibitions-header">
-      <span class="chintwo-section-tag">03 / PROVENANCE &amp; ACCREDITATION</span>
-      <h2 class="chintwo-section-heading">Exhibitions, Accolades &amp; Selected Press</h2>
-      <p class="chintwo-section-sub">A curated chronology of museum presentations, gallery exhibitions, and international publishing commissions.</p>
-    </div>
 
-    <div class="chintwo-provenance-grid">
-      <!-- Left: Museum & Gallery Exhibitions -->
-      <div class="chintwo-provenance-col">
-        <div class="chintwo-provenance-card">
-          <div class="chintwo-provenance-header">
-            <span class="chintwo-provenance-badge">EXHIBITION CHRONOLOGY</span>
-            <h3 class="chintwo-provenance-card-title">Solo &amp; Group Shows</h3>
-          </div>
-          
-          <ul class="chintwo-provenance-timeline">
-            <li class="chintwo-timeline-item">
-              <span class="chintwo-timeline-year">2025</span>
-              <div class="chintwo-timeline-details">
-                <h4 class="chintwo-timeline-title">The Silent Hour — Solo Exhibition</h4>
-                <p class="chintwo-timeline-meta">Gallery No. 9, Mayfair, London • Curated suite of 18 monumental oil &amp; graphite linen works</p>
-              </div>
-            </li>
-            <li class="chintwo-timeline-item">
-              <span class="chintwo-timeline-year">2024</span>
-              <div class="chintwo-timeline-details">
-                <h4 class="chintwo-timeline-title">Atmosphere &amp; Chiaroscuro — Group Presentation</h4>
-                <p class="chintwo-timeline-meta">Somerset House, London • Group salon of contemporary narrative image-makers</p>
-              </div>
-            </li>
-            <li class="chintwo-timeline-item">
-              <span class="chintwo-timeline-year">2023</span>
-              <div class="chintwo-timeline-details">
-                <h4 class="chintwo-timeline-title">World Illustration Awards — Official Shortlist</h4>
-                <p class="chintwo-timeline-meta">Association of Illustrators • International traveling exhibition across the UK and Asia</p>
-              </div>
-            </li>
-            <li class="chintwo-timeline-item">
-              <span class="chintwo-timeline-year">2022</span>
-              <div class="chintwo-timeline-details">
-                <h4 class="chintwo-timeline-title">Contemporary Mark-Making</h4>
-                <p class="chintwo-timeline-meta">Mall Galleries, London • Annual showcase of innovative printmaking and drawing</p>
-              </div>
-            </li>
-            <li class="chintwo-timeline-item">
-              <span class="chintwo-timeline-year">2021</span>
-              <div class="chintwo-timeline-details">
-                <h4 class="chintwo-timeline-title">Northern Solitudes — Drawing Biennial</h4>
-                <p class="chintwo-timeline-meta">Edinburgh Printmakers • Invitational suite of hand-pulled monochrome monoprints</p>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      <!-- Right: Selected Clients & Studio Representation -->
-      <div class="chintwo-provenance-col">
-        <div class="chintwo-provenance-card">
-          <div class="chintwo-provenance-header">
-            <span class="chintwo-provenance-badge">COMMISSIONED WORK</span>
-            <h3 class="chintwo-provenance-card-title">Publishing &amp; Editorial Press</h3>
-          </div>
-
-          <div class="chintwo-client-roster">
-            <div class="chintwo-client-item">
-              <div class="chintwo-client-name">Penguin Random House</div>
-              <p class="chintwo-client-desc">Cover artwork and chapter headings for literary fiction and classic library editions.</p>
-            </div>
-            <div class="chintwo-client-item">
-              <div class="chintwo-client-name">The New Yorker</div>
-              <p class="chintwo-client-desc">Editorial illustrations exploring architectural memory and cultural solitude.</p>
-            </div>
-            <div class="chintwo-client-item">
-              <div class="chintwo-client-name">The Folio Society</div>
-              <p class="chintwo-client-desc">Collector's slipcased cloth edition frontispieces and full-bleed interior plates.</p>
-            </div>
-            <div class="chintwo-client-item">
-              <div class="chintwo-client-name">Faber &amp; Faber</div>
-              <p class="chintwo-client-desc">Poetry collection covers rendered in raw ink washes and mineral pigments.</p>
-            </div>
-            <div class="chintwo-client-item">
-              <div class="chintwo-client-name">The Atlantic &amp; Granta</div>
-              <p class="chintwo-client-desc">Narrative visual essays accompanying long-form literary journalism.</p>
-            </div>
-          </div>
-
-          <div class="chintwo-representation-note">
-            <span class="chintwo-rep-title">Studio Representation &amp; Museum Inquiries</span>
-            <p>For exhibition loans, monograph inclusion, or institutional acquisitions, contact the studio representation office directly at <a href="mailto:studio@chintwo.com">studio@chintwo.com</a>.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 </section>
 
 <section class="framer-v37qah" data-framer-name="Blog" id="journal"><div class="framer-j3hyuc" data-framer-name="Container"><div class="framer-1iz6x7d" data-border="true" data-framer-name="Top"><div class="framer-qpolns" data-framer-name="Gallery" data-framer-component-type="RichTextContainer" style="transform:none"><p dir="auto" style="--font-selector:SW50ZXItU2VtaUJvbGQ=;--framer-font-size:14px;--framer-font-weight:600;--framer-letter-spacing:-0.04em;--framer-line-height:22px;--framer-text-color:var(--token-f8c6fc17-6126-48ad-8306-922d51919d56, rgb(17, 17, 18))" class="framer-text">Artist’s Journal</p></div><div class="framer-1fw9wix" data-framer-name="02" data-framer-component-type="RichTextContainer" style="transform:none"><p dir="auto" style="--font-selector:SW50ZXItU2VtaUJvbGQ=;--framer-font-size:14px;--framer-font-weight:600;--framer-letter-spacing:-0.04em;--framer-line-height:22px;--framer-text-color:var(--token-f8c6fc17-6126-48ad-8306-922d51919d56, rgb(17, 17, 18))" class="framer-text">03</p></div></div><div class="framer-m0b3z7" data-framer-name="Content"><div class="framer-wwfde" data-framer-name="Left"><div class="framer-11dcert" data-framer-name="Heading"><div class="framer-bhtvyu" data-framer-name="What I can offer" data-framer-component-type="RichTextContainer" style="will-change:transform;opacity:0;transform:none"><h2 dir="auto" style="--font-selector:SW50ZXItTWVkaXVt;--framer-font-size:74px;--framer-font-weight:500;--framer-letter-spacing:-0.07em;--framer-line-height:0.96em;--framer-text-color:var(--token-f8c6fc17-6126-48ad-8306-922d51919d56, rgb(17, 17, 18))" class="framer-text">Studio Journal & Field Notes</h2></div><div class="framer-xgrsr2" data-framer-name="Dedicated to creating resonant works of solitude, memory, and tactile form for private collections and publications." data-framer-component-type="RichTextContainer" style="will-change:transform;opacity:0;transform:none"><p dir="auto" style="--font-selector:SW50ZXItTWVkaXVt;--framer-font-size:26px;--framer-font-weight:500;--framer-letter-spacing:-0.05em;--framer-text-color:rgba(17, 17, 18, 0.6)" class="framer-text">Field notes, pigment formulations, and essays from the London studio. Documenting the intersection of literary illustration, monoprint technique, and quiet light.</p></div></div><!--$--><div class="ssr-variant hidden-57x94v hidden-i58y18"><div class="framer-170pqbp-container" style="will-change:transform;opacity:0;transform:none"><!--$--><a class="framer-cRK7U framer-1493qqn framer-v-1493qqn framer-11ylagf" data-border="true" data-framer-name="Desktop dark" data-highlight="true" href="./blog" tabindex="0" style="--border-bottom-width:2px;--border-color:var(--token-f8c6fc17-6126-48ad-8306-922d51919d56, rgb(17, 17, 18));--border-left-width:0px;--border-right-width:0px;--border-style:solid;--border-top-width:0px"><div class="framer-1ne2yo3" data-framer-name="Text"><div class="framer-11nqgel" data-framer-name="Explore Selected Works" data-framer-component-type="RichTextContainer" style="--extracted-r6o4lv:var(--token-f8c6fc17-6126-48ad-8306-922d51919d56, rgb(17, 17, 18));--framer-paragraph-spacing:0px;transform:none"><p class="framer-text" style="--font-selector:SW50ZXItU2VtaUJvbGQ=;--framer-font-size:39px;--framer-font-weight:600;--framer-letter-spacing:-0.05em;--framer-line-height:1.6em;--framer-text-color:var(--extracted-r6o4lv, var(--token-f8c6fc17-6126-48ad-8306-922d51919d56, rgb(17, 17, 18)))">View all</p></div></div><div data-framer-component-type="SVG" data-framer-name="Arrow dark" parentsize="0" _constraints="[object Object]" rotation="0" shadows class="framer-mgrlzg" aria-hidden="true" style="image-rendering:pixelated;flex-shrink:0;fill:rgba(0,0,0,1);color:rgba(0,0,0,1);transform:none"><div class="svgContainer" style="width:100%;height:100%;aspect-ratio:inherit"><svg style="width:100%;height:100%;" viewBox="0 0 13 13"><use href="#svg1992126621_925"/></svg></div></div></a><!--/$--></div></div><div class="ssr-variant hidden-x29ilp hidden-i58y18"><div class="framer-170pqbp-container" style="will-change:transform;opacity:0;transform:none"><!--$--><a class="framer-cRK7U framer-1493qqn framer-v-1vt94j1 framer-11ylagf" data-border="true" data-framer-name="Tablet dark" data-highlight="true" href="./blog" tabindex="0" style="--border-bottom-width:2px;--border-color:var(--token-f8c6fc17-6126-48ad-8306-922d51919d56, rgb(17, 17, 18));--border-left-width:0px;--border-right-width:0px;--border-style:solid;--border-top-width:0px"><div class="framer-1ne2yo3" data-framer-name="Text"><div class="framer-11nqgel" data-framer-name="Explore Selected Works" data-framer-component-type="RichTextContainer" style="--extracted-r6o4lv:var(--token-f8c6fc17-6126-48ad-8306-922d51919d56, rgb(17, 17, 18));--framer-paragraph-spacing:0px;transform:none"><p class="framer-text" style="--font-selector:SW50ZXItU2VtaUJvbGQ=;--framer-font-size:20px;--framer-font-weight:600;--framer-letter-spacing:-0.05em;--framer-line-height:1.6em;--framer-text-color:var(--extracted-r6o4lv, var(--token-f8c6fc17-6126-48ad-8306-922d51919d56, rgb(17, 17, 18)))">View all</p></div></div><div data-framer-component-type="SVG" data-framer-name="Arrow dark" parentsize="0" _constraints="[object Object]" rotation="0" shadows class="framer-mgrlzg" aria-hidden="true" style="image-rendering:pixelated;flex-shrink:0;fill:rgba(0,0,0,1);color:rgba(0,0,0,1);transform:none"><div class="svgContainer" style="width:100%;height:100%;aspect-ratio:inherit"><svg style="width:100%;height:100%;" viewBox="0 0 13 13"><use href="#svg1992126621_925"/></svg></div></div></a><!--/$--></div></div><div class="ssr-variant hidden-x29ilp hidden-57x94v"><div class="framer-170pqbp-container" style="will-change:transform;opacity:0;transform:none"><!--$--><a class="framer-cRK7U framer-1493qqn framer-v-1log43z framer-11ylagf" data-border="true" data-framer-name="Phone dark" data-highlight="true" href="./blog" tabindex="0" style="--border-bottom-width:2px;--border-color:var(--token-f8c6fc17-6126-48ad-8306-922d51919d56, rgb(17, 17, 18));--border-left-width:0px;--border-right-width:0px;--border-style:solid;--border-top-width:0px;height:100%;width:100%"><div class="framer-1ne2yo3" data-framer-name="Text"><div class="framer-11nqgel" data-framer-name="Explore Selected Works" data-framer-component-type="RichTextContainer" style="--extracted-r6o4lv:var(--token-f8c6fc17-6126-48ad-8306-922d51919d56, rgb(17, 17, 18));--framer-paragraph-spacing:0px;transform:none"><p class="framer-text" style="--font-selector:SW50ZXItU2VtaUJvbGQ=;--framer-font-size:17px;--framer-font-weight:600;--framer-letter-spacing:-0.05em;--framer-line-height:1.6em;--framer-text-color:var(--extracted-r6o4lv, var(--token-f8c6fc17-6126-48ad-8306-922d51919d56, rgb(17, 17, 18)))">View all</p></div></div><div data-framer-component-type="SVG" data-framer-name="Arrow dark" parentsize="0" _constraints="[object Object]" rotation="0" shadows class="framer-mgrlzg" aria-hidden="true" style="image-rendering:pixelated;flex-shrink:0;fill:rgba(0,0,0,1);color:rgba(0,0,0,1);transform:none"><div class="svgContainer" style="width:100%;height:100%;aspect-ratio:inherit"><svg style="width:100%;height:100%;" viewBox="0 0 13 13"><use href="#svg1992126621_925"/></svg></div></div></a><!--/$--></div></div><!--/$--></div><div class="framer-1uxjmy3" style="will-change:transform;opacity:0;transform:none"><!--$--><!--$--><div class="ssr-variant hidden-i58y18"><a class="framer-19wpjyx framer-lux5qc" data-framer-cursor="v4fkfb" href="./blog/on-the-weight-of-quiet-images"><div class="framer-pyyt39" data-framer-name="Top"><div class="ssr-variant hidden-57x94v"><div class="framer-117p34a" data-framer-name="Date" data-framer-component-type="RichTextContainer" style="transform:none"><p dir="auto" style="--font-selector:SW50ZXItU2VtaUJvbGQ=;--framer-font-size:18px;--framer-font-weight:600;--framer-letter-spacing:-0.06em;--framer-line-height:24px;--framer-text-color:rgb(255, 255, 255);--framer-text-transform:uppercase" class="framer-text"><time datetime="2025-03-18T00:00:00.000Z">Mar 18, 2025</time></p></div></div><div class="ssr-variant hidden-x29ilp"><div class="framer-117p34a" data-framer-name="Date" data-framer-component-type="RichTextContainer" style="transform:none"><p dir="auto" style="--font-selector:SW50ZXItU2VtaUJvbGQ=;--framer-font-size:17px;--framer-font-weight:600;--framer-letter-spacing:-0.06em;--framer-line-height:24px;--framer-text-color:rgb(255, 255, 255);--framer-text-transform:uppercase" class="framer-text"><time datetime="2025-03-18T00:00:00.000Z">Mar 18, 2025</time></p></div></div><div data-framer-component-type="SVG" data-framer-name="Arrow" parentsize="0" _constraints="[object Object]" rotation="0" shadows class="framer-1tua4vq" aria-hidden="true" style="image-rendering:pixelated;flex-shrink:0;fill:rgba(0,0,0,1);color:rgba(0,0,0,1)"><div class="svgContainer" style="width:100%;height:100%;aspect-ratio:inherit"><svg style="width:100%;height:100%;" viewBox="0 0 20 20"><use href="#svg-1903232768_927"/></svg></div></div></div><div class="framer-gkk5ba" data-framer-component-type="RichTextContainer" style="transform:none"><h3 dir="auto" style="--font-selector:SW50ZXItTWVkaXVt;--framer-font-size:30px;--framer-font-weight:500;--framer-letter-spacing:-0.05em;--framer-line-height:110%;--framer-text-color:var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255))" class="framer-text">On the Weight of Quiet Images: Restraint &amp; Chiaroscuro</h3></div><div class="framer-1hyaij2" data-framer-name="Darken"></div><div class="ssr-variant"><div class="framer-rr4bb5" data-framer-name="BG image" style="will-change:transform;opacity:1;transform:scale(1.2)"><div style="position:absolute;border-radius:inherit;corner-shape:inherit;top:0;right:0;bottom:0;left:0" data-framer-background-image-wrapper="true"><img decoding="async" loading="lazy" width="2000" height="1333" sizes="(min-width: 1400px) max((max((min(100vw - 72px, 1848px) - 20px) / 1.5, 1px) - 20px) / 2, 1px), (min-width: 810px) and (max-width: 1399.98px) max((min(100vw - 64px, 1848px) - 32px) / 2, 1px), (max-width: 809.98px) min(100vw - 48px, 1848px)" srcset="/assets/images/RM0tlsI2ZKyzUMKpmterd2XVc.webp?scale-down-to=512&amp;width=2000&amp;height=1333 512w,/assets/images/RM0tlsI2ZKyzUMKpmterd2XVc.webp?scale-down-to=1024&amp;width=2000&amp;height=1333 1024w,/assets/images/RM0tlsI2ZKyzUMKpmterd2XVc.webp?width=2000&amp;height=1333 2000w" src="/assets/images/RM0tlsI2ZKyzUMKpmterd2XVc.webp?width=2000&amp;height=1333" alt="On the Weight of Quiet Images: Restraint &amp; Chiaroscuro" style="display:block;width:100%;height:100%;border-radius:inherit;corner-shape:inherit;object-position:center;object-fit:cover"></div></div></div></a></div><div class="ssr-variant hidden-x29ilp hidden-57x94v"><a class="framer-19wpjyx framer-lux5qc" data-framer-cursor="v4fkfb" href="./blog/on-the-weight-of-quiet-images"><div class="framer-pyyt39" data-framer-name="Top"><div class="framer-117p34a" data-framer-name="Date" data-framer-component-type="RichTextContainer" style="transform:none"><p dir="auto" style="--font-selector:SW50ZXItU2VtaUJvbGQ=;--framer-font-weight:600;--framer-letter-spacing:-0.06em;--framer-line-height:24px;--framer-text-color:rgb(255, 255, 255);--framer-text-transform:uppercase" class="framer-text"><time datetime="2025-03-18T00:00:00.000Z">Mar 18, 2025</time></p></div><div data-framer-component-type="SVG" data-framer-name="Arrow" parentsize="0" _constraints="[object Object]" rotation="0" shadows class="framer-1tua4vq" aria-hidden="true" style="image-rendering:pixelated;flex-shrink:0;fill:rgba(0,0,0,1);color:rgba(0,0,0,1)"><div class="svgContainer" style="width:100%;height:100%;aspect-ratio:inherit"><svg style="width:100%;height:100%;" viewBox="0 0 20 20"><use href="#svg-1903232768_927"/></svg></div></div></div><div class="framer-gkk5ba" data-framer-component-type="RichTextContainer" style="transform:none"><h3 dir="auto" style="--font-selector:SW50ZXItTWVkaXVt;--framer-font-size:30px;--framer-font-weight:500;--framer-letter-spacing:-0.05em;--framer-line-height:110%;--framer-text-color:var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255))" class="framer-text">On the Weight of Quiet Images: Restraint &amp; Chiaroscuro</h3></div><div class="framer-1hyaij2" data-framer-name="Darken"></div><div class="framer-rr4bb5" data-framer-name="BG image" style="will-change:transform;opacity:1;transform:scale(1.2)"><div style="position:absolute;border-radius:inherit;corner-shape:inherit;top:0;right:0;bottom:0;left:0" data-framer-background-image-wrapper="true"><img decoding="async" loading="lazy" width="2000" height="1333" sizes="(min-width: 1400px) max((max((min(100vw - 72px, 1848px) - 20px) / 1.5, 1px) - 20px) / 2, 1px), (min-width: 810px) and (max-width: 1399.98px) max((min(100vw - 64px, 1848px) - 32px) / 2, 1px), (max-width: 809.98px) min(100vw - 48px, 1848px)" srcset="/assets/images/RM0tlsI2ZKyzUMKpmterd2XVc.webp?scale-down-to=512&amp;width=2000&amp;height=1333 512w,/assets/images/RM0tlsI2ZKyzUMKpmterd2XVc.webp?scale-down-to=1024&amp;width=2000&amp;height=1333 1024w,/assets/images/RM0tlsI2ZKyzUMKpmterd2XVc.webp?width=2000&amp;height=1333 2000w" src="/assets/images/RM0tlsI2ZKyzUMKpmterd2XVc.webp?width=2000&amp;height=1333" alt="On the Weight of Quiet Images: Restraint &amp; Chiaroscuro" style="display:block;width:100%;height:100%;border-radius:inherit;corner-shape:inherit;object-position:center;object-fit:cover"></div></div></a></div><!--/$--><!--$--><div class="ssr-variant hidden-i58y18"><a class="framer-19wpjyx framer-lux5qc" data-framer-cursor="v4fkfb" href="./blog/the-poetry-of-chiaroscuro"><div class="framer-pyyt39" data-framer-name="Top"><div class="ssr-variant hidden-57x94v"><div class="framer-117p34a" data-framer-name="Date" data-framer-component-type="RichTextContainer" style="transform:none"><p dir="auto" style="--font-selector:SW50ZXItU2VtaUJvbGQ=;--framer-font-size:18px;--framer-font-weight:600;--framer-letter-spacing:-0.06em;--framer-line-height:24px;--framer-text-color:rgb(255, 255, 255);--framer-text-transform:uppercase" class="framer-text"><time datetime="2025-02-10T00:00:00.000Z">Feb 10, 2025</time></p></div></div><div class="ssr-variant hidden-x29ilp"><div class="framer-117p34a" data-framer-name="Date" data-framer-component-type="RichTextContainer" style="transform:none"><p dir="auto" style="--font-selector:SW50ZXItU2VtaUJvbGQ=;--framer-font-size:17px;--framer-font-weight:600;--framer-letter-spacing:-0.06em;--framer-line-height:24px;--framer-text-color:rgb(255, 255, 255);--framer-text-transform:uppercase" class="framer-text"><time datetime="2025-02-10T00:00:00.000Z">Feb 10, 2025</time></p></div></div><div data-framer-component-type="SVG" data-framer-name="Arrow" parentsize="0" _constraints="[object Object]" rotation="0" shadows class="framer-1tua4vq" aria-hidden="true" style="image-rendering:pixelated;flex-shrink:0;fill:rgba(0,0,0,1);color:rgba(0,0,0,1)"><div class="svgContainer" style="width:100%;height:100%;aspect-ratio:inherit"><svg style="width:100%;height:100%;" viewBox="0 0 20 20"><use href="#svg-1903232768_927"/></svg></div></div></div><div class="framer-gkk5ba" data-framer-component-type="RichTextContainer" style="transform:none"><h3 dir="auto" style="--font-selector:SW50ZXItTWVkaXVt;--framer-font-size:30px;--framer-font-weight:500;--framer-letter-spacing:-0.05em;--framer-line-height:110%;--framer-text-color:var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255))" class="framer-text">The Poetry of Chiaroscuro: Framing Solitude in Book Covers</h3></div><div class="framer-1hyaij2" data-framer-name="Darken"></div><div class="ssr-variant"><div class="framer-rr4bb5" data-framer-name="BG image" style="will-change:transform;opacity:1;transform:scale(1.2)"><div style="position:absolute;border-radius:inherit;corner-shape:inherit;top:0;right:0;bottom:0;left:0" data-framer-background-image-wrapper="true"><img decoding="async" loading="lazy" width="2000" height="1333" sizes="(min-width: 1400px) max(max((min(100vw - 144px, 1848px) - 60px) / 2, 50px), max((max((min(100vw - 72px, 1848px) - 20px) / 1.5, 1px) - 20px) / 2, 1px)), (min-width: 810px) and (max-width: 1399.98px) max(max((min(100vw - 128px, 1848px) - 40px) / 2, 50px), max((min(100vw - 64px, 1848px) - 32px) / 2, 1px)), (max-width: 809.98px) max(min(100vw - 96px, 1848px), min(100vw - 48px, 1848px))" srcset="/assets/images/LcTxyeMFm5sIiiSm4Iop5zds.webp?scale-down-to=512&amp;width=2000&amp;height=1333 512w,/assets/images/LcTxyeMFm5sIiiSm4Iop5zds.webp?scale-down-to=1024&amp;width=2000&amp;height=1333 1024w,/assets/images/LcTxyeMFm5sIiiSm4Iop5zds.webp?width=2000&amp;height=1333 2000w" src="/assets/images/LcTxyeMFm5sIiiSm4Iop5zds.webp?width=2000&amp;height=1333" alt="The Poetry of Chiaroscuro: Framing Solitude in Book Covers" style="display:block;width:100%;height:100%;border-radius:inherit;corner-shape:inherit;object-position:center;object-fit:cover"></div></div></div></a></div><div class="ssr-variant hidden-x29ilp hidden-57x94v"><a class="framer-19wpjyx framer-lux5qc" data-framer-cursor="v4fkfb" href="./blog/the-poetry-of-chiaroscuro"><div class="framer-pyyt39" data-framer-name="Top"><div class="framer-117p34a" data-framer-name="Date" data-framer-component-type="RichTextContainer" style="transform:none"><p dir="auto" style="--font-selector:SW50ZXItU2VtaUJvbGQ=;--framer-font-weight:600;--framer-letter-spacing:-0.06em;--framer-line-height:24px;--framer-text-color:rgb(255, 255, 255);--framer-text-transform:uppercase" class="framer-text"><time datetime="2025-02-10T00:00:00.000Z">Feb 10, 2025</time></p></div><div data-framer-component-type="SVG" data-framer-name="Arrow" parentsize="0" _constraints="[object Object]" rotation="0" shadows class="framer-1tua4vq" aria-hidden="true" style="image-rendering:pixelated;flex-shrink:0;fill:rgba(0,0,0,1);color:rgba(0,0,0,1)"><div class="svgContainer" style="width:100%;height:100%;aspect-ratio:inherit"><svg style="width:100%;height:100%;" viewBox="0 0 20 20"><use href="#svg-1903232768_927"/></svg></div></div></div><div class="framer-gkk5ba" data-framer-component-type="RichTextContainer" style="transform:none"><h3 dir="auto" style="--font-selector:SW50ZXItTWVkaXVt;--framer-font-size:30px;--framer-font-weight:500;--framer-letter-spacing:-0.05em;--framer-line-height:110%;--framer-text-color:var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255))" class="framer-text">The Poetry of Chiaroscuro: Framing Solitude in Book Covers</h3></div><div class="framer-1hyaij2" data-framer-name="Darken"></div><div class="framer-rr4bb5" data-framer-name="BG image" style="will-change:transform;opacity:1;transform:scale(1.2)"><div style="position:absolute;border-radius:inherit;corner-shape:inherit;top:0;right:0;bottom:0;left:0" data-framer-background-image-wrapper="true"><img decoding="async" loading="lazy" width="2000" height="1333" sizes="(min-width: 1400px) max(max((min(100vw - 144px, 1848px) - 60px) / 2, 50px), max((max((min(100vw - 72px, 1848px) - 20px) / 1.5, 1px) - 20px) / 2, 1px)), (min-width: 810px) and (max-width: 1399.98px) max(max((min(100vw - 128px, 1848px) - 40px) / 2, 50px), max((min(100vw - 64px, 1848px) - 32px) / 2, 1px)), (max-width: 809.98px) max(min(100vw - 96px, 1848px), min(100vw - 48px, 1848px))" srcset="/assets/images/LcTxyeMFm5sIiiSm4Iop5zds.webp?scale-down-to=512&amp;width=2000&amp;height=1333 512w,/assets/images/LcTxyeMFm5sIiiSm4Iop5zds.webp?scale-down-to=1024&amp;width=2000&amp;height=1333 1024w,/assets/images/LcTxyeMFm5sIiiSm4Iop5zds.webp?width=2000&amp;height=1333 2000w" src="/assets/images/LcTxyeMFm5sIiiSm4Iop5zds.webp?width=2000&amp;height=1333" alt="The Poetry of Chiaroscuro: Framing Solitude in Book Covers" style="display:block;width:100%;height:100%;border-radius:inherit;corner-shape:inherit;object-position:center;object-fit:cover"></div></div></a></div><!--/$--><!--/$--></div></div></div></section></main><div class="ssr-variant hidden-57x94v hidden-i58y18"><div class="framer-unp9tc-container">
@@ -1789,6 +1587,10 @@
   var currentScroll = 0;
   var isTicking = false;
 
+  // CRITICAL: Lock transform origins to seam edges so scaling NEVER overlaps
+  if (leftHalf) leftHalf.style.transformOrigin = '100% 50%';
+  if (rightHalf) rightHalf.style.transformOrigin = '0% 50%';
+
   function getBaseOffset() {
     var w = window.innerWidth;
     if (w > 1200) return 260;
@@ -1798,8 +1600,8 @@
 
   function getBaseRot() {
     var w = window.innerWidth;
-    if (w > 810) return 6;
-    return 4;
+    if (w > 810) return 5;
+    return 3;
   }
 
   function getTargetScale() {
@@ -1830,39 +1632,36 @@
     var targetScale = getTargetScale();
     var scale = 1 + (targetScale - 1) * ease;
 
-    // Subpixel seam lock when merged
-    var subpixel = progress >= 0.95 ? 0.75 : 0;
-
-    // Direct style transforms on artwork halves
+    // Direct style transforms: anchored at seam edges to prevent overlap
     if (leftHalf && rightHalf) {
-      leftHalf.style.transform = 'translate(calc(-100% - ' + offset.toFixed(2) + 'px + ' + subpixel + 'px), -50%) rotate(' + (-rot).toFixed(2) + 'deg) scale(' + scale.toFixed(4) + ')';
+      leftHalf.style.transform = 'translate(calc(-100% - ' + offset.toFixed(2) + 'px), -50%) rotate(' + (-rot).toFixed(2) + 'deg) scale(' + scale.toFixed(4) + ')';
       rightHalf.style.transform = 'translate(calc(0% + ' + offset.toFixed(2) + 'px), -50%) rotate(' + rot.toFixed(2) + 'deg) scale(' + scale.toFixed(4) + ')';
 
       var radiusVal = (4 * (1 - ease)).toFixed(1);
       leftHalf.style.borderRadius = radiusVal + 'px 0 0 ' + radiusVal + 'px';
       rightHalf.style.borderRadius = '0 ' + radiusVal + 'px ' + radiusVal + 'px 0';
 
-      var shadowOp = (0.35 * (1 - ease)).toFixed(3);
-      leftHalf.style.boxShadow = '-15px 25px 60px rgba(20, 20, 24, ' + shadowOp + ')';
-      rightHalf.style.boxShadow = '15px 25px 60px rgba(20, 20, 24, ' + shadowOp + ')';
+      var shadowOp = (0.28 * (1 - ease)).toFixed(3);
+      leftHalf.style.boxShadow = '-12px 20px 50px rgba(20, 20, 24, ' + shadowOp + ')';
+      rightHalf.style.boxShadow = '12px 20px 50px rgba(20, 20, 24, ' + shadowOp + ')';
     }
 
-    // Center Brand: Reveals as the image almost merges (progress >= 0.52)
+    // Logo & Brand Lockup: Placed on top as the image merges (progress >= 0.45)
     if (centerBrand) {
-      if (progress >= 0.50) {
-        var brandProgress = Math.min(1, (progress - 0.50) / 0.28);
-        var brandScale = 0.88 + 0.12 * brandProgress;
+      if (progress >= 0.42) {
+        var brandProgress = Math.min(1, (progress - 0.42) / 0.32);
+        var brandScale = 0.90 + 0.10 * brandProgress;
         centerBrand.style.opacity = brandProgress.toFixed(3);
         centerBrand.style.transform = 'translate(-50%, -50%) scale(' + brandScale.toFixed(3) + ')';
         centerBrand.style.pointerEvents = brandProgress > 0.8 ? 'auto' : 'none';
       } else {
         centerBrand.style.opacity = '0';
-        centerBrand.style.transform = 'translate(-50%, -50%) scale(0.85)';
+        centerBrand.style.transform = 'translate(-50%, -50%) scale(0.88)';
         centerBrand.style.pointerEvents = 'none';
       }
     }
 
-    // Taskbar: Appears once the image almost merges and brand lockup appears (progress >= 0.72 or scrolled past)
+    // Taskbar: Reveals as the image finishes merging and brand is settled (progress >= 0.70)
     if (taskbar) {
       if (progress >= 0.70 || currentScroll > mergeDistance) {
         taskbar.classList.add('chintwo-taskbar-visible');
@@ -1907,6 +1706,97 @@
   currentScroll = targetScroll;
   update();
 })();
+</script>
+
+<!-- FlexCarousel Integration & Storytelling Controller -->
+<script type="module">
+  import { initFlexCarousel } from '/assets/scripts/FlexCarousel.js';
+
+  // 1. Initialize FlexCarousel from React Bits
+  const flexItems = [
+    {
+      src: '/assets/images/LcTxyeMFm5sIiiSm4Iop5zds.webp',
+      alt: 'The Silent Hour',
+      title: 'The Silent Hour',
+      subtitle: 'Gouache & Monoprint on Archival Rag'
+    },
+    {
+      src: '/assets/images/bg5zKXacbxF9hxgxh95vSeYyKHM.webp',
+      alt: 'The Cartographer’s Dream',
+      title: 'The Cartographer’s Dream',
+      subtitle: 'Earth Pigment Wash & Graphite'
+    },
+    {
+      src: '/assets/images/KprYkGkimFEN8DANdFVOfpc2ro.webp',
+      alt: 'Nocturne for Two Solitudes',
+      title: 'Nocturne for Two Solitudes',
+      subtitle: 'Oil & Raw Pigment on Belgian Linen'
+    },
+    {
+      src: '/assets/images/HGXt3zFDtrXxquN5BVsRFCkypC4.webp',
+      alt: 'Arrival in the Cold Mist',
+      title: 'Arrival in the Cold Mist',
+      subtitle: 'Encaustic, Ink & Cold Wax on Panel'
+    },
+    {
+      src: '/assets/images/coNU5GEVyZAGUw45WDGQjFl1OPI.webp',
+      alt: 'Fine Art Editions',
+      title: 'Fine Art Editions',
+      subtitle: 'Limited Hand-Pulled Silkscreens'
+    },
+    {
+      src: '/assets/images/art_silent_hour.webp',
+      alt: 'Atmospheric Chiaroscuro',
+      title: 'Atmospheric Chiaroscuro',
+      subtitle: 'London Atelier Presentation'
+    },
+    {
+      src: '/assets/images/ddJPEQaAywxy2EeDTISwapy0.webp',
+      alt: 'Monoprint Synthesis',
+      title: 'Monoprint Synthesis',
+      subtitle: 'Material & Texture Studies'
+    },
+    {
+      src: '/assets/images/RM0tlsI2ZKyzUMKpmterd2XVc.webp',
+      alt: 'Quiet Resonances',
+      title: 'Quiet Resonances',
+      subtitle: 'Solo Collection'
+    }
+  ];
+
+  const carouselRoot = document.getElementById('flex-carousel-root');
+  if (carouselRoot) {
+    initFlexCarousel(carouselRoot, {
+      items: flexItems,
+      preset: 'liquid',
+      intro: 'rise',
+      cardHeight: 0.52,
+      gap: 16,
+      squeeze: 0.2,
+      focusOnClick: true,
+      captions: true,
+      captureWheel: true,
+      onSelect: (index, item) => {
+        console.log('Selected work:', item.title);
+      }
+    });
+  }
+
+  // 2. Storytelling Scroll Observer for About Chapters
+  const storyRows = document.querySelectorAll('.chintwo-story-row');
+  if ('IntersectionObserver' in window && storyRows.length > 0) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-inview');
+        }
+      });
+    }, { rootMargin: '0px 0px -60px 0px', threshold: 0.15 });
+
+    storyRows.forEach(r => observer.observe(r));
+  } else {
+    storyRows.forEach(r => r.classList.add('is-inview'));
+  }
 </script>
 
 <script id="chintwo-scroll-narrative-script">

@@ -19,5 +19,8 @@
     "spatial-installations"
   ],
   "author": "Chintwo",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "ogl": "^1.0.11"
+  }
 }
