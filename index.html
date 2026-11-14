@@ -426,6 +426,382 @@
 
 <!-- Chintwo Fine Art & Smooth Diptych Merge Styles -->
 <style id="chintwo-art-custom-styles">
+  /* =========================================================================
+     UNIVERSAL CANVAS FILL: ZERO BLACK SIDE BORDERS ON ANY SCREEN
+     ========================================================================= */
+  html,
+  body,
+  #main,
+  .framer-JYB5s,
+  .framer-oja7hh,
+  .framer-L7MJ5,
+  .framer-x29ilp,
+  .framer-s85uji,
+  .framer-1kpdfs0,
+  .framer-j3hyuc,
+  .framer-v37qah,
+  .ssr-variant {
+    background-color: #f7f5f0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  /* CAROUSEL OUTER SIZING & HINT */
+  .chintwo-carousel-outer {
+    width: 100% !important;
+    height: clamp(400px, 58vh, 580px) !important;
+    position: relative !important;
+    margin: 24px 0 16px !important;
+    overflow: hidden !important;
+  }
+  @media (max-width: 768px) {
+    .chintwo-carousel-outer {
+      height: clamp(380px, 52vh, 460px) !important;
+      margin: 16px 0 12px !important;
+    }
+  }
+
+  /* ABOUT ME TEASER SECTION */
+  .chintwo-about-teaser-section {
+    position: relative !important;
+    width: 100% !important;
+    background-color: #f7f5f0 !important;
+    padding: 100px 32px !important;
+    box-sizing: border-box !important;
+    border-top: 1px solid rgba(18, 19, 22, 0.08) !important;
+    border-bottom: 1px solid rgba(18, 19, 22, 0.08) !important;
+  }
+  .chintwo-about-teaser-container {
+    max-width: 1240px !important;
+    margin: 0 auto !important;
+  }
+  .chintwo-about-teaser-grid {
+    display: grid !important;
+    grid-template-columns: 1fr 1.15fr !important;
+    gap: 64px !important;
+    align-items: center !important;
+  }
+  .chintwo-about-teaser-visual {
+    position: relative !important;
+  }
+  .chintwo-about-teaser-img-frame {
+    position: relative !important;
+    border-radius: 20px !important;
+    overflow: hidden !important;
+    box-shadow: 0 24px 60px rgba(18, 19, 22, 0.12) !important;
+    background: #eae6dc !important;
+    aspect-ratio: 4 / 3 !important;
+  }
+  .chintwo-about-teaser-img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    display: block !important;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  }
+  .chintwo-about-teaser-img-frame:hover .chintwo-about-teaser-img {
+    transform: scale(1.03) !important;
+  }
+  .chintwo-about-teaser-badge {
+    position: absolute !important;
+    bottom: 20px !important;
+    left: 20px !important;
+    background: rgba(247, 245, 240, 0.92) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    padding: 8px 16px !important;
+    border-radius: 100px !important;
+    font-size: 11px !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.12em !important;
+    color: #121316 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    border: 1px solid rgba(191, 161, 95, 0.35) !important;
+  }
+  .chintwo-about-teaser-content {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 20px !important;
+  }
+  .chintwo-about-teaser-heading {
+    font-family: 'Playfair Display', Georgia, serif !important;
+    font-size: clamp(32px, 4vw, 46px) !important;
+    font-weight: 500 !important;
+    line-height: 1.15 !important;
+    color: #121316 !important;
+    margin: 0 !important;
+    letter-spacing: -0.02em !important;
+  }
+  .chintwo-about-teaser-text {
+    font-family: 'Inter', system-ui, sans-serif !important;
+    font-size: 16px !important;
+    line-height: 1.7 !important;
+    color: #4a4a4f !important;
+    margin: 0 !important;
+  }
+  .chintwo-about-teaser-metrics {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 20px !important;
+    padding: 24px 0 !important;
+    border-top: 1px solid rgba(18, 19, 22, 0.08) !important;
+    border-bottom: 1px solid rgba(18, 19, 22, 0.08) !important;
+  }
+  .chintwo-teaser-metric {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 4px !important;
+  }
+  .chintwo-metric-val {
+    font-family: 'Playfair Display', Georgia, serif !important;
+    font-size: 28px !important;
+    font-weight: 600 !important;
+    color: #121316 !important;
+  }
+  .chintwo-metric-lbl {
+    font-size: 12px !important;
+    color: #727278 !important;
+    letter-spacing: 0.04em !important;
+    text-transform: uppercase !important;
+  }
+  .chintwo-about-teaser-action {
+    margin-top: 8px !important;
+  }
+
+  @media (max-width: 900px) {
+    .chintwo-about-teaser-grid {
+      grid-template-columns: 1fr !important;
+      gap: 40px !important;
+    }
+    .chintwo-about-teaser-section {
+      padding: 70px 20px !important;
+    }
+  }
+
+  /* JOURNAL SECTION */
+  .chintwo-journal-section {
+    position: relative !important;
+    width: 100% !important;
+    background-color: #f7f5f0 !important;
+    padding: 100px 32px !important;
+    box-sizing: border-box !important;
+  }
+  .chintwo-journal-container {
+    max-width: 1240px !important;
+    margin: 0 auto !important;
+  }
+  .chintwo-journal-header {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: flex-end !important;
+    margin-bottom: 48px !important;
+    gap: 24px !important;
+    flex-wrap: wrap !important;
+  }
+  .chintwo-journal-header-left {
+    max-width: 650px !important;
+  }
+  .chintwo-journal-grid {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 32px !important;
+  }
+  .chintwo-journal-card {
+    background: #ffffff !important;
+    border-radius: 16px !important;
+    overflow: hidden !important;
+    border: 1px solid rgba(18, 19, 22, 0.08) !important;
+    box-shadow: 0 10px 30px rgba(18, 19, 22, 0.04) !important;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+  .chintwo-journal-card:hover {
+    transform: translateY(-6px) !important;
+    box-shadow: 0 20px 40px rgba(18, 19, 22, 0.10) !important;
+  }
+  .chintwo-journal-card-link {
+    display: flex !important;
+    flex-direction: column !important;
+    height: 100% !important;
+    text-decoration: none !important;
+    color: inherit !important;
+  }
+  .chintwo-journal-img-wrap {
+    position: relative !important;
+    width: 100% !important;
+    aspect-ratio: 16 / 10 !important;
+    overflow: hidden !important;
+    background: #eae6dc !important;
+  }
+  .chintwo-journal-img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  }
+  .chintwo-journal-card:hover .chintwo-journal-img {
+    transform: scale(1.05) !important;
+  }
+  .chintwo-journal-badge {
+    position: absolute !important;
+    top: 14px !important;
+    left: 14px !important;
+    background: rgba(18, 19, 22, 0.85) !important;
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+    color: #ffffff !important;
+    font-size: 10px !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.10em !important;
+    padding: 5px 10px !important;
+    border-radius: 6px !important;
+  }
+  .chintwo-journal-body {
+    padding: 24px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    flex-grow: 1 !important;
+  }
+  .chintwo-journal-date {
+    font-size: 11px !important;
+    letter-spacing: 0.08em !important;
+    font-weight: 600 !important;
+    color: #8c8273 !important;
+    margin-bottom: 8px !important;
+    text-transform: uppercase !important;
+  }
+  .chintwo-journal-title {
+    font-family: 'Playfair Display', Georgia, serif !important;
+    font-size: 21px !important;
+    line-height: 1.3 !important;
+    font-weight: 600 !important;
+    color: #121316 !important;
+    margin: 0 0 12px 0 !important;
+  }
+  .chintwo-journal-excerpt {
+    font-size: 14px !important;
+    line-height: 1.6 !important;
+    color: #55555c !important;
+    margin: 0 0 20px 0 !important;
+    flex-grow: 1 !important;
+  }
+  .chintwo-journal-readmore {
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    color: #121316 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    border-bottom: 1px solid rgba(18, 19, 22, 0.25) !important;
+    padding-bottom: 2px !important;
+    align-self: flex-start !important;
+    transition: border-color 0.2s ease, gap 0.2s ease !important;
+  }
+  .chintwo-journal-card:hover .chintwo-journal-readmore {
+    border-color: #121316 !important;
+    gap: 10px !important;
+  }
+
+  @media (max-width: 980px) {
+    .chintwo-journal-grid {
+      grid-template-columns: 1fr !important;
+      gap: 28px !important;
+    }
+    .chintwo-journal-section {
+      padding: 70px 20px !important;
+    }
+  }
+
+  /* BUTTON STYLES */
+  .chintwo-btn-primary {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 14px 28px !important;
+    background: #121316 !important;
+    color: #ffffff !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.06em !important;
+    border-radius: 8px !important;
+    text-decoration: none !important;
+    transition: background-color 0.25s ease, transform 0.25s ease !important;
+    border: none !important;
+    cursor: pointer !important;
+  }
+  .chintwo-btn-primary:hover {
+    background: #2a2b30 !important;
+    transform: translateY(-2px) !important;
+    color: #ffffff !important;
+  }
+  .chintwo-btn-secondary {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 12px 24px !important;
+    background: transparent !important;
+    color: #121316 !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.04em !important;
+    border-radius: 8px !important;
+    border: 1px solid rgba(18, 19, 22, 0.25) !important;
+    text-decoration: none !important;
+    transition: all 0.25s ease !important;
+  }
+  .chintwo-btn-secondary:hover {
+    border-color: #121316 !important;
+    background: rgba(18, 19, 22, 0.04) !important;
+  }
+
+  /* MOBILE FOOTER & BRAND POLISH */
+  @media (max-width: 768px) {
+    .chintwo-hero-center-brand-inner {
+      padding: 18px 28px !important;
+      border-radius: 16px !important;
+    }
+    .chintwo-hero-center-emblem {
+      width: 48px !important;
+      height: 52px !important;
+      margin-bottom: 8px !important;
+    }
+    .chintwo-hero-center-name {
+      font-size: 24px !important;
+      letter-spacing: 0.20em !important;
+    }
+    .chintwo-hero-center-sub {
+      font-size: 9px !important;
+      letter-spacing: 0.18em !important;
+    }
+    .chintwo-footer {
+      padding: 50px 20px 30px !important;
+    }
+    .chintwo-footer-grid {
+      grid-template-columns: 1fr !important;
+      gap: 36px !important;
+    }
+    .chintwo-footer-col--identity {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+      padding-bottom: 24px !important;
+    }
+    .chintwo-footer-bottom {
+      flex-direction: column !important;
+      align-items: flex-start !important;
+      gap: 16px !important;
+      margin-top: 36px !important;
+      padding-top: 24px !important;
+    }
+    .chintwo-footer-back-to-top {
+      align-self: flex-start !important;
+    }
+  }
+
   /* Global Smooth Transitions */
   html {
     scroll-behavior: smooth;
@@ -1323,8 +1699,11 @@
     </div>
 
     <!-- FlexCarousel Container from React Bits -->
-    <div class="chintwo-carousel-outer" style="width: 100%; height: 580px; position: relative; margin: 30px 0 20px;">
+    <div class="chintwo-carousel-outer">
       <div id="flex-carousel-root" style="width: 100%; height: 100%; position: relative;"></div>
+      <div class="chintwo-carousel-hint" aria-hidden="true">
+        <span>← Drag or swipe cards • Tap to focus →</span>
+      </div>
     </div>
 
     <div class="chintwo-work-footer-cta">
@@ -1332,154 +1711,113 @@
     </div>
   </div>
 </section>
-<section id="about" class="chintwo-about-section" aria-label="About the Artist">
-  <div class="chintwo-about-container">
-    
-    <!-- Section Header -->
-    <div class="chintwo-story-header">
-      <span class="chintwo-section-tag">02 / THE ARTIST'S STORY</span>
-      <h2 class="chintwo-section-heading">A Story in Ink, Atmosphere &amp; Memory</h2>
-      <p class="chintwo-section-sub">The studio practice, material alchemy, and philosophical origins of Chintwo.</p>
-    </div>
-
-    <!-- Storytelling Chapters (Full Width, Concise Poetic Narrative) -->
-    <div class="chintwo-story-chapters">
-
-      <!-- CHAPTER 1 -->
-      <article class="chintwo-story-chapter chintwo-story-row" data-story-index="1">
-        <div class="chintwo-story-media-col chintwo-story-media--from-left">
-          <div class="chintwo-story-card">
-            <div class="chintwo-story-mat">
-              <img src="/assets/images/fDh0jZF0V8L0VApCB9oAHIFgd8.webp" alt="Chintwo in the London Studio" class="chintwo-story-img" loading="lazy">
-            </div>
-            <div class="chintwo-story-card-caption">
-              <span class="chintwo-story-caption-tag">STUDIO ARCHIVE • LONDON</span>
-              <p class="chintwo-story-caption-text">Chintwo at work on linen studies</p>
-            </div>
+<section id="about" class="chintwo-about-teaser-section" aria-label="About the Artist">
+  <div class="chintwo-about-teaser-container">
+    <div class="chintwo-about-teaser-grid">
+      <div class="chintwo-about-teaser-visual">
+        <div class="chintwo-about-teaser-img-frame">
+          <img src="/assets/images/art_process.webp" alt="Chintwo Studio Practice" class="chintwo-about-teaser-img" loading="lazy" />
+          <div class="chintwo-about-teaser-badge">
+            <span class="chintwo-badge-dot"></span>
+            <span>ATELIER • KYOTO &amp; LONDON</span>
           </div>
         </div>
-
-        <div class="chintwo-story-text-col chintwo-story-text--from-right">
-          <div class="chintwo-story-badge">CHAPTER 01</div>
-          <span class="chintwo-story-kicker">EARLY GENESIS</span>
-          <h3 class="chintwo-story-title">The Language of Quiet Spaces</h3>
-          <div class="chintwo-story-body">
-            <p>Observing how winter twilight softens London's historic geometries, my practice began in stillness—drawn to the subtle threshold where architectural shadow dissolves into memory.</p>
+      </div>
+      <div class="chintwo-about-teaser-content">
+        <span class="chintwo-section-tag">02 / THE ARTIST</span>
+        <h2 class="chintwo-about-teaser-heading">A Story in Ink, Atmosphere &amp; Memory</h2>
+        <p class="chintwo-about-teaser-text">
+          Chintwo is a contemporary visual artist working at the intersection of traditional East Asian sumi printmaking and atmospheric narrative. Rooted in the Kyoto concept of <em>Ma</em>—the charged stillness between forms—each creation investigates negative space, tactile washi fibers, and the emotional resonance of solitude.
+        </p>
+        <div class="chintwo-about-teaser-metrics">
+          <div class="chintwo-teaser-metric">
+            <span class="chintwo-metric-val">14+</span>
+            <span class="chintwo-metric-lbl">Years Practice</span>
           </div>
-          <blockquote class="chintwo-story-quote">
-            “In every quiet space, the shadows tell an unwritten narrative.”
-          </blockquote>
-        </div>
-      </article>
-
-      <!-- CHAPTER 2 -->
-      <article class="chintwo-story-chapter chintwo-story-row chintwo-story-row--reverse" data-story-index="2">
-        <div class="chintwo-story-text-col chintwo-story-text--from-left">
-          <div class="chintwo-story-badge">CHAPTER 02</div>
-          <span class="chintwo-story-kicker">MATERIAL ALCHEMY</span>
-          <h3 class="chintwo-story-title">Earth, Charcoal &amp; Belgian Linen</h3>
-          <div class="chintwo-story-body">
-            <p>Raw Belgian linen is hand-stretched and primed with traditional rabbit-skin glue and chalk gesso. Hand-ground mineral pigments and graphite washes are layered to create an optical depth that digital mediums cannot achieve.</p>
+          <div class="chintwo-teaser-metric">
+            <span class="chintwo-metric-val">28+</span>
+            <span class="chintwo-metric-lbl">Archival Editions</span>
           </div>
-          <div class="chintwo-story-tags">
-            <span class="chintwo-story-tag-pill">Belgian Linen</span>
-            <span class="chintwo-story-tag-pill">Mineral Pigments</span>
-            <span class="chintwo-story-tag-pill">Graphite Wash</span>
+          <div class="chintwo-teaser-metric">
+            <span class="chintwo-metric-val">6</span>
+            <span class="chintwo-metric-lbl">Publications</span>
           </div>
         </div>
-
-        <div class="chintwo-story-media-col chintwo-story-media--from-right">
-          <div class="chintwo-story-card">
-            <div class="chintwo-story-mat">
-              <img src="/assets/images/art_process.webp" alt="Traditional pigment grinding and atelier process" class="chintwo-story-img" loading="lazy">
-            </div>
-            <div class="chintwo-story-card-caption">
-              <span class="chintwo-story-caption-tag">ATELIER PROCESS</span>
-              <p class="chintwo-story-caption-text">Hand-ground pigments &amp; impasto studies</p>
-            </div>
-          </div>
+        <div class="chintwo-about-teaser-action">
+          <a href="/about" class="chintwo-btn-primary">Explore the Artist’s Full Story &amp; Studio Archive →</a>
         </div>
-      </article>
-
-      <!-- CHAPTER 3 -->
-      <article class="chintwo-story-chapter chintwo-story-row" data-story-index="3">
-        <div class="chintwo-story-media-col chintwo-story-media--from-left">
-          <div class="chintwo-story-card">
-            <div class="chintwo-story-mat">
-              <img src="/assets/images/LcTxyeMFm5sIiiSm4Iop5zds.webp" alt="The Poetry of Chiaroscuro" class="chintwo-story-img" loading="lazy">
-            </div>
-            <div class="chintwo-story-card-caption">
-              <span class="chintwo-story-caption-tag">EDITORIAL &amp; NARRATIVE</span>
-              <p class="chintwo-story-caption-text">Chiaroscuro book cover composition</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="chintwo-story-text-col chintwo-story-text--from-right">
-          <div class="chintwo-story-badge">CHAPTER 03</div>
-          <span class="chintwo-story-kicker">ATMOSPHERE AS PROTAGONIST</span>
-          <h3 class="chintwo-story-title">The Poetry of Chiaroscuro</h3>
-          <div class="chintwo-story-body">
-            <p>Atmosphere is never decorative background—it is the living protagonist. Before any figure or structure emerges, the psychological weight of the space is sculpted in deep chiaroscuro.</p>
-          </div>
-          <blockquote class="chintwo-story-quote">
-            “Silence in visual art gives meaning to every mark that surrounds it.”
-          </blockquote>
-        </div>
-      </article>
-
-      <!-- CHAPTER 4 -->
-      <article class="chintwo-story-chapter chintwo-story-row chintwo-story-row--reverse" data-story-index="4">
-        <div class="chintwo-story-text-col chintwo-story-text--from-left">
-          <div class="chintwo-story-badge">CHAPTER 04</div>
-          <span class="chintwo-story-kicker">GLOBAL HORIZON</span>
-          <h3 class="chintwo-story-title">From London Studio to Global Collections</h3>
-          <div class="chintwo-story-body">
-            <p>From private London ateliers to international collections, each monumental canvas and hand-pulled limited edition remains an intimate dialogue between maker and beholder.</p>
-          </div>
-
-          <!-- Studio Metrics -->
-          <div class="chintwo-about-metrics">
-            <div class="chintwo-metric">
-              <span class="chintwo-metric-val">12+</span>
-              <span class="chintwo-metric-label">Years Studio Practice</span>
-            </div>
-            <div class="chintwo-metric">
-              <span class="chintwo-metric-val">40+</span>
-              <span class="chintwo-metric-label">Curated Exhibitions</span>
-            </div>
-            <div class="chintwo-metric">
-              <span class="chintwo-metric-val">180+</span>
-              <span class="chintwo-metric-label">Private Collections</span>
-            </div>
-          </div>
-
-          <div class="chintwo-story-actions">
-            <a href="/about" class="chintwo-btn-primary">Explore Full Biography →</a>
-            <a href="/contact" class="chintwo-btn-secondary">Inquire for Private Commission</a>
-          </div>
-        </div>
-
-        <div class="chintwo-story-media-col chintwo-story-media--from-right">
-          <div class="chintwo-story-card">
-            <div class="chintwo-story-mat">
-              <img src="/assets/images/art_silent_hour.webp" alt="Monumental canvas presentation in gallery setting" class="chintwo-story-img" loading="lazy">
-            </div>
-            <div class="chintwo-story-card-caption">
-              <span class="chintwo-story-caption-tag">EXHIBITION ARCHIVE</span>
-              <p class="chintwo-story-caption-text">The Silent Hour, solo gallery presentation</p>
-            </div>
-          </div>
-        </div>
-      </article>
-
+      </div>
     </div>
   </div>
 </section>
 
 </section>
 
-<section class="framer-v37qah" data-framer-name="Blog" id="journal"><div class="framer-j3hyuc" data-framer-name="Container"><div class="framer-1iz6x7d" data-border="true" data-framer-name="Top"><div class="framer-qpolns" data-framer-name="Gallery" data-framer-component-type="RichTextContainer" style="transform:none"><p dir="auto" style="--font-selector:SW50ZXItU2VtaUJvbGQ=;--framer-font-size:14px;--framer-font-weight:600;--framer-letter-spacing:-0.04em;--framer-line-height:22px;--framer-text-color:var(--token-f8c6fc17-6126-48ad-8306-922d51919d56, rgb(17, 17, 18))" class="framer-text">Artist’s Journal</p></div><div class="framer-1fw9wix" data-framer-name="02" data-framer-component-type="RichTextContainer" style="transform:none"><p dir="auto" style="--font-selector:SW50ZXItU2VtaUJvbGQ=;--framer-font-size:14px;--framer-font-weight:600;--framer-letter-spacing:-0.04em;--framer-line-height:22px;--framer-text-color:var(--token-f8c6fc17-6126-48ad-8306-922d51919d56, rgb(17, 17, 18))" class="framer-text">03</p></div></div><div class="framer-m0b3z7" data-framer-name="Content"><div class="framer-wwfde" data-framer-name="Left"><div class="framer-11dcert" data-framer-name="Heading"><div class="framer-bhtvyu" data-framer-name="What I can offer" data-framer-component-type="RichTextContainer" style="will-change:transform;opacity:0;transform:none"><h2 dir="auto" style="--font-selector:SW50ZXItTWVkaXVt;--framer-font-size:74px;--framer-font-weight:500;--framer-letter-spacing:-0.07em;--framer-line-height:0.96em;--framer-text-color:var(--token-f8c6fc17-6126-48ad-8306-922d51919d56, rgb(17, 17, 18))" class="framer-text">Studio Journal & Field Notes</h2></div><div class="framer-xgrsr2" data-framer-name="Dedicated to creating resonant works of solitude, memory, and tactile form for private collections and publications." data-framer-component-type="RichTextContainer" style="will-change:transform;opacity:0;transform:none"><p dir="auto" style="--font-selector:SW50ZXItTWVkaXVt;--framer-font-size:26px;--framer-font-weight:500;--framer-letter-spacing:-0.05em;--framer-text-color:rgba(17, 17, 18, 0.6)" class="framer-text">Field notes, pigment formulations, and essays from the London studio. Documenting the intersection of literary illustration, monoprint technique, and quiet light.</p></div></div><!--$--><div class="ssr-variant hidden-57x94v hidden-i58y18"><div class="framer-170pqbp-container" style="will-change:transform;opacity:0;transform:none"><!--$--><a class="framer-cRK7U framer-1493qqn framer-v-1493qqn framer-11ylagf" data-border="true" data-framer-name="Desktop dark" data-highlight="true" href="./blog" tabindex="0" style="--border-bottom-width:2px;--border-color:var(--token-f8c6fc17-6126-48ad-8306-922d51919d56, rgb(17, 17, 18));--border-left-width:0px;--border-right-width:0px;--border-style:solid;--border-top-width:0px"><div class="framer-1ne2yo3" data-framer-name="Text"><div class="framer-11nqgel" data-framer-name="Explore Selected Works" data-framer-component-type="RichTextContainer" style="--extracted-r6o4lv:var(--token-f8c6fc17-6126-48ad-8306-922d51919d56, rgb(17, 17, 18));--framer-paragraph-spacing:0px;transform:none"><p class="framer-text" style="--font-selector:SW50ZXItU2VtaUJvbGQ=;--framer-font-size:39px;--framer-font-weight:600;--framer-letter-spacing:-0.05em;--framer-line-height:1.6em;--framer-text-color:var(--extracted-r6o4lv, var(--token-f8c6fc17-6126-48ad-8306-922d51919d56, rgb(17, 17, 18)))">View all</p></div></div><div data-framer-component-type="SVG" data-framer-name="Arrow dark" parentsize="0" _constraints="[object Object]" rotation="0" shadows class="framer-mgrlzg" aria-hidden="true" style="image-rendering:pixelated;flex-shrink:0;fill:rgba(0,0,0,1);color:rgba(0,0,0,1);transform:none"><div class="svgContainer" style="width:100%;height:100%;aspect-ratio:inherit"><svg style="width:100%;height:100%;" viewBox="0 0 13 13"><use href="#svg1992126621_925"/></svg></div></div></a><!--/$--></div></div><div class="ssr-variant hidden-x29ilp hidden-i58y18"><div class="framer-170pqbp-container" style="will-change:transform;opacity:0;transform:none"><!--$--><a class="framer-cRK7U framer-1493qqn framer-v-1vt94j1 framer-11ylagf" data-border="true" data-framer-name="Tablet dark" data-highlight="true" href="./blog" tabindex="0" style="--border-bottom-width:2px;--border-color:var(--token-f8c6fc17-6126-48ad-8306-922d51919d56, rgb(17, 17, 18));--border-left-width:0px;--border-right-width:0px;--border-style:solid;--border-top-width:0px"><div class="framer-1ne2yo3" data-framer-name="Text"><div class="framer-11nqgel" data-framer-name="Explore Selected Works" data-framer-component-type="RichTextContainer" style="--extracted-r6o4lv:var(--token-f8c6fc17-6126-48ad-8306-922d51919d56, rgb(17, 17, 18));--framer-paragraph-spacing:0px;transform:none"><p class="framer-text" style="--font-selector:SW50ZXItU2VtaUJvbGQ=;--framer-font-size:20px;--framer-font-weight:600;--framer-letter-spacing:-0.05em;--framer-line-height:1.6em;--framer-text-color:var(--extracted-r6o4lv, var(--token-f8c6fc17-6126-48ad-8306-922d51919d56, rgb(17, 17, 18)))">View all</p></div></div><div data-framer-component-type="SVG" data-framer-name="Arrow dark" parentsize="0" _constraints="[object Object]" rotation="0" shadows class="framer-mgrlzg" aria-hidden="true" style="image-rendering:pixelated;flex-shrink:0;fill:rgba(0,0,0,1);color:rgba(0,0,0,1);transform:none"><div class="svgContainer" style="width:100%;height:100%;aspect-ratio:inherit"><svg style="width:100%;height:100%;" viewBox="0 0 13 13"><use href="#svg1992126621_925"/></svg></div></div></a><!--/$--></div></div><div class="ssr-variant hidden-x29ilp hidden-57x94v"><div class="framer-170pqbp-container" style="will-change:transform;opacity:0;transform:none"><!--$--><a class="framer-cRK7U framer-1493qqn framer-v-1log43z framer-11ylagf" data-border="true" data-framer-name="Phone dark" data-highlight="true" href="./blog" tabindex="0" style="--border-bottom-width:2px;--border-color:var(--token-f8c6fc17-6126-48ad-8306-922d51919d56, rgb(17, 17, 18));--border-left-width:0px;--border-right-width:0px;--border-style:solid;--border-top-width:0px;height:100%;width:100%"><div class="framer-1ne2yo3" data-framer-name="Text"><div class="framer-11nqgel" data-framer-name="Explore Selected Works" data-framer-component-type="RichTextContainer" style="--extracted-r6o4lv:var(--token-f8c6fc17-6126-48ad-8306-922d51919d56, rgb(17, 17, 18));--framer-paragraph-spacing:0px;transform:none"><p class="framer-text" style="--font-selector:SW50ZXItU2VtaUJvbGQ=;--framer-font-size:17px;--framer-font-weight:600;--framer-letter-spacing:-0.05em;--framer-line-height:1.6em;--framer-text-color:var(--extracted-r6o4lv, var(--token-f8c6fc17-6126-48ad-8306-922d51919d56, rgb(17, 17, 18)))">View all</p></div></div><div data-framer-component-type="SVG" data-framer-name="Arrow dark" parentsize="0" _constraints="[object Object]" rotation="0" shadows class="framer-mgrlzg" aria-hidden="true" style="image-rendering:pixelated;flex-shrink:0;fill:rgba(0,0,0,1);color:rgba(0,0,0,1);transform:none"><div class="svgContainer" style="width:100%;height:100%;aspect-ratio:inherit"><svg style="width:100%;height:100%;" viewBox="0 0 13 13"><use href="#svg1992126621_925"/></svg></div></div></a><!--/$--></div></div><!--/$--></div><div class="framer-1uxjmy3" style="will-change:transform;opacity:0;transform:none"><!--$--><!--$--><div class="ssr-variant hidden-i58y18"><a class="framer-19wpjyx framer-lux5qc" data-framer-cursor="v4fkfb" href="./blog/on-the-weight-of-quiet-images"><div class="framer-pyyt39" data-framer-name="Top"><div class="ssr-variant hidden-57x94v"><div class="framer-117p34a" data-framer-name="Date" data-framer-component-type="RichTextContainer" style="transform:none"><p dir="auto" style="--font-selector:SW50ZXItU2VtaUJvbGQ=;--framer-font-size:18px;--framer-font-weight:600;--framer-letter-spacing:-0.06em;--framer-line-height:24px;--framer-text-color:rgb(255, 255, 255);--framer-text-transform:uppercase" class="framer-text"><time datetime="2025-03-18T00:00:00.000Z">Mar 18, 2025</time></p></div></div><div class="ssr-variant hidden-x29ilp"><div class="framer-117p34a" data-framer-name="Date" data-framer-component-type="RichTextContainer" style="transform:none"><p dir="auto" style="--font-selector:SW50ZXItU2VtaUJvbGQ=;--framer-font-size:17px;--framer-font-weight:600;--framer-letter-spacing:-0.06em;--framer-line-height:24px;--framer-text-color:rgb(255, 255, 255);--framer-text-transform:uppercase" class="framer-text"><time datetime="2025-03-18T00:00:00.000Z">Mar 18, 2025</time></p></div></div><div data-framer-component-type="SVG" data-framer-name="Arrow" parentsize="0" _constraints="[object Object]" rotation="0" shadows class="framer-1tua4vq" aria-hidden="true" style="image-rendering:pixelated;flex-shrink:0;fill:rgba(0,0,0,1);color:rgba(0,0,0,1)"><div class="svgContainer" style="width:100%;height:100%;aspect-ratio:inherit"><svg style="width:100%;height:100%;" viewBox="0 0 20 20"><use href="#svg-1903232768_927"/></svg></div></div></div><div class="framer-gkk5ba" data-framer-component-type="RichTextContainer" style="transform:none"><h3 dir="auto" style="--font-selector:SW50ZXItTWVkaXVt;--framer-font-size:30px;--framer-font-weight:500;--framer-letter-spacing:-0.05em;--framer-line-height:110%;--framer-text-color:var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255))" class="framer-text">On the Weight of Quiet Images: Restraint &amp; Chiaroscuro</h3></div><div class="framer-1hyaij2" data-framer-name="Darken"></div><div class="ssr-variant"><div class="framer-rr4bb5" data-framer-name="BG image" style="will-change:transform;opacity:1;transform:scale(1.2)"><div style="position:absolute;border-radius:inherit;corner-shape:inherit;top:0;right:0;bottom:0;left:0" data-framer-background-image-wrapper="true"><img decoding="async" loading="lazy" width="2000" height="1333" sizes="(min-width: 1400px) max((max((min(100vw - 72px, 1848px) - 20px) / 1.5, 1px) - 20px) / 2, 1px), (min-width: 810px) and (max-width: 1399.98px) max((min(100vw - 64px, 1848px) - 32px) / 2, 1px), (max-width: 809.98px) min(100vw - 48px, 1848px)" srcset="/assets/images/RM0tlsI2ZKyzUMKpmterd2XVc.webp?scale-down-to=512&amp;width=2000&amp;height=1333 512w,/assets/images/RM0tlsI2ZKyzUMKpmterd2XVc.webp?scale-down-to=1024&amp;width=2000&amp;height=1333 1024w,/assets/images/RM0tlsI2ZKyzUMKpmterd2XVc.webp?width=2000&amp;height=1333 2000w" src="/assets/images/RM0tlsI2ZKyzUMKpmterd2XVc.webp?width=2000&amp;height=1333" alt="On the Weight of Quiet Images: Restraint &amp; Chiaroscuro" style="display:block;width:100%;height:100%;border-radius:inherit;corner-shape:inherit;object-position:center;object-fit:cover"></div></div></div></a></div><div class="ssr-variant hidden-x29ilp hidden-57x94v"><a class="framer-19wpjyx framer-lux5qc" data-framer-cursor="v4fkfb" href="./blog/on-the-weight-of-quiet-images"><div class="framer-pyyt39" data-framer-name="Top"><div class="framer-117p34a" data-framer-name="Date" data-framer-component-type="RichTextContainer" style="transform:none"><p dir="auto" style="--font-selector:SW50ZXItU2VtaUJvbGQ=;--framer-font-weight:600;--framer-letter-spacing:-0.06em;--framer-line-height:24px;--framer-text-color:rgb(255, 255, 255);--framer-text-transform:uppercase" class="framer-text"><time datetime="2025-03-18T00:00:00.000Z">Mar 18, 2025</time></p></div><div data-framer-component-type="SVG" data-framer-name="Arrow" parentsize="0" _constraints="[object Object]" rotation="0" shadows class="framer-1tua4vq" aria-hidden="true" style="image-rendering:pixelated;flex-shrink:0;fill:rgba(0,0,0,1);color:rgba(0,0,0,1)"><div class="svgContainer" style="width:100%;height:100%;aspect-ratio:inherit"><svg style="width:100%;height:100%;" viewBox="0 0 20 20"><use href="#svg-1903232768_927"/></svg></div></div></div><div class="framer-gkk5ba" data-framer-component-type="RichTextContainer" style="transform:none"><h3 dir="auto" style="--font-selector:SW50ZXItTWVkaXVt;--framer-font-size:30px;--framer-font-weight:500;--framer-letter-spacing:-0.05em;--framer-line-height:110%;--framer-text-color:var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255))" class="framer-text">On the Weight of Quiet Images: Restraint &amp; Chiaroscuro</h3></div><div class="framer-1hyaij2" data-framer-name="Darken"></div><div class="framer-rr4bb5" data-framer-name="BG image" style="will-change:transform;opacity:1;transform:scale(1.2)"><div style="position:absolute;border-radius:inherit;corner-shape:inherit;top:0;right:0;bottom:0;left:0" data-framer-background-image-wrapper="true"><img decoding="async" loading="lazy" width="2000" height="1333" sizes="(min-width: 1400px) max((max((min(100vw - 72px, 1848px) - 20px) / 1.5, 1px) - 20px) / 2, 1px), (min-width: 810px) and (max-width: 1399.98px) max((min(100vw - 64px, 1848px) - 32px) / 2, 1px), (max-width: 809.98px) min(100vw - 48px, 1848px)" srcset="/assets/images/RM0tlsI2ZKyzUMKpmterd2XVc.webp?scale-down-to=512&amp;width=2000&amp;height=1333 512w,/assets/images/RM0tlsI2ZKyzUMKpmterd2XVc.webp?scale-down-to=1024&amp;width=2000&amp;height=1333 1024w,/assets/images/RM0tlsI2ZKyzUMKpmterd2XVc.webp?width=2000&amp;height=1333 2000w" src="/assets/images/RM0tlsI2ZKyzUMKpmterd2XVc.webp?width=2000&amp;height=1333" alt="On the Weight of Quiet Images: Restraint &amp; Chiaroscuro" style="display:block;width:100%;height:100%;border-radius:inherit;corner-shape:inherit;object-position:center;object-fit:cover"></div></div></a></div><!--/$--><!--$--><div class="ssr-variant hidden-i58y18"><a class="framer-19wpjyx framer-lux5qc" data-framer-cursor="v4fkfb" href="./blog/the-poetry-of-chiaroscuro"><div class="framer-pyyt39" data-framer-name="Top"><div class="ssr-variant hidden-57x94v"><div class="framer-117p34a" data-framer-name="Date" data-framer-component-type="RichTextContainer" style="transform:none"><p dir="auto" style="--font-selector:SW50ZXItU2VtaUJvbGQ=;--framer-font-size:18px;--framer-font-weight:600;--framer-letter-spacing:-0.06em;--framer-line-height:24px;--framer-text-color:rgb(255, 255, 255);--framer-text-transform:uppercase" class="framer-text"><time datetime="2025-02-10T00:00:00.000Z">Feb 10, 2025</time></p></div></div><div class="ssr-variant hidden-x29ilp"><div class="framer-117p34a" data-framer-name="Date" data-framer-component-type="RichTextContainer" style="transform:none"><p dir="auto" style="--font-selector:SW50ZXItU2VtaUJvbGQ=;--framer-font-size:17px;--framer-font-weight:600;--framer-letter-spacing:-0.06em;--framer-line-height:24px;--framer-text-color:rgb(255, 255, 255);--framer-text-transform:uppercase" class="framer-text"><time datetime="2025-02-10T00:00:00.000Z">Feb 10, 2025</time></p></div></div><div data-framer-component-type="SVG" data-framer-name="Arrow" parentsize="0" _constraints="[object Object]" rotation="0" shadows class="framer-1tua4vq" aria-hidden="true" style="image-rendering:pixelated;flex-shrink:0;fill:rgba(0,0,0,1);color:rgba(0,0,0,1)"><div class="svgContainer" style="width:100%;height:100%;aspect-ratio:inherit"><svg style="width:100%;height:100%;" viewBox="0 0 20 20"><use href="#svg-1903232768_927"/></svg></div></div></div><div class="framer-gkk5ba" data-framer-component-type="RichTextContainer" style="transform:none"><h3 dir="auto" style="--font-selector:SW50ZXItTWVkaXVt;--framer-font-size:30px;--framer-font-weight:500;--framer-letter-spacing:-0.05em;--framer-line-height:110%;--framer-text-color:var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255))" class="framer-text">The Poetry of Chiaroscuro: Framing Solitude in Book Covers</h3></div><div class="framer-1hyaij2" data-framer-name="Darken"></div><div class="ssr-variant"><div class="framer-rr4bb5" data-framer-name="BG image" style="will-change:transform;opacity:1;transform:scale(1.2)"><div style="position:absolute;border-radius:inherit;corner-shape:inherit;top:0;right:0;bottom:0;left:0" data-framer-background-image-wrapper="true"><img decoding="async" loading="lazy" width="2000" height="1333" sizes="(min-width: 1400px) max(max((min(100vw - 144px, 1848px) - 60px) / 2, 50px), max((max((min(100vw - 72px, 1848px) - 20px) / 1.5, 1px) - 20px) / 2, 1px)), (min-width: 810px) and (max-width: 1399.98px) max(max((min(100vw - 128px, 1848px) - 40px) / 2, 50px), max((min(100vw - 64px, 1848px) - 32px) / 2, 1px)), (max-width: 809.98px) max(min(100vw - 96px, 1848px), min(100vw - 48px, 1848px))" srcset="/assets/images/LcTxyeMFm5sIiiSm4Iop5zds.webp?scale-down-to=512&amp;width=2000&amp;height=1333 512w,/assets/images/LcTxyeMFm5sIiiSm4Iop5zds.webp?scale-down-to=1024&amp;width=2000&amp;height=1333 1024w,/assets/images/LcTxyeMFm5sIiiSm4Iop5zds.webp?width=2000&amp;height=1333 2000w" src="/assets/images/LcTxyeMFm5sIiiSm4Iop5zds.webp?width=2000&amp;height=1333" alt="The Poetry of Chiaroscuro: Framing Solitude in Book Covers" style="display:block;width:100%;height:100%;border-radius:inherit;corner-shape:inherit;object-position:center;object-fit:cover"></div></div></div></a></div><div class="ssr-variant hidden-x29ilp hidden-57x94v"><a class="framer-19wpjyx framer-lux5qc" data-framer-cursor="v4fkfb" href="./blog/the-poetry-of-chiaroscuro"><div class="framer-pyyt39" data-framer-name="Top"><div class="framer-117p34a" data-framer-name="Date" data-framer-component-type="RichTextContainer" style="transform:none"><p dir="auto" style="--font-selector:SW50ZXItU2VtaUJvbGQ=;--framer-font-weight:600;--framer-letter-spacing:-0.06em;--framer-line-height:24px;--framer-text-color:rgb(255, 255, 255);--framer-text-transform:uppercase" class="framer-text"><time datetime="2025-02-10T00:00:00.000Z">Feb 10, 2025</time></p></div><div data-framer-component-type="SVG" data-framer-name="Arrow" parentsize="0" _constraints="[object Object]" rotation="0" shadows class="framer-1tua4vq" aria-hidden="true" style="image-rendering:pixelated;flex-shrink:0;fill:rgba(0,0,0,1);color:rgba(0,0,0,1)"><div class="svgContainer" style="width:100%;height:100%;aspect-ratio:inherit"><svg style="width:100%;height:100%;" viewBox="0 0 20 20"><use href="#svg-1903232768_927"/></svg></div></div></div><div class="framer-gkk5ba" data-framer-component-type="RichTextContainer" style="transform:none"><h3 dir="auto" style="--font-selector:SW50ZXItTWVkaXVt;--framer-font-size:30px;--framer-font-weight:500;--framer-letter-spacing:-0.05em;--framer-line-height:110%;--framer-text-color:var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255))" class="framer-text">The Poetry of Chiaroscuro: Framing Solitude in Book Covers</h3></div><div class="framer-1hyaij2" data-framer-name="Darken"></div><div class="framer-rr4bb5" data-framer-name="BG image" style="will-change:transform;opacity:1;transform:scale(1.2)"><div style="position:absolute;border-radius:inherit;corner-shape:inherit;top:0;right:0;bottom:0;left:0" data-framer-background-image-wrapper="true"><img decoding="async" loading="lazy" width="2000" height="1333" sizes="(min-width: 1400px) max(max((min(100vw - 144px, 1848px) - 60px) / 2, 50px), max((max((min(100vw - 72px, 1848px) - 20px) / 1.5, 1px) - 20px) / 2, 1px)), (min-width: 810px) and (max-width: 1399.98px) max(max((min(100vw - 128px, 1848px) - 40px) / 2, 50px), max((min(100vw - 64px, 1848px) - 32px) / 2, 1px)), (max-width: 809.98px) max(min(100vw - 96px, 1848px), min(100vw - 48px, 1848px))" srcset="/assets/images/LcTxyeMFm5sIiiSm4Iop5zds.webp?scale-down-to=512&amp;width=2000&amp;height=1333 512w,/assets/images/LcTxyeMFm5sIiiSm4Iop5zds.webp?scale-down-to=1024&amp;width=2000&amp;height=1333 1024w,/assets/images/LcTxyeMFm5sIiiSm4Iop5zds.webp?width=2000&amp;height=1333 2000w" src="/assets/images/LcTxyeMFm5sIiiSm4Iop5zds.webp?width=2000&amp;height=1333" alt="The Poetry of Chiaroscuro: Framing Solitude in Book Covers" style="display:block;width:100%;height:100%;border-radius:inherit;corner-shape:inherit;object-position:center;object-fit:cover"></div></div></a></div><!--/$--><!--/$--></div></div></div></section></main><div class="ssr-variant hidden-57x94v hidden-i58y18"><div class="framer-unp9tc-container">
+<section id="journal" class="chintwo-journal-section" aria-label="Field Notes &amp; Artist's Journal">
+  <div class="chintwo-journal-container">
+    <div class="chintwo-journal-header">
+      <div class="chintwo-journal-header-left">
+        <span class="chintwo-section-tag">03 / FIELD NOTES &amp; ESSAYS</span>
+        <h2 class="chintwo-section-heading">Dispatches from the Atelier</h2>
+        <p class="chintwo-section-sub">Explorations in Japanese aesthetics, the philosophy of solitude, and raw materiality.</p>
+      </div>
+      <div class="chintwo-journal-header-right">
+        <a href="/blog" class="chintwo-btn-secondary">View All Field Notes →</a>
+      </div>
+    </div>
+
+    <div class="chintwo-journal-grid">
+      <!-- Article 1 -->
+      <article class="chintwo-journal-card">
+        <a href="/blog/on-the-weight-of-quiet-images" class="chintwo-journal-card-link">
+          <div class="chintwo-journal-img-wrap">
+            <img src="/assets/images/fDh0jZF0V8L0VApCB9oAHIFgd8.webp" alt="On the Weight of Quiet Images" class="chintwo-journal-img" loading="lazy" />
+            <span class="chintwo-journal-badge">ESSAY • 5 MIN READ</span>
+          </div>
+          <div class="chintwo-journal-body">
+            <span class="chintwo-journal-date">OCTOBER 2026 • STUDIO ESSAY</span>
+            <h3 class="chintwo-journal-title">On the Weight of Quiet Images</h3>
+            <p class="chintwo-journal-excerpt">An inquiry into visual restraint, negative space (Ma), and why quiet pictures possess an enduring, contemplative weight in an era of relentless sensory noise.</p>
+            <span class="chintwo-journal-readmore">Read Dispatch →</span>
+          </div>
+        </a>
+      </article>
+
+      <!-- Article 2 -->
+      <article class="chintwo-journal-card">
+        <a href="/blog/the-poetry-of-chiaroscuro" class="chintwo-journal-card-link">
+          <div class="chintwo-journal-img-wrap">
+            <img src="/assets/images/LcTxyeMFm5sIiiSm4Iop5zds.webp" alt="The Poetry of Chiaroscuro" class="chintwo-journal-img" loading="lazy" />
+            <span class="chintwo-journal-badge">PROCESS • 7 MIN READ</span>
+          </div>
+          <div class="chintwo-journal-body">
+            <span class="chintwo-journal-date">SEPTEMBER 2026 • COVER ART</span>
+            <h3 class="chintwo-journal-title">The Poetry of Chiaroscuro: Framing Solitude in Book Covers</h3>
+            <p class="chintwo-journal-excerpt">Deconstructing the interplay of deep shadow, singular illumination, and emotional vulnerability in literary cover illustration and narrative composition.</p>
+            <span class="chintwo-journal-readmore">Read Dispatch →</span>
+          </div>
+        </a>
+      </article>
+
+      <!-- Article 3 -->
+      <article class="chintwo-journal-card">
+        <a href="/blog/monoprint-textures-and-synthesis" class="chintwo-journal-card-link">
+          <div class="chintwo-journal-img-wrap">
+            <img src="/assets/images/peaa6VBBdWRSL3icJ2tpwsIXZI.webp" alt="Monoprint Textures &amp; Digital Synthesis" class="chintwo-journal-img" loading="lazy" />
+            <span class="chintwo-journal-badge">TECHNIQUE • 6 MIN READ</span>
+          </div>
+          <div class="chintwo-journal-body">
+            <span class="chintwo-journal-date">AUGUST 2026 • MATERIAL STUDIES</span>
+            <h3 class="chintwo-journal-title">Monoprint Textures &amp; Digital Synthesis</h3>
+            <p class="chintwo-journal-excerpt">Exploring the friction between hand-pulled sumi ink impressions on Echizen kozo washi and high-precision digital layers to achieve atmospheric depth.</p>
+            <span class="chintwo-journal-readmore">Read Dispatch →</span>
+          </div>
+        </a>
+      </article>
+    </div>
+  </div>
+</section></main>
+
 <footer class="chintwo-footer" role="contentinfo" aria-label="Site footer">
   <div class="chintwo-footer-container">
     <div class="chintwo-footer-grid">
@@ -1540,8 +1878,10 @@
   </div>
 </footer>
 
-
-</div></div><div class="ssr-variant hidden-x29ilp hidden-i58y18"><div class="framer-unp9tc-container"><footer class="framer-pZNHp framer-bbmt8 framer-aQRC4 framer-8Uait framer-FVFOV framer-fwvqS framer-UjpSs framer-1sofi9m framer-v-q14v8x" data-framer-name="Tablet" style="background-color:var(--token-f8c6fc17-6126-48ad-8306-922d51919d56, rgb(17, 17, 18));width:100%"><div class="framer-zd5dwm" data-framer-name="Measure graphic" style="mask:linear-gradient(90deg, rgba(0,0,0,0) 0%, rgb(0, 0, 0) 25.39590371621621%, rgb(0, 0, 0) 50%, rgb(0, 0, 0) 73.94777590090091%, rgba(0, 0, 0, 0) 100%) add;-webkit-mask:linear-gradient(90deg, rgba(0,0,0,0) 0%, rgb(0, 0, 0) 25.39590371621621%, rgb(0, 0, 0) 50%, rgb(0, 0, 0) 73.94777590090091%, rgba(0, 0, 0, 0) 100%) add;transform:translateX(-50%)"><div class="framer-1x1quwo" data-framer-name="Container" style="will-change:transform;opacity:1;transform:translateX(-200px)"><div data-framer-component-type="SVG" data-framer-name="Scale" parentsize="0" _constraints="[object Object]" rotation="0" shadows class="framer-nm5lbx" aria-hidden="true" style="image-rendering:pixelated;flex-shrink:0;fill:black;color:black"><div class="svgContainer" style="width:100%;height:100%;aspect-ratio:inherit"><svg style="width:100%;height:100%;" viewBox="0 0 2449 38"><use href="#svg1150915785_13255"/></svg></div></div></div></div><div class="framer-18p7eru" data-framer-name="Container"><div class="framer-gm870p" data-framer-name="Top"><div class="framer-1i10x6e" data-framer-name="Text" style="will-change:transform;opacity:0;transform:none"><div class="framer-1wbm2x" data-framer-name="1"><div class="framer-19x942o" data-framer-name="Have a project, book cover, or gallery commission in mind?" data-framer-component-type="RichTextContainer" style="--extracted-r6o4lv:rgba(255, 255, 255, 0.6);--framer-paragraph-spacing:0px;transform:none"><p class="framer-text framer-styles-preset-1p7qn33" data-styles-preset="nBdQAQMSA" style="--framer-text-color:var(--extracted-r6o4lv, rgba(255, 255, 255, 0.6))">Have a project, book cover, or gallery commission in mind?</p></div></div><div class="framer-r6wme2" data-framer-name="2"><div class="framer-161dm2a" data-framer-name="Let’s make something thoughtful together. Reach out today." data-framer-component-type="RichTextContainer" style="--extracted-r6o4lv:var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255));--framer-paragraph-spacing:0px;transform:none"><p class="framer-text framer-styles-preset-8nqfsa" data-styles-preset="rP_ujUt1v" style="--framer-text-color:var(--extracted-r6o4lv, var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255)))">Let’s make it happen.  Contact me today!</p></div></div></div><div class="framer-70984u" data-framer-name="Contact" id="contact" style="will-change:transform;opacity:0;transform:none"><div class="framer-atbblz" data-framer-name="Lets talk" data-framer-component-type="RichTextContainer" style="--extracted-r6o4lv:rgba(255, 255, 255, 0.5);--framer-paragraph-spacing:0px;transform:none"><p class="framer-text framer-styles-preset-1xs0hlt" data-styles-preset="Y4eex_aGW" style="--framer-text-color:var(--extracted-r6o4lv, rgba(255, 255, 255, 0.5))">Lets talk</p></div><div class="framer-vyjsag" data-framer-name="+44 7768 960969" data-framer-component-type="RichTextContainer" style="--extracted-r6o4lv:var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255));--framer-paragraph-spacing:0px;transform:none"><p class="framer-text framer-styles-preset-8vgk3u" data-styles-preset="jsPFAj3P2" dir="auto" style="--framer-text-alignment:start;--framer-text-color:var(--extracted-r6o4lv, var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255)))"><!--$--><a class="framer-text framer-styles-preset-1jim1cm" data-styles-preset="OQFUDQG12" href="tel:+447768960969" target="_blank" rel="noopener">+44 7768 960969</a><!--/$--></p></div><div class="framer-11n8ekj" data-border="true" data-framer-name="Email" style="--border-bottom-width:2px;--border-color:rgb(255, 255, 255);--border-left-width:0px;--border-right-width:0px;--border-style:solid;--border-top-width:0px"><div class="framer-lxrrq1" data-framer-name="hello@chintwo.com" data-framer-component-type="RichTextContainer" style="--extracted-r6o4lv:rgb(255, 255, 255);--framer-paragraph-spacing:0px;transform:none"><p class="framer-text" style="--font-selector:SW50ZXItTWVkaXVt;--framer-font-family:&quot;Inter&quot;, &quot;Inter Placeholder&quot;, sans-serif;--framer-font-size:32px;--framer-font-weight:500;--framer-letter-spacing:-0.05em;--framer-line-height:1em;--framer-text-color:var(--extracted-r6o4lv, rgb(255, 255, 255))"><!--$--><a class="framer-text framer-styles-preset-1jim1cm" data-styles-preset="OQFUDQG12" href="mailto:studio@chintwo.com" target="_blank" rel="noopener">studio@chintwo.com</a><!--/$--></p></div></div><div class="framer-190458v" data-framer-name="Info"><div class="framer-1ic17pl" data-framer-name="Visual Artist" data-framer-component-type="RichTextContainer" style="--extracted-r6o4lv:rgba(255, 255, 255, 0.6);--framer-paragraph-spacing:0px;transform:none"><p class="framer-text framer-styles-preset-1adkjxa" data-styles-preset="FRDnCmBOd" style="--framer-text-color:var(--extracted-r6o4lv, rgba(255, 255, 255, 0.6))">Visual Artist </p></div><div class="framer-1tgoamv" data-framer-name="(Based in London)" data-framer-component-type="RichTextContainer" style="--framer-paragraph-spacing:0px;transform:none"><p class="framer-text framer-styles-preset-1adkjxa" data-styles-preset="FRDnCmBOd">(Based in London)</p></div></div></div><div class="framer-1v9r7iw" data-framer-name="Nav" style="will-change:transform;opacity:0;transform:none"><!--$--><div class="framer-yzk0ro-container"><!--$--><a class="framer-3fqE9 framer-13hsc9i framer-v-13hsc9i framer-a0rag6" data-framer-name="Default" data-highlight="true" href="./" data-framer-page-link-current="true" tabindex="0"><div class="framer-9vgwut" data-framer-component-type="RichTextContainer" style="--extracted-r6o4lv:var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255));--framer-paragraph-spacing:0px;opacity:1;transform:none"><p class="framer-text" style="--font-selector:SW50ZXItTWVkaXVt;--framer-font-family:&quot;Inter&quot;, &quot;Inter Placeholder&quot;, sans-serif;--framer-font-size:30px;--framer-font-weight:500;--framer-letter-spacing:-0.05em;--framer-line-height:1.3em;--framer-text-color:var(--extracted-r6o4lv, var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255)))">Home</p></div></a><!--/$--></div><!--/$--><!--$--><div class="framer-1hm5uoo-container"><!--$--><a class="framer-3fqE9 framer-13hsc9i framer-v-13hsc9i framer-a0rag6" data-framer-name="Default" data-highlight="true" href="./portfolio" tabindex="0"><div class="framer-9vgwut" data-framer-component-type="RichTextContainer" style="--extracted-r6o4lv:var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255));--framer-paragraph-spacing:0px;opacity:1;transform:none"><p class="framer-text" style="--font-selector:SW50ZXItTWVkaXVt;--framer-font-family:&quot;Inter&quot;, &quot;Inter Placeholder&quot;, sans-serif;--framer-font-size:30px;--framer-font-weight:500;--framer-letter-spacing:-0.05em;--framer-line-height:1.3em;--framer-text-color:var(--extracted-r6o4lv, var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255)))">Portfolio</p></div></a><!--/$--></div><!--/$--><!--$--><div class="framer-1k1tryt-container"><!--$--><a class="framer-3fqE9 framer-13hsc9i framer-v-13hsc9i framer-a0rag6" data-framer-name="Default" data-highlight="true" href="./blog" tabindex="0"><div class="framer-9vgwut" data-framer-component-type="RichTextContainer" style="--extracted-r6o4lv:var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255));--framer-paragraph-spacing:0px;opacity:1;transform:none"><p class="framer-text" style="--font-selector:SW50ZXItTWVkaXVt;--framer-font-family:&quot;Inter&quot;, &quot;Inter Placeholder&quot;, sans-serif;--framer-font-size:30px;--framer-font-weight:500;--framer-letter-spacing:-0.05em;--framer-line-height:1.3em;--framer-text-color:var(--extracted-r6o4lv, var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255)))">Blog</p></div></a><!--/$--></div><!--/$--><!--$--><div class="framer-1811sx1-container"><!--$--><a class="framer-3fqE9 framer-13hsc9i framer-v-13hsc9i framer-a0rag6" data-framer-name="Default" data-highlight="true" href="./about" tabindex="0"><div class="framer-9vgwut" data-framer-component-type="RichTextContainer" style="--extracted-r6o4lv:var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255));--framer-paragraph-spacing:0px;opacity:1;transform:none"><p class="framer-text" style="--font-selector:SW50ZXItTWVkaXVt;--framer-font-family:&quot;Inter&quot;, &quot;Inter Placeholder&quot;, sans-serif;--framer-font-size:30px;--framer-font-weight:500;--framer-letter-spacing:-0.05em;--framer-line-height:1.3em;--framer-text-color:var(--extracted-r6o4lv, var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255)))">About me</p></div></a><!--/$--></div><!--/$--><!--$--><div class="framer-1hyadrg-container"><!--$--><a class="framer-3fqE9 framer-13hsc9i framer-v-13hsc9i framer-a0rag6" data-framer-name="Default" data-highlight="true" href="./contact" tabindex="0"><div class="framer-9vgwut" data-framer-component-type="RichTextContainer" style="--extracted-r6o4lv:var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255));--framer-paragraph-spacing:0px;opacity:1;transform:none"><p class="framer-text" style="--font-selector:SW50ZXItTWVkaXVt;--framer-font-family:&quot;Inter&quot;, &quot;Inter Placeholder&quot;, sans-serif;--framer-font-size:30px;--framer-font-weight:500;--framer-letter-spacing:-0.05em;--framer-line-height:1.3em;--framer-text-color:var(--extracted-r6o4lv, var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255)))">Contact</p></div></a><!--/$--></div><!--/$--></div></div><div class="framer-1qd20gd" data-framer-name="Bottom"><div class="framer-dlcxp1" data-framer-name="Name" style="will-change:transform;opacity:0;transform:none"><svg class="framer-19cbdmp" data-framer-name="Chintwo." data-framer-component-type="RichTextContainer" viewBox="0 0 871.6 128" style="--extracted-r6o4lv:rgb(255, 255, 255);--framer-paragraph-spacing:0px;will-change:transform;opacity:0;transform:none"><foreignObject width="100%" height="100%" class="framer-fit-text" transform="scale(1)" style="overflow:visible;transform-origin:center center"><p class="framer-text" style="--font-selector:SW50ZXItU2VtaUJvbGQ=;--framer-font-family:&quot;Inter&quot;, &quot;Inter Placeholder&quot;, sans-serif;--framer-font-size:160px;--framer-font-weight:600;--framer-letter-spacing:-0.06em;--framer-line-height:80%;--framer-text-color:var(--extracted-r6o4lv, rgb(255, 255, 255));--framer-text-transform:uppercase">chintwo.</p></foreignObject></svg></div><div class="framer-1qof3tk" data-framer-name="Container"><div class="framer-9c0c28" data-framer-name="Contact" id="contact" style="will-change:transform;opacity:0;transform:none"><div class="framer-ttrx95" data-framer-name="Top"><div class="framer-x8ngp8" data-framer-name="Links"><div class="framer-e16c36-container"><!--$--><a class="framer-9MedD framer-UjpSs framer-6owd19 framer-v-6owd19 framer-vknud5" data-framer-name="Light" href="https://www.instagram.com/chintwo.com" target="_blank" rel="noopener"><div class="framer-gtpc1k" data-framer-component-type="RichTextContainer" style="--extracted-r6o4lv:var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255));--framer-paragraph-spacing:0px;transform:none"><p class="framer-text framer-styles-preset-1adkjxa" data-styles-preset="FRDnCmBOd" style="--framer-text-color:var(--extracted-r6o4lv, var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255)))">Instagram</p></div><div class="framer-dkr4ce" data-framer-name="Arrow"><div class="framer-edjgr1-container"><!--$--><div style="display:contents"></div><!--/$--></div><div class="framer-1ig6u70-container"><!--$--><div style="display:contents"></div><!--/$--></div></div></a><!--/$--></div><div class="framer-13wyv4g-container"><!--$--><a class="framer-9MedD framer-UjpSs framer-6owd19 framer-v-6owd19 framer-vknud5" data-framer-name="Light" href="https://www.linkedin.com/in/chintwosankeerthanam" target="_blank" rel="noopener"><div class="framer-gtpc1k" data-framer-component-type="RichTextContainer" style="--extracted-r6o4lv:var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255));--framer-paragraph-spacing:0px;transform:none"><p class="framer-text framer-styles-preset-1adkjxa" data-styles-preset="FRDnCmBOd" style="--framer-text-color:var(--extracted-r6o4lv, var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255)))">LinkedIn</p></div><div class="framer-dkr4ce" data-framer-name="Arrow"><div class="framer-edjgr1-container"><!--$--><div style="display:contents"></div><!--/$--></div><div class="framer-1ig6u70-container"><!--$--><div style="display:contents"></div><!--/$--></div></div></a><!--/$--></div></div></div><div class="framer-k6jm2n" data-framer-name="@ 2024 All rights reserved" data-framer-component-type="RichTextContainer" style="--extracted-r6o4lv:rgba(255, 255, 255, 0.6);--framer-paragraph-spacing:0px;transform:none"><p class="framer-text framer-styles-preset-1adkjxa" data-styles-preset="FRDnCmBOd" style="--framer-text-color:var(--extracted-r6o4lv, rgba(255, 255, 255, 0.6))">@ 2025 All rights reserved</p></div></div></div></div></div><div class="framer-35gsir" data-framer-name="Shutter" style="background-color:rgba(255, 255, 255, 0.08);border-bottom-left-radius:100%;border-bottom-right-radius:100%;border-top-left-radius:100%;border-top-right-radius:100%;transform:translate(-50%, -50%)"><div data-framer-component-type="SVG" data-framer-name="Vector" parentsize="0" _constraints="[object Object]" rotation="0" shadows class="framer-1ny5p1z" aria-hidden="true" style="image-rendering:pixelated;flex-shrink:0;fill:rgba(0,0,0,1);color:rgba(0,0,0,1)"><div class="svgContainer" style="width:100%;height:100%;aspect-ratio:inherit"><svg style="width:100%;height:100%;" viewBox="0 0 28 28"><use href="#svg877845336_897"/></svg></div></div></div><div class="framer-uvtcm0-container" data-framer-name="Grid" name="Grid"><div name="Grid" class="framer-bfvue framer-163orac framer-v-163orac" data-framer-name="Default" data-highlight="true" style="--u9p93t:0px 32px 0px 32px;height:100%;width:100%"><div class="framer-1n8lrk9" data-framer-name="Container"><div class="framer-d5lys1" data-framer-name="filler" style="background-color:rgba(255, 255, 255, 0.24);opacity:0"></div><div class="framer-135dton" data-framer-name="Line" style="background-color:rgba(255, 255, 255, 0.1)"></div><div class="framer-md4viw" data-framer-name="filler" style="background-color:rgba(255, 255, 255, 0.24);opacity:0"></div></div></div></div><div class="framer-vrrajd-container"><div class="framer-5QmUD framer-cg5exn framer-v-cg5exn" data-framer-name="All corners" style="--12eybmm:32px;height:100%;width:100%"><div class="framer-9mvoxu" data-framer-name="top"><div class="framer-kmt8ng" data-border="true" style="--border-bottom-width:0px;--border-color:rgb(255, 255, 255);--border-left-width:1px;--border-right-width:0px;--border-style:solid;--border-top-width:1px"></div><div class="framer-101ek76" data-border="true" style="--border-bottom-width:0px;--border-color:rgb(255, 255, 255);--border-left-width:0px;--border-right-width:1px;--border-style:solid;--border-top-width:1px"></div></div><div class="framer-1qvnj92" data-framer-name="bottom"><div class="framer-4spxv3" data-border="true" style="--border-bottom-width:1px;--border-color:rgb(255, 255, 255);--border-left-width:1px;--border-right-width:0px;--border-style:solid;--border-top-width:0px"></div><div class="framer-1armrbg" data-border="true" style="--border-bottom-width:1px;--border-color:rgb(255, 255, 255);--border-left-width:0px;--border-right-width:1px;--border-style:solid;--border-top-width:0px"></div></div></div></div><div class="framer-11cdus1-container"><!--$--><div style="width:100%;height:100%;position:relative;overflow:hidden"><div style="background-size:256px 256px;background-repeat:repeat;background:url('/assets/images/rR6HYXBrMmX4cRpXfXUOvpvpB0.webp');opacity:0.03;inset:-200%;width:400%;height:400%;position:absolute"></div></div><!--/$--></div><div class="framer-1i7hccm" data-framer-name="BG image" style="opacity:0.07"><div style="position:absolute;border-radius:inherit;corner-shape:inherit;top:0;right:0;bottom:0;left:0" data-framer-background-image-wrapper="true"><img decoding="async" loading="lazy" width="4672" height="6575" sizes="(min-width: 1400px) 100vw, (min-width: 810px) and (max-width: 1399.98px) 100vw, (max-width: 809.98px) 100vw" srcset="/assets/images/art_process.webp?scale-down-to=1024&amp;width=4672&amp;height=6575 727w,/assets/images/art_process.webp?scale-down-to=2048&amp;width=4672&amp;height=6575 1455w,/assets/images/art_process.webp?scale-down-to=4096&amp;width=4672&amp;height=6575 2910w,/assets/images/art_process.webp?width=4672&amp;height=6575 4672w" src="/assets/images/art_process.webp?width=4672&amp;height=6575" alt="Girl with glasses look up" style="display:block;width:100%;height:100%;border-radius:inherit;corner-shape:inherit;object-position:center;object-fit:cover"></div></div></footer></div></div><div class="ssr-variant hidden-x29ilp hidden-57x94v"><div class="framer-unp9tc-container"><footer class="framer-pZNHp framer-bbmt8 framer-aQRC4 framer-8Uait framer-FVFOV framer-fwvqS framer-UjpSs framer-1sofi9m framer-v-436m15" data-framer-name="Phone" style="background-color:var(--token-f8c6fc17-6126-48ad-8306-922d51919d56, rgb(17, 17, 18));width:100%"><div class="framer-zd5dwm" data-framer-name="Measure graphic" style="mask:linear-gradient(90deg, rgba(0,0,0,0) 0%, rgb(0, 0, 0) 25.39590371621621%, rgb(0, 0, 0) 50%, rgb(0, 0, 0) 73.94777590090091%, rgba(0, 0, 0, 0) 100%) add;-webkit-mask:linear-gradient(90deg, rgba(0,0,0,0) 0%, rgb(0, 0, 0) 25.39590371621621%, rgb(0, 0, 0) 50%, rgb(0, 0, 0) 73.94777590090091%, rgba(0, 0, 0, 0) 100%) add"><div class="framer-1x1quwo" data-framer-name="Container" style="will-change:transform;opacity:1;transform:translateX(-200px)"><div data-framer-component-type="SVG" data-framer-name="Scale" parentsize="0" _constraints="[object Object]" rotation="0" shadows class="framer-nm5lbx" aria-hidden="true" style="image-rendering:pixelated;flex-shrink:0;fill:black;color:black"><div class="svgContainer" style="width:100%;height:100%;aspect-ratio:inherit"><svg style="width:100%;height:100%;" viewBox="0 0 2449 38"><use href="#svg1150915785_13255"/></svg></div></div></div></div><div class="framer-18p7eru" data-framer-name="Container"><div class="framer-gm870p" data-framer-name="Top"><div class="framer-1i10x6e" data-framer-name="Text" style="will-change:transform;opacity:0;transform:none"><div class="framer-1wbm2x" data-framer-name="1"><div class="framer-19x942o" data-framer-name="Have a project, book cover, or gallery commission in mind?" data-framer-component-type="RichTextContainer" style="--extracted-r6o4lv:rgba(255, 255, 255, 0.6);--framer-paragraph-spacing:0px;transform:none"><p class="framer-text framer-styles-preset-1p7qn33" data-styles-preset="nBdQAQMSA" style="--framer-text-color:var(--extracted-r6o4lv, rgba(255, 255, 255, 0.6))">Have a project, book cover, or gallery commission in mind?</p></div></div><div class="framer-r6wme2" data-framer-name="2"><div class="framer-161dm2a" data-framer-name="Let’s make something thoughtful together. Reach out today." data-framer-component-type="RichTextContainer" style="--extracted-r6o4lv:var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255));--framer-paragraph-spacing:0px;transform:none"><p class="framer-text framer-styles-preset-8nqfsa" data-styles-preset="rP_ujUt1v" style="--framer-text-color:var(--extracted-r6o4lv, var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255)))">Let’s make something thoughtful together. Reach out today.</p></div></div></div><div class="framer-70984u" data-framer-name="Contact" id="contact" style="will-change:transform;opacity:0;transform:none"><div class="framer-atbblz" data-framer-name="Lets talk" data-framer-component-type="RichTextContainer" style="--extracted-r6o4lv:rgba(255, 255, 255, 0.5);--framer-paragraph-spacing:0px;transform:none"><p class="framer-text framer-styles-preset-1xs0hlt" data-styles-preset="Y4eex_aGW" style="--framer-text-color:var(--extracted-r6o4lv, rgba(255, 255, 255, 0.5))">Lets talk</p></div><div class="framer-vyjsag" data-framer-name="+44 7768 960969" data-framer-component-type="RichTextContainer" style="--extracted-r6o4lv:var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255));--framer-paragraph-spacing:0px;transform:none"><p class="framer-text framer-styles-preset-8vgk3u" data-styles-preset="jsPFAj3P2" dir="auto" style="--framer-text-alignment:start;--framer-text-color:var(--extracted-r6o4lv, var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255)))"><!--$--><a class="framer-text framer-styles-preset-1jim1cm" data-styles-preset="OQFUDQG12" href="tel:+447768960969" target="_blank" rel="noopener">+44 7768 960969</a><!--/$--></p></div><div class="framer-11n8ekj" data-border="true" data-framer-name="Email" style="--border-bottom-width:2px;--border-color:rgb(255, 255, 255);--border-left-width:0px;--border-right-width:0px;--border-style:solid;--border-top-width:0px"><svg class="framer-lxrrq1" data-framer-name="hello@chintwo.com" data-framer-component-type="RichTextContainer" viewBox="0 0 453.5 55" style="--extracted-r6o4lv:rgb(255, 255, 255);--framer-paragraph-spacing:0px;transform:none"><foreignObject width="100%" height="100%" class="framer-fit-text" transform="scale(1)" style="overflow:visible;transform-origin:center center"><p class="framer-text" style="--font-selector:SW50ZXItTWVkaXVt;--framer-font-family:&quot;Inter&quot;, &quot;Inter Placeholder&quot;, sans-serif;--framer-font-size:50px;--framer-font-weight:500;--framer-letter-spacing:-0.05em;--framer-line-height:110%;--framer-text-color:var(--extracted-r6o4lv, rgb(255, 255, 255))"><!--$--><a class="framer-text framer-styles-preset-1jim1cm" data-styles-preset="OQFUDQG12" href="mailto:studio@chintwo.com" target="_blank" rel="noopener">studio@chintwo.com</a><!--/$--></p></foreignObject></svg></div><div class="framer-190458v" data-framer-name="Info"><div class="framer-1ic17pl" data-framer-name="Visual Artist" data-framer-component-type="RichTextContainer" style="--extracted-r6o4lv:rgba(255, 255, 255, 0.6);--framer-paragraph-spacing:0px;transform:none"><p class="framer-text framer-styles-preset-1adkjxa" data-styles-preset="FRDnCmBOd" style="--framer-text-color:var(--extracted-r6o4lv, rgba(255, 255, 255, 0.6))">Visual Artist </p></div><div class="framer-1tgoamv" data-framer-name="(Based in London)" data-framer-component-type="RichTextContainer" style="--framer-paragraph-spacing:0px;transform:none"><p class="framer-text framer-styles-preset-1adkjxa" data-styles-preset="FRDnCmBOd">(Based in London)</p></div></div></div><div class="framer-1v9r7iw" data-framer-name="Nav" style="will-change:transform;opacity:0;transform:none"><!--$--><div class="framer-yzk0ro-container"><!--$--><a class="framer-3fqE9 framer-13hsc9i framer-v-13hsc9i framer-a0rag6" data-framer-name="Default" data-highlight="true" href="./" data-framer-page-link-current="true" tabindex="0"><div class="framer-9vgwut" data-framer-component-type="RichTextContainer" style="--extracted-r6o4lv:var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255));--framer-paragraph-spacing:0px;opacity:1;transform:none"><p class="framer-text" style="--font-selector:SW50ZXItTWVkaXVt;--framer-font-family:&quot;Inter&quot;, &quot;Inter Placeholder&quot;, sans-serif;--framer-font-size:30px;--framer-font-weight:500;--framer-letter-spacing:-0.05em;--framer-line-height:1.3em;--framer-text-color:var(--extracted-r6o4lv, var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255)))">Home</p></div></a><!--/$--></div><!--/$--><!--$--><div class="framer-1hm5uoo-container"><!--$--><a class="framer-3fqE9 framer-13hsc9i framer-v-13hsc9i framer-a0rag6" data-framer-name="Default" data-highlight="true" href="./portfolio" tabindex="0"><div class="framer-9vgwut" data-framer-component-type="RichTextContainer" style="--extracted-r6o4lv:var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255));--framer-paragraph-spacing:0px;opacity:1;transform:none"><p class="framer-text" style="--font-selector:SW50ZXItTWVkaXVt;--framer-font-family:&quot;Inter&quot;, &quot;Inter Placeholder&quot;, sans-serif;--framer-font-size:30px;--framer-font-weight:500;--framer-letter-spacing:-0.05em;--framer-line-height:1.3em;--framer-text-color:var(--extracted-r6o4lv, var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255)))">Portfolio</p></div></a><!--/$--></div><!--/$--><!--$--><div class="framer-1k1tryt-container"><!--$--><a class="framer-3fqE9 framer-13hsc9i framer-v-13hsc9i framer-a0rag6" data-framer-name="Default" data-highlight="true" href="./blog" tabindex="0"><div class="framer-9vgwut" data-framer-component-type="RichTextContainer" style="--extracted-r6o4lv:var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255));--framer-paragraph-spacing:0px;opacity:1;transform:none"><p class="framer-text" style="--font-selector:SW50ZXItTWVkaXVt;--framer-font-family:&quot;Inter&quot;, &quot;Inter Placeholder&quot;, sans-serif;--framer-font-size:30px;--framer-font-weight:500;--framer-letter-spacing:-0.05em;--framer-line-height:1.3em;--framer-text-color:var(--extracted-r6o4lv, var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255)))">Blog</p></div></a><!--/$--></div><!--/$--><!--$--><div class="framer-1811sx1-container"><!--$--><a class="framer-3fqE9 framer-13hsc9i framer-v-13hsc9i framer-a0rag6" data-framer-name="Default" data-highlight="true" href="./about" tabindex="0"><div class="framer-9vgwut" data-framer-component-type="RichTextContainer" style="--extracted-r6o4lv:var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255));--framer-paragraph-spacing:0px;opacity:1;transform:none"><p class="framer-text" style="--font-selector:SW50ZXItTWVkaXVt;--framer-font-family:&quot;Inter&quot;, &quot;Inter Placeholder&quot;, sans-serif;--framer-font-size:30px;--framer-font-weight:500;--framer-letter-spacing:-0.05em;--framer-line-height:1.3em;--framer-text-color:var(--extracted-r6o4lv, var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255)))">About me</p></div></a><!--/$--></div><!--/$--><!--$--><div class="framer-1hyadrg-container"><!--$--><a class="framer-3fqE9 framer-13hsc9i framer-v-13hsc9i framer-a0rag6" data-framer-name="Default" data-highlight="true" href="./contact" tabindex="0"><div class="framer-9vgwut" data-framer-component-type="RichTextContainer" style="--extracted-r6o4lv:var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255));--framer-paragraph-spacing:0px;opacity:1;transform:none"><p class="framer-text" style="--font-selector:SW50ZXItTWVkaXVt;--framer-font-family:&quot;Inter&quot;, &quot;Inter Placeholder&quot;, sans-serif;--framer-font-size:30px;--framer-font-weight:500;--framer-letter-spacing:-0.05em;--framer-line-height:1.3em;--framer-text-color:var(--extracted-r6o4lv, var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255)))">Contact</p></div></a><!--/$--></div><!--/$--></div></div><div class="framer-1qd20gd" data-framer-name="Bottom"><div class="framer-dlcxp1" data-framer-name="Name" style="will-change:transform;opacity:0;transform:none"><svg class="framer-19cbdmp" data-framer-name="Chintwo." data-framer-component-type="RichTextContainer" viewBox="0 0 871.6 128" style="--extracted-r6o4lv:rgb(255, 255, 255);--framer-paragraph-spacing:0px;opacity:1;transform:none"><foreignObject width="100%" height="100%" class="framer-fit-text" transform="scale(1)" style="overflow:visible;transform-origin:center center"><p class="framer-text" style="--font-selector:SW50ZXItU2VtaUJvbGQ=;--framer-font-family:&quot;Inter&quot;, &quot;Inter Placeholder&quot;, sans-serif;--framer-font-size:160px;--framer-font-weight:600;--framer-letter-spacing:-0.06em;--framer-line-height:80%;--framer-text-color:var(--extracted-r6o4lv, rgb(255, 255, 255));--framer-text-transform:uppercase">chintwo.</p></foreignObject></svg></div><div class="framer-1qof3tk" data-framer-name="Container"><div class="framer-9c0c28" data-framer-name="Contact" id="contact" style="will-change:transform;opacity:0;transform:none"><div class="framer-ttrx95" data-framer-name="Top"><div class="framer-x8ngp8" data-framer-name="Links"><div class="framer-e16c36-container"><!--$--><a class="framer-9MedD framer-UjpSs framer-6owd19 framer-v-6owd19 framer-vknud5" data-framer-name="Light" href="https://www.instagram.com/chintwo.com" target="_blank" rel="noopener"><div class="framer-gtpc1k" data-framer-component-type="RichTextContainer" style="--extracted-r6o4lv:var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255));--framer-paragraph-spacing:0px;transform:none"><p class="framer-text framer-styles-preset-1adkjxa" data-styles-preset="FRDnCmBOd" style="--framer-text-color:var(--extracted-r6o4lv, var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255)))">Instagram</p></div><div class="framer-dkr4ce" data-framer-name="Arrow"><div class="framer-edjgr1-container"><!--$--><div style="display:contents"></div><!--/$--></div><div class="framer-1ig6u70-container"><!--$--><div style="display:contents"></div><!--/$--></div></div></a><!--/$--></div><div class="framer-13wyv4g-container"><!--$--><a class="framer-9MedD framer-UjpSs framer-6owd19 framer-v-6owd19 framer-vknud5" data-framer-name="Light" href="https://www.linkedin.com/in/chintwosankeerthanam" target="_blank" rel="noopener"><div class="framer-gtpc1k" data-framer-component-type="RichTextContainer" style="--extracted-r6o4lv:var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255));--framer-paragraph-spacing:0px;transform:none"><p class="framer-text framer-styles-preset-1adkjxa" data-styles-preset="FRDnCmBOd" style="--framer-text-color:var(--extracted-r6o4lv, var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255)))">LinkedIn</p></div><div class="framer-dkr4ce" data-framer-name="Arrow"><div class="framer-edjgr1-container"><!--$--><div style="display:contents"></div><!--/$--></div><div class="framer-1ig6u70-container"><!--$--><div style="display:contents"></div><!--/$--></div></div></a><!--/$--></div></div></div><div class="framer-k6jm2n" data-framer-name="@ 2024 All rights reserved" data-framer-component-type="RichTextContainer" style="--extracted-r6o4lv:rgba(255, 255, 255, 0.6);--framer-paragraph-spacing:0px;transform:none"><p class="framer-text framer-styles-preset-1adkjxa" data-styles-preset="FRDnCmBOd" style="--framer-text-color:var(--extracted-r6o4lv, rgba(255, 255, 255, 0.6))">@ 2025 All rights reserved</p></div></div></div></div></div><div class="framer-uvtcm0-container" data-framer-name="Grid" name="Grid"><div name="Grid" class="framer-bfvue framer-163orac framer-v-163orac" data-framer-name="Default" data-highlight="true" style="--u9p93t:0px 24px 0px 24px;height:100%;width:100%"><div class="framer-1n8lrk9" data-framer-name="Container"><div class="framer-d5lys1" data-framer-name="filler" style="background-color:rgba(255, 255, 255, 0.24);opacity:0"></div><div class="framer-koktsm" data-framer-name="Line" style="background-color:rgba(255, 255, 255, 0.1)"></div><div class="framer-md4viw" data-framer-name="filler" style="background-color:rgba(255, 255, 255, 0.24);opacity:0"></div></div></div></div><div class="framer-vrrajd-container"><div class="framer-5QmUD framer-cg5exn framer-v-cg5exn" data-framer-name="All corners" style="--12eybmm:24px;height:100%;width:100%"><div class="framer-9mvoxu" data-framer-name="top"><div class="framer-kmt8ng" data-border="true" style="--border-bottom-width:0px;--border-color:rgb(255, 255, 255);--border-left-width:1px;--border-right-width:0px;--border-style:solid;--border-top-width:1px"></div><div class="framer-101ek76" data-border="true" style="--border-bottom-width:0px;--border-color:rgb(255, 255, 255);--border-left-width:0px;--border-right-width:1px;--border-style:solid;--border-top-width:1px"></div></div><div class="framer-1qvnj92" data-framer-name="bottom"><div class="framer-4spxv3" data-border="true" style="--border-bottom-width:1px;--border-color:rgb(255, 255, 255);--border-left-width:1px;--border-right-width:0px;--border-style:solid;--border-top-width:0px"></div><div class="framer-1armrbg" data-border="true" style="--border-bottom-width:1px;--border-color:rgb(255, 255, 255);--border-left-width:0px;--border-right-width:1px;--border-style:solid;--border-top-width:0px"></div></div></div></div><div class="framer-11cdus1-container"><!--$--><div style="width:100%;height:100%;position:relative;overflow:hidden"><div style="background-size:256px 256px;background-repeat:repeat;background:url('/assets/images/rR6HYXBrMmX4cRpXfXUOvpvpB0.webp');opacity:0.03;inset:-200%;width:400%;height:400%;position:absolute"></div></div><!--/$--></div><div class="framer-1i7hccm" data-framer-name="BG image" style="opacity:0.07"><div style="position:absolute;border-radius:inherit;corner-shape:inherit;top:0;right:0;bottom:0;left:0" data-framer-background-image-wrapper="true"><img decoding="async" loading="lazy" width="4672" height="6575" sizes="(min-width: 1400px) 100vw, (min-width: 810px) and (max-width: 1399.98px) 100vw, (max-width: 809.98px) 100vw" srcset="/assets/images/art_process.webp?scale-down-to=1024&amp;width=4672&amp;height=6575 727w,/assets/images/art_process.webp?scale-down-to=2048&amp;width=4672&amp;height=6575 1455w,/assets/images/art_process.webp?scale-down-to=4096&amp;width=4672&amp;height=6575 2910w,/assets/images/art_process.webp?width=4672&amp;height=6575 4672w" src="/assets/images/art_process.webp?width=4672&amp;height=6575" alt="Girl with glasses look up" style="display:block;width:100%;height:100%;border-radius:inherit;corner-shape:inherit;object-position:center;object-fit:cover"></div></div></footer></div></div><div class="framer-1v4c3lt-container"><div class="ssr-variant hidden-57x94v hidden-i58y18"><header class="framer-QVb2J framer-1h2rjks framer-v-1cree4n" data-framer-name="Desktop" style="background-color:rgba(255, 255, 255, 0);width:100%"><div class="framer-ujj1ej" data-framer-name="Top"><div class="framer-awqbrr" data-framer-name="Logo"><!--$--><a class="framer-1rr9q33 framer-lq4nt6" data-framer-name="Link" href="./" data-framer-page-link-current="true"><div class="framer-trck9r" data-framer-name="Chintwo" data-framer-component-type="RichTextContainer" style="--extracted-r6o4lv:var(--variable-reference-UH4PDEJAd-tLSFnp8fu);--framer-paragraph-spacing:0px;--variable-reference-UH4PDEJAd-tLSFnp8fu:var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255));transform:none"><p class="framer-text" style="--font-selector:SW50ZXItU2VtaUJvbGQ=;--framer-font-size:18px;--framer-font-weight:600;--framer-letter-spacing:-0.06em;--framer-line-height:24px;--framer-text-color:var(--extracted-r6o4lv, var(--variable-reference-UH4PDEJAd-tLSFnp8fu));--framer-text-transform:uppercase">chintwo</p></div></a><!--/$--></div><div class="framer-6ldyl6" data-framer-name="Visual Artist"><div class="framer-v1wool" data-framer-name="Visual Artist" data-framer-component-type="RichTextContainer" style="--extracted-r6o4lv:var(--variable-reference-UH4PDEJAd-tLSFnp8fu);--framer-paragraph-spacing:0px;--variable-reference-UH4PDEJAd-tLSFnp8fu:var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255));transform:none"><p class="framer-text" style="--font-selector:SW50ZXItU2VtaUJvbGQ=;--framer-font-size:14px;--framer-font-weight:600;--framer-letter-spacing:-0.04em;--framer-line-height:22px;--framer-text-color:var(--extracted-r6o4lv, var(--variable-reference-UH4PDEJAd-tLSFnp8fu))">Visual Artist </p></div><div class="framer-zf03mw" data-framer-name="(Based in London)" data-framer-component-type="RichTextContainer" style="--extracted-r6o4lv:var(--variable-reference-UH4PDEJAd-tLSFnp8fu);--framer-paragraph-spacing:0px;--variable-reference-UH4PDEJAd-tLSFnp8fu:var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255));opacity:0.6;transform:none"><p class="framer-text" style="--font-selector:SW50ZXItU2VtaUJvbGQ=;--framer-font-family:&quot;Inter&quot;, &quot;Inter Placeholder&quot;, sans-serif;--framer-font-size:14px;--framer-font-weight:600;--framer-letter-spacing:-0.04em;--framer-line-height:22px;--framer-text-color:var(--extracted-r6o4lv, var(--variable-reference-UH4PDEJAd-tLSFnp8fu))">(Based in London)</p></div></div><div class="framer-15pdbvx" data-framer-name="Contact" id="contact"><!--$--><a class="framer-7qgvsp framer-lq4nt6" data-framer-name="Link" href="tel:+44 7768 960969" target="_blank" rel="noopener"><div class="framer-1fghjjs" data-framer-name="+44 7768 960969" data-framer-component-type="RichTextContainer" style="--extracted-r6o4lv:var(--variable-reference-UH4PDEJAd-tLSFnp8fu);--framer-paragraph-spacing:0px;--variable-reference-UH4PDEJAd-tLSFnp8fu:var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255));transform:none"><p class="framer-text" style="--font-selector:SW50ZXItU2VtaUJvbGQ=;--framer-font-size:14px;--framer-font-weight:600;--framer-letter-spacing:-0.04em;--framer-line-height:22px;--framer-text-color:var(--extracted-r6o4lv, var(--variable-reference-UH4PDEJAd-tLSFnp8fu))">+44 7768 960969</p></div></a><!--/$--><!--$--><a class="framer-tc202o framer-lq4nt6" data-framer-name="Link" href="mailto:studio@chintwo.com" target="_blank" rel="noopener"><div class="framer-1j3v1q4" data-framer-name="hello@chintwo.com" data-framer-component-type="RichTextContainer" style="--extracted-r6o4lv:var(--variable-reference-UH4PDEJAd-tLSFnp8fu);--framer-paragraph-spacing:0px;--variable-reference-UH4PDEJAd-tLSFnp8fu:var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255));transform:none"><p class="framer-text" style="--font-selector:SW50ZXItU2VtaUJvbGQ=;--framer-font-size:14px;--framer-font-weight:600;--framer-letter-spacing:-0.04em;--framer-line-height:22px;--framer-text-color:var(--extracted-r6o4lv, var(--variable-reference-UH4PDEJAd-tLSFnp8fu))">studio@chintwo.com</p></div></a><!--/$--></div><div class="framer-b623m8" data-framer-name="Instagram"><div class="framer-l32eep-container"><!--$--><a class="framer-9MedD framer-UjpSs framer-6owd19 framer-v-6owd19 framer-vknud5" data-framer-name="Light" href="https://www.instagram.com/chintwo.com" target="_blank" rel="noopener"><div class="framer-gtpc1k" data-framer-component-type="RichTextContainer" style="--extracted-r6o4lv:var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255));--framer-paragraph-spacing:0px;transform:none"><p class="framer-text framer-styles-preset-1adkjxa" data-styles-preset="FRDnCmBOd" style="--framer-text-color:var(--extracted-r6o4lv, var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255)))">Instagram</p></div><div class="framer-dkr4ce" data-framer-name="Arrow"><div class="framer-edjgr1-container"><!--$--><div style="display:contents"></div><!--/$--></div><div class="framer-1ig6u70-container"><!--$--><div style="display:contents"></div><!--/$--></div></div></a><!--/$--></div></div><div class="framer-lnw4q9" data-framer-name="Menu" data-highlight="true" tabindex="0"><div class="framer-1nlfsri" style="background-color:var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255));transform:none"></div><div class="framer-17f9wmb" style="background-color:var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255));transform:none"></div></div></div><div class="framer-1hcwq4l" data-framer-name="Bottom"><div class="framer-1l6dwd3" data-framer-name="Content"><div class="framer-17pnf0j" data-framer-name="Menu"><div class="framer-1gbal69" data-framer-name="Image 1"><div class="framer-15s0arv" data-framer-name="img"><div style="position:absolute;border-radius:inherit;corner-shape:inherit;top:0;right:0;bottom:0;left:0" data-framer-background-image-wrapper="true"><img decoding="async" width="4672" height="5840" sizes="(min-width: 1400px) calc(max(max(min(100vw - 72px, 1848px) * 0.75, 1px) / 1.5, 1px) * 0.6), (min-width: 810px) and (max-width: 1399.98px) calc(max(max(min(100vw - 64px, 1848px) * 0.75, 1px) / 1.5, 1px) * 0.6)" srcset="/assets/images/bHPCBMfMr1iMInEF2sVieQl11U.webp?scale-down-to=1024&amp;width=4672&amp;height=5840 819w,/assets/images/bHPCBMfMr1iMInEF2sVieQl11U.webp?scale-down-to=2048&amp;width=4672&amp;height=5840 1638w,/assets/images/bHPCBMfMr1iMInEF2sVieQl11U.webp?scale-down-to=4096&amp;width=4672&amp;height=5840 3276w,/assets/images/bHPCBMfMr1iMInEF2sVieQl11U.webp?width=4672&amp;height=5840 4672w" src="/assets/images/bHPCBMfMr1iMInEF2sVieQl11U.webp?width=4672&amp;height=5840" alt style="display:block;width:100%;height:100%;border-radius:inherit;corner-shape:inherit;object-position:left center;object-fit:cover"></div></div></div><div class="framer-45x7mn" data-framer-name="Nav"><!--$--><div class="framer-149w5sw-container"><!--$--><a class="framer-3fqE9 framer-13hsc9i framer-v-13hsc9i framer-a0rag6" data-framer-name="Default" data-highlight="true" href="./" data-framer-page-link-current="true" tabindex="0"><div class="framer-9vgwut" data-framer-component-type="RichTextContainer" style="--extracted-r6o4lv:var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255));--framer-paragraph-spacing:0px;opacity:1;transform:none"><p class="framer-text" style="--font-selector:SW50ZXItTWVkaXVt;--framer-font-family:&quot;Inter&quot;, &quot;Inter Placeholder&quot;, sans-serif;--framer-font-size:30px;--framer-font-weight:500;--framer-letter-spacing:-0.05em;--framer-line-height:1.3em;--framer-text-color:var(--extracted-r6o4lv, var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255)))">Home</p></div></a><!--/$--></div><!--/$--><!--$--><div class="framer-1sjjch9-container"><!--$--><a class="framer-3fqE9 framer-13hsc9i framer-v-13hsc9i framer-a0rag6" data-framer-name="Default" data-highlight="true" href="./portfolio" tabindex="0"><div class="framer-9vgwut" data-framer-component-type="RichTextContainer" style="--extracted-r6o4lv:var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255));--framer-paragraph-spacing:0px;opacity:1;transform:none"><p class="framer-text" style="--font-selector:SW50ZXItTWVkaXVt;--framer-font-family:&quot;Inter&quot;, &quot;Inter Placeholder&quot;, sans-serif;--framer-font-size:30px;--framer-font-weight:500;--framer-letter-spacing:-0.05em;--framer-line-height:1.3em;--framer-text-color:var(--extracted-r6o4lv, var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255)))">Portfolio</p></div></a><!--/$--></div><!--/$--><!--$--><div class="framer-yin51-container"><!--$--><a class="framer-3fqE9 framer-13hsc9i framer-v-13hsc9i framer-a0rag6" data-framer-name="Default" data-highlight="true" href="./blog" tabindex="0"><div class="framer-9vgwut" data-framer-component-type="RichTextContainer" style="--extracted-r6o4lv:var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255));--framer-paragraph-spacing:0px;opacity:1;transform:none"><p class="framer-text" style="--font-selector:SW50ZXItTWVkaXVt;--framer-font-family:&quot;Inter&quot;, &quot;Inter Placeholder&quot;, sans-serif;--framer-font-size:30px;--framer-font-weight:500;--framer-letter-spacing:-0.05em;--framer-line-height:1.3em;--framer-text-color:var(--extracted-r6o4lv, var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255)))">Blog</p></div></a><!--/$--></div><!--/$--><!--$--><div class="framer-1a1bdkp-container"><!--$--><a class="framer-3fqE9 framer-13hsc9i framer-v-13hsc9i framer-a0rag6" data-framer-name="Default" data-highlight="true" href="./about" tabindex="0"><div class="framer-9vgwut" data-framer-component-type="RichTextContainer" style="--extracted-r6o4lv:var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255));--framer-paragraph-spacing:0px;opacity:1;transform:none"><p class="framer-text" style="--font-selector:SW50ZXItTWVkaXVt;--framer-font-family:&quot;Inter&quot;, &quot;Inter Placeholder&quot;, sans-serif;--framer-font-size:30px;--framer-font-weight:500;--framer-letter-spacing:-0.05em;--framer-line-height:1.3em;--framer-text-color:var(--extracted-r6o4lv, var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255)))">About me</p></div></a><!--/$--></div><!--/$--><!--$--><div class="framer-1yfsrux-container"><!--$--><a class="framer-3fqE9 framer-13hsc9i framer-v-13hsc9i framer-a0rag6" data-framer-name="Default" data-highlight="true" href="./contact" tabindex="0"><div class="framer-9vgwut" data-framer-component-type="RichTextContainer" style="--extracted-r6o4lv:var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255));--framer-paragraph-spacing:0px;opacity:1;transform:none"><p class="framer-text" style="--font-selector:SW50ZXItTWVkaXVt;--framer-font-family:&quot;Inter&quot;, &quot;Inter Placeholder&quot;, sans-serif;--framer-font-size:30px;--framer-font-weight:500;--framer-letter-spacing:-0.05em;--framer-line-height:1.3em;--framer-text-color:var(--extracted-r6o4lv, var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255)))">Contact</p></div></a><!--/$--></div><!--/$--></div></div><div class="framer-r1riga" data-framer-name="Name"><div class="framer-163mel2" data-framer-name="Chintwo." data-framer-component-type="RichTextContainer" style="--extracted-r6o4lv:rgb(255, 255, 255);--framer-paragraph-spacing:0px;transform:none"><p class="framer-text" style="--font-selector:SW50ZXItU2VtaUJvbGQ=;--framer-font-family:&quot;Inter&quot;, &quot;Inter Placeholder&quot;, sans-serif;--framer-font-size:111px;--framer-font-weight:600;--framer-letter-spacing:-0.06em;--framer-line-height:0.9em;--framer-text-alignment:left;--framer-text-color:var(--extracted-r6o4lv, rgb(255, 255, 255));--framer-text-transform:uppercase">chintwo.</p></div></div></div><div class="framer-4ttvl6" data-framer-name="Copyright"><div class="framer-vdbafj" data-framer-name="img"><div style="position:absolute;border-radius:inherit;corner-shape:inherit;top:0;right:0;bottom:0;left:0" data-framer-background-image-wrapper="true"><img decoding="async" width="1333" height="2000" sizes="(min-width: 1400px) max(min(100vw - 72px, 1848px) / 4, 1px), (min-width: 810px) and (max-width: 1399.98px) max(min(100vw - 64px, 1848px) / 4, 1px)" srcset="/assets/images/qKNkHzscn3qHKp3gGo3DQXV1er4.webp?scale-down-to=1024&amp;width=1333&amp;height=2000 682w,/assets/images/qKNkHzscn3qHKp3gGo3DQXV1er4.webp?width=1333&amp;height=2000 1333w" src="/assets/images/qKNkHzscn3qHKp3gGo3DQXV1er4.webp?width=1333&amp;height=2000" alt style="display:block;width:100%;height:100%;border-radius:inherit;corner-shape:inherit;object-position:center;object-fit:cover"></div></div><div class="framer-y4eh3a" data-framer-name="@ 2024 All rights reserved" data-framer-component-type="RichTextContainer" style="--extracted-r6o4lv:rgb(255, 255, 255);--framer-paragraph-spacing:0px;opacity:0.6;transform:none"><p class="framer-text" style="--font-selector:SW50ZXItU2VtaUJvbGQ=;--framer-font-family:&quot;Inter&quot;, &quot;Inter Placeholder&quot;, sans-serif;--framer-font-size:14px;--framer-font-weight:600;--framer-letter-spacing:-0.04em;--framer-line-height:22px;--framer-text-color:var(--extracted-r6o4lv, rgb(255, 255, 255))">@ 2025 All rights reserved</p></div></div></div><div class="framer-1i2x2qm-container" style="opacity:0"><div class="framer-bfvue framer-163orac framer-v-163orac" data-framer-name="Default" data-highlight="true" style="--u9p93t:0px 36px 0px 36px;height:100%;width:100%"><div class="framer-1n8lrk9" data-framer-name="Container"><div class="framer-d5lys1" data-framer-name="filler" style="background-color:rgba(255, 255, 255, 0.24);opacity:0"></div><div class="framer-135dton" data-framer-name="Line" style="background-color:rgb(34, 34, 122)"></div><div class="framer-1dskx7" data-framer-name="Line" style="background-color:rgb(34, 34, 122)"></div><div class="framer-koktsm" data-framer-name="Line" style="background-color:rgb(34, 34, 122)"></div><div class="framer-md4viw" data-framer-name="filler" style="background-color:rgba(255, 255, 255, 0.24);opacity:0"></div></div></div></div><div class="framer-1xcoe5c-container" style="opacity:0.2"><div class="framer-5QmUD framer-cg5exn framer-v-292rfe" data-framer-name="Top corners" style="--12eybmm:36px;height:100%;width:100%"><div class="framer-9mvoxu" data-framer-name="top"><div class="framer-kmt8ng" data-border="true" style="--border-bottom-width:0px;--border-color:rgb(255, 255, 255);--border-left-width:1px;--border-right-width:0px;--border-style:solid;--border-top-width:1px"></div><div class="framer-101ek76" data-border="true" style="--border-bottom-width:0px;--border-color:rgb(255, 255, 255);--border-left-width:0px;--border-right-width:1px;--border-style:solid;--border-top-width:1px"></div></div></div></div></header></div><div class="ssr-variant hidden-x29ilp hidden-i58y18"><header class="framer-QVb2J framer-1h2rjks framer-v-1dpm4xo" data-framer-name="Tablet" style="background-color:rgba(17, 17, 18, 0);width:100%"><div class="framer-ujj1ej" data-framer-name="Top"><div class="framer-awqbrr" data-framer-name="Logo"><!--$--><a class="framer-1rr9q33 framer-lq4nt6" data-framer-name="Link" data-highlight="true" href="./" data-framer-page-link-current="true" tabindex="0"><div class="framer-trck9r" data-framer-name="Chintwo" data-framer-component-type="RichTextContainer" style="--extracted-r6o4lv:var(--variable-reference-UH4PDEJAd-tLSFnp8fu);--framer-paragraph-spacing:0px;--variable-reference-UH4PDEJAd-tLSFnp8fu:var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255));transform:none"><p class="framer-text" style="--font-selector:SW50ZXItU2VtaUJvbGQ=;--framer-font-family:&quot;Inter&quot;, &quot;Inter Placeholder&quot;, sans-serif;--framer-font-size:18px;--framer-font-weight:600;--framer-letter-spacing:-0.06em;--framer-line-height:24px;--framer-text-color:var(--extracted-r6o4lv, var(--variable-reference-UH4PDEJAd-tLSFnp8fu));--framer-text-transform:uppercase">chintwo</p></div></a><!--/$--></div><div class="framer-6ldyl6" data-framer-name="Visual Artist"><div class="framer-v1wool" data-framer-name="Visual Artist" data-framer-component-type="RichTextContainer" style="--extracted-r6o4lv:var(--variable-reference-UH4PDEJAd-tLSFnp8fu);--framer-paragraph-spacing:0px;--variable-reference-UH4PDEJAd-tLSFnp8fu:var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255));transform:none"><p class="framer-text" style="--font-selector:SW50ZXItU2VtaUJvbGQ=;--framer-font-family:&quot;Inter&quot;, &quot;Inter Placeholder&quot;, sans-serif;--framer-font-size:14px;--framer-font-weight:600;--framer-letter-spacing:-0.04em;--framer-line-height:22px;--framer-text-color:var(--extracted-r6o4lv, var(--variable-reference-UH4PDEJAd-tLSFnp8fu))">Visual Artist </p></div><div class="framer-zf03mw" data-framer-name="(Based in London)" data-framer-component-type="RichTextContainer" style="--extracted-r6o4lv:var(--variable-reference-UH4PDEJAd-tLSFnp8fu);--framer-paragraph-spacing:0px;--variable-reference-UH4PDEJAd-tLSFnp8fu:var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255));opacity:0.6;transform:none"><p class="framer-text" style="--font-selector:SW50ZXItU2VtaUJvbGQ=;--framer-font-family:&quot;Inter&quot;, &quot;Inter Placeholder&quot;, sans-serif;--framer-font-size:14px;--framer-font-weight:600;--framer-letter-spacing:-0.04em;--framer-line-height:22px;--framer-text-color:var(--extracted-r6o4lv, var(--variable-reference-UH4PDEJAd-tLSFnp8fu))">(Based in London)</p></div></div><div class="framer-15pdbvx" data-framer-name="Contact" id="contact"><!--$--><a class="framer-7qgvsp framer-lq4nt6" data-framer-name="Link" href="tel:+447768960969" target="_blank" rel="noopener"><div class="framer-1fghjjs" data-framer-name="+44 7768 960969" data-framer-component-type="RichTextContainer" style="--extracted-r6o4lv:var(--variable-reference-UH4PDEJAd-tLSFnp8fu);--framer-paragraph-spacing:0px;--variable-reference-UH4PDEJAd-tLSFnp8fu:var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255));transform:none"><p class="framer-text" style="--font-selector:SW50ZXItU2VtaUJvbGQ=;--framer-font-family:&quot;Inter&quot;, &quot;Inter Placeholder&quot;, sans-serif;--framer-font-size:14px;--framer-font-weight:600;--framer-letter-spacing:-0.04em;--framer-line-height:22px;--framer-text-color:var(--extracted-r6o4lv, var(--variable-reference-UH4PDEJAd-tLSFnp8fu))">+44 7768 960969</p></div></a><!--/$--><!--$--><a class="framer-tc202o framer-lq4nt6" data-framer-name="Link" href="mailto:studio@chintwo.com" target="_blank" rel="noopener"><div class="framer-1j3v1q4" data-framer-name="hello@chintwo.com" data-framer-component-type="RichTextContainer" style="--extracted-r6o4lv:var(--variable-reference-UH4PDEJAd-tLSFnp8fu);--framer-paragraph-spacing:0px;--variable-reference-UH4PDEJAd-tLSFnp8fu:var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255));transform:none"><p class="framer-text" style="--font-selector:SW50ZXItU2VtaUJvbGQ=;--framer-font-size:14px;--framer-font-weight:600;--framer-letter-spacing:-0.04em;--framer-line-height:22px;--framer-text-color:var(--extracted-r6o4lv, var(--variable-reference-UH4PDEJAd-tLSFnp8fu))">studio@chintwo.com</p></div></a><!--/$--></div><div class="framer-b623m8" data-framer-name="Instagram"><div class="framer-l32eep-container"><!--$--><a class="framer-9MedD framer-UjpSs framer-6owd19 framer-v-6owd19 framer-vknud5" data-framer-name="Light" href="https://www.instagram.com/chintwo.com" target="_blank" rel="noopener"><div class="framer-gtpc1k" data-framer-component-type="RichTextContainer" style="--extracted-r6o4lv:var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255));--framer-paragraph-spacing:0px;transform:none"><p class="framer-text framer-styles-preset-1adkjxa" data-styles-preset="FRDnCmBOd" style="--framer-text-color:var(--extracted-r6o4lv, var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255)))">Instagram</p></div><div class="framer-dkr4ce" data-framer-name="Arrow"><div class="framer-edjgr1-container"><!--$--><div style="display:contents"></div><!--/$--></div><div class="framer-1ig6u70-container"><!--$--><div style="display:contents"></div><!--/$--></div></div></a><!--/$--></div></div><div class="framer-lnw4q9" data-framer-name="Menu" data-highlight="true" tabindex="0"><div class="framer-1nlfsri" style="background-color:var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255));transform:none"></div><div class="framer-17f9wmb" style="background-color:var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255));transform:none"></div></div></div><div class="framer-1hcwq4l" data-framer-name="Bottom"><div class="framer-1l6dwd3" data-framer-name="Content"><div class="framer-17pnf0j" data-framer-name="Menu"><div class="framer-1gbal69" data-framer-name="Image 1"><div class="framer-15s0arv" data-framer-name="img"><div style="position:absolute;border-radius:inherit;corner-shape:inherit;top:0;right:0;bottom:0;left:0" data-framer-background-image-wrapper="true"><img decoding="async" width="4672" height="5840" sizes="(min-width: 1400px) calc(max(max(min(100vw - 72px, 1848px) * 0.75, 1px) / 1.5, 1px) * 0.6), (min-width: 810px) and (max-width: 1399.98px) calc(max(max(min(100vw - 64px, 1848px) * 0.75, 1px) / 1.5, 1px) * 0.6)" srcset="/assets/images/bHPCBMfMr1iMInEF2sVieQl11U.webp?scale-down-to=1024&amp;width=4672&amp;height=5840 819w,/assets/images/bHPCBMfMr1iMInEF2sVieQl11U.webp?scale-down-to=2048&amp;width=4672&amp;height=5840 1638w,/assets/images/bHPCBMfMr1iMInEF2sVieQl11U.webp?scale-down-to=4096&amp;width=4672&amp;height=5840 3276w,/assets/images/bHPCBMfMr1iMInEF2sVieQl11U.webp?width=4672&amp;height=5840 4672w" src="/assets/images/bHPCBMfMr1iMInEF2sVieQl11U.webp?width=4672&amp;height=5840" alt style="display:block;width:100%;height:100%;border-radius:inherit;corner-shape:inherit;object-position:left center;object-fit:cover"></div></div></div><div class="framer-45x7mn" data-framer-name="Nav"><!--$--><div class="framer-149w5sw-container"><!--$--><a class="framer-3fqE9 framer-13hsc9i framer-v-13hsc9i framer-a0rag6" data-framer-name="Default" data-highlight="true" href="./" data-framer-page-link-current="true" tabindex="0"><div class="framer-9vgwut" data-framer-component-type="RichTextContainer" style="--extracted-r6o4lv:var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255));--framer-paragraph-spacing:0px;opacity:1;transform:none"><p class="framer-text" style="--font-selector:SW50ZXItTWVkaXVt;--framer-font-family:&quot;Inter&quot;, &quot;Inter Placeholder&quot;, sans-serif;--framer-font-size:30px;--framer-font-weight:500;--framer-letter-spacing:-0.05em;--framer-line-height:1.3em;--framer-text-color:var(--extracted-r6o4lv, var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255)))">Home</p></div></a><!--/$--></div><!--/$--><!--$--><div class="framer-1sjjch9-container"><!--$--><a class="framer-3fqE9 framer-13hsc9i framer-v-13hsc9i framer-a0rag6" data-framer-name="Default" data-highlight="true" href="./portfolio" tabindex="0"><div class="framer-9vgwut" data-framer-component-type="RichTextContainer" style="--extracted-r6o4lv:var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255));--framer-paragraph-spacing:0px;opacity:1;transform:none"><p class="framer-text" style="--font-selector:SW50ZXItTWVkaXVt;--framer-font-family:&quot;Inter&quot;, &quot;Inter Placeholder&quot;, sans-serif;--framer-font-size:30px;--framer-font-weight:500;--framer-letter-spacing:-0.05em;--framer-line-height:1.3em;--framer-text-color:var(--extracted-r6o4lv, var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255)))">Portfolio</p></div></a><!--/$--></div><!--/$--><!--$--><div class="framer-yin51-container"><!--$--><a class="framer-3fqE9 framer-13hsc9i framer-v-13hsc9i framer-a0rag6" data-framer-name="Default" data-highlight="true" href="./blog" tabindex="0"><div class="framer-9vgwut" data-framer-component-type="RichTextContainer" style="--extracted-r6o4lv:var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255));--framer-paragraph-spacing:0px;opacity:1;transform:none"><p class="framer-text" style="--font-selector:SW50ZXItTWVkaXVt;--framer-font-family:&quot;Inter&quot;, &quot;Inter Placeholder&quot;, sans-serif;--framer-font-size:30px;--framer-font-weight:500;--framer-letter-spacing:-0.05em;--framer-line-height:1.3em;--framer-text-color:var(--extracted-r6o4lv, var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255)))">Blog</p></div></a><!--/$--></div><!--/$--><!--$--><div class="framer-1a1bdkp-container"><!--$--><a class="framer-3fqE9 framer-13hsc9i framer-v-13hsc9i framer-a0rag6" data-framer-name="Default" data-highlight="true" href="./about" tabindex="0"><div class="framer-9vgwut" data-framer-component-type="RichTextContainer" style="--extracted-r6o4lv:var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255));--framer-paragraph-spacing:0px;opacity:1;transform:none"><p class="framer-text" style="--font-selector:SW50ZXItTWVkaXVt;--framer-font-family:&quot;Inter&quot;, &quot;Inter Placeholder&quot;, sans-serif;--framer-font-size:30px;--framer-font-weight:500;--framer-letter-spacing:-0.05em;--framer-line-height:1.3em;--framer-text-color:var(--extracted-r6o4lv, var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255)))">About me</p></div></a><!--/$--></div><!--/$--><!--$--><div class="framer-1yfsrux-container"><!--$--><a class="framer-3fqE9 framer-13hsc9i framer-v-13hsc9i framer-a0rag6" data-framer-name="Default" data-highlight="true" href="./contact" tabindex="0"><div class="framer-9vgwut" data-framer-component-type="RichTextContainer" style="--extracted-r6o4lv:var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255));--framer-paragraph-spacing:0px;opacity:1;transform:none"><p class="framer-text" style="--font-selector:SW50ZXItTWVkaXVt;--framer-font-family:&quot;Inter&quot;, &quot;Inter Placeholder&quot;, sans-serif;--framer-font-size:30px;--framer-font-weight:500;--framer-letter-spacing:-0.05em;--framer-line-height:1.3em;--framer-text-color:var(--extracted-r6o4lv, var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255)))">Contact</p></div></a><!--/$--></div><!--/$--></div></div><div class="framer-r1riga" data-framer-name="Name"><div class="framer-163mel2" data-framer-name="Chintwo." data-framer-component-type="RichTextContainer" style="--extracted-r6o4lv:rgb(255, 255, 255);--framer-paragraph-spacing:0px;transform:none"><p class="framer-text" style="--font-selector:SW50ZXItU2VtaUJvbGQ=;--framer-font-family:&quot;Inter&quot;, &quot;Inter Placeholder&quot;, sans-serif;--framer-font-size:111px;--framer-font-weight:600;--framer-letter-spacing:-0.06em;--framer-line-height:0.9em;--framer-text-alignment:left;--framer-text-color:var(--extracted-r6o4lv, rgb(255, 255, 255));--framer-text-transform:uppercase">chintwo.</p></div></div></div><div class="framer-4ttvl6" data-framer-name="Copyright"><div class="framer-vdbafj" data-framer-name="img"><div style="position:absolute;border-radius:inherit;corner-shape:inherit;top:0;right:0;bottom:0;left:0" data-framer-background-image-wrapper="true"><img decoding="async" width="1333" height="2000" sizes="(min-width: 1400px) max(min(100vw - 72px, 1848px) / 4, 1px), (min-width: 810px) and (max-width: 1399.98px) max(min(100vw - 64px, 1848px) / 4, 1px)" srcset="/assets/images/qKNkHzscn3qHKp3gGo3DQXV1er4.webp?scale-down-to=1024&amp;width=1333&amp;height=2000 682w,/assets/images/qKNkHzscn3qHKp3gGo3DQXV1er4.webp?width=1333&amp;height=2000 1333w" src="/assets/images/qKNkHzscn3qHKp3gGo3DQXV1er4.webp?width=1333&amp;height=2000" alt style="display:block;width:100%;height:100%;border-radius:inherit;corner-shape:inherit;object-position:center;object-fit:cover"></div></div><div class="framer-y4eh3a" data-framer-name="@ 2024 All rights reserved" data-framer-component-type="RichTextContainer" style="--extracted-r6o4lv:rgb(255, 255, 255);--framer-paragraph-spacing:0px;opacity:0.6;transform:none"><p class="framer-text" style="--font-selector:SW50ZXItU2VtaUJvbGQ=;--framer-font-family:&quot;Inter&quot;, &quot;Inter Placeholder&quot;, sans-serif;--framer-font-size:14px;--framer-font-weight:600;--framer-letter-spacing:-0.04em;--framer-line-height:22px;--framer-text-color:var(--extracted-r6o4lv, rgb(255, 255, 255))">@ 2025 All rights reserved</p></div></div></div><div class="framer-1i2x2qm-container" style="opacity:0"><div class="framer-bfvue framer-163orac framer-v-163orac" data-framer-name="Default" data-highlight="true" style="--u9p93t:0px 32px 0px 32px;height:100%;width:100%"><div class="framer-1n8lrk9" data-framer-name="Container"><div class="framer-d5lys1" data-framer-name="filler" style="background-color:rgba(255, 255, 255, 0.24);opacity:0"></div><div class="framer-135dton" data-framer-name="Line" style="background-color:rgba(255, 255, 255, 0.09)"></div><div class="framer-1dskx7" data-framer-name="Line" style="background-color:rgba(255, 255, 255, 0.09)"></div><div class="framer-koktsm" data-framer-name="Line" style="background-color:rgba(255, 255, 255, 0.09)"></div><div class="framer-md4viw" data-framer-name="filler" style="background-color:rgba(255, 255, 255, 0.24);opacity:0"></div></div></div></div><div class="framer-1xcoe5c-container" style="opacity:0.2"><div class="framer-5QmUD framer-cg5exn framer-v-292rfe" data-framer-name="Top corners" style="--12eybmm:32px;height:100%;width:100%"><div class="framer-9mvoxu" data-framer-name="top"><div class="framer-kmt8ng" data-border="true" style="--border-bottom-width:0px;--border-color:rgb(255, 255, 255);--border-left-width:1px;--border-right-width:0px;--border-style:solid;--border-top-width:1px"></div><div class="framer-101ek76" data-border="true" style="--border-bottom-width:0px;--border-color:rgb(255, 255, 255);--border-left-width:0px;--border-right-width:1px;--border-style:solid;--border-top-width:1px"></div></div></div></div></header></div><div class="ssr-variant hidden-x29ilp hidden-57x94v"><header class="framer-QVb2J framer-1h2rjks framer-v-idaytm" data-framer-name="Phone" style="background-color:rgba(17, 17, 18, 0);width:100%"><div class="framer-ujj1ej" data-framer-name="Top"><div class="framer-awqbrr" data-framer-name="Logo"><!--$--><a class="framer-1rr9q33 framer-lq4nt6" data-framer-name="Link" href="./" data-framer-page-link-current="true"><div class="framer-trck9r" data-framer-name="Chintwo" data-framer-component-type="RichTextContainer" style="--extracted-r6o4lv:var(--variable-reference-UH4PDEJAd-tLSFnp8fu);--framer-paragraph-spacing:0px;--variable-reference-UH4PDEJAd-tLSFnp8fu:var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255));transform:none"><p class="framer-text" style="--font-selector:SW50ZXItU2VtaUJvbGQ=;--framer-font-family:&quot;Inter&quot;, &quot;Inter Placeholder&quot;, sans-serif;--framer-font-size:18px;--framer-font-weight:600;--framer-letter-spacing:-0.06em;--framer-line-height:24px;--framer-text-color:var(--extracted-r6o4lv, var(--variable-reference-UH4PDEJAd-tLSFnp8fu));--framer-text-transform:uppercase">chintwo</p></div></a><!--/$--></div><div class="framer-6ldyl6" data-framer-name="Visual Artist"><div class="framer-v1wool" data-framer-name="Visual Artist" data-framer-component-type="RichTextContainer" style="--extracted-r6o4lv:var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255));--framer-paragraph-spacing:0px;--variable-reference-UH4PDEJAd-tLSFnp8fu:var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255));transform:none"><p class="framer-text" style="--font-selector:SW50ZXItU2VtaUJvbGQ=;--framer-font-family:&quot;Inter&quot;, &quot;Inter Placeholder&quot;, sans-serif;--framer-font-size:14px;--framer-font-weight:600;--framer-letter-spacing:-0.04em;--framer-line-height:22px;--framer-text-color:var(--extracted-r6o4lv, var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255)))">Visual Artist </p></div><div class="framer-zf03mw" data-framer-name="(Based in London)" data-framer-component-type="RichTextContainer" style="--extracted-r6o4lv:var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255));--framer-paragraph-spacing:0px;--variable-reference-UH4PDEJAd-tLSFnp8fu:var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255));opacity:0.6;transform:none"><p class="framer-text" style="--font-selector:SW50ZXItU2VtaUJvbGQ=;--framer-font-family:&quot;Inter&quot;, &quot;Inter Placeholder&quot;, sans-serif;--framer-font-size:14px;--framer-font-weight:600;--framer-letter-spacing:-0.04em;--framer-line-height:22px;--framer-text-color:var(--extracted-r6o4lv, var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255)))">(Based in London)</p></div></div><div class="framer-15pdbvx" data-framer-name="Contact" id="contact"><!--$--><a class="framer-7qgvsp framer-lq4nt6" data-framer-name="Link" href="tel:+447768960969" target="_blank" rel="noopener"><div class="framer-1fghjjs" data-framer-name="+44 7768 960969" data-framer-component-type="RichTextContainer" style="--extracted-r6o4lv:var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255));--framer-paragraph-spacing:0px;--variable-reference-UH4PDEJAd-tLSFnp8fu:var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255));transform:none"><p class="framer-text" style="--font-selector:SW50ZXItU2VtaUJvbGQ=;--framer-font-family:&quot;Inter&quot;, &quot;Inter Placeholder&quot;, sans-serif;--framer-font-size:14px;--framer-font-weight:600;--framer-letter-spacing:-0.04em;--framer-line-height:22px;--framer-text-color:var(--extracted-r6o4lv, var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255)))">+44 7768 960969</p></div></a><!--/$--><!--$--><a class="framer-tc202o framer-lq4nt6" data-framer-name="Link" href="mailto:studio@chintwo.com" target="_blank" rel="noopener"><div class="framer-1j3v1q4" data-framer-name="hello@chintwo.com" data-framer-component-type="RichTextContainer" style="--extracted-r6o4lv:var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255));--framer-paragraph-spacing:0px;--variable-reference-UH4PDEJAd-tLSFnp8fu:var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255));transform:none"><p class="framer-text" style="--font-selector:SW50ZXItU2VtaUJvbGQ=;--framer-font-family:&quot;Inter&quot;, &quot;Inter Placeholder&quot;, sans-serif;--framer-font-size:14px;--framer-font-weight:600;--framer-letter-spacing:-0.04em;--framer-line-height:22px;--framer-text-color:var(--extracted-r6o4lv, var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255)))">studio@chintwo.com</p></div></a><!--/$--></div><div class="framer-b623m8" data-framer-name="Instagram"><div class="framer-l32eep-container"><!--$--><a class="framer-9MedD framer-UjpSs framer-6owd19 framer-v-6owd19 framer-vknud5" data-framer-name="Light" href="https://www.instagram.com/chintwo.com" target="_blank" rel="noopener"><div class="framer-gtpc1k" data-framer-component-type="RichTextContainer" style="--extracted-r6o4lv:var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255));--framer-paragraph-spacing:0px;transform:none"><p class="framer-text framer-styles-preset-1adkjxa" data-styles-preset="FRDnCmBOd" style="--framer-text-color:var(--extracted-r6o4lv, var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255)))">Instagram</p></div><div class="framer-dkr4ce" data-framer-name="Arrow"><div class="framer-edjgr1-container"><!--$--><div style="display:contents"></div><!--/$--></div><div class="framer-1ig6u70-container"><!--$--><div style="display:contents"></div><!--/$--></div></div></a><!--/$--></div></div><div class="framer-lnw4q9" data-framer-name="Menu" data-highlight="true" tabindex="0"><div class="framer-1nlfsri" style="background-color:var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255));transform:none"></div><div class="framer-17f9wmb" style="background-color:var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255));transform:none"></div></div></div><div class="framer-1hcwq4l" data-framer-name="Bottom"><div class="framer-1l6dwd3" data-framer-name="Content"><div class="framer-17pnf0j" data-framer-name="Menu"><div class="framer-45x7mn" data-framer-name="Nav"><!--$--><div class="framer-149w5sw-container"><!--$--><a class="framer-3fqE9 framer-13hsc9i framer-v-13hsc9i framer-a0rag6" data-framer-name="Default" data-highlight="true" href="./" data-framer-page-link-current="true" tabindex="0"><div class="framer-9vgwut" data-framer-component-type="RichTextContainer" style="--extracted-r6o4lv:var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255));--framer-paragraph-spacing:0px;opacity:1;transform:none"><p class="framer-text" style="--font-selector:SW50ZXItTWVkaXVt;--framer-font-family:&quot;Inter&quot;, &quot;Inter Placeholder&quot;, sans-serif;--framer-font-size:30px;--framer-font-weight:500;--framer-letter-spacing:-0.05em;--framer-line-height:1.3em;--framer-text-color:var(--extracted-r6o4lv, var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255)))">Home</p></div></a><!--/$--></div><!--/$--><!--$--><div class="framer-1sjjch9-container"><!--$--><a class="framer-3fqE9 framer-13hsc9i framer-v-13hsc9i framer-a0rag6" data-framer-name="Default" data-highlight="true" href="./portfolio" tabindex="0"><div class="framer-9vgwut" data-framer-component-type="RichTextContainer" style="--extracted-r6o4lv:var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255));--framer-paragraph-spacing:0px;opacity:1;transform:none"><p class="framer-text" style="--font-selector:SW50ZXItTWVkaXVt;--framer-font-family:&quot;Inter&quot;, &quot;Inter Placeholder&quot;, sans-serif;--framer-font-size:30px;--framer-font-weight:500;--framer-letter-spacing:-0.05em;--framer-line-height:1.3em;--framer-text-color:var(--extracted-r6o4lv, var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255)))">Portfolio</p></div></a><!--/$--></div><!--/$--><!--$--><div class="framer-yin51-container"><!--$--><a class="framer-3fqE9 framer-13hsc9i framer-v-13hsc9i framer-a0rag6" data-framer-name="Default" data-highlight="true" href="./blog" tabindex="0"><div class="framer-9vgwut" data-framer-component-type="RichTextContainer" style="--extracted-r6o4lv:var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255));--framer-paragraph-spacing:0px;opacity:1;transform:none"><p class="framer-text" style="--font-selector:SW50ZXItTWVkaXVt;--framer-font-family:&quot;Inter&quot;, &quot;Inter Placeholder&quot;, sans-serif;--framer-font-size:30px;--framer-font-weight:500;--framer-letter-spacing:-0.05em;--framer-line-height:1.3em;--framer-text-color:var(--extracted-r6o4lv, var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255)))">Blog</p></div></a><!--/$--></div><!--/$--><!--$--><div class="framer-1a1bdkp-container"><!--$--><a class="framer-3fqE9 framer-13hsc9i framer-v-13hsc9i framer-a0rag6" data-framer-name="Default" data-highlight="true" href="./about" tabindex="0"><div class="framer-9vgwut" data-framer-component-type="RichTextContainer" style="--extracted-r6o4lv:var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255));--framer-paragraph-spacing:0px;opacity:1;transform:none"><p class="framer-text" style="--font-selector:SW50ZXItTWVkaXVt;--framer-font-family:&quot;Inter&quot;, &quot;Inter Placeholder&quot;, sans-serif;--framer-font-size:30px;--framer-font-weight:500;--framer-letter-spacing:-0.05em;--framer-line-height:1.3em;--framer-text-color:var(--extracted-r6o4lv, var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255)))">About me</p></div></a><!--/$--></div><!--/$--><!--$--><div class="framer-1yfsrux-container"><!--$--><a class="framer-3fqE9 framer-13hsc9i framer-v-13hsc9i framer-a0rag6" data-framer-name="Default" data-highlight="true" href="./contact" tabindex="0"><div class="framer-9vgwut" data-framer-component-type="RichTextContainer" style="--extracted-r6o4lv:var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255));--framer-paragraph-spacing:0px;opacity:1;transform:none"><p class="framer-text" style="--font-selector:SW50ZXItTWVkaXVt;--framer-font-family:&quot;Inter&quot;, &quot;Inter Placeholder&quot;, sans-serif;--framer-font-size:30px;--framer-font-weight:500;--framer-letter-spacing:-0.05em;--framer-line-height:1.3em;--framer-text-color:var(--extracted-r6o4lv, var(--token-2b0e121e-0368-44f6-b6fc-57cffb0ea05b, rgb(255, 255, 255)))">Contact</p></div></a><!--/$--></div><!--/$--></div></div><div class="framer-r1riga" data-framer-name="Name"><div class="framer-163mel2" data-framer-name="Chintwo." data-framer-component-type="RichTextContainer" style="--extracted-r6o4lv:rgb(255, 255, 255);--framer-paragraph-spacing:0px;transform:none"><p class="framer-text" style="--font-selector:SW50ZXItU2VtaUJvbGQ=;--framer-font-family:&quot;Inter&quot;, &quot;Inter Placeholder&quot;, sans-serif;--framer-font-size:111px;--framer-font-weight:600;--framer-letter-spacing:-0.06em;--framer-line-height:0.9em;--framer-text-alignment:left;--framer-text-color:var(--extracted-r6o4lv, rgb(255, 255, 255));--framer-text-transform:uppercase">chintwo.</p></div></div></div><div class="framer-4ttvl6" data-framer-name="Copyright"><div class="framer-y4eh3a" data-framer-name="@ 2024 All rights reserved" data-framer-component-type="RichTextContainer" style="--extracted-r6o4lv:rgb(255, 255, 255);--framer-paragraph-spacing:0px;opacity:0.6;transform:none"><p class="framer-text" style="--font-selector:SW50ZXItU2VtaUJvbGQ=;--framer-font-family:&quot;Inter&quot;, &quot;Inter Placeholder&quot;, sans-serif;--framer-font-size:14px;--framer-font-weight:600;--framer-letter-spacing:-0.04em;--framer-line-height:22px;--framer-text-color:var(--extracted-r6o4lv, rgb(255, 255, 255))">@ 2025 All rights reserved</p></div></div></div><div class="framer-1i2x2qm-container" style="opacity:0"><div class="framer-bfvue framer-163orac framer-v-163orac" data-framer-name="Default" data-highlight="true" style="--u9p93t:0px 36px 0px 36px;height:100%;width:100%"><div class="framer-1n8lrk9" data-framer-name="Container"><div class="framer-d5lys1" data-framer-name="filler" style="background-color:rgba(255, 255, 255, 0.24);opacity:0"></div><div class="framer-koktsm" data-framer-name="Line" style="background-color:rgba(255, 255, 255, 0.09)"></div><div class="framer-md4viw" data-framer-name="filler" style="background-color:rgba(255, 255, 255, 0.24);opacity:0"></div></div></div></div><div class="framer-1xcoe5c-container" style="opacity:0.2"><div class="framer-5QmUD framer-cg5exn framer-v-292rfe" data-framer-name="Top corners" style="--12eybmm:24px;height:100%;width:100%"><div class="framer-9mvoxu" data-framer-name="top"><div class="framer-kmt8ng" data-border="true" style="--border-bottom-width:0px;--border-color:rgb(255, 255, 255);--border-left-width:1px;--border-right-width:0px;--border-style:solid;--border-top-width:1px"></div><div class="framer-101ek76" data-border="true" style="--border-bottom-width:0px;--border-color:rgb(255, 255, 255);--border-left-width:0px;--border-right-width:1px;--border-style:solid;--border-top-width:1px"></div></div></div></div></header></div></div></div><div id="overlay"></div><div class="framer-1qsr0ey"></div></div><div id="template-overlay"></div><!--/$--></div><script>(()=>{function u(){function n(t,e,i){let r=document.createElement("a");r.href=t,r.target=i,r.rel=e,document.body.appendChild(r),r.click(),r.remove()}function o(t){if(this.dataset.hydrated){this.removeEventListener("click",o);return}t.preventDefault(),t.stopPropagation();let e=this.getAttribute("href");if(!e)return;if(/Mac|iPod|iPhone|iPad/u.test(navigator.userAgent)?t.metaKey:t.ctrlKey)return n(e,"","_blank");let r=this.getAttribute("rel")??"",c=this.getAttribute("target")??"";n(e,r,c)}function a(t){if(this.dataset.hydrated){this.removeEventListener("auxclick",o);return}t.preventDefault(),t.stopPropagation();let e=this.getAttribute("href");e&&n(e,"","_blank")}function s(t){if(this.dataset.hydrated){this.removeEventListener("keydown",s);return}if(t.key!=="Enter")return;t.preventDefault(),t.stopPropagation();let e=this.getAttribute("href");if(!e)return;let i=this.getAttribute("rel")??"",r=this.getAttribute("target")??"";n(e,i,r)}document.querySelectorAll("[data-nested-link]").forEach(t=>{t instanceof HTMLElement&&(t.addEventListener("click",o),t.addEventListener("auxclick",a),t.addEventListener("keydown",s))})}return u})()()</script>
+<div id="overlay"></div>
+<div id="template-overlay"></div>
+</div>
+<script>(()=>{function u(){function n(t,e,i){let r=document.createElement("a");r.href=t,r.target=i,r.rel=e,document.body.appendChild(r),r.click(),r.remove()}function o(t){if(this.dataset.hydrated){this.removeEventListener("click",o);return}t.preventDefault(),t.stopPropagation();let e=this.getAttribute("href");if(!e)return;if(/Mac|iPod|iPhone|iPad/u.test(navigator.userAgent)?t.metaKey:t.ctrlKey)return n(e,"","_blank");let r=this.getAttribute("rel")??"",c=this.getAttribute("target")??"";n(e,r,c)}function a(t){if(this.dataset.hydrated){this.removeEventListener("auxclick",o);return}t.preventDefault(),t.stopPropagation();let e=this.getAttribute("href");e&&n(e,"","_blank")}function s(t){if(this.dataset.hydrated){this.removeEventListener("keydown",s);return}if(t.key!=="Enter")return;t.preventDefault(),t.stopPropagation();let e=this.getAttribute("href");if(!e)return;let i=this.getAttribute("rel")??"",r=this.getAttribute("target")??"";n(e,i,r)}document.querySelectorAll("[data-nested-link]").forEach(t=>{t instanceof HTMLElement&&(t.addEventListener("click",o),t.addEventListener("auxclick",a),t.addEventListener("keydown",s))})}return u})()()</script>
 	<script>!function(){var w="framer_variant";function u(a,r){let e=r.indexOf("#"),t=e===-1?r:r.substring(0,e),o=e===-1?"":r.substring(e),n=t.indexOf("?"),h=n===-1?t:t.substring(0,n),d=n===-1?"":t.substring(n),s=new URLSearchParams(d),m=new URLSearchParams(a);for(let[i,l]of m)s.has(i)||i!==w&&s.append(i,l);let c=s.toString();return c===""?t+o:h+"?"+c+o}var g='div#main a[href^="#"],div#main a[href^="/"],div#main a[href^="."]',f="div#main a[data-framer-preserve-params]",S=document.currentScript?.hasAttribute("data-preserve-internal-params");if(window.location.search&&!navigator.webdriver&&!/bot|-google|google-|yandex|ia_archiver|crawl|spider/iu.test(navigator.userAgent)){let a=document.querySelectorAll(S?`${g},${f}`:f);for(let r of a){let e=u(window.location.search,r.href);r.setAttribute("href",e)}}
 }()</script>
 	
@@ -1646,24 +1986,24 @@
       rightHalf.style.boxShadow = '12px 20px 50px rgba(20, 20, 24, ' + shadowOp + ')';
     }
 
-    // Logo & Brand Lockup: Placed on top as the image merges (progress >= 0.45)
+    // Logo & Brand Lockup: Placed on top as the two images combine, settling at the center in the end
     if (centerBrand) {
-      if (progress >= 0.42) {
-        var brandProgress = Math.min(1, (progress - 0.42) / 0.32);
-        var brandScale = 0.90 + 0.10 * brandProgress;
+      if (progress >= 0.65) {
+        var brandProgress = Math.min(1, (progress - 0.65) / 0.28);
+        var brandScale = 0.88 + 0.12 * brandProgress;
         centerBrand.style.opacity = brandProgress.toFixed(3);
         centerBrand.style.transform = 'translate(-50%, -50%) scale(' + brandScale.toFixed(3) + ')';
         centerBrand.style.pointerEvents = brandProgress > 0.8 ? 'auto' : 'none';
       } else {
         centerBrand.style.opacity = '0';
-        centerBrand.style.transform = 'translate(-50%, -50%) scale(0.88)';
+        centerBrand.style.transform = 'translate(-50%, -50%) scale(0.85)';
         centerBrand.style.pointerEvents = 'none';
       }
     }
 
-    // Taskbar: Reveals as the image finishes merging and brand is settled (progress >= 0.70)
+    // Taskbar: Reveals once the image almost merges and the logo reaches the center (progress >= 0.90)
     if (taskbar) {
-      if (progress >= 0.70 || currentScroll > mergeDistance) {
+      if (progress >= 0.90 || currentScroll > mergeDistance * 0.95) {
         taskbar.classList.add('chintwo-taskbar-visible');
       } else {
         taskbar.classList.remove('chintwo-taskbar-visible');

@@ -514,16 +514,20 @@ export function initFlexCarousel(container, options = {}) {
   };
 
   const metrics = sett => {
-    const cardH = Math.max(24, sett.cardHeight * height);
+    // Mobile responsive optimization
+    const isMobile = width < 768;
+    const actualCardHeight = isMobile ? Math.min(sett.cardHeight, 0.44) : sett.cardHeight;
+    const actualGap = isMobile ? Math.min(sett.gap, 10) : sett.gap;
+    const cardH = Math.max(24, actualCardHeight * height);
     const fixed = FIT_ASPECT[sett.fit];
     const widths = slots.map(slot => (fixed || slot.aspect) * cardH);
     const centers = [];
     let cursor = 0;
     for (let i = 0; i < widths.length; i++) {
       centers.push(cursor + widths[i] / 2);
-      cursor += widths[i] + sett.gap;
+      cursor += widths[i] + actualGap;
     }
-    return { cardH, widths, centers, gap: sett.gap, loop: Math.max(cursor, 1) };
+    return { cardH, widths, centers, gap: actualGap, loop: Math.max(cursor, 1) };
   };
 
   const nearest = (m, at) => {
@@ -976,7 +980,7 @@ export function initFlexCarousel(container, options = {}) {
     if (pointer.down && e.pointerId === pointer.id) {
       const dx = x - pointer.startX;
       const dy = y - pointer.startY;
-      const slop = pointer.touch ? 10 : 5;
+      const slop = pointer.touch ? 8 : 5;
       if (!pointer.dragging) {
         if (pointer.touch && Math.abs(dy) > slop && Math.abs(dy) > Math.abs(dx)) {
           pointer.down = false;
