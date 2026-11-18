@@ -289,3 +289,4 @@ const DriftWall = ({
 };
 
 export default DriftWall;
+

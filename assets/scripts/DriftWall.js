@@ -102,6 +102,25 @@ export function initDriftWall(container, options = {}) {
   const trackElements = [];
   const tileElements = new Map();
 
+  const activate = (id, colIndex) => {
+    if (activeId && tileElements.has(activeId)) {
+      tileElements.get(activeId).classList.remove('is-active');
+    }
+    activeId = id;
+    hoveredCol = colIndex;
+    if (tileElements.has(id)) {
+      tileElements.get(id).classList.add('is-active');
+    }
+  };
+
+  const release = () => {
+    if (activeId && tileElements.has(activeId)) {
+      tileElements.get(activeId).classList.remove('is-active');
+    }
+    activeId = null;
+    hoveredCol = -1;
+  };
+
   columnItems.forEach((col, c) => {
     const meta = columnMeta[c];
     const colEl = document.createElement('div');
@@ -168,25 +187,6 @@ export function initDriftWall(container, options = {}) {
   });
 
   container.appendChild(plane);
-
-  const activate = (id, colIndex) => {
-    if (activeId && tileElements.has(activeId)) {
-      tileElements.get(activeId).classList.remove('is-active');
-    }
-    activeId = id;
-    hoveredCol = colIndex;
-    if (tileElements.has(id)) {
-      tileElements.get(id).classList.add('is-active');
-    }
-  };
-
-  const release = () => {
-    if (activeId && tileElements.has(activeId)) {
-      tileElements.get(activeId).classList.remove('is-active');
-    }
-    activeId = null;
-    hoveredCol = -1;
-  };
 
   const applyPlaneTransform = (px, py) => {
     plane.style.transform =
@@ -307,3 +307,4 @@ export function initDriftWall(container, options = {}) {
 }
 
 export default initDriftWall;
+
