@@ -619,7 +619,7 @@
       <div class="chintwo-newsletter-box">
         <h3 class="chintwo-newsletter-title">Subscribe to Studio Dispatches</h3>
         <p class="chintwo-newsletter-sub">Receive occasional essays on printmaking, monographs, and exclusive private edition previews directly from Chintwo.</p>
-        <form class="chintwo-newsletter-form" onsubmit="event.preventDefault(); alert('Thank you for subscribing to Studio Dispatches.');">
+        <form class="chintwo-newsletter-form" id="chintwo-newsletter-form">
           <input type="email" placeholder="Enter your email address" required class="chintwo-newsletter-input" />
           <button type="submit" class="chintwo-newsletter-btn">Join Dispatch</button>
         </form>
@@ -652,6 +652,7 @@
             <li><a href="/blog"><span class="chintwo-link-num">03</span> Field Notes &amp; Journal</a></li>
             <li><a href="/portfolio/fine-art-editions"><span class="chintwo-link-num">04</span> Archival Editions</a></li>
             <li><a href="/contact"><span class="chintwo-link-num">05</span> Studio Inquiries</a></li>
+            <li><a href="/admin"><span class="chintwo-link-num">06</span> Studio Portal</a></li>
           </ul>
         </div>
 
@@ -691,5 +692,32 @@
     </div>
   </footer>
 
+  <script type="module">
+    import { subscribeNewsletter } from '/assets/scripts/firebase-service.js';
+
+    const form = document.getElementById('chintwo-newsletter-form') || document.querySelector('.chintwo-newsletter-form');
+    if (form) {
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const input = form.querySelector('.chintwo-newsletter-input');
+        const btn = form.querySelector('.chintwo-newsletter-btn');
+        const email = input.value;
+        btn.textContent = 'Joining...';
+        btn.disabled = true;
+        try {
+          await subscribeNewsletter(email);
+          form.innerHTML = `
+            <div style="background: rgba(191, 161, 95, 0.15); border: 1px solid rgba(191, 161, 95, 0.4); border-radius: 100px; padding: 12px 24px; color: #121316; font-size: 14px; font-weight: 500;">
+              ✓ You are now subscribed to Studio Dispatches (${email}).
+            </div>
+          `;
+        } catch (err) {
+          btn.textContent = 'Join Dispatch';
+          btn.disabled = false;
+          alert('Could not subscribe: ' + err.message);
+        }
+      });
+    }
+  </script>
 </body>
 </html>

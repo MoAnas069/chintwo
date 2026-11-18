@@ -661,6 +661,7 @@
             <li><a href="/blog"><span class="chintwo-link-num">03</span> Field Notes &amp; Journal</a></li>
             <li><a href="/portfolio/fine-art-editions"><span class="chintwo-link-num">04</span> Archival Editions</a></li>
             <li><a href="/contact"><span class="chintwo-link-num">05</span> Studio Inquiries</a></li>
+            <li><a href="/admin"><span class="chintwo-link-num">06</span> Studio Portal</a></li>
           </ul>
         </div>
 
@@ -700,17 +701,62 @@
     </div>
   </footer>
 
-  <script>
-    function handleContactSubmit(e) {
-      e.preventDefault();
-      var btn = document.getElementById('chintwo-submit-btn');
-      var successBox = document.getElementById('chintwo-form-success');
-      btn.textContent = 'Transmitting...';
-      btn.disabled = true;
-      setTimeout(function() {
-        btn.style.display = 'none';
-        successBox.style.display = 'block';
-      }, 700);
+  <script type="module">
+    import { submitInquiry, onStudioSettingsChange } from '/assets/scripts/firebase-service.js';
+
+    // Real-time dynamic studio status from Firestore
+    const statusPill = document.querySelector('.chintwo-status-pill');
+    onStudioSettingsChange((settings) => {
+      if (statusPill && settings.commissionStatus) {
+        statusPill.innerHTML = `
+          <span class="chintwo-status-pill-dot" style="${settings.commissionStatusActive ? '' : 'background:#666'}"></span>
+          ${settings.commissionStatus}
+        `;
+        statusPill.style.display = settings.commissionStatusActive ? 'inline-flex' : 'none';
+      }
+    });
+
+    const form = document.getElementById('chintwo-contact-form');
+    const btn = document.getElementById('chintwo-submit-btn');
+    const successBox = document.getElementById('chintwo-form-success');
+
+    if (form) {
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const name = document.getElementById('sender-name').value;
+        const email = document.getElementById('sender-email').value;
+        const select = document.getElementById('inquiry-type');
+        const inquiryType = select.options[select.selectedIndex].text;
+        const message = document.getElementById('message').value;
+
+        btn.textContent = 'Transmitting to Studio Cloud...';
+        btn.disabled = true;
+
+        try {
+          const res = await submitInquiry({ name, email, inquiryType, message });
+          btn.style.display = 'none';
+          successBox.innerHTML = `
+            <div style="font-family: 'Playfair Display', Georgia, serif; font-size: 19px; font-weight: 600; margin-bottom: 6px; color: #121316;">
+              Inquiry Transmitted Successfully
+            </div>
+            <div style="font-size: 13px; color: #55555c; margin-bottom: 12px;">
+              Official Reference: <strong style="color: #bfa15f; letter-spacing: 0.05em;">${res.reference}</strong>
+            </div>
+            <p style="font-size: 14px; line-height: 1.6; color: #333338; margin: 0;">
+              Thank you, ${escapeHtml(name)}. Your inquiry has been encrypted and logged directly in the Chintwo Atelier database. A studio representative will reply to <em>${escapeHtml(email)}</em> within 24–48 hours.
+            </p>
+          `;
+          successBox.style.display = 'block';
+        } catch (err) {
+          btn.textContent = 'Transmit Inquiry to Atelier →';
+          btn.disabled = false;
+          alert('Could not submit inquiry: ' + (err.message || err));
+        }
+      });
+    }
+
+    function escapeHtml(str) {
+      return String(str).replace(/[&<>"']/g, m => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#039;' })[m]);
     }
   </script>
 </body>

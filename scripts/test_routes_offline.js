@@ -18,6 +18,8 @@ const routesToTest = [
   '/blog/the-poetry-of-chiaroscuro',
   '/blog/monoprint-textures-and-synthesis',
   '/contact',
+  '/admin',
+  '/assets/scripts/firebase-service.js',
   '/assets/scripts/FlexCarousel.js',
   '/assets/styles/FlexCarousel.css',
   '/assets/images/chintwo_emblem.svg',

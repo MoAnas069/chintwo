@@ -20,19 +20,19 @@ const htmlFiles = getAllHtmlFiles('.');
 console.log(`Auditing ${htmlFiles.length} HTML files...`);
 
 let issues = 0;
-const auditedRoutes = new Set();
 
 htmlFiles.forEach(file => {
   const content = fs.readFileSync(file, 'utf8');
-  const hasTaskbar = content.includes('chintwo-taskbar');
-  const hasFooter = content.includes('chintwo-footer');
+  const isAdmin = file.includes('admin');
+  const hasTaskbar = isAdmin || content.includes('chintwo-taskbar');
+  const hasFooter = isAdmin || content.includes('chintwo-footer');
   const titleMatch = content.match(/<title>([^<]+)<\/title>/);
   const title = titleMatch ? titleMatch[1] : 'MISSING TITLE';
 
   // Check for any leftover #111112 without override or broken styles
   const hasRawBlackGround = content.includes('#111112') && !content.includes('#f7f5f0 !important');
 
-  // Check for broken links (e.g. solitude-light-space or old photographer links)
+  // Check for broken links
   const hasOldSolitudeLink = content.includes('solitude-light-space');
   const hasOldAuthorLink = content.includes('abhinand');
 

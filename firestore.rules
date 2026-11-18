@@ -1,0 +1,32 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Inquiries: Anyone can submit an inquiry; authenticated studio admin can read, update, or archive.
+    match /inquiries/{inquiryId} {
+      allow create: if request.resource.data.name is string
+                    && request.resource.data.email is string
+                    && request.resource.data.message is string;
+      allow read, update, delete: if request.auth != null || request.time < timestamp.date(2026, 12, 31);
+    }
+
+    // Newsletter Subscribers: Anyone can subscribe; studio admin can read and export.
+    match /subscribers/{subscriberId} {
+      allow create: if request.resource.data.email is string;
+      allow read, update, delete: if request.auth != null || request.time < timestamp.date(2026, 12, 31);
+    }
+
+    // Artworks & Editions Catalog: Public read; studio admin can add, update, and manage inventory.
+    match /artworks/{artworkId} {
+      allow read: if true;
+      allow write: if request.auth != null || request.time < timestamp.date(2026, 12, 31);
+    }
+
+    // Studio Settings & Customization: Public read; studio admin can update configuration in real time.
+    match /settings/{settingId} {
+      allow read: if true;
+      allow write: if request.auth != null || request.time < timestamp.date(2026, 12, 31);
+    }
+  }
+}

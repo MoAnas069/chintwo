@@ -1,0 +1,996 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Studio Manager &amp; Backend — Chintwo Atelier</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="icon" href="/assets/images/chintwo_emblem.svg" type="image/svg+xml">
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    :root {
+      --bg: #f7f5f0;
+      --surface: #ffffff;
+      --dark: #121316;
+      --text: #222326;
+      --muted: #6e7078;
+      --gold: #bfa15f;
+      --border: rgba(18, 19, 22, 0.08);
+      --success: #2e7d32;
+      --warning: #ed6c02;
+    }
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      font-size: 14px;
+      line-height: 1.6;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* TOP BAR */
+    .admin-header {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 14px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .admin-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--dark);
+    }
+    .admin-logo {
+      width: 26px;
+      height: 26px;
+    }
+    .admin-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 17px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+    }
+    .admin-badge {
+      background: rgba(191, 161, 95, 0.15);
+      border: 1px solid rgba(191, 161, 95, 0.4);
+      color: #7d6325;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.10em;
+      padding: 3px 8px;
+      border-radius: 100px;
+      text-transform: uppercase;
+    }
+    .admin-header-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .admin-header-link {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .admin-header-link:hover {
+      color: var(--dark);
+    }
+    .admin-btn-sm {
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid var(--border);
+      background: #ffffff;
+      color: var(--dark);
+      transition: all 0.2s;
+    }
+    .admin-btn-sm:hover {
+      background: var(--dark);
+      color: #ffffff;
+    }
+
+    /* MAIN LAYOUT */
+    .admin-container {
+      max-width: 1320px;
+      margin: 0 auto;
+      padding: 32px;
+    }
+
+    /* TABS */
+    .admin-nav-tabs {
+      display: flex;
+      gap: 8px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 32px;
+      overflow-x: auto;
+      padding-bottom: 2px;
+    }
+    .admin-tab-btn {
+      padding: 12px 20px;
+      background: transparent;
+      border: none;
+      border-bottom: 2px solid transparent;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--muted);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+    .admin-tab-btn:hover {
+      color: var(--dark);
+    }
+    .admin-tab-btn.active {
+      color: var(--dark);
+      border-bottom-color: var(--dark);
+    }
+    .admin-tab-count {
+      background: rgba(18, 19, 22, 0.08);
+      padding: 2px 8px;
+      border-radius: 100px;
+      font-size: 11px;
+    }
+
+    /* METRIC CARDS */
+    .admin-metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      margin-bottom: 32px;
+    }
+    .admin-metric-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 24px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+    }
+    .admin-metric-title {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+    .admin-metric-val {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 32px;
+      font-weight: 600;
+      color: var(--dark);
+    }
+
+    /* PANELS */
+    .admin-panel {
+      display: none;
+    }
+    .admin-panel.active {
+      display: block;
+    }
+
+    /* TABLE */
+    .admin-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.03);
+      overflow: hidden;
+      margin-bottom: 32px;
+    }
+    .admin-card-header {
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .admin-card-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--dark);
+    }
+    .admin-filters {
+      display: flex;
+      gap: 8px;
+    }
+    .admin-filter-pill {
+      padding: 6px 14px;
+      border-radius: 100px;
+      border: 1px solid var(--border);
+      background: var(--bg);
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+    }
+    .admin-filter-pill.active {
+      background: var(--dark);
+      color: #ffffff;
+      border-color: var(--dark);
+    }
+
+    .admin-table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+    .admin-table th {
+      padding: 14px 24px;
+      background: #faf9f6;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      border-bottom: 1px solid var(--border);
+    }
+    .admin-table td {
+      padding: 16px 24px;
+      border-bottom: 1px solid rgba(18, 19, 22, 0.05);
+      vertical-align: middle;
+    }
+    .admin-table tr:hover td {
+      background: #fdfcfb;
+    }
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 100px;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .status-new {
+      background: rgba(237, 108, 2, 0.12);
+      color: #b25e00;
+    }
+    .status-reviewing {
+      background: rgba(2, 136, 209, 0.12);
+      color: #0277bd;
+    }
+    .status-responded {
+      background: rgba(46, 125, 50, 0.12);
+      color: #2e7d32;
+    }
+    .status-archived {
+      background: rgba(18, 19, 22, 0.08);
+      color: var(--muted);
+    }
+
+    /* ARTWORKS GRID */
+    .admin-artworks-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      padding: 24px;
+    }
+    .admin-artwork-card {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      background: #ffffff;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .admin-artwork-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+    }
+    .admin-art-img-wrap {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      overflow: hidden;
+      background: #eae6dc;
+    }
+    .admin-art-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .admin-art-body {
+      padding: 16px;
+    }
+    .admin-art-title {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--dark);
+      margin-bottom: 4px;
+    }
+    .admin-art-meta {
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+    .admin-art-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 12px;
+      border-top: 1px solid rgba(18, 19, 22, 0.06);
+    }
+    .admin-art-select {
+      font-size: 12px;
+      padding: 4px 8px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: #fdfcfb;
+    }
+
+    /* FORM STYLES */
+    .admin-form-group {
+      margin-bottom: 20px;
+    }
+    .admin-form-label {
+      display: block;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--dark);
+      margin-bottom: 6px;
+    }
+    .admin-form-input,
+    .admin-form-textarea {
+      width: 100%;
+      padding: 12px 16px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      font-family: inherit;
+      font-size: 14px;
+      background: #fdfcfb;
+      outline: none;
+      transition: all 0.2s;
+    }
+    .admin-form-input:focus,
+    .admin-form-textarea:focus {
+      border-color: var(--dark);
+      background: #ffffff;
+      box-shadow: 0 0 0 3px rgba(18, 19, 22, 0.06);
+    }
+    .admin-form-textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+    .admin-form-toggle {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+    }
+    .admin-form-toggle input {
+      width: 18px;
+      height: 18px;
+      cursor: pointer;
+    }
+    .admin-btn-primary {
+      padding: 12px 28px;
+      background: var(--dark);
+      color: #ffffff;
+      border: none;
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .admin-btn-primary:hover {
+      background: #2a2b30;
+      transform: translateY(-1px);
+    }
+
+    /* MODAL */
+    .admin-modal-backdrop {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(18, 19, 22, 0.6);
+      backdrop-filter: blur(8px);
+      z-index: 999;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .admin-modal-backdrop.open {
+      display: flex;
+    }
+    .admin-modal {
+      background: #ffffff;
+      border-radius: 16px;
+      max-width: 650px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 32px;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.2);
+      position: relative;
+    }
+    .admin-modal-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: transparent;
+      border: none;
+      font-size: 20px;
+      cursor: pointer;
+      color: var(--muted);
+    }
+
+    @media (max-width: 900px) {
+      .admin-metrics-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .admin-artworks-grid {
+        grid-template-columns: 1fr;
+      }
+      .admin-container {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Header -->
+  <header class="admin-header">
+    <a href="/" class="admin-brand">
+      <img src="/assets/images/chintwo_emblem.svg" alt="Chintwo Logo" class="admin-logo">
+      <span class="admin-title">CHINTWO</span>
+      <span class="admin-badge">Studio Backend</span>
+    </a>
+    <div class="admin-header-actions">
+      <span id="backend-status" style="font-size: 12px; color: var(--success); font-weight: 500;">● Firebase Connected</span>
+      <a href="/" target="_blank" class="admin-header-link">View Live Site ↗</a>
+      <button class="admin-btn-sm" id="btn-seed-data" title="Seed default portfolio catalog & settings">Seed Default Data</button>
+    </div>
+  </header>
+
+  <main class="admin-container">
+
+    <!-- Tabs Navigation -->
+    <nav class="admin-nav-tabs">
+      <button class="admin-tab-btn active" data-tab="tab-inquiries">
+        <span>Collector Inquiries</span>
+        <span class="admin-tab-count" id="count-inquiries">0</span>
+      </button>
+      <button class="admin-tab-btn" data-tab="tab-artworks">
+        <span>Artworks &amp; Inventory</span>
+        <span class="admin-tab-count" id="count-artworks">6</span>
+      </button>
+      <button class="admin-tab-btn" data-tab="tab-subscribers">
+        <span>Dispatch Subscribers</span>
+        <span class="admin-tab-count" id="count-subscribers">0</span>
+      </button>
+      <button class="admin-tab-btn" data-tab="tab-settings">
+        <span>Studio Settings &amp; Customizer</span>
+      </button>
+    </nav>
+
+    <!-- Metrics Row -->
+    <section class="admin-metrics-grid">
+      <div class="admin-metric-card">
+        <div class="admin-metric-title">Total Inquiries</div>
+        <div class="admin-metric-val" id="metric-total-inquiries">0</div>
+      </div>
+      <div class="admin-metric-card">
+        <div class="admin-metric-title">New / Unanswered</div>
+        <div class="admin-metric-val" id="metric-new-inquiries" style="color: var(--warning);">0</div>
+      </div>
+      <div class="admin-metric-card">
+        <div class="admin-metric-title">Archival Artworks</div>
+        <div class="admin-metric-val" id="metric-total-artworks">6</div>
+      </div>
+      <div class="admin-metric-card">
+        <div class="admin-metric-title">Collector Subscribers</div>
+        <div class="admin-metric-val" id="metric-total-subscribers">0</div>
+      </div>
+    </section>
+
+    <!-- PANEL 1: INQUIRIES -->
+    <div class="admin-panel active" id="tab-inquiries">
+      <div class="admin-card">
+        <div class="admin-card-header">
+          <h2 class="admin-card-title">Collector Dialogue &amp; Commission Inquiries</h2>
+          <div class="admin-filters" id="inquiry-filters">
+            <button class="admin-filter-pill active" data-filter="all">All</button>
+            <button class="admin-filter-pill" data-filter="new">New</button>
+            <button class="admin-filter-pill" data-filter="reviewing">Reviewing</button>
+            <button class="admin-filter-pill" data-filter="responded">Responded</button>
+          </div>
+        </div>
+
+        <div style="overflow-x: auto;">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Reference</th>
+                <th>Collector</th>
+                <th>Type</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="inquiries-tbody">
+              <tr>
+                <td colspan="6" style="text-align: center; color: var(--muted); padding: 40px;">
+                  Loading inquiries from Firebase Cloud Firestore...
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- PANEL 2: ARTWORKS & INVENTORY -->
+    <div class="admin-panel" id="tab-artworks">
+      <div class="admin-card">
+        <div class="admin-card-header">
+          <h2 class="admin-card-title">Archival Works &amp; Editions Management</h2>
+          <button class="admin-btn-primary" id="btn-add-artwork" style="padding: 8px 16px; font-size: 12px;">+ Add New Artwork</button>
+        </div>
+
+        <div class="admin-artworks-grid" id="artworks-grid">
+          <!-- Dynamic Artworks Loaded Here -->
+        </div>
+      </div>
+    </div>
+
+    <!-- PANEL 3: SUBSCRIBERS -->
+    <div class="admin-panel" id="tab-subscribers">
+      <div class="admin-card">
+        <div class="admin-card-header">
+          <h2 class="admin-card-title">Collector Field Notes &amp; Dispatch Subscribers</h2>
+          <button class="admin-btn-sm" id="btn-copy-subscribers">Copy All Emails</button>
+        </div>
+
+        <div style="overflow-x: auto;">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Email Address</th>
+                <th>Join Date</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="subscribers-tbody">
+              <tr>
+                <td colspan="4" style="text-align: center; color: var(--muted); padding: 40px;">
+                  No subscribers yet.
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- PANEL 4: STUDIO SETTINGS & CUSTOMIZER -->
+    <div class="admin-panel" id="tab-settings">
+      <div class="admin-card">
+        <div class="admin-card-header">
+          <h2 class="admin-card-title">Customizable Studio Configuration</h2>
+        </div>
+        <div style="padding: 32px; max-width: 800px;">
+          <form id="studio-settings-form">
+            <div class="admin-form-group">
+              <label class="admin-form-label">Commission Availability Status</label>
+              <input type="text" id="setting-commission-status" class="admin-form-input" value="Commissions Open: 2026 – 2027">
+              <label class="admin-form-toggle" style="margin-top: 10px;">
+                <input type="checkbox" id="setting-commission-active" checked>
+                <span>Display "Commissions Open" indicator across website</span>
+              </label>
+            </div>
+
+            <div class="admin-form-group">
+              <label class="admin-form-label">Announcement Banner</label>
+              <label class="admin-form-toggle" style="margin-bottom: 8px;">
+                <input type="checkbox" id="setting-announcement-active">
+                <span>Enable Announcement Banner</span>
+              </label>
+              <input type="text" id="setting-announcement-text" class="admin-form-input" placeholder="e.g. Solo Presentation at Kyoto Contemporary, Autumn 2026.">
+            </div>
+
+            <div class="admin-form-group">
+              <label class="admin-form-label">Public Studio Inquiry Email</label>
+              <input type="email" id="setting-email" class="admin-form-input" value="studio@chintwo.com">
+            </div>
+
+            <div class="admin-form-group">
+              <label class="admin-form-label">Atelier Location &amp; Address</label>
+              <textarea id="setting-location" class="admin-form-textarea">Hackney Downs Studios, Amhurst Terrace, London E8 2BT, United Kingdom</textarea>
+            </div>
+
+            <div class="admin-form-group">
+              <label class="admin-form-label">Social Media Links</label>
+              <div style="display: grid; gap: 10px;">
+                <input type="url" id="setting-instagram" class="admin-form-input" placeholder="Instagram URL" value="https://www.instagram.com/chintwo.com">
+                <input type="url" id="setting-x" class="admin-form-input" placeholder="X / Twitter URL" value="https://x.com/chintwo">
+                <input type="url" id="setting-linkedin" class="admin-form-input" placeholder="LinkedIn URL" value="https://www.linkedin.com/in/chintwosankeerthanam">
+              </div>
+            </div>
+
+            <button type="submit" class="admin-btn-primary">Save &amp; Publish Configuration to Firebase</button>
+            <span id="settings-save-feedback" style="margin-left: 14px; font-weight: 500; color: var(--success); display: none;">✓ Settings Saved Live to Firestore</span>
+          </form>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- INQUIRY DETAIL MODAL -->
+  <div class="admin-modal-backdrop" id="inquiry-modal">
+    <div class="admin-modal">
+      <button class="admin-modal-close" id="modal-close">&times;</button>
+      <span class="admin-badge" id="modal-inquiry-ref">CH-REF</span>
+      <h3 style="font-family: 'Playfair Display', Georgia, serif; font-size: 24px; margin: 12px 0 6px;" id="modal-inquiry-name">Collector Name</h3>
+      <div style="font-size: 13px; color: var(--muted); margin-bottom: 20px;">
+        <span id="modal-inquiry-email">email@domain.com</span> • <span id="modal-inquiry-type">Inquiry Type</span> • <span id="modal-inquiry-date">Date</span>
+      </div>
+
+      <div style="background: #faf9f6; border: 1px solid var(--border); border-radius: 12px; padding: 20px; font-size: 15px; line-height: 1.7; margin-bottom: 24px; white-space: pre-wrap;" id="modal-inquiry-message">
+        Message contents...
+      </div>
+
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+        <div style="display: flex; gap: 8px; align-items: center;">
+          <span style="font-size: 12px; font-weight: 600; text-transform: uppercase;">Status:</span>
+          <select id="modal-status-select" class="admin-art-select">
+            <option value="new">New</option>
+            <option value="reviewing">Reviewing</option>
+            <option value="responded">Responded</option>
+            <option value="archived">Archived</option>
+          </select>
+        </div>
+        <div style="display: flex; gap: 10px;">
+          <a href="#" id="modal-reply-btn" class="admin-btn-primary" style="text-decoration: none; padding: 8px 18px; font-size: 12px;">Reply via Email ✉</a>
+          <button id="modal-delete-btn" class="admin-btn-sm" style="color: #d32f2f; border-color: rgba(211, 47, 47, 0.3);">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCRIPT -->
+  <script type="module">
+    import {
+      db,
+      getInquiries,
+      updateInquiryStatus,
+      deleteInquiry,
+      getArtworks,
+      saveArtwork,
+      deleteArtwork,
+      getSubscribers,
+      deleteSubscriber,
+      getStudioSettings,
+      saveStudioSettings,
+      seedInitialBackendData,
+      adminSignIn,
+      onStudioSettingsChange
+    } from '/assets/scripts/firebase-service.js';
+
+    let allInquiries = [];
+    let allArtworks = [];
+    let allSubscribers = [];
+    let activeFilter = 'all';
+    let currentInquiry = null;
+
+    // Auto-authenticate anonymous admin session
+    adminSignIn().catch(console.warn);
+
+    // Tab switching
+    document.querySelectorAll('.admin-tab-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.admin-tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.admin-panel').forEach(p => p.classList.remove('active'));
+        btn.classList.add('active');
+        const target = btn.dataset.tab;
+        document.getElementById(target).classList.add('active');
+      });
+    });
+
+    // Load Inquiries
+    async function loadInquiries() {
+      try {
+        allInquiries = await getInquiries();
+        renderInquiries();
+      } catch (err) {
+        console.warn('Error loading inquiries:', err);
+      }
+    }
+
+    function renderInquiries() {
+      const tbody = document.getElementById('inquiries-tbody');
+      const filtered = activeFilter === 'all' 
+        ? allInquiries 
+        : allInquiries.filter(i => (i.status || 'new') === activeFilter);
+
+      document.getElementById('count-inquiries').textContent = allInquiries.length;
+      document.getElementById('metric-total-inquiries').textContent = allInquiries.length;
+      const newCount = allInquiries.filter(i => (i.status || 'new') === 'new').length;
+      document.getElementById('metric-new-inquiries').textContent = newCount;
+
+      if (!filtered.length) {
+        tbody.innerHTML = `<tr><td colspan="6" style="text-align: center; color: var(--muted); padding: 40px;">No inquiries found for this filter.</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = filtered.map(inq => {
+        const statusClass = `status-${inq.status || 'new'}`;
+        const dateStr = inq.clientTime ? new Date(inq.clientTime).toLocaleDateString() : 'Recent';
+        return `
+          <tr>
+            <td><strong>${inq.reference || inq.id.slice(0,8)}</strong></td>
+            <td>
+              <div style="font-weight: 600;">${escapeHtml(inq.name)}</div>
+              <div style="font-size: 12px; color: var(--muted);">${escapeHtml(inq.email)}</div>
+            </td>
+            <td><span style="font-size: 12px;">${escapeHtml(inq.inquiryType || 'General')}</span></td>
+            <td><span style="font-size: 12px; color: var(--muted);">${dateStr}</span></td>
+            <td><span class="status-badge ${statusClass}">${inq.status || 'new'}</span></td>
+            <td>
+              <button class="admin-btn-sm btn-view-inquiry" data-id="${inq.id}">View Details</button>
+            </td>
+          </tr>
+        `;
+      }).join('');
+
+      tbody.querySelectorAll('.btn-view-inquiry').forEach(b => {
+        b.addEventListener('click', () => {
+          const id = b.dataset.id;
+          const found = allInquiries.find(x => x.id === id);
+          if (found) openInquiryModal(found);
+        });
+      });
+    }
+
+    // Inquiry filter buttons
+    document.querySelectorAll('#inquiry-filters .admin-filter-pill').forEach(pill => {
+      pill.addEventListener('click', () => {
+        document.querySelectorAll('#inquiry-filters .admin-filter-pill').forEach(p => p.classList.remove('active'));
+        pill.classList.add('active');
+        activeFilter = pill.dataset.filter;
+        renderInquiries();
+      });
+    });
+
+    // Inquiry modal
+    function openInquiryModal(inq) {
+      currentInquiry = inq;
+      document.getElementById('modal-inquiry-ref').textContent = inq.reference || inq.id;
+      document.getElementById('modal-inquiry-name').textContent = inq.name;
+      document.getElementById('modal-inquiry-email').textContent = inq.email;
+      document.getElementById('modal-inquiry-type').textContent = inq.inquiryType || 'General';
+      document.getElementById('modal-inquiry-date').textContent = inq.clientTime ? new Date(inq.clientTime).toLocaleString() : '';
+      document.getElementById('modal-inquiry-message').textContent = inq.message;
+      document.getElementById('modal-status-select').value = inq.status || 'new';
+
+      const mailtoSubject = encodeURIComponent(`Re: Studio Inquiry [${inq.reference || ''}]`);
+      const mailtoBody = encodeURIComponent(`Dear ${inq.name},\n\nThank you for contacting Chintwo Studio regarding ${inq.inquiryType}.\n\n`);
+      document.getElementById('modal-reply-btn').href = `mailto:${inq.email}?subject=${mailtoSubject}&body=${mailtoBody}`;
+
+      document.getElementById('inquiry-modal').classList.add('open');
+    }
+
+    document.getElementById('modal-close').addEventListener('click', () => {
+      document.getElementById('inquiry-modal').classList.remove('open');
+    });
+
+    document.getElementById('modal-status-select').addEventListener('change', async (e) => {
+      if (!currentInquiry) return;
+      const newStatus = e.target.value;
+      await updateInquiryStatus(currentInquiry.id, newStatus);
+      currentInquiry.status = newStatus;
+      renderInquiries();
+    });
+
+    document.getElementById('modal-delete-btn').addEventListener('click', async () => {
+      if (!currentInquiry || !confirm('Permanently delete this inquiry?')) return;
+      await deleteInquiry(currentInquiry.id);
+      allInquiries = allInquiries.filter(i => i.id !== currentInquiry.id);
+      renderInquiries();
+      document.getElementById('inquiry-modal').classList.remove('open');
+    });
+
+    // Load Artworks
+    async function loadArtworks() {
+      try {
+        allArtworks = await getArtworks();
+        renderArtworks();
+      } catch (err) {
+        console.warn('Error loading artworks:', err);
+      }
+    }
+
+    function renderArtworks() {
+      const grid = document.getElementById('artworks-grid');
+      document.getElementById('count-artworks').textContent = allArtworks.length;
+      document.getElementById('metric-total-artworks').textContent = allArtworks.length;
+
+      grid.innerHTML = allArtworks.map(art => `
+        <div class="admin-artwork-card" data-id="${art.id}">
+          <div class="admin-art-img-wrap">
+            <img src="${art.image}" alt="${escapeHtml(art.title)}" class="admin-art-img">
+          </div>
+          <div class="admin-art-body">
+            <div style="font-size: 11px; color: var(--gold); font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;">${art.year} • ${art.editionTag || 'ARCHIVAL'}</div>
+            <h3 class="admin-art-title">${escapeHtml(art.title)}</h3>
+            <div class="admin-art-meta">${escapeHtml(art.medium || '')}</div>
+            <div class="admin-art-actions">
+              <select class="admin-art-select art-status-change" data-id="${art.id}">
+                <option value="Available" ${art.status?.includes('Available') ? 'selected' : ''}>Available</option>
+                <option value="Reserved" ${art.status?.includes('Reserved') ? 'selected' : ''}>Reserved</option>
+                <option value="Private Collection, London" ${art.status?.includes('Private Collection') ? 'selected' : ''}>Private Collection</option>
+                <option value="Museum Acquisition, Kyoto" ${art.status?.includes('Museum') ? 'selected' : ''}>Museum Acquisition</option>
+                <option value="Permanent Studio Archive" ${art.status?.includes('Permanent') ? 'selected' : ''}>Permanent Archive</option>
+              </select>
+              <a href="/portfolio/${art.slug}" target="_blank" class="admin-btn-sm" style="text-decoration:none;">View ↗</a>
+            </div>
+          </div>
+        </div>
+      `).join('');
+
+      grid.querySelectorAll('.art-status-change').forEach(sel => {
+        sel.addEventListener('change', async (e) => {
+          const id = sel.dataset.id;
+          const status = e.target.value;
+          const item = allArtworks.find(a => a.id === id);
+          if (item) {
+            item.status = status;
+            await saveArtwork(id, item);
+          }
+        });
+      });
+    }
+
+    // Load Subscribers
+    async function loadSubscribers() {
+      try {
+        allSubscribers = await getSubscribers();
+        renderSubscribers();
+      } catch (err) {
+        console.warn('Error loading subscribers:', err);
+      }
+    }
+
+    function renderSubscribers() {
+      const tbody = document.getElementById('subscribers-tbody');
+      document.getElementById('count-subscribers').textContent = allSubscribers.length;
+      document.getElementById('metric-total-subscribers').textContent = allSubscribers.length;
+
+      if (!allSubscribers.length) {
+        tbody.innerHTML = `<tr><td colspan="4" style="text-align: center; color: var(--muted); padding: 40px;">No subscribers registered yet.</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = allSubscribers.map(sub => {
+        const dateStr = sub.clientTime ? new Date(sub.clientTime).toLocaleDateString() : 'Recent';
+        return `
+          <tr>
+            <td><strong>${escapeHtml(sub.email)}</strong></td>
+            <td>${dateStr}</td>
+            <td><span class="status-badge status-responded">Active</span></td>
+            <td>
+              <button class="admin-btn-sm btn-delete-sub" data-id="${sub.id}" style="color: #d32f2f;">Remove</button>
+            </td>
+          </tr>
+        `;
+      }).join('');
+
+      tbody.querySelectorAll('.btn-delete-sub').forEach(btn => {
+        btn.addEventListener('click', async () => {
+          const id = btn.dataset.id;
+          if (confirm('Remove subscriber?')) {
+            await deleteSubscriber(id);
+            allSubscribers = allSubscribers.filter(s => s.id !== id);
+            renderSubscribers();
+          }
+        });
+      });
+    }
+
+    document.getElementById('btn-copy-subscribers').addEventListener('click', () => {
+      const emails = allSubscribers.map(s => s.email).join(', ');
+      navigator.clipboard.writeText(emails);
+      alert(allSubscribers.length ? `Copied ${allSubscribers.length} email addresses to clipboard!` : 'No subscribers to copy.');
+    });
+
+    // Load Studio Settings
+    async function loadSettings() {
+      try {
+        const s = await getStudioSettings();
+        document.getElementById('setting-commission-status').value = s.commissionStatus || '';
+        document.getElementById('setting-commission-active').checked = s.commissionStatusActive !== false;
+        document.getElementById('setting-announcement-active').checked = !!s.announcementActive;
+        document.getElementById('setting-announcement-text').value = s.announcementText || '';
+        document.getElementById('setting-email').value = s.inquiryEmail || '';
+        document.getElementById('setting-location').value = s.location || '';
+        document.getElementById('setting-instagram').value = s.socialInstagram || '';
+        document.getElementById('setting-x').value = s.socialX || '';
+        document.getElementById('setting-linkedin').value = s.socialLinkedIn || '';
+      } catch (err) {
+        console.warn('Error loading settings:', err);
+      }
+    }
+
+    // Save Studio Settings
+    document.getElementById('studio-settings-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const feedback = document.getElementById('settings-save-feedback');
+      const updated = {
+        commissionStatus: document.getElementById('setting-commission-status').value.trim(),
+        commissionStatusActive: document.getElementById('setting-commission-active').checked,
+        announcementActive: document.getElementById('setting-announcement-active').checked,
+        announcementText: document.getElementById('setting-announcement-text').value.trim(),
+        inquiryEmail: document.getElementById('setting-email').value.trim(),
+        location: document.getElementById('setting-location').value.trim(),
+        socialInstagram: document.getElementById('setting-instagram').value.trim(),
+        socialX: document.getElementById('setting-x').value.trim(),
+        socialLinkedIn: document.getElementById('setting-linkedin').value.trim()
+      };
+
+      await saveStudioSettings(updated);
+      feedback.style.display = 'inline';
+      setTimeout(() => { feedback.style.display = 'none'; }, 3000);
+    });
+
+    // Seed Data Action
+    document.getElementById('btn-seed-data').addEventListener('click', async () => {
+      if (confirm('Initialize / Seed default portfolio artworks and studio settings in Firestore?')) {
+        await seedInitialBackendData();
+        await loadInquiries();
+        await loadArtworks();
+        await loadSettings();
+        alert('✓ Default backend catalog and studio settings successfully synchronized with Firestore!');
+      }
+    });
+
+    function escapeHtml(text) {
+      if (!text) return '';
+      return String(text).replace(/[&<>"']/g, m => ({
+        '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;'
+      })[m]);
+    }
+
+    // Init All Data
+    loadInquiries();
+    loadArtworks();
+    loadSubscribers();
+    loadSettings();
+  </script>
+</body>
+</html>
