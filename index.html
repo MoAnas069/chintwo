@@ -470,12 +470,33 @@
     text-transform: uppercase !important;
     color: rgba(18, 19, 22, 0.45) !important;
   }
+
+  /* Responsive Selected Works: Desktop AccordionGallery, Mobile DriftWall */
+  .chintwo-desktop-work {
+    display: block !important;
+  }
+  .chintwo-mobile-work {
+    display: none !important;
+  }
   @media (max-width: 768px) {
-    #accordion-gallery-root {
-      height: auto !important;
+    .chintwo-desktop-work {
+      display: none !important;
     }
-    .chintwo-accordion-wrapper {
+    .chintwo-mobile-work {
+      display: block !important;
+    }
+    .chintwo-driftwall-wrapper {
+      width: 100% !important;
+      height: 520px !important;
+      position: relative !important;
       margin: 20px 0 16px !important;
+      border-radius: 16px !important;
+      overflow: hidden !important;
+    }
+    #drift-wall-root {
+      width: 100% !important;
+      height: 100% !important;
+      position: relative !important;
     }
   }
 
@@ -1640,6 +1661,7 @@
   }
 </style>
 <link rel="stylesheet" href="/assets/styles/AccordionGallery.css">
+<link rel="stylesheet" href="/assets/styles/DriftWall.css">
 <script src="/assets/scripts/gsap.min.js"></script>
 </head>
 <body>
@@ -1716,14 +1738,23 @@
     <div class="chintwo-work-header">
       <span class="chintwo-section-tag">01 / SELECTED WORKS</span>
       <h2 class="chintwo-section-heading">Selected Works &amp; Editions</h2>
-      <p class="chintwo-section-sub">Dynamic spatial gallery • Hover or tap across panels to expand artwork</p>
+      <p class="chintwo-section-sub chintwo-desktop-work">Dynamic spatial gallery • Hover or click across panels to expand artwork</p>
+      <p class="chintwo-section-sub chintwo-mobile-work">Atmospheric drifting wall • Tap to examine archival artworks</p>
     </div>
 
-    <!-- AccordionGallery Container from React Bits (Fluid, Unboxed Desktop Layout) -->
-    <div class="chintwo-accordion-wrapper">
+    <!-- Desktop View: AccordionGallery from React Bits (Fluid, Unboxed Desktop Layout) -->
+    <div class="chintwo-accordion-wrapper chintwo-desktop-work">
       <div id="accordion-gallery-root"></div>
       <div class="chintwo-gallery-hint" aria-hidden="true">
         <span>← Hover across panels to expand • Click to explore provenance &amp; archive →</span>
+      </div>
+    </div>
+
+    <!-- Mobile View: DriftWall from React Bits (Atmospheric 3D Floating Perspective) -->
+    <div class="chintwo-driftwall-wrapper chintwo-mobile-work">
+      <div id="drift-wall-root" style="width: 100%; height: 520px; position: relative;"></div>
+      <div class="chintwo-gallery-hint" aria-hidden="true">
+        <span>↑ Continuously drifting • Tap any artwork tile to open →</span>
       </div>
     </div>
 
@@ -2070,11 +2101,12 @@
 })();
 </script>
 
-<!-- AccordionGallery Integration from React Bits -->
+<!-- Selected Works Galleries: Desktop AccordionGallery & Mobile DriftWall -->
 <script type="module">
   import { initAccordionGallery } from '/assets/scripts/AccordionGallery.js';
+  import { initDriftWall } from '/assets/scripts/DriftWall.js';
 
-  // Initialize AccordionGallery from React Bits
+  // 1. Desktop AccordionGallery Items
   const accordionItems = [
     {
       image: '/assets/images/LcTxyeMFm5sIiiSm4Iop5zds.webp',
@@ -2137,6 +2169,97 @@
       tilt: 8,
       parallax: 0.5,
       stagger: 0.06
+    });
+  }
+
+  // 2. Mobile DriftWall Items
+  const driftItems = [
+    {
+      image: '/assets/images/LcTxyeMFm5sIiiSm4Iop5zds.webp',
+      title: 'The Silent Hour',
+      href: '/portfolio/the-silent-hour'
+    },
+    {
+      image: '/assets/images/bg5zKXacbxF9hxgxh95vSeYyKHM.webp',
+      title: 'The Cartographer’s Dream',
+      href: '/portfolio/the-cartographers-dream'
+    },
+    {
+      image: '/assets/images/KprYkGkimFEN8DANdFVOfpc2ro.webp',
+      title: 'Nocturne for Two Solitudes',
+      href: '/portfolio/nocturne-for-two-solitudes'
+    },
+    {
+      image: '/assets/images/HGXt3zFDtrXxquN5BVsRFCkypC4.webp',
+      title: 'Arrival in the Cold Mist',
+      href: '/portfolio/arrival-in-the-cold-mist'
+    },
+    {
+      image: '/assets/images/coNU5GEVyZAGUw45WDGQjFl1OPI.webp',
+      title: 'Fine Art Editions',
+      href: '/portfolio/fine-art-editions'
+    },
+    {
+      image: '/assets/images/art_silent_hour.webp',
+      title: 'Atmospheric Chiaroscuro',
+      href: '/portfolio'
+    },
+    {
+      image: '/assets/images/6TsUBdB1Ab00bEfg5EwbCxb1Khg.webp',
+      title: 'Monoprint Synthesis',
+      href: '/portfolio'
+    },
+    {
+      image: '/assets/images/art_process.webp',
+      title: 'Kyoto Atelier Practice',
+      href: '/about'
+    },
+    {
+      image: '/assets/images/peaa6VBBdWRSL3icJ2tpwsIXZI.webp',
+      title: 'Quiet Resonances',
+      href: '/portfolio'
+    },
+    {
+      image: '/assets/images/fDh0jZF0V8L0VApCB9oAHIFgd8.webp',
+      title: 'Silkscreen Archival',
+      href: '/portfolio/fine-art-editions'
+    },
+    {
+      image: '/assets/images/Jh0aZZUumY8rCVh8diGYoi30lAU.webp',
+      title: 'Spatial Study',
+      href: '/portfolio'
+    },
+    {
+      image: '/assets/images/art_silent_hour.webp',
+      title: 'Exhibition Archive',
+      href: '/portfolio/exhibitions-archive'
+    }
+  ];
+
+  const driftWallRoot = document.getElementById('drift-wall-root');
+  if (driftWallRoot) {
+    initDriftWall(driftWallRoot, {
+      items: driftItems,
+      columns: 3,
+      tileWidth: 130,
+      tileHeight: 92,
+      gap: 12,
+      radius: 12,
+      tilt: 14,
+      turn: -10,
+      roll: 0,
+      perspective: 1100,
+      depth: 90,
+      speed: 32,
+      direction: 'up',
+      variance: 0.45,
+      parallax: 0.5,
+      pauseOnHover: false,
+      lift: 44,
+      fade: 0.6,
+      dim: 0.55,
+      grayscale: false,
+      overlayColor: '#060010'
     });
   }
 

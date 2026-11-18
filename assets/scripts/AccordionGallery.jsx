@@ -233,3 +233,4 @@ const AccordionGallery = ({
 };
 
 export default AccordionGallery;
+

@@ -275,3 +275,4 @@ export function initAccordionGallery(container, options = {}) {
 }
 
 export default initAccordionGallery;
+

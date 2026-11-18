@@ -22,6 +22,8 @@ const routesToTest = [
   '/assets/scripts/firebase-service.js',
   '/assets/scripts/AccordionGallery.js',
   '/assets/styles/AccordionGallery.css',
+  '/assets/scripts/DriftWall.js',
+  '/assets/styles/DriftWall.css',
   '/assets/scripts/gsap.min.js',
   '/assets/scripts/gsap.js',
   '/assets/images/chintwo_emblem.svg',

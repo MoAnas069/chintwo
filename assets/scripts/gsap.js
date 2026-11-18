@@ -8,3 +8,4 @@ const gsapInstance = (typeof window !== 'undefined' && window.gsap)
 
 export const gsap = gsapInstance;
 export default gsapInstance;
+
