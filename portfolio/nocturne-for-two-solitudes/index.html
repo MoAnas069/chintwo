@@ -374,8 +374,11 @@
       z-index: 10;
     }
     .chintwo-footer-container {
-      max-width: 1240px;
+      max-width: 1600px;
+      width: 100%;
       margin: 0 auto;
+      box-sizing: border-box;
+      padding: 0 clamp(16px, 2.5vw, 36px);
     }
         /* STANDARDIZED ATELIER FOOTER */
     .chintwo-footer-standard {
@@ -383,7 +386,8 @@
       flex-direction: column;
       align-items: center;
       text-align: center;
-      max-width: 680px;
+      width: 100%;
+      max-width: 960px;
       margin: 0 auto 50px auto;
     }
     .chintwo-footer-identity {
@@ -456,6 +460,7 @@
       box-shadow: 0 0 8px rgba(74, 222, 128, 0.6);
     }
     .chintwo-footer-bottom {
+      width: 100%;
       margin-top: 30px;
       padding-top: 28px;
       border-top: 1px solid rgba(255, 255, 255, 0.08);

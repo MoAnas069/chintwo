@@ -424,6 +424,9 @@
 	<!-- Global site tag (gtag.js) - Google Analytics -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=G-XSHWFP3WH8"></script>
 
+	<link rel="preload" as="image" href="/assets/images/hero_landscape.webp" media="(min-width: 811px)">
+	<link rel="preload" as="image" href="/assets/images/hero_portrait.webp" media="(max-width: 810px)">
+
 <!-- Chintwo Fine Art & Smooth Diptych Merge Styles -->
 <style id="chintwo-art-custom-styles">
   /* =========================================================================
@@ -851,6 +854,17 @@
     justify-content: center !important;
   }
 
+  /* DIPTYCH SPLIT VARIABLES */
+  :root {
+    --chintwo-diptych-split: 220px;
+  }
+  @media (max-width: 1200px) {
+    :root { --chintwo-diptych-split: 160px; }
+  }
+  @media (max-width: 810px) {
+    :root { --chintwo-diptych-split: 95px; }
+  }
+
   /* FULL-SCREEN DIPTYCH UNIFICATION WRAPPER */
   .chintwo-diptych-unification-wrapper {
     position: absolute !important;
@@ -873,6 +887,8 @@
     overflow: hidden !important;
     will-change: transform, box-shadow !important;
     z-index: 14 !important;
+    transform: translateX(0);
+    box-shadow: 18px 0 45px rgba(18, 19, 22, 0.22);
   }
 
   /* RIGHT HALF: Occupies right 50vw and full 100vh */
@@ -885,6 +901,8 @@
     overflow: hidden !important;
     will-change: transform, box-shadow !important;
     z-index: 14 !important;
+    transform: translateX(0);
+    box-shadow: -18px 0 45px rgba(18, 19, 22, 0.22);
   }
 
   /* IMAGE PANES: Full viewport cover (100vw x 100vh) */
@@ -897,6 +915,8 @@
     background-position: center bottom !important;
     background-repeat: no-repeat !important;
     background-image: url('/assets/images/hero_landscape.webp') !important;
+    transform-origin: center bottom !important;
+    will-change: transform, filter !important;
   }
 
   /* Left half inner image starts at screen left (0) */
@@ -916,10 +936,74 @@
     }
   }
 
+  /* MINIMALIST FLOATING SCROLL CUE (ENTRANCE PROMPT) */
+  .chintwo-hero-scroll-cue {
+    position: absolute !important;
+    bottom: 34px !important;
+    left: 50% !important;
+    transform: translateX(-50%) translateY(0) !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 9px !important;
+    z-index: 25 !important;
+    pointer-events: none !important;
+    opacity: 0;
+    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  }
+
+  .chintwo-hero-scroll-cue.is-visible {
+    opacity: 0.85 !important;
+    transform: translateX(-50%) translateY(0) !important;
+  }
+
+  .chintwo-hero-scroll-cue.is-hidden {
+    opacity: 0 !important;
+    transform: translateX(-50%) translateY(14px) !important;
+  }
+
+  .chintwo-scroll-indicator-mouse {
+    width: 20px !important;
+    height: 32px !important;
+    border: 1.5px solid rgba(18, 19, 22, 0.45) !important;
+    border-radius: 12px !important;
+    display: flex !important;
+    justify-content: center !important;
+    padding-top: 5px !important;
+    box-sizing: border-box !important;
+    background: rgba(255, 255, 255, 0.45) !important;
+    backdrop-filter: blur(6px) !important;
+    box-shadow: 0 4px 14px rgba(18, 19, 22, 0.08) !important;
+  }
+
+  .chintwo-scroll-indicator-wheel {
+    width: 3px !important;
+    height: 6px !important;
+    background: #121316 !important;
+    border-radius: 2px !important;
+    animation: chintwoWheelDrop 1.8s ease-in-out infinite !important;
+  }
+
+  @keyframes chintwoWheelDrop {
+    0% { transform: translateY(0); opacity: 1; }
+    55% { transform: translateY(8px); opacity: 0; }
+    56% { transform: translateY(0); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+  }
+
+  .chintwo-scroll-indicator-text {
+    font-family: 'Space Mono', monospace !important;
+    font-size: 10px !important;
+    letter-spacing: 0.22em !important;
+    text-transform: uppercase !important;
+    color: rgba(18, 19, 22, 0.70) !important;
+    text-shadow: 0 1px 8px rgba(255, 255, 255, 0.8) !important;
+  }
+
   /* HERO BRAND LOCKUP: Prominently situated in the artwork's upper whitespace */
   .chintwo-hero-center-brand {
     position: absolute !important;
-    top: 24vh !important;
+    top: clamp(140px, 24vh, 260px) !important;
     left: 50% !important;
     transform: translate(-50%, -50%);
     opacity: 0;
@@ -1689,6 +1773,13 @@
 
   /* STANDARDIZED STUDIO FOOTER: Fine-Art Prussian Umber Velvet */
   .chintwo-footer {
+    width: 100vw !important;
+    position: relative !important;
+    left: 50% !important;
+    right: 50% !important;
+    margin-left: -50vw !important;
+    margin-right: -50vw !important;
+    box-sizing: border-box !important;
     background-color: #222126 !important;
     background-image: 
       radial-gradient(circle at 50% 0%, rgba(191, 161, 95, 0.14) 0%, transparent 65%),
@@ -1698,14 +1789,17 @@
     border-top: 1px solid rgba(191, 161, 95, 0.28) !important;
     box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.22) inset !important;
     color: #f7f6f2 !important;
-    padding: 90px 36px 40px !important;
-    position: relative !important;
+    padding: 90px clamp(24px, 5vw, 80px) 40px !important;
     z-index: 2 !important;
+    overflow: hidden !important;
   }
 
   .chintwo-footer-container {
-    max-width: 1240px !important;
+    width: 100% !important;
+    max-width: 1600px !important;
     margin: 0 auto !important;
+    box-sizing: border-box !important;
+    padding: 0 clamp(16px, 3vw, 40px) !important;
   }
 
   /* STANDARDIZED ATELIER FOOTER */
@@ -1714,7 +1808,8 @@
     flex-direction: column !important;
     align-items: center !important;
     text-align: center !important;
-    max-width: 680px !important;
+    width: 100% !important;
+    max-width: 960px !important;
     margin: 0 auto 50px auto !important;
   }
 
@@ -1723,6 +1818,7 @@
     flex-direction: column !important;
     align-items: center !important;
     text-align: center !important;
+    width: 100% !important;
   }
 
   .chintwo-footer-brand-wrap {
@@ -1751,14 +1847,21 @@
 
   .chintwo-footer-statement {
     font-family: 'Inter', sans-serif !important;
-    font-size: 14px !important;
-    line-height: 1.7 !important;
-    color: rgba(255, 255, 255, 0.72) !important;
-    margin: 0 0 12px 0 !important;
+    font-size: clamp(14px, 1.1vw, 16px) !important;
+    line-height: 1.75 !important;
+    color: rgba(255, 255, 255, 0.78) !important;
+    margin: 0 0 14px 0 !important;
+    max-width: 840px !important;
   }
 
   .chintwo-footer-substatement {
     font-family: 'Inter', sans-serif !important;
+    font-size: 13px !important;
+    line-height: 1.65 !important;
+    color: rgba(255, 255, 255, 0.55) !important;
+    margin: 0 0 24px 0 !important;
+    max-width: 780px !important;
+  }
     font-size: 12.5px !important;
     line-height: 1.6 !important;
     color: rgba(255, 255, 255, 0.5) !important;
@@ -1958,6 +2061,14 @@
       </div>
     </div>
 
+    <!-- Floating Minimalist Scroll Cue (Entrance Indicator) -->
+    <div class="chintwo-hero-scroll-cue" id="chintwo-hero-scroll-cue" aria-label="Scroll to unify artwork">
+      <div class="chintwo-scroll-indicator-mouse">
+        <div class="chintwo-scroll-indicator-wheel"></div>
+      </div>
+      <span class="chintwo-scroll-indicator-text">SCROLL TO MERGE</span>
+    </div>
+
   </section>
 </div><section class="chintwo-work-section" id="work" aria-label="Selected Works">
   <div class="chintwo-work-container">
@@ -2019,8 +2130,6 @@
       </div>
     </div>
   </div>
-</section>
-
 </section>
 
 <section id="journal" class="chintwo-journal-section" aria-label="Field Notes &amp; Artist's Journal">
@@ -2158,21 +2267,67 @@
   var heroStage = document.getElementById('chintwo-hero-stage');
   var track = document.getElementById('chintwo-hero-track');
   var taskbar = document.getElementById('chintwo-taskbar');
+  var scrollCue = document.getElementById('chintwo-hero-scroll-cue');
 
   var targetScroll = 0;
   var currentScroll = 0;
   var isTicking = false;
+  var isIntroPlaying = false;
+  var introStartTime = 0;
+  var introDuration = 1300; // ms for silky cinematic parting entrance
 
-  // Full-screen horizontal split controller
+  // Full-screen horizontal split distance
   function getBaseOffset() {
     var w = window.innerWidth;
     if (w > 1200) return 220;
     if (w > 810) return 160;
-    return 90;
+    return 95;
+  }
+
+  function applyOffset(offset) {
+    if (leftHalf && rightHalf) {
+      leftHalf.style.transform = 'translateX(-' + offset.toFixed(2) + 'px)';
+      rightHalf.style.transform = 'translateX(' + offset.toFixed(2) + 'px)';
+
+      var base = getBaseOffset();
+      var shadowFactor = Math.min(1, Math.max(0, offset / base));
+      var shadowOp = (0.22 * shadowFactor).toFixed(3);
+      leftHalf.style.boxShadow = (18 * shadowFactor).toFixed(1) + 'px 0 45px rgba(18, 19, 22, ' + shadowOp + ')';
+      rightHalf.style.boxShadow = '-' + (18 * shadowFactor).toFixed(1) + 'px 0 45px rgba(18, 19, 22, ' + shadowOp + ')';
+    }
+  }
+
+  function runIntroEntrance(timestamp) {
+    if (!isIntroPlaying) return;
+    if (!introStartTime) introStartTime = timestamp;
+    var elapsed = timestamp - introStartTime;
+    var t = Math.min(1, elapsed / introDuration);
+
+    // Smooth quartic ease-out
+    var easeOut = 1 - Math.pow(1 - t, 4);
+    var baseOffset = getBaseOffset();
+    var currentPartOffset = easeOut * baseOffset;
+
+    applyOffset(currentPartOffset);
+
+    if (t < 1 && (window.scrollY || window.pageYOffset || 0) <= 15) {
+      requestAnimationFrame(runIntroEntrance);
+    } else {
+      isIntroPlaying = false;
+      if (scrollCue && (window.scrollY || window.pageYOffset || 0) <= 20) {
+        scrollCue.classList.add('is-visible');
+      }
+    }
+  }
+
+  function cancelIntroIfActive() {
+    if (isIntroPlaying) {
+      isIntroPlaying = false;
+    }
   }
 
   function update() {
-    var mergeDistance = 460;
+    var mergeDistance = 500;
     var progress = Math.min(1, Math.max(0, currentScroll / mergeDistance));
 
     // Smooth cubic easing curve
@@ -2183,32 +2338,36 @@
     var baseOffset = getBaseOffset();
     var offset = (1 - ease) * baseOffset;
 
-    // Full-screen horizontal translation: halves glide together and meet at center (50vw)
-    if (leftHalf && rightHalf) {
-      leftHalf.style.transform = 'translateX(-' + offset.toFixed(2) + 'px)';
-      rightHalf.style.transform = 'translateX(' + offset.toFixed(2) + 'px)';
-
-      var shadowOp = (0.24 * (1 - ease)).toFixed(3);
-      leftHalf.style.boxShadow = (14 * (1 - ease)).toFixed(1) + 'px 0 40px rgba(18, 19, 22, ' + shadowOp + ')';
-      rightHalf.style.boxShadow = '-' + (14 * (1 - ease)).toFixed(1) + 'px 0 40px rgba(18, 19, 22, ' + shadowOp + ')';
-    }
+    applyOffset(offset);
 
     // Logo & Brand Lockup: Revealed in the artwork's upper whitespace as halves merge
     if (centerBrand) {
       var brandOpacity = 0;
-      if (progress > 0.16) {
-        brandOpacity = Math.min(1, (progress - 0.16) / 0.68);
+      if (progress > 0.18) {
+        brandOpacity = Math.min(1, (progress - 0.18) / 0.70);
       }
-      var brandScale = 0.88 + 0.12 * Math.min(1, progress / 0.84);
+      var brandScale = 0.90 + 0.10 * Math.min(1, progress / 0.88);
+      var brandFloatY = (1 - ease) * 16;
 
       centerBrand.style.opacity = brandOpacity.toFixed(3);
-      centerBrand.style.transform = 'translate(-50%, -50%) scale(' + brandScale.toFixed(3) + ')';
+      centerBrand.style.transform = 'translate(-50%, calc(-50% + ' + brandFloatY.toFixed(1) + 'px)) scale(' + brandScale.toFixed(3) + ')';
       centerBrand.style.pointerEvents = brandOpacity > 0.5 ? 'auto' : 'none';
+    }
+
+    // Scroll Cue Indicator: visible at top, dissolves as user scrolls
+    if (scrollCue) {
+      if (currentScroll > 18) {
+        scrollCue.classList.remove('is-visible');
+        scrollCue.classList.add('is-hidden');
+      } else if (!isIntroPlaying) {
+        scrollCue.classList.remove('is-hidden');
+        scrollCue.classList.add('is-visible');
+      }
     }
 
     // Taskbar: Reveals once the image almost merges and the logo reaches the center (progress >= 0.90)
     if (taskbar) {
-      if (progress >= 0.90 || currentScroll > mergeDistance * 0.95 || (window.innerWidth <= 810 && currentScroll > 150)) {
+      if (progress >= 0.90 || currentScroll > mergeDistance * 0.92 || (window.innerWidth <= 810 && currentScroll > 160)) {
         taskbar.classList.add('chintwo-taskbar-visible');
       } else {
         taskbar.classList.remove('chintwo-taskbar-visible');
@@ -2225,8 +2384,8 @@
     }
 
     // Smooth lerp loop
-    if (Math.abs(targetScroll - currentScroll) > 0.4) {
-      currentScroll += (targetScroll - currentScroll) * 0.20;
+    if (Math.abs(targetScroll - currentScroll) > 0.35) {
+      currentScroll += (targetScroll - currentScroll) * 0.22;
       requestAnimationFrame(update);
     } else {
       currentScroll = targetScroll;
@@ -2235,6 +2394,7 @@
   }
 
   function onScroll() {
+    cancelIntroIfActive();
     targetScroll = window.scrollY || window.pageYOffset || 0;
     if (!isTicking) {
       isTicking = true;
@@ -2242,14 +2402,31 @@
     }
   }
 
+  // User input immediately takes over intro
+  window.addEventListener('wheel', cancelIntroIfActive, { passive: true });
+  window.addEventListener('touchmove', cancelIntroIfActive, { passive: true });
+  window.addEventListener('keydown', cancelIntroIfActive, { passive: true });
   window.addEventListener('scroll', onScroll, { passive: true });
   window.addEventListener('resize', onScroll, { passive: true });
-  window.addEventListener('DOMContentLoaded', onScroll);
-  window.addEventListener('load', onScroll);
 
-  targetScroll = window.scrollY || window.pageYOffset || 0;
-  currentScroll = targetScroll;
-  update();
+  function init() {
+    var initialScroll = window.scrollY || window.pageYOffset || 0;
+    if (initialScroll <= 15) {
+      isIntroPlaying = true;
+      applyOffset(0);
+      requestAnimationFrame(runIntroEntrance);
+    } else {
+      targetScroll = initialScroll;
+      currentScroll = targetScroll;
+      update();
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
 })();
 </script>
 
