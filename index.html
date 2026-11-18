@@ -798,23 +798,6 @@
 
   /* MOBILE FOOTER & BRAND POLISH */
   @media (max-width: 768px) {
-    .chintwo-hero-center-brand-inner {
-      padding: 18px 28px !important;
-      border-radius: 16px !important;
-    }
-    .chintwo-hero-center-emblem {
-      width: 48px !important;
-      height: 52px !important;
-      margin-bottom: 8px !important;
-    }
-    .chintwo-hero-center-name {
-      font-size: 24px !important;
-      letter-spacing: 0.20em !important;
-    }
-    .chintwo-hero-center-sub {
-      font-size: 9px !important;
-      letter-spacing: 0.18em !important;
-    }
     .chintwo-footer {
       padding: 50px 20px 30px !important;
     }
@@ -893,8 +876,9 @@
   .chintwo-diptych-half {
     position: absolute !important;
     top: 0 !important;
-    width: min(310px, 44vw) !important;
-    height: min(500px, 54vh) !important;
+    width: min(440px, 43vw) !important;
+    height: min(495px, 56vh) !important;
+    aspect-ratio: 8 / 9 !important;
     overflow: hidden !important;
     will-change: transform, border-radius, box-shadow !important;
     backface-visibility: hidden !important;
@@ -903,8 +887,9 @@
 
   @media (max-width: 810px) {
     .chintwo-diptych-half {
-      width: min(220px, 44vw) !important;
-      height: min(360px, 46vh) !important;
+      width: min(150px, 43vw) !important;
+      height: min(520px, 68vh) !important;
+      aspect-ratio: 9 / 32 !important;
     }
   }
 
@@ -929,18 +914,37 @@
     height: 100% !important;
     background-size: 200% 100% !important;
     background-repeat: no-repeat !important;
+    background-image: url('/assets/images/hero_landscape.webp') !important;
   }
 
-  /* CENTER LOGO BRAND: Placed on top of merged image */
+  .chintwo-diptych-left .chintwo-diptych-img-pane,
+  .chintwo-diptych-img-left {
+    background-position: left center !important;
+  }
+
+  .chintwo-diptych-right .chintwo-diptych-img-pane,
+  .chintwo-diptych-img-right {
+    background-position: right center !important;
+  }
+
+  @media (max-width: 810px) {
+    .chintwo-diptych-img-pane {
+      background-image: url('/assets/images/hero_portrait.webp') !important;
+    }
+  }
+
+  /* HERO BRAND LOCKUP: Positioned seamlessly inside the artwork's upper whitespace */
   .chintwo-hero-center-brand {
     position: absolute !important;
     top: 50% !important;
     left: 50% !important;
-    transform: translate(-50%, -50%) scale(0.9) !important;
+    transform: translate(-50%, calc(-50% - 130px)) scale(0.92) !important;
     opacity: 0 !important;
     pointer-events: none !important;
     z-index: 30 !important;
     text-align: center !important;
+    width: auto !important;
+    max-width: 90vw !important;
     transition: opacity 0.35s ease, transform 0.35s ease !important;
   }
 
@@ -949,41 +953,64 @@
     flex-direction: column !important;
     align-items: center !important;
     justify-content: center !important;
-    padding: 26px 48px !important;
-    background: rgba(247, 245, 240, 0.94) !important;
-    backdrop-filter: blur(28px) !important;
-    -webkit-backdrop-filter: blur(28px) !important;
-    border-radius: 22px !important;
-    border: 1px solid rgba(191, 161, 95, 0.45) !important;
-    box-shadow: 0 28px 70px rgba(18, 19, 22, 0.22), 0 0 0 1px rgba(255, 255, 255, 0.8) inset !important;
+    padding: 0 !important;
+    background: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    border-radius: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
   }
 
   .chintwo-hero-center-emblem {
-    width: 68px !important;
-    height: 72px !important;
+    width: 50px !important;
+    height: 54px !important;
     object-fit: contain !important;
-    margin-bottom: 12px !important;
-    filter: drop-shadow(0 4px 12px rgba(18, 19, 22, 0.15)) !important;
+    margin-bottom: 10px !important;
+    filter: drop-shadow(0 2px 6px rgba(18, 19, 22, 0.12)) !important;
   }
 
   .chintwo-hero-center-name {
     font-family: 'Playfair Display', Georgia, serif !important;
-    font-size: 34px !important;
+    font-size: 32px !important;
     font-weight: 700 !important;
-    letter-spacing: 0.25em !important;
+    letter-spacing: 0.26em !important;
     color: #121316 !important;
-    margin: 0 0 4px 0 !important;
+    margin: 0 0 6px 0 !important;
     line-height: 1.1 !important;
-    text-indent: 0.25em !important;
+    text-indent: 0.26em !important;
   }
 
   .chintwo-hero-center-sub {
     font-family: 'Inter', sans-serif !important;
-    font-size: 11px !important;
+    font-size: 10px !important;
     font-weight: 600 !important;
-    letter-spacing: 0.28em !important;
+    letter-spacing: 0.32em !important;
     color: rgba(18, 19, 22, 0.65) !important;
     text-transform: uppercase !important;
+    text-indent: 0.32em !important;
+  }
+
+  @media (max-width: 810px) {
+    .chintwo-hero-center-brand {
+      transform: translate(-50%, calc(-50% - 88px)) scale(0.92) !important;
+    }
+    .chintwo-hero-center-emblem {
+      width: 40px !important;
+      height: 44px !important;
+      margin-bottom: 8px !important;
+    }
+    .chintwo-hero-center-name {
+      font-size: 24px !important;
+      letter-spacing: 0.22em !important;
+      text-indent: 0.22em !important;
+      margin-bottom: 4px !important;
+    }
+    .chintwo-hero-center-sub {
+      font-size: 8.5px !important;
+      letter-spacing: 0.26em !important;
+      text-indent: 0.26em !important;
+    }
   }
 
   /* FUNCTIONAL TOP TASKBAR: Hidden initially, reveals after merge */
@@ -1960,17 +1987,17 @@
     <!-- The Diptych Canvas Stage (Unification) -->
     <div class="chintwo-diptych-unification-wrapper" id="chintwo-diptych-wrapper">
       <div class="chintwo-diptych-half chintwo-diptych-left" id="chintwo-diptych-left">
-        <div class="chintwo-diptych-img-pane" style="background-image: url('/assets/images/6TsUBdB1Ab00bEfg5EwbCxb1Khg.webp'); background-position: left center;"></div>
+        <div class="chintwo-diptych-img-pane chintwo-diptych-img-left"></div>
       </div>
       <div class="chintwo-diptych-half chintwo-diptych-right" id="chintwo-diptych-right">
-        <div class="chintwo-diptych-img-pane" style="background-image: url('/assets/images/6TsUBdB1Ab00bEfg5EwbCxb1Khg.webp'); background-position: right center;"></div>
+        <div class="chintwo-diptych-img-pane chintwo-diptych-img-right"></div>
       </div>
     </div>
 
-    <!-- Center Brand: Revealed as the image almost merges -->
+    <!-- Center Brand: Revealed in the artwork's upper whitespace as halves merge -->
     <div class="chintwo-hero-center-brand" id="chintwo-hero-center-brand" aria-label="Chintwo Brand">
       <div class="chintwo-hero-center-brand-inner">
-        <img src="/assets/images/chintwo_emblem.svg" alt="Chintwo Emblem" width="60" height="64" class="chintwo-hero-center-emblem">
+        <img src="/assets/images/chintwo_emblem.svg" alt="Chintwo Emblem" width="50" height="54" class="chintwo-hero-center-emblem">
         <span class="chintwo-hero-center-name">CHINTWO</span>
         <span class="chintwo-hero-center-sub">STUDIO • FINE ART</span>
       </div>
@@ -2230,26 +2257,19 @@
 
   function getBaseOffset() {
     var w = window.innerWidth;
-    if (w > 1200) return 260;
-    if (w > 810) return 180;
-    return Math.min(110, w * 0.28);
+    if (w > 1200) return 240;
+    if (w > 810) return 160;
+    return Math.min(85, w * 0.22);
   }
 
   function getBaseRot() {
     var w = window.innerWidth;
-    if (w > 810) return 5;
-    return 3;
+    if (w > 810) return 4;
+    return 2.5;
   }
 
   function getTargetScale() {
-    var winW = window.innerWidth;
-    var winH = window.innerHeight;
-    var baseH = winW > 810 ? Math.min(500, winH * 0.54) : Math.min(360, winH * 0.46);
-    var halfW = baseH * 0.619285;
-    var totalW = halfW * 2;
-    var scaleX = winW / totalW;
-    var scaleY = winH / baseH;
-    return Math.max(scaleX, scaleY) * 1.05;
+    return 1.05;
   }
 
   function update() {
@@ -2266,8 +2286,7 @@
     var baseRot = getBaseRot();
     var rot = (1 - ease) * baseRot;
 
-    var targetScale = getTargetScale();
-    var scale = 1 + (targetScale - 1) * ease;
+    var scale = 0.96 + 0.08 * ease;
 
     // Direct style transforms: anchored at seam edges to prevent overlap
     if (leftHalf && rightHalf) {
@@ -2278,22 +2297,30 @@
       leftHalf.style.borderRadius = radiusVal + 'px 0 0 ' + radiusVal + 'px';
       rightHalf.style.borderRadius = '0 ' + radiusVal + 'px ' + radiusVal + 'px 0';
 
-      var shadowOp = (0.28 * (1 - ease)).toFixed(3);
+      var shadowOp = (0.24 * (1 - ease)).toFixed(3);
       leftHalf.style.boxShadow = '-12px 20px 50px rgba(20, 20, 24, ' + shadowOp + ')';
       rightHalf.style.boxShadow = '12px 20px 50px rgba(20, 20, 24, ' + shadowOp + ')';
     }
 
-    // Logo & Brand Lockup: Placed on top as the two images combine, settling at the center in the end
+    // Logo & Brand Lockup: Appears in the artwork's upper whitespace as the two halves come together
     if (centerBrand) {
-      if (progress >= 0.65) {
-        var brandProgress = Math.min(1, (progress - 0.65) / 0.28);
-        var brandScale = 0.88 + 0.12 * brandProgress;
-        centerBrand.style.opacity = brandProgress.toFixed(3);
-        centerBrand.style.transform = 'translate(-50%, -50%) scale(' + brandScale.toFixed(3) + ')';
-        centerBrand.style.pointerEvents = brandProgress > 0.8 ? 'auto' : 'none';
+      var isDesktop = window.innerWidth > 810;
+      var baseH = isDesktop ? Math.min(495, window.innerHeight * 0.56) : Math.min(520, window.innerHeight * 0.68);
+      var targetY = isDesktop ? -(baseH * 0.26) : -(baseH * 0.17);
+
+      if (progress >= 0.40) {
+        var brandProgress = Math.min(1, Math.max(0, (progress - 0.40) / 0.50));
+        var brandEase = Math.sin((brandProgress * Math.PI) / 2);
+        var brandScale = 0.90 + 0.10 * brandEase;
+        var yShift = (1 - brandEase) * 12;
+
+        centerBrand.style.opacity = brandEase.toFixed(3);
+        centerBrand.style.transform = 'translate(-50%, calc(-50% + ' + (targetY + yShift).toFixed(1) + 'px)) scale(' + brandScale.toFixed(3) + ')';
+        centerBrand.style.pointerEvents = brandProgress > 0.85 ? 'auto' : 'none';
       } else {
         centerBrand.style.opacity = '0';
-        centerBrand.style.transform = 'translate(-50%, -50%) scale(0.85)';
+        var initY = targetY + 12;
+        centerBrand.style.transform = 'translate(-50%, calc(-50% + ' + initY.toFixed(1) + 'px)) scale(0.90)';
         centerBrand.style.pointerEvents = 'none';
       }
     }
