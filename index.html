@@ -861,86 +861,79 @@
     justify-content: center !important;
   }
 
-  /* DIPTYCH UNIFICATION WRAPPER */
+  /* FULL-SCREEN DIPTYCH UNIFICATION WRAPPER */
   .chintwo-diptych-unification-wrapper {
     position: absolute !important;
-    top: 50% !important;
-    left: 50% !important;
-    transform: translate(-50%, -50%) !important;
-    width: 0 !important;
-    height: 0 !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    overflow: hidden !important;
     pointer-events: none !important;
     z-index: 12 !important;
   }
 
-  .chintwo-diptych-half {
+  /* LEFT HALF: Occupies left 50vw and full 100vh */
+  .chintwo-diptych-half.chintwo-diptych-left {
     position: absolute !important;
     top: 0 !important;
-    width: min(440px, 43vw) !important;
-    height: min(495px, 56vh) !important;
-    aspect-ratio: 8 / 9 !important;
+    left: 0 !important;
+    width: 50.1vw !important;
+    height: 100vh !important;
     overflow: hidden !important;
-    will-change: transform, border-radius, box-shadow !important;
-    backface-visibility: hidden !important;
-    -webkit-backface-visibility: hidden !important;
+    will-change: transform, box-shadow !important;
+    z-index: 14 !important;
   }
 
-  @media (max-width: 810px) {
-    .chintwo-diptych-half {
-      width: min(150px, 43vw) !important;
-      height: min(520px, 68vh) !important;
-      aspect-ratio: 9 / 32 !important;
-    }
+  /* RIGHT HALF: Occupies right 50vw and full 100vh */
+  .chintwo-diptych-half.chintwo-diptych-right {
+    position: absolute !important;
+    top: 0 !important;
+    left: 50vw !important;
+    width: 50.1vw !important;
+    height: 100vh !important;
+    overflow: hidden !important;
+    will-change: transform, box-shadow !important;
+    z-index: 14 !important;
   }
 
-  /* Anchored at seam edges so scaling expands outward without overlapping */
-  .chintwo-diptych-left {
-    left: 0 !important;
-    transform-origin: 100% 50% !important;
-    transform: translate(-100%, -50%);
-  }
-
-  .chintwo-diptych-right {
-    left: 0 !important;
-    transform-origin: 0% 50% !important;
-    transform: translate(0%, -50%);
-  }
-
+  /* IMAGE PANES: Full viewport cover (100vw x 100vh) */
   .chintwo-diptych-img-pane {
     position: absolute !important;
     top: 0 !important;
-    left: 0 !important;
-    width: 100% !important;
-    height: 100% !important;
-    background-size: 200% 100% !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    background-size: cover !important;
+    background-position: center bottom !important;
     background-repeat: no-repeat !important;
     background-image: url('/assets/images/hero_landscape.webp') !important;
   }
 
-  .chintwo-diptych-left .chintwo-diptych-img-pane,
+  /* Left half inner image starts at screen left (0) */
   .chintwo-diptych-img-left {
-    background-position: left center !important;
+    left: 0 !important;
   }
 
-  .chintwo-diptych-right .chintwo-diptych-img-pane,
+  /* Right half inner image is offset by -50vw so its right half displays */
   .chintwo-diptych-img-right {
-    background-position: right center !important;
+    left: -50vw !important;
   }
 
   @media (max-width: 810px) {
     .chintwo-diptych-img-pane {
       background-image: url('/assets/images/hero_portrait.webp') !important;
+      background-position: center bottom !important;
     }
   }
 
-  /* HERO BRAND LOCKUP: Positioned seamlessly inside the artwork's upper whitespace */
+  /* HERO BRAND LOCKUP: Prominently situated in the artwork's upper whitespace */
   .chintwo-hero-center-brand {
     position: absolute !important;
-    top: 50% !important;
+    top: 24vh !important;
     left: 50% !important;
-    transform: translate(-50%, calc(-50% - 130px)) scale(0.92) !important;
-    opacity: 0 !important;
-    pointer-events: none !important;
+    transform: translate(-50%, -50%) !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
     z-index: 30 !important;
     text-align: center !important;
     width: auto !important;
@@ -955,61 +948,62 @@
     justify-content: center !important;
     padding: 0 !important;
     background: transparent !important;
-    backdrop-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-    border-radius: 0 !important;
     border: none !important;
     box-shadow: none !important;
   }
 
   .chintwo-hero-center-emblem {
-    width: 50px !important;
-    height: 54px !important;
+    width: 64px !important;
+    height: 68px !important;
     object-fit: contain !important;
-    margin-bottom: 10px !important;
-    filter: drop-shadow(0 2px 6px rgba(18, 19, 22, 0.12)) !important;
+    margin: 0 auto 12px auto !important;
+    filter: drop-shadow(0 2px 8px rgba(18, 19, 22, 0.15)) !important;
+    display: block !important;
   }
 
   .chintwo-hero-center-name {
     font-family: 'Playfair Display', Georgia, serif !important;
-    font-size: 32px !important;
+    font-size: clamp(34px, 4.2vw, 48px) !important;
     font-weight: 700 !important;
-    letter-spacing: 0.26em !important;
+    letter-spacing: 0.28em !important;
     color: #121316 !important;
     margin: 0 0 6px 0 !important;
     line-height: 1.1 !important;
-    text-indent: 0.26em !important;
+    text-indent: 0.28em !important;
+    display: block !important;
+    text-shadow: 0 1px 12px rgba(255, 255, 255, 0.9) !important;
   }
 
   .chintwo-hero-center-sub {
     font-family: 'Inter', sans-serif !important;
-    font-size: 10px !important;
+    font-size: clamp(10px, 1.2vw, 12px) !important;
     font-weight: 600 !important;
-    letter-spacing: 0.32em !important;
-    color: rgba(18, 19, 22, 0.65) !important;
+    letter-spacing: 0.36em !important;
+    color: rgba(18, 19, 22, 0.75) !important;
     text-transform: uppercase !important;
-    text-indent: 0.32em !important;
+    text-indent: 0.36em !important;
+    display: block !important;
   }
 
   @media (max-width: 810px) {
     .chintwo-hero-center-brand {
-      transform: translate(-50%, calc(-50% - 88px)) scale(0.92) !important;
+      top: 20vh !important;
     }
     .chintwo-hero-center-emblem {
-      width: 40px !important;
-      height: 44px !important;
+      width: 48px !important;
+      height: 52px !important;
       margin-bottom: 8px !important;
     }
     .chintwo-hero-center-name {
-      font-size: 24px !important;
+      font-size: 26px !important;
       letter-spacing: 0.22em !important;
       text-indent: 0.22em !important;
       margin-bottom: 4px !important;
     }
     .chintwo-hero-center-sub {
-      font-size: 8.5px !important;
-      letter-spacing: 0.26em !important;
-      text-indent: 0.26em !important;
+      font-size: 9px !important;
+      letter-spacing: 0.28em !important;
+      text-indent: 0.28em !important;
     }
   }
 
@@ -1997,8 +1991,8 @@
     <!-- Center Brand: Revealed in the artwork's upper whitespace as halves merge -->
     <div class="chintwo-hero-center-brand" id="chintwo-hero-center-brand" aria-label="Chintwo Brand">
       <div class="chintwo-hero-center-brand-inner">
-        <img src="/assets/images/chintwo_emblem.svg" alt="Chintwo Emblem" width="50" height="54" class="chintwo-hero-center-emblem">
-        <span class="chintwo-hero-center-name">CHINTWO</span>
+        <img src="/assets/images/chintwo_emblem.svg" alt="Chintwo Emblem" width="64" height="68" class="chintwo-hero-center-emblem">
+        <h1 class="chintwo-hero-center-name">CHINTWO</h1>
         <span class="chintwo-hero-center-sub">STUDIO • FINE ART</span>
       </div>
     </div>
@@ -2251,25 +2245,12 @@
   var currentScroll = 0;
   var isTicking = false;
 
-  // CRITICAL: Lock transform origins to seam edges so scaling NEVER overlaps
-  if (leftHalf) leftHalf.style.transformOrigin = '100% 50%';
-  if (rightHalf) rightHalf.style.transformOrigin = '0% 50%';
-
+  // Full-screen horizontal split controller
   function getBaseOffset() {
     var w = window.innerWidth;
-    if (w > 1200) return 240;
-    if (w > 810) return 160;
-    return Math.min(85, w * 0.22);
-  }
-
-  function getBaseRot() {
-    var w = window.innerWidth;
-    if (w > 810) return 4;
-    return 2.5;
-  }
-
-  function getTargetScale() {
-    return 1.05;
+    if (w > 1200) return 90;
+    if (w > 810) return 70;
+    return 40;
   }
 
   function update() {
@@ -2283,46 +2264,25 @@
 
     var baseOffset = getBaseOffset();
     var offset = (1 - ease) * baseOffset;
-    var baseRot = getBaseRot();
-    var rot = (1 - ease) * baseRot;
 
-    var scale = 0.96 + 0.08 * ease;
-
-    // Direct style transforms: anchored at seam edges to prevent overlap
+    // Full-screen horizontal translation: halves glide together and meet at center (50vw)
     if (leftHalf && rightHalf) {
-      leftHalf.style.transform = 'translate(calc(-100% - ' + offset.toFixed(2) + 'px), -50%) rotate(' + (-rot).toFixed(2) + 'deg) scale(' + scale.toFixed(4) + ')';
-      rightHalf.style.transform = 'translate(calc(0% + ' + offset.toFixed(2) + 'px), -50%) rotate(' + rot.toFixed(2) + 'deg) scale(' + scale.toFixed(4) + ')';
-
-      var radiusVal = (4 * (1 - ease)).toFixed(1);
-      leftHalf.style.borderRadius = radiusVal + 'px 0 0 ' + radiusVal + 'px';
-      rightHalf.style.borderRadius = '0 ' + radiusVal + 'px ' + radiusVal + 'px 0';
+      leftHalf.style.transform = 'translateX(-' + offset.toFixed(2) + 'px)';
+      rightHalf.style.transform = 'translateX(' + offset.toFixed(2) + 'px)';
 
       var shadowOp = (0.24 * (1 - ease)).toFixed(3);
-      leftHalf.style.boxShadow = '-12px 20px 50px rgba(20, 20, 24, ' + shadowOp + ')';
-      rightHalf.style.boxShadow = '12px 20px 50px rgba(20, 20, 24, ' + shadowOp + ')';
+      leftHalf.style.boxShadow = (14 * (1 - ease)).toFixed(1) + 'px 0 40px rgba(18, 19, 22, ' + shadowOp + ')';
+      rightHalf.style.boxShadow = '-' + (14 * (1 - ease)).toFixed(1) + 'px 0 40px rgba(18, 19, 22, ' + shadowOp + ')';
     }
 
-    // Logo & Brand Lockup: Appears in the artwork's upper whitespace as the two halves come together
+    // Logo & Brand Lockup: Prominently situated in the upper whitespace
     if (centerBrand) {
-      var isDesktop = window.innerWidth > 810;
-      var baseH = isDesktop ? Math.min(495, window.innerHeight * 0.56) : Math.min(520, window.innerHeight * 0.68);
-      var targetY = isDesktop ? -(baseH * 0.26) : -(baseH * 0.17);
+      var brandOpacity = 0.70 + 0.30 * ease;
+      var brandScale = 0.95 + 0.05 * ease;
 
-      if (progress >= 0.40) {
-        var brandProgress = Math.min(1, Math.max(0, (progress - 0.40) / 0.50));
-        var brandEase = Math.sin((brandProgress * Math.PI) / 2);
-        var brandScale = 0.90 + 0.10 * brandEase;
-        var yShift = (1 - brandEase) * 12;
-
-        centerBrand.style.opacity = brandEase.toFixed(3);
-        centerBrand.style.transform = 'translate(-50%, calc(-50% + ' + (targetY + yShift).toFixed(1) + 'px)) scale(' + brandScale.toFixed(3) + ')';
-        centerBrand.style.pointerEvents = brandProgress > 0.85 ? 'auto' : 'none';
-      } else {
-        centerBrand.style.opacity = '0';
-        var initY = targetY + 12;
-        centerBrand.style.transform = 'translate(-50%, calc(-50% + ' + initY.toFixed(1) + 'px)) scale(0.90)';
-        centerBrand.style.pointerEvents = 'none';
-      }
+      centerBrand.style.opacity = brandOpacity.toFixed(3);
+      centerBrand.style.transform = 'translate(-50%, -50%) scale(' + brandScale.toFixed(3) + ')';
+      centerBrand.style.pointerEvents = 'auto';
     }
 
     // Taskbar: Reveals once the image almost merges and the logo reaches the center (progress >= 0.90)
