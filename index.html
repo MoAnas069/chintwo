@@ -449,18 +449,33 @@
     box-sizing: border-box !important;
   }
 
-  /* CAROUSEL OUTER SIZING & HINT */
-  .chintwo-carousel-outer {
+  /* ACCORDION GALLERY: Full desktop flow, open layout, unboxed */
+  .chintwo-accordion-wrapper {
     width: 100% !important;
-    height: clamp(400px, 58vh, 580px) !important;
     position: relative !important;
-    margin: 24px 0 16px !important;
-    overflow: hidden !important;
+    margin: 36px 0 20px !important;
+    box-sizing: border-box !important;
+  }
+  #accordion-gallery-root {
+    width: 100% !important;
+    height: clamp(520px, 60vh, 680px) !important;
+    position: relative !important;
+  }
+  .chintwo-gallery-hint {
+    text-align: center !important;
+    margin-top: 18px !important;
+    font-family: 'Space Mono', monospace !important;
+    font-size: 11px !important;
+    letter-spacing: 0.14em !important;
+    text-transform: uppercase !important;
+    color: rgba(18, 19, 22, 0.45) !important;
   }
   @media (max-width: 768px) {
-    .chintwo-carousel-outer {
-      height: clamp(380px, 52vh, 460px) !important;
-      margin: 16px 0 12px !important;
+    #accordion-gallery-root {
+      height: auto !important;
+    }
+    .chintwo-accordion-wrapper {
+      margin: 20px 0 16px !important;
     }
   }
 
@@ -1072,32 +1087,37 @@
     }
   }
 
-  /* SELECTED WORKS: FlexCarousel Section Ground */
+  /* SELECTED WORKS: AccordionGallery Section Ground (Unboxed, expansive desktop layout) */
   .chintwo-work-section {
-    padding: 100px 24px 80px !important;
-    background-color: #f5f2eb !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 100px clamp(20px, 4vw, 70px) 80px !important;
+    background-color: #f7f5f0 !important;
     background-image: 
-      radial-gradient(ellipse at 50% 0%, rgba(255, 255, 255, 0.75) 0%, transparent 60%),
+      radial-gradient(ellipse at 50% 0%, rgba(255, 255, 255, 0.85) 0%, transparent 60%),
       url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='plaster'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.1 0 0 0 0 0.1 0 0 0 0 0.1 0 0 0 0.035 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23plaster)'/%3E%3C/svg%3E") !important;
     background-size: 100% 100%, 200px 200px !important;
     position: relative !important;
     overflow: hidden !important;
+    box-sizing: border-box !important;
   }
 
   .chintwo-work-container {
-    max-width: 1440px !important;
+    width: 100% !important;
+    max-width: 1600px !important;
     margin: 0 auto !important;
+    box-sizing: border-box !important;
   }
 
   .chintwo-work-header {
     text-align: center !important;
-    max-width: 820px !important;
-    margin: 0 auto 20px !important;
+    max-width: 840px !important;
+    margin: 0 auto 12px !important;
   }
 
   .chintwo-work-footer-cta {
     text-align: center !important;
-    margin-top: 40px !important;
+    margin-top: 36px !important;
   }
 
   /* ABOUT ME: Full Width, Fine-Art Linen Ground, Zero Black Sections */
@@ -1619,7 +1639,8 @@
     }
   }
 </style>
-<link rel="stylesheet" href="/assets/styles/FlexCarousel.css">
+<link rel="stylesheet" href="/assets/styles/AccordionGallery.css">
+<script src="/assets/scripts/gsap.min.js"></script>
 </head>
 <body>
 
@@ -1695,14 +1716,14 @@
     <div class="chintwo-work-header">
       <span class="chintwo-section-tag">01 / SELECTED WORKS</span>
       <h2 class="chintwo-section-heading">Selected Works &amp; Editions</h2>
-      <p class="chintwo-section-sub">Interactive liquid lens gallery • Drag, scroll, or click to explore the collection</p>
+      <p class="chintwo-section-sub">Dynamic spatial gallery • Hover or tap across panels to expand artwork</p>
     </div>
 
-    <!-- FlexCarousel Container from React Bits -->
-    <div class="chintwo-carousel-outer">
-      <div id="flex-carousel-root" style="width: 100%; height: 100%; position: relative;"></div>
-      <div class="chintwo-carousel-hint" aria-hidden="true">
-        <span>← Drag or swipe cards • Tap to focus →</span>
+    <!-- AccordionGallery Container from React Bits (Fluid, Unboxed Desktop Layout) -->
+    <div class="chintwo-accordion-wrapper">
+      <div id="accordion-gallery-root"></div>
+      <div class="chintwo-gallery-hint" aria-hidden="true">
+        <span>← Hover across panels to expand • Click to explore provenance &amp; archive →</span>
       </div>
     </div>
 
@@ -2049,77 +2070,73 @@
 })();
 </script>
 
-<!-- FlexCarousel Integration & Storytelling Controller -->
+<!-- AccordionGallery Integration from React Bits -->
 <script type="module">
-  import { initFlexCarousel } from '/assets/scripts/FlexCarousel.js';
+  import { initAccordionGallery } from '/assets/scripts/AccordionGallery.js';
 
-  // 1. Initialize FlexCarousel from React Bits
-  const flexItems = [
+  // Initialize AccordionGallery from React Bits
+  const accordionItems = [
     {
-      src: '/assets/images/LcTxyeMFm5sIiiSm4Iop5zds.webp',
-      alt: 'The Silent Hour',
-      title: 'The Silent Hour',
-      subtitle: 'Gouache & Monoprint on Archival Rag'
+      image: '/assets/images/LcTxyeMFm5sIiiSm4Iop5zds.webp',
+      label: 'The Silent Hour',
+      subtitle: 'Gouache & Monoprint • 2024',
+      link: '/portfolio/the-silent-hour',
+      alt: 'The Silent Hour by Chintwo'
     },
     {
-      src: '/assets/images/bg5zKXacbxF9hxgxh95vSeYyKHM.webp',
-      alt: 'The Cartographer’s Dream',
-      title: 'The Cartographer’s Dream',
-      subtitle: 'Earth Pigment Wash & Graphite'
+      image: '/assets/images/bg5zKXacbxF9hxgxh95vSeYyKHM.webp',
+      label: 'The Cartographer’s Dream',
+      subtitle: 'Earth Pigment Wash • 2024',
+      link: '/portfolio/the-cartographers-dream',
+      alt: 'The Cartographer’s Dream by Chintwo'
     },
     {
-      src: '/assets/images/KprYkGkimFEN8DANdFVOfpc2ro.webp',
-      alt: 'Nocturne for Two Solitudes',
-      title: 'Nocturne for Two Solitudes',
-      subtitle: 'Oil & Raw Pigment on Belgian Linen'
+      image: '/assets/images/KprYkGkimFEN8DANdFVOfpc2ro.webp',
+      label: 'Nocturne for Two Solitudes',
+      subtitle: 'Oil & Raw Pigment • 2023',
+      link: '/portfolio/nocturne-for-two-solitudes',
+      alt: 'Nocturne for Two Solitudes by Chintwo'
     },
     {
-      src: '/assets/images/HGXt3zFDtrXxquN5BVsRFCkypC4.webp',
-      alt: 'Arrival in the Cold Mist',
-      title: 'Arrival in the Cold Mist',
-      subtitle: 'Encaustic, Ink & Cold Wax on Panel'
+      image: '/assets/images/HGXt3zFDtrXxquN5BVsRFCkypC4.webp',
+      label: 'Arrival in the Cold Mist',
+      subtitle: 'Encaustic & Cold Wax • 2023',
+      link: '/portfolio/arrival-in-the-cold-mist',
+      alt: 'Arrival in the Cold Mist by Chintwo'
     },
     {
-      src: '/assets/images/coNU5GEVyZAGUw45WDGQjFl1OPI.webp',
-      alt: 'Fine Art Editions',
-      title: 'Fine Art Editions',
-      subtitle: 'Limited Hand-Pulled Silkscreens'
+      image: '/assets/images/coNU5GEVyZAGUw45WDGQjFl1OPI.webp',
+      label: 'Fine Art Editions',
+      subtitle: 'Limited Hand-Pulled Prints',
+      link: '/portfolio/fine-art-editions',
+      alt: 'Fine Art Editions by Chintwo'
     },
     {
-      src: '/assets/images/art_silent_hour.webp',
-      alt: 'Atmospheric Chiaroscuro',
-      title: 'Atmospheric Chiaroscuro',
-      subtitle: 'London Atelier Presentation'
-    },
-    {
-      src: '/assets/images/ddJPEQaAywxy2EeDTISwapy0.webp',
-      alt: 'Monoprint Synthesis',
-      title: 'Monoprint Synthesis',
-      subtitle: 'Material & Texture Studies'
-    },
-    {
-      src: '/assets/images/RM0tlsI2ZKyzUMKpmterd2XVc.webp',
-      alt: 'Quiet Resonances',
-      title: 'Quiet Resonances',
-      subtitle: 'Solo Collection'
+      image: '/assets/images/art_silent_hour.webp',
+      label: 'Atmospheric Chiaroscuro',
+      subtitle: 'London Atelier Presentation',
+      link: '/portfolio',
+      alt: 'Atmospheric Chiaroscuro by Chintwo'
     }
   ];
 
-  const carouselRoot = document.getElementById('flex-carousel-root');
-  if (carouselRoot) {
-    initFlexCarousel(carouselRoot, {
-      items: flexItems,
-      preset: 'liquid',
-      intro: 'rise',
-      cardHeight: 0.52,
-      gap: 16,
-      squeeze: 0.2,
-      focusOnClick: true,
-      captions: true,
-      captureWheel: true,
-      onSelect: (index, item) => {
-        console.log('Selected work:', item.title);
-      }
+  const galleryRoot = document.getElementById('accordion-gallery-root');
+  if (galleryRoot) {
+    initAccordionGallery(galleryRoot, {
+      items: accordionItems,
+      defaultIndex: 1,
+      expandRatio: 0.54,
+      trigger: 'hover',
+      height: 580,
+      gap: 12,
+      radius: 16,
+      accentColor: '#ffffff',
+      overlayColor: '#060010',
+      textColor: '#ffffff',
+      grayscale: true,
+      tilt: 8,
+      parallax: 0.5,
+      stagger: 0.06
     });
   }
 
