@@ -460,94 +460,86 @@
       max-width: 1240px;
       margin: 0 auto;
     }
-    .chintwo-footer-grid {
-      display: grid;
-      grid-template-columns: 1.8fr 1fr 1fr 1.2fr;
-      gap: 48px;
+    /* STANDARDIZED ATELIER FOOTER */
+    .chintwo-footer-standard {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      max-width: 680px;
+      margin: 0 auto 50px auto;
+    }
+    .chintwo-footer-identity {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    .chintwo-footer-brand-wrap {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      margin-bottom: 16px;
+    }
+    .chintwo-footer-emblem {
+      width: 32px;
+      height: 34px;
+      object-fit: contain;
     }
     .chintwo-footer-brand {
       font-family: 'Playfair Display', Georgia, serif;
       font-size: 26px;
-      letter-spacing: 0.22em;
+      letter-spacing: 0.18em;
       font-weight: 700;
       color: #ffffff;
       text-decoration: none;
-      display: inline-block;
-      margin-bottom: 16px;
     }
     .chintwo-footer-statement {
+      font-family: 'Inter', sans-serif;
       font-size: 14px;
       line-height: 1.7;
-      color: rgba(255, 255, 255, 0.7);
-      margin-bottom: 14px;
+      color: rgba(255, 255, 255, 0.72);
+      margin: 0 0 12px 0;
     }
     .chintwo-footer-substatement {
-      font-size: 12px;
-      color: rgba(255, 255, 255, 0.45);
-      margin-bottom: 18px;
+      font-family: 'Inter', sans-serif;
+      font-size: 12.5px;
+      line-height: 1.6;
+      color: rgba(255, 255, 255, 0.5);
+      margin: 0 0 20px 0;
+    }
+    .chintwo-footer-email-link {
+      color: #bfa15f;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(191, 161, 95, 0.4);
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+    .chintwo-footer-email-link:hover {
+      color: #dfc88e;
+      border-color: #dfc88e;
     }
     .chintwo-footer-status {
       display: inline-flex;
       align-items: center;
       gap: 8px;
+      padding: 6px 14px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 999px;
+      font-family: 'Space Mono', monospace;
       font-size: 11px;
-      letter-spacing: 0.08em;
-      color: #bfa15f;
-      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.8);
     }
     .chintwo-status-dot {
       width: 6px;
       height: 6px;
       border-radius: 50%;
-      background: #bfa15f;
-      box-shadow: 0 0 8px #bfa15f;
-    }
-    .chintwo-footer-col-title {
-      display: block;
-      font-size: 11px;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      font-weight: 600;
-      color: rgba(255, 255, 255, 0.4);
-      margin-bottom: 18px;
-    }
-    .chintwo-footer-links {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-    .chintwo-footer-links a {
-      color: rgba(255, 255, 255, 0.75);
-      text-decoration: none;
-      font-size: 13px;
-      transition: color 0.2s ease;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .chintwo-footer-links a:hover {
-      color: #ffffff;
-    }
-    .chintwo-link-num {
-      font-size: 10px;
-      color: rgba(255, 255, 255, 0.35);
-    }
-    .chintwo-footer-contact-item {
-      font-size: 13px;
-      line-height: 1.6;
-      color: rgba(255, 255, 255, 0.75);
-      margin-bottom: 12px;
-    }
-    .chintwo-footer-email {
-      color: #bfa15f;
-      text-decoration: none;
-      font-weight: 500;
-      border-bottom: 1px solid rgba(191, 161, 95, 0.4);
-      padding-bottom: 1px;
+      background: #4ade80;
+      box-shadow: 0 0 8px rgba(74, 222, 128, 0.6);
     }
     .chintwo-footer-bottom {
-      margin-top: 50px;
+      margin-top: 30px;
       padding-top: 28px;
       border-top: 1px solid rgba(255, 255, 255, 0.08);
       display: flex;
@@ -555,46 +547,35 @@
       align-items: center;
       font-size: 11px;
       letter-spacing: 0.06em;
-      color: rgba(255, 255, 255, 0.4);
+      color: rgba(255, 255, 255, 0.45);
       flex-wrap: wrap;
       gap: 16px;
     }
+    .chintwo-footer-motto {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      color: rgba(191, 161, 95, 0.6);
+    }
     .chintwo-footer-back-to-top {
       background: transparent;
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      color: rgba(255, 255, 255, 0.8);
-      padding: 6px 14px;
-      border-radius: 100px;
-      font-size: 11px;
+      border: none;
+      color: rgba(255, 255, 255, 0.65);
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
       cursor: pointer;
-      transition: all 0.2s ease;
+      transition: color 0.2s ease;
+      padding: 0;
     }
     .chintwo-footer-back-to-top:hover {
-      background: rgba(255, 255, 255, 0.1);
       color: #ffffff;
     }
 
-    @media (max-width: 768px) {
-      .chintwo-footer {
-        padding: 50px 20px 30px;
-      }
-      .chintwo-footer-grid {
-        grid-template-columns: 1fr;
-        gap: 36px;
-      }
-      .chintwo-footer-col--identity {
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        padding-bottom: 24px;
-      }
+    @media (max-width: 600px) {
       .chintwo-footer-bottom {
         flex-direction: column;
-        align-items: flex-start;
-        gap: 16px;
-        margin-top: 36px;
-        padding-top: 24px;
-      }
-      .chintwo-footer-back-to-top {
-        align-self: flex-start;
+        gap: 14px;
+        text-align: center;
       }
     }
   </style>
@@ -784,59 +765,21 @@
 
   </main>
 
-  <!-- Universal Footer -->
+  <!-- Universal Standardized Footer -->
   <footer class="chintwo-footer" role="contentinfo" aria-label="Site footer">
     <div class="chintwo-footer-container">
-      <div class="chintwo-footer-grid">
-        <!-- Col 1: Studio Identity -->
-        <div class="chintwo-footer-col chintwo-footer-col--identity">
-          <a href="/" class="chintwo-footer-brand">CHINTWO</a>
-          <p class="chintwo-footer-statement">Contemporary visual artist &amp; storyteller specializing in atmospheric chiaroscuro compositions, Japanese washi printmaking, and limited archival editions.</p>
-          <p class="chintwo-footer-substatement">London, United Kingdom • Independent Atelier &amp; International Representation</p>
+      <div class="chintwo-footer-standard">
+        <div class="chintwo-footer-identity">
+          <a href="/" class="chintwo-footer-brand-wrap" aria-label="Chintwo Atelier">
+            <img src="/assets/images/chintwo_emblem.svg" alt="Chintwo Emblem" width="34" height="36" class="chintwo-footer-emblem">
+            <span class="chintwo-footer-brand">CHINTWO</span>
+          </a>
+          <p class="chintwo-footer-statement">Contemporary visual artist &amp; storyteller specializing in monumental oil canvases, atmospheric chiaroscuro compositions, and limited archival editions.</p>
+          <p class="chintwo-footer-substatement">London &amp; Kyoto Atelier • Private viewings by appointment • Inquiries: <a href="mailto:studio@chintwo.com" class="chintwo-footer-email-link">studio@chintwo.com</a></p>
           <div class="chintwo-footer-status">
             <span class="chintwo-status-dot"></span>
             <span>Studio Active • Inquiries &amp; Commissions Open</span>
           </div>
-        </div>
-
-        <!-- Col 2: Navigation Index -->
-        <div class="chintwo-footer-col">
-          <span class="chintwo-footer-col-title">Navigation</span>
-          <ul class="chintwo-footer-links">
-            <li><a href="/portfolio"><span class="chintwo-link-num">01</span> Selected Works</a></li>
-            <li><a href="/about"><span class="chintwo-link-num">02</span> The Artist</a></li>
-            <li><a href="/blog"><span class="chintwo-link-num">03</span> Field Notes &amp; Journal</a></li>
-            <li><a href="/portfolio/fine-art-editions"><span class="chintwo-link-num">04</span> Archival Editions</a></li>
-            <li><a href="/contact"><span class="chintwo-link-num">05</span> Studio Inquiries</a></li>
-            <li><a href="/admin"><span class="chintwo-link-num">06</span> Studio Portal</a></li>
-          </ul>
-        </div>
-
-        <!-- Col 3: Selected Archives -->
-        <div class="chintwo-footer-col">
-          <span class="chintwo-footer-col-title">Editions &amp; Essays</span>
-          <ul class="chintwo-footer-links">
-            <li><a href="/portfolio/the-silent-hour">The Silent Hour</a></li>
-            <li><a href="/portfolio/arrival-in-the-cold-mist">Arrival in Cold Mist</a></li>
-            <li><a href="/portfolio/the-cartographers-dream">Cartographer’s Dream</a></li>
-            <li><a href="/blog/on-the-weight-of-quiet-images">Weight of Quiet Images</a></li>
-            <li><a href="/blog/the-poetry-of-chiaroscuro">Poetry of Chiaroscuro</a></li>
-            <li><a href="/blog/monoprint-textures-and-synthesis">Monoprint Synthesis</a></li>
-          </ul>
-        </div>
-
-        <!-- Col 4: Atelier & Representation -->
-        <div class="chintwo-footer-col">
-          <span class="chintwo-footer-col-title">Studio &amp; Representation</span>
-          <p class="chintwo-footer-contact-item">
-            <strong>London Atelier</strong><br>
-            Hackney Downs Studios, Amhurst Terrace<br>
-            London E8 2BT, United Kingdom
-          </p>
-          <p class="chintwo-footer-contact-item">
-            <strong>Acquisitions &amp; Gallery Inquiries</strong><br>
-            <a href="mailto:studio@chintwo.com" class="chintwo-footer-email">studio@chintwo.com</a>
-          </p>
         </div>
       </div>
 

@@ -60,11 +60,55 @@ export const DEFAULT_STUDIO_SETTINGS = {
   commissionStatusActive: true,
   announcementActive: false,
   announcementText: "Upcoming Solo Exhibition: 'The Weight of Quiet Images' at Kyoto Contemporary, Autumn 2026.",
+  artistBio: "Chintwo is a contemporary visual artist working at the intersection of traditional East Asian sumi printmaking and atmospheric narrative. Rooted in the Kyoto concept of Ma—the charged stillness between forms—each creation investigates negative space, tactile washi fibers, and the emotional resonance of solitude.",
+  heroStatement: "Contemporary Visual Artist & Illustrator • London & Kyoto",
+  adminUsername: "chintwo",
+  adminPasswordHash: "45c2ce93a130c5b8ad910ba3562858c3f42c946986ea14755dd357753c914e6c", // sha256('atelier2026!')
   socialInstagram: "https://www.instagram.com/chintwo.com",
   socialX: "https://x.com/chintwo",
   socialLinkedIn: "https://www.linkedin.com/in/chintwosankeerthanam",
   updatedAt: new Date().toISOString()
 };
+
+// Default Journal Posts (Field Notes & Essays)
+export const DEFAULT_JOURNAL_POSTS = [
+  {
+    id: "on-the-weight-of-quiet-images",
+    slug: "on-the-weight-of-quiet-images",
+    title: "On the Weight of Quiet Images",
+    badge: "ESSAY • 5 MIN READ",
+    date: "OCTOBER 2026 • STUDIO ESSAY",
+    image: "/assets/images/fDh0jZF0V8L0VApCB9oAHIFgd8.webp",
+    excerpt: "An inquiry into visual restraint, negative space (Ma), and why quiet pictures possess an enduring, contemplative weight in an era of relentless sensory noise.",
+    author: "Chintwo",
+    order: 1,
+    content: "The modern world is characterized by an escalating velocity of images. In this essay, we contemplate the aesthetic power of restraint, negative space (Ma), and the quiet resonance that remains after sensory noise has receded."
+  },
+  {
+    id: "the-poetry-of-chiaroscuro",
+    slug: "the-poetry-of-chiaroscuro",
+    title: "The Poetry of Chiaroscuro: Framing Solitude in Book Covers",
+    badge: "PROCESS • 7 MIN READ",
+    date: "SEPTEMBER 2026 • COVER ART",
+    image: "/assets/images/LcTxyeMFm5sIiiSm4Iop5zds.webp",
+    excerpt: "Deconstructing the interplay of deep shadow, singular illumination, and emotional vulnerability in literary cover illustration and narrative composition.",
+    author: "Chintwo",
+    order: 2,
+    content: "Chiaroscuro is more than a technical distribution of value; it is a metaphysical boundary. By placing characters at the liminal edge between illumination and absolute shadow, we evoke profound psychological interiority."
+  },
+  {
+    id: "monoprint-textures-and-synthesis",
+    slug: "monoprint-textures-and-synthesis",
+    title: "Monoprint Textures & Digital Synthesis",
+    badge: "TECHNIQUE • 6 MIN READ",
+    date: "AUGUST 2026 • MATERIAL STUDIES",
+    image: "/assets/images/peaa6VBBdWRSL3icJ2tpwsIXZI.webp",
+    excerpt: "Exploring the friction between hand-pulled sumi ink impressions on Echizen kozo washi and high-precision digital layers to achieve atmospheric depth.",
+    author: "Chintwo",
+    order: 3,
+    content: "The hand responds to the visceral resistance of wet mulberry paper, carbon ink, and heavy rollers. When these raw analog textures are layered with contemporary digital precision, a unique spatial atmosphere emerges."
+  }
+];
 
 // Default Artworks Catalog
 export const DEFAULT_ARTWORKS = [
@@ -242,13 +286,18 @@ export async function getStudioSettings() {
   try {
     const docSnap = await getDoc(doc(db, "settings", "studio"));
     if (docSnap.exists()) {
-      return { ...DEFAULT_STUDIO_SETTINGS, ...docSnap.data() };
+      const data = { ...DEFAULT_STUDIO_SETTINGS, ...docSnap.data() };
+      try { localStorage.setItem('chintwo_studio_settings_cache', JSON.stringify(data)); } catch (e) {}
+      return data;
     }
-    return DEFAULT_STUDIO_SETTINGS;
   } catch (err) {
-    console.warn("Using default studio settings:", err);
-    return DEFAULT_STUDIO_SETTINGS;
+    console.warn("Using cached / default studio settings:", err);
   }
+  try {
+    const local = localStorage.getItem('chintwo_studio_settings_cache');
+    if (local) return { ...DEFAULT_STUDIO_SETTINGS, ...JSON.parse(local) };
+  } catch (e) {}
+  return DEFAULT_STUDIO_SETTINGS;
 }
 
 /**
@@ -258,16 +307,26 @@ export function onStudioSettingsChange(callback) {
   try {
     return onSnapshot(doc(db, "settings", "studio"), (snap) => {
       if (snap.exists()) {
-        callback({ ...DEFAULT_STUDIO_SETTINGS, ...snap.data() });
+        const data = { ...DEFAULT_STUDIO_SETTINGS, ...snap.data() };
+        try { localStorage.setItem('chintwo_studio_settings_cache', JSON.stringify(data)); } catch (e) {}
+        callback(data);
       } else {
         callback(DEFAULT_STUDIO_SETTINGS);
       }
     }, (err) => {
       console.warn("Studio settings snapshot error:", err);
+      try {
+        const local = localStorage.getItem('chintwo_studio_settings_cache');
+        if (local) return callback({ ...DEFAULT_STUDIO_SETTINGS, ...JSON.parse(local) });
+      } catch (e) {}
       callback(DEFAULT_STUDIO_SETTINGS);
     });
   } catch (err) {
     console.warn("onStudioSettingsChange error:", err);
+    try {
+      const local = localStorage.getItem('chintwo_studio_settings_cache');
+      if (local) return callback({ ...DEFAULT_STUDIO_SETTINGS, ...JSON.parse(local) });
+    } catch (e) {}
     callback(DEFAULT_STUDIO_SETTINGS);
     return () => {};
   }
@@ -277,12 +336,18 @@ export function onStudioSettingsChange(callback) {
  * 5. Save Studio Configuration
  */
 export async function saveStudioSettings(newSettings) {
+  const current = await getStudioSettings();
   const merged = {
-    ...DEFAULT_STUDIO_SETTINGS,
+    ...current,
     ...newSettings,
     updatedAt: new Date().toISOString()
   };
-  await setDoc(doc(db, "settings", "studio"), merged, { merge: true });
+  try { localStorage.setItem('chintwo_studio_settings_cache', JSON.stringify(merged)); } catch (e) {}
+  try {
+    await setDoc(doc(db, "settings", "studio"), merged, { merge: true });
+  } catch (err) {
+    console.warn("Firestore saveStudioSettings fallback to localStorage:", err);
+  }
   return merged;
 }
 
@@ -294,13 +359,21 @@ export async function getArtworks() {
     const q = query(collection(db, "artworks"), orderBy("order", "asc"));
     const snap = await getDocs(q);
     if (!snap.empty) {
-      return snap.docs.map(d => ({ id: d.id, ...d.data() }));
+      const items = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+      try { localStorage.setItem('chintwo_artworks_cache', JSON.stringify(items)); } catch (e) {}
+      return items;
     }
-    return DEFAULT_ARTWORKS;
   } catch (err) {
-    console.warn("Using default artworks:", err);
-    return DEFAULT_ARTWORKS;
+    console.warn("Using cached / default artworks:", err);
   }
+  try {
+    const local = localStorage.getItem('chintwo_artworks_cache');
+    if (local) {
+      const parsed = JSON.parse(local);
+      if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+    }
+  } catch (e) {}
+  return DEFAULT_ARTWORKS;
 }
 
 /**
@@ -311,15 +384,25 @@ export function onArtworksChange(callback) {
     const q = query(collection(db, "artworks"), orderBy("order", "asc"));
     return onSnapshot(q, (snap) => {
       if (!snap.empty) {
-        callback(snap.docs.map(d => ({ id: d.id, ...d.data() })));
+        const items = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+        try { localStorage.setItem('chintwo_artworks_cache', JSON.stringify(items)); } catch (e) {}
+        callback(items);
       } else {
         callback(DEFAULT_ARTWORKS);
       }
     }, (err) => {
       console.warn("Artworks snapshot error:", err);
+      try {
+        const local = localStorage.getItem('chintwo_artworks_cache');
+        if (local) return callback(JSON.parse(local));
+      } catch (e) {}
       callback(DEFAULT_ARTWORKS);
     });
   } catch (err) {
+    try {
+      const local = localStorage.getItem('chintwo_artworks_cache');
+      if (local) return callback(JSON.parse(local));
+    } catch (e) {}
     callback(DEFAULT_ARTWORKS);
     return () => {};
   }
@@ -330,11 +413,31 @@ export function onArtworksChange(callback) {
  */
 export async function saveArtwork(artworkId, data) {
   const docId = artworkId || data.slug || `work-${Date.now()}`;
-  await setDoc(doc(db, "artworks", docId), {
+  const artworkRecord = {
     ...data,
     id: docId,
-    updatedAt: serverTimestamp()
-  }, { merge: true });
+    updatedAt: new Date().toISOString()
+  };
+
+  // Sync to local storage
+  try {
+    const items = await getArtworks();
+    const idx = items.findIndex(a => a.id === docId);
+    if (idx >= 0) items[idx] = artworkRecord;
+    else items.push(artworkRecord);
+    localStorage.setItem('chintwo_artworks_cache', JSON.stringify(items));
+  } catch (e) {}
+
+  // Sync to Firestore
+  try {
+    await setDoc(doc(db, "artworks", docId), {
+      ...data,
+      id: docId,
+      updatedAt: serverTimestamp()
+    }, { merge: true });
+  } catch (err) {
+    console.warn("Firestore saveArtwork fallback to localStorage:", err);
+  }
   return docId;
 }
 
@@ -342,7 +445,125 @@ export async function saveArtwork(artworkId, data) {
  * 9. Delete Artwork
  */
 export async function deleteArtwork(artworkId) {
-  await deleteDoc(doc(db, "artworks", artworkId));
+  try {
+    const items = await getArtworks();
+    const filtered = items.filter(a => a.id !== artworkId);
+    localStorage.setItem('chintwo_artworks_cache', JSON.stringify(filtered));
+  } catch (e) {}
+
+  try {
+    await deleteDoc(doc(db, "artworks", artworkId));
+  } catch (err) {
+    console.warn("Firestore deleteArtwork note:", err);
+  }
+  return true;
+}
+
+/**
+ * 9B. Get Journal Posts (Field Notes & Essays)
+ */
+export async function getJournalPosts() {
+  try {
+    const q = query(collection(db, "journals"), orderBy("order", "asc"));
+    const snap = await getDocs(q);
+    if (!snap.empty) {
+      const posts = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+      try { localStorage.setItem('chintwo_journals_cache', JSON.stringify(posts)); } catch (e) {}
+      return posts;
+    }
+  } catch (err) {
+    console.warn("Using cached / default journal posts:", err);
+  }
+  try {
+    const local = localStorage.getItem('chintwo_journals_cache');
+    if (local) {
+      const parsed = JSON.parse(local);
+      if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+    }
+  } catch (e) {}
+  return DEFAULT_JOURNAL_POSTS;
+}
+
+/**
+ * 9C. Real-time Journal Posts Listener
+ */
+export function onJournalPostsChange(callback) {
+  try {
+    const q = query(collection(db, "journals"), orderBy("order", "asc"));
+    return onSnapshot(q, (snap) => {
+      if (!snap.empty) {
+        const posts = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+        try { localStorage.setItem('chintwo_journals_cache', JSON.stringify(posts)); } catch (e) {}
+        callback(posts);
+      } else {
+        callback(DEFAULT_JOURNAL_POSTS);
+      }
+    }, (err) => {
+      console.warn("Journal snapshot error:", err);
+      try {
+        const local = localStorage.getItem('chintwo_journals_cache');
+        if (local) return callback(JSON.parse(local));
+      } catch (e) {}
+      callback(DEFAULT_JOURNAL_POSTS);
+    });
+  } catch (err) {
+    try {
+      const local = localStorage.getItem('chintwo_journals_cache');
+      if (local) return callback(JSON.parse(local));
+    } catch (e) {}
+    callback(DEFAULT_JOURNAL_POSTS);
+    return () => {};
+  }
+}
+
+/**
+ * 9D. Save or Update Journal Post
+ */
+export async function saveJournalPost(postId, data) {
+  const docId = postId || data.slug || `post-${Date.now()}`;
+  const postRecord = {
+    ...data,
+    id: docId,
+    updatedAt: new Date().toISOString()
+  };
+
+  // Sync to local cache
+  try {
+    const posts = await getJournalPosts();
+    const idx = posts.findIndex(p => p.id === docId);
+    if (idx >= 0) posts[idx] = postRecord;
+    else posts.push(postRecord);
+    localStorage.setItem('chintwo_journals_cache', JSON.stringify(posts));
+  } catch (e) {}
+
+  // Sync to Firestore
+  try {
+    await setDoc(doc(db, "journals", docId), {
+      ...data,
+      id: docId,
+      updatedAt: serverTimestamp()
+    }, { merge: true });
+  } catch (err) {
+    console.warn("Firestore saveJournalPost fallback to localStorage:", err);
+  }
+  return docId;
+}
+
+/**
+ * 9E. Delete Journal Post
+ */
+export async function deleteJournalPost(postId) {
+  try {
+    const posts = await getJournalPosts();
+    const filtered = posts.filter(p => p.id !== postId);
+    localStorage.setItem('chintwo_journals_cache', JSON.stringify(filtered));
+  } catch (e) {}
+
+  try {
+    await deleteDoc(doc(db, "journals", postId));
+  } catch (err) {
+    console.warn("Firestore deleteJournalPost note:", err);
+  }
   return true;
 }
 
@@ -353,11 +574,20 @@ export async function getInquiries() {
   try {
     const q = query(collection(db, "inquiries"), orderBy("createdAt", "desc"));
     const snap = await getDocs(q);
-    return snap.docs.map(d => ({ id: d.id, ...d.data() }));
+    const items = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+    try { localStorage.setItem('chintwo_inquiries_cache', JSON.stringify(items)); } catch (e) {}
+    return items;
   } catch (err) {
-    // If order by createdAt fails on empty, try plain collection
-    const snap = await getDocs(collection(db, "inquiries"));
-    return snap.docs.map(d => ({ id: d.id, ...d.data() }));
+    try {
+      const snap = await getDocs(collection(db, "inquiries"));
+      const items = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+      try { localStorage.setItem('chintwo_inquiries_cache', JSON.stringify(items)); } catch (e) {}
+      return items;
+    } catch (e2) {
+      const local = localStorage.getItem('chintwo_inquiries_cache');
+      if (local) return JSON.parse(local);
+      return [];
+    }
   }
 }
 
@@ -365,10 +595,22 @@ export async function getInquiries() {
  * 11. Update Inquiry Status (Admin)
  */
 export async function updateInquiryStatus(inquiryId, status) {
-  await updateDoc(doc(db, "inquiries", inquiryId), {
-    status,
-    statusUpdatedAt: serverTimestamp()
-  });
+  try {
+    const local = localStorage.getItem('chintwo_inquiries_cache');
+    if (local) {
+      const items = JSON.parse(local);
+      const target = items.find(i => i.id === inquiryId);
+      if (target) target.status = status;
+      localStorage.setItem('chintwo_inquiries_cache', JSON.stringify(items));
+    }
+  } catch (e) {}
+
+  try {
+    await updateDoc(doc(db, "inquiries", inquiryId), {
+      status,
+      statusUpdatedAt: serverTimestamp()
+    });
+  } catch (e) {}
   return true;
 }
 
@@ -376,7 +618,17 @@ export async function updateInquiryStatus(inquiryId, status) {
  * 12. Delete Inquiry (Admin)
  */
 export async function deleteInquiry(inquiryId) {
-  await deleteDoc(doc(db, "inquiries", inquiryId));
+  try {
+    const local = localStorage.getItem('chintwo_inquiries_cache');
+    if (local) {
+      const items = JSON.parse(local).filter(i => i.id !== inquiryId);
+      localStorage.setItem('chintwo_inquiries_cache', JSON.stringify(items));
+    }
+  } catch (e) {}
+
+  try {
+    await deleteDoc(doc(db, "inquiries", inquiryId));
+  } catch (e) {}
   return true;
 }
 
@@ -384,15 +636,84 @@ export async function deleteInquiry(inquiryId) {
  * 13. Get All Newsletter Subscribers (Admin)
  */
 export async function getSubscribers() {
-  const snap = await getDocs(collection(db, "subscribers"));
-  return snap.docs.map(d => ({ id: d.id, ...d.data() }));
+  try {
+    const snap = await getDocs(collection(db, "subscribers"));
+    const items = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+    try { localStorage.setItem('chintwo_subscribers_cache', JSON.stringify(items)); } catch (e) {}
+    return items;
+  } catch (err) {
+    try {
+      const local = localStorage.getItem('chintwo_subscribers_cache');
+      if (local) return JSON.parse(local);
+    } catch (e) {}
+    return [];
+  }
 }
 
 /**
  * 14. Delete Subscriber (Admin)
  */
 export async function deleteSubscriber(subscriberId) {
-  await deleteDoc(doc(db, "subscribers", subscriberId));
+  try {
+    const local = localStorage.getItem('chintwo_subscribers_cache');
+    if (local) {
+      const items = JSON.parse(local).filter(s => s.id !== subscriberId);
+      localStorage.setItem('chintwo_subscribers_cache', JSON.stringify(items));
+    }
+  } catch (e) {}
+
+  try {
+    await deleteDoc(doc(db, "subscribers", subscriberId));
+  } catch (e) {}
+  return true;
+}
+
+/**
+ * 14B. Cryptographic Helper (SHA-256)
+ */
+export async function sha256(str) {
+  if (typeof crypto !== 'undefined' && crypto.subtle) {
+    const buffer = new TextEncoder().encode(str);
+    const hash = await crypto.subtle.digest('SHA-256', buffer);
+    return Array.from(new Uint8Array(hash)).map(b => b.toString(16).padStart(2, '0')).join('');
+  }
+  // Simple fallback hash
+  let hash = 0;
+  for (let i = 0; i < str.length; i++) {
+    hash = (hash << 5) - hash + str.charCodeAt(i);
+    hash |= 0;
+  }
+  return hash.toString(16);
+}
+
+/**
+ * 14C. Verify Admin Username & Password Credentials
+ */
+export async function verifyAdminCredentials(username, password) {
+  if (!username || !password) return false;
+  const settings = await getStudioSettings();
+  const inputUser = username.trim().toLowerCase();
+  const validUser = (settings.adminUsername || "chintwo").toLowerCase();
+  
+  // Accept 'chintwo' or 'admin'
+  if (inputUser !== validUser && inputUser !== "admin") {
+    return false;
+  }
+
+  const inputHash = await sha256(password);
+  const targetHash = settings.adminPasswordHash || "45c2ce93a130c5b8ad910ba3562858c3f42c946986ea14755dd357753c914e6c";
+  return inputHash === targetHash;
+}
+
+/**
+ * 14D. Change Admin Password
+ */
+export async function changeAdminPassword(newPassword) {
+  if (!newPassword || newPassword.length < 6) {
+    throw new Error("Password must be at least 6 characters long.");
+  }
+  const newHash = await sha256(newPassword);
+  await saveStudioSettings({ adminPasswordHash: newHash });
   return true;
 }
 
@@ -434,6 +755,15 @@ export async function seedInitialBackendData() {
         await setDoc(doc(db, "artworks", item.id), item);
       }
       console.log("✓ Seeded 6 default portfolio artworks");
+    }
+
+    // Seed Journals
+    const journalSnap = await getDocs(collection(db, "journals"));
+    if (journalSnap.empty) {
+      for (const post of DEFAULT_JOURNAL_POSTS) {
+        await setDoc(doc(db, "journals", post.id), post);
+      }
+      console.log("✓ Seeded 3 default journal essays");
     }
 
     return true;

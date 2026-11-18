@@ -801,23 +801,13 @@
     .chintwo-footer {
       padding: 50px 20px 30px !important;
     }
-    .chintwo-footer-grid {
-      grid-template-columns: 1fr !important;
-      gap: 36px !important;
-    }
-    .chintwo-footer-col--identity {
-      border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
-      padding-bottom: 24px !important;
-    }
     .chintwo-footer-bottom {
       flex-direction: column !important;
-      align-items: flex-start !important;
+      align-items: center !important;
       gap: 16px !important;
       margin-top: 36px !important;
       padding-top: 24px !important;
-    }
-    .chintwo-footer-back-to-top {
-      align-self: flex-start !important;
+      text-align: center !important;
     }
   }
 
@@ -931,14 +921,14 @@
     position: absolute !important;
     top: 24vh !important;
     left: 50% !important;
-    transform: translate(-50%, -50%) !important;
-    opacity: 1 !important;
-    pointer-events: auto !important;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    pointer-events: none;
     z-index: 30 !important;
     text-align: center !important;
     width: auto !important;
     max-width: 90vw !important;
-    transition: opacity 0.35s ease, transform 0.35s ease !important;
+    transition: opacity 0.35s ease, transform 0.35s ease;
   }
 
   .chintwo-hero-center-brand-inner {
@@ -1718,38 +1708,73 @@
     margin: 0 auto !important;
   }
 
-  .chintwo-footer-grid {
-    display: grid !important;
-    grid-template-columns: 2fr 1fr 1.2fr 1.1fr !important;
-    gap: 48px !important;
-    margin-bottom: 70px !important;
+  /* STANDARDIZED ATELIER FOOTER */
+  .chintwo-footer-standard {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+    max-width: 680px !important;
+    margin: 0 auto 50px auto !important;
+  }
+
+  .chintwo-footer-identity {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    text-align: center !important;
+  }
+
+  .chintwo-footer-brand-wrap {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+    text-decoration: none !important;
+    margin-bottom: 16px !important;
+  }
+
+  .chintwo-footer-emblem {
+    width: 32px !important;
+    height: 34px !important;
+    object-fit: contain !important;
   }
 
   .chintwo-footer-brand {
     font-family: 'Playfair Display', Georgia, serif !important;
     font-size: 26px !important;
     font-weight: 700 !important;
-    letter-spacing: 0.12em !important;
+    letter-spacing: 0.18em !important;
     color: #f7f6f2 !important;
     text-decoration: none !important;
     display: inline-block !important;
-    margin-bottom: 16px !important;
   }
 
   .chintwo-footer-statement {
     font-family: 'Inter', sans-serif !important;
-    font-size: 13px !important;
+    font-size: 14px !important;
     line-height: 1.7 !important;
-    color: rgba(255, 255, 255, 0.7) !important;
-    margin: 0 0 10px 0 !important;
+    color: rgba(255, 255, 255, 0.72) !important;
+    margin: 0 0 12px 0 !important;
   }
 
   .chintwo-footer-substatement {
     font-family: 'Inter', sans-serif !important;
-    font-size: 12px !important;
+    font-size: 12.5px !important;
     line-height: 1.6 !important;
     color: rgba(255, 255, 255, 0.5) !important;
     margin: 0 0 20px 0 !important;
+  }
+
+  .chintwo-footer-email-link {
+    color: #bfa15f !important;
+    text-decoration: none !important;
+    border-bottom: 1px solid rgba(191, 161, 95, 0.4) !important;
+    transition: color 0.2s ease, border-color 0.2s ease !important;
+  }
+
+  .chintwo-footer-email-link:hover {
+    color: #dfc88e !important;
+    border-color: #dfc88e !important;
   }
 
   .chintwo-footer-status {
@@ -1771,56 +1796,6 @@
     background: #4ade80 !important;
     border-radius: 50% !important;
     box-shadow: 0 0 8px rgba(74, 222, 128, 0.6) !important;
-  }
-
-  .chintwo-footer-col-title {
-    font-family: 'Space Mono', monospace !important;
-    font-size: 11px !important;
-    font-weight: 700 !important;
-    letter-spacing: 0.14em !important;
-    text-transform: uppercase !important;
-    color: #bfa15f !important;
-    display: block !important;
-    margin-bottom: 22px !important;
-  }
-
-  .chintwo-footer-links {
-    list-style: none !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    display: flex !important;
-    flex-direction: column !important;
-    gap: 12px !important;
-  }
-
-  .chintwo-footer-links a {
-    font-family: 'Inter', sans-serif !important;
-    font-size: 13px !important;
-    color: rgba(255, 255, 255, 0.72) !important;
-    text-decoration: none !important;
-    transition: all 0.2s ease !important;
-    display: inline-flex !important;
-    align-items: center !important;
-    gap: 8px !important;
-  }
-
-  .chintwo-footer-links a:hover {
-    color: #ffffff !important;
-    transform: translateX(3px) !important;
-  }
-
-  .chintwo-link-num {
-    font-family: 'Space Mono', monospace !important;
-    font-size: 10px !important;
-    color: rgba(255, 255, 255, 0.35) !important;
-  }
-
-  .chintwo-footer-footnote {
-    font-family: 'Inter', sans-serif !important;
-    font-size: 12px !important;
-    color: rgba(255, 255, 255, 0.48) !important;
-    line-height: 1.55 !important;
-    margin-top: 14px !important;
   }
 
   .chintwo-footer-bottom {
@@ -1856,17 +1831,7 @@
     color: #ffffff !important;
   }
 
-  @media (max-width: 900px) {
-    .chintwo-footer-grid {
-      grid-template-columns: 1fr 1fr !important;
-      gap: 36px !important;
-    }
-  }
-
   @media (max-width: 600px) {
-    .chintwo-footer-grid {
-      grid-template-columns: 1fr !important;
-    }
     .chintwo-footer-bottom {
       flex-direction: column !important;
       gap: 16px !important;
@@ -1945,10 +1910,6 @@
         <span>Contact &amp; Inquiries</span>
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
       </a>
-      <a href="/admin" class="chintwo-mobile-dropdown-link">
-        <span>Studio Admin</span>
-        <span class="chintwo-admin-badge">Admin</span>
-      </a>
     </nav>
     <div class="chintwo-mobile-dropdown-footer">
       <span style="font-size: 11px; color: rgba(18, 19, 22, 0.5); font-family: 'Inter', sans-serif;">Follow Studio</span>
@@ -2003,24 +1964,16 @@
     <div class="chintwo-work-header">
       <span class="chintwo-section-tag">01 / SELECTED WORKS</span>
       <h2 class="chintwo-section-heading">Selected Works &amp; Editions</h2>
-      <p class="chintwo-section-sub chintwo-desktop-work">Dynamic spatial gallery • Hover or click across panels to expand artwork</p>
-      <p class="chintwo-section-sub chintwo-mobile-work">Atmospheric drifting wall • Tap to examine archival artworks</p>
     </div>
 
     <!-- Desktop View: AccordionGallery from React Bits (Fluid, Unboxed Desktop Layout) -->
     <div class="chintwo-accordion-wrapper chintwo-desktop-work">
       <div id="accordion-gallery-root"></div>
-      <div class="chintwo-gallery-hint" aria-hidden="true">
-        <span>← Hover across panels to expand • Click to explore provenance &amp; archive →</span>
-      </div>
     </div>
 
     <!-- Mobile View: DriftWall from React Bits (Atmospheric 3D Floating Perspective) -->
     <div class="chintwo-driftwall-wrapper chintwo-mobile-work">
       <div id="drift-wall-root" style="width: 100%; height: 520px; position: relative;"></div>
-      <div class="chintwo-gallery-hint" aria-hidden="true">
-        <span>↑ Continuously drifting • Tap any artwork tile to open →</span>
-      </div>
     </div>
 
     <div class="chintwo-work-footer-cta">
@@ -2137,53 +2090,18 @@
 
 <footer class="chintwo-footer" role="contentinfo" aria-label="Site footer">
   <div class="chintwo-footer-container">
-    <div class="chintwo-footer-grid">
-      <!-- Col 1: Studio Identity -->
-      <div class="chintwo-footer-col chintwo-footer-col--identity">
-        <a href="/" class="chintwo-footer-brand">CHINTWO</a>
+    <div class="chintwo-footer-standard">
+      <div class="chintwo-footer-identity">
+        <a href="/" class="chintwo-footer-brand-wrap" aria-label="Chintwo Atelier">
+          <img src="/assets/images/chintwo_emblem.svg" alt="Chintwo Emblem" width="34" height="36" class="chintwo-footer-emblem">
+          <span class="chintwo-footer-brand">CHINTWO</span>
+        </a>
         <p class="chintwo-footer-statement">Contemporary visual artist &amp; storyteller specializing in monumental oil canvases, atmospheric chiaroscuro compositions, and limited archival editions.</p>
-        <p class="chintwo-footer-substatement">London, United Kingdom • Independent Atelier &amp; International Representation</p>
+        <p class="chintwo-footer-substatement">London &amp; Kyoto Atelier • Private viewings by appointment • Inquiries: <a href="mailto:studio@chintwo.com" class="chintwo-footer-email-link">studio@chintwo.com</a></p>
         <div class="chintwo-footer-status">
           <span class="chintwo-status-dot"></span>
           <span>Studio Active • Inquiries &amp; Commissions Open</span>
         </div>
-      </div>
-
-      <!-- Col 2: Navigation Index -->
-      <div class="chintwo-footer-col">
-        <span class="chintwo-footer-col-title">Navigation</span>
-        <ul class="chintwo-footer-links">
-          <li><a href="/portfolio"><span class="chintwo-link-num">01</span> Selected Works</a></li>
-          <li><a href="/about"><span class="chintwo-link-num">02</span> The Artist</a></li>
-          <li><a href="/blog"><span class="chintwo-link-num">03</span> Field Notes &amp; Journal</a></li>
-          <li><a href="/portfolio/fine-art-editions"><span class="chintwo-link-num">04</span> Archival Editions</a></li>
-          <li><a href="/contact"><span class="chintwo-link-num">05</span> Studio Contact</a></li>
-          <li><a href="/admin"><span class="chintwo-link-num">06</span> Studio Portal</a></li>
-        </ul>
-      </div>
-
-      <!-- Col 3: Acquisitions & Studio Inquiries -->
-      <div class="chintwo-footer-col">
-        <span class="chintwo-footer-col-title">Acquisitions &amp; Inquiries</span>
-        <ul class="chintwo-footer-links">
-          <li><a href="mailto:studio@chintwo.com">studio@chintwo.com</a></li>
-          <li><a href="mailto:acquisitions@chintwo.com">acquisitions@chintwo.com</a></li>
-          <li><a href="mailto:press@chintwo.com">press@chintwo.com</a></li>
-          <li><a href="/contact">Schedule Studio Appointment →</a></li>
-        </ul>
-        <p class="chintwo-footer-footnote">Private viewings by appointment only at the London studio.</p>
-      </div>
-
-      <!-- Col 4: Archives & Presence -->
-      <div class="chintwo-footer-col">
-        <span class="chintwo-footer-col-title">Archives &amp; Social</span>
-        <ul class="chintwo-footer-links">
-          <li><a href="https://instagram.com/chintwo.com" target="_blank" rel="noopener noreferrer">Instagram ↗</a></li>
-          <li><a href="https://x.com/chintwo" target="_blank" rel="noopener noreferrer">X / Twitter ↗</a></li>
-          <li><a href="https://threads.net/@chintwo.com" target="_blank" rel="noopener noreferrer">Threads ↗</a></li>
-          <li><a href="/blog">Field Notes RSS</a></li>
-        </ul>
-        <p class="chintwo-footer-footnote">All original artworks and editions include an embossed Certificate of Authenticity.</p>
       </div>
     </div>
 
@@ -2248,9 +2166,9 @@
   // Full-screen horizontal split controller
   function getBaseOffset() {
     var w = window.innerWidth;
-    if (w > 1200) return 90;
-    if (w > 810) return 70;
-    return 40;
+    if (w > 1200) return 220;
+    if (w > 810) return 160;
+    return 90;
   }
 
   function update() {
@@ -2275,14 +2193,17 @@
       rightHalf.style.boxShadow = '-' + (14 * (1 - ease)).toFixed(1) + 'px 0 40px rgba(18, 19, 22, ' + shadowOp + ')';
     }
 
-    // Logo & Brand Lockup: Prominently situated in the upper whitespace
+    // Logo & Brand Lockup: Revealed in the artwork's upper whitespace as halves merge
     if (centerBrand) {
-      var brandOpacity = 0.70 + 0.30 * ease;
-      var brandScale = 0.95 + 0.05 * ease;
+      var brandOpacity = 0;
+      if (progress > 0.16) {
+        brandOpacity = Math.min(1, (progress - 0.16) / 0.68);
+      }
+      var brandScale = 0.88 + 0.12 * Math.min(1, progress / 0.84);
 
       centerBrand.style.opacity = brandOpacity.toFixed(3);
       centerBrand.style.transform = 'translate(-50%, -50%) scale(' + brandScale.toFixed(3) + ')';
-      centerBrand.style.pointerEvents = 'auto';
+      centerBrand.style.pointerEvents = brandOpacity > 0.5 ? 'auto' : 'none';
     }
 
     // Taskbar: Reveals once the image almost merges and the logo reaches the center (progress >= 0.90)

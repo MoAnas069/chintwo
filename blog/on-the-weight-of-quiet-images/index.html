@@ -348,103 +348,123 @@
       max-width: 1240px;
       margin: 0 auto;
     }
-    .chintwo-footer-grid {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr 1.5fr;
-      gap: 48px;
-      margin-bottom: 60px;
+        /* STANDARDIZED ATELIER FOOTER */
+    .chintwo-footer-standard {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      max-width: 680px;
+      margin: 0 auto 50px auto;
     }
-    @media (max-width: 900px) {
-      .chintwo-footer-grid {
-        grid-template-columns: 1fr;
-        gap: 36px;
-      }
+    .chintwo-footer-identity {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
     }
-    .chintwo-footer-brand {
-      font-family: var(--font-sans);
-      font-size: 18px;
-      font-weight: 700;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: #ffffff;
+    .chintwo-footer-brand-wrap {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
       text-decoration: none;
-      display: inline-block;
       margin-bottom: 16px;
     }
-    .chintwo-footer-desc {
+    .chintwo-footer-emblem {
+      width: 32px;
+      height: 34px;
+      object-fit: contain;
+    }
+    .chintwo-footer-brand {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 26px;
+      letter-spacing: 0.18em;
+      font-weight: 700;
+      color: #ffffff;
+      text-decoration: none;
+    }
+    .chintwo-footer-statement {
+      font-family: 'Inter', sans-serif;
       font-size: 14px;
+      line-height: 1.7;
+      color: rgba(255, 255, 255, 0.72);
+      margin: 0 0 12px 0;
+    }
+    .chintwo-footer-substatement {
+      font-family: 'Inter', sans-serif;
+      font-size: 12.5px;
       line-height: 1.6;
-      color: rgba(255, 255, 255, 0.65);
-      margin-bottom: 20px;
-      max-width: 320px;
+      color: rgba(255, 255, 255, 0.5);
+      margin: 0 0 20px 0;
+    }
+    .chintwo-footer-email-link {
+      color: #bfa15f;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(191, 161, 95, 0.4);
+      transition: color 0.2s ease, border-color 0.2s ease;
+    }
+    .chintwo-footer-email-link:hover {
+      color: #dfc88e;
+      border-color: #dfc88e;
     }
     .chintwo-footer-status {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      font-size: 12px;
-      font-weight: 500;
-      color: #10b981;
+      padding: 6px 14px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 999px;
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.8);
     }
     .chintwo-status-dot {
-      width: 7px;
-      height: 7px;
+      width: 6px;
+      height: 6px;
       border-radius: 50%;
-      background: #10b981;
-      display: inline-block;
-      box-shadow: 0 0 10px #10b981;
-    }
-    .chintwo-footer-title {
-      font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: #bfa15f;
-      margin-bottom: 20px;
-      display: block;
-    }
-    .chintwo-footer-list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-    .chintwo-footer-list a {
-      color: rgba(255, 255, 255, 0.7);
-      text-decoration: none;
-      font-size: 13px;
-      transition: color 0.2s ease;
-    }
-    .chintwo-footer-list a:hover {
-      color: #ffffff;
+      background: #4ade80;
+      box-shadow: 0 0 8px rgba(74, 222, 128, 0.6);
     }
     .chintwo-footer-bottom {
+      margin-top: 30px;
+      padding-top: 28px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding-top: 30px;
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
-      font-size: 12px;
+      font-size: 11px;
+      letter-spacing: 0.06em;
       color: rgba(255, 255, 255, 0.45);
       flex-wrap: wrap;
       gap: 16px;
     }
-    .chintwo-footer-backtotop {
-      background: none;
-      border: 1px solid rgba(255, 255, 255, 0.16);
-      color: rgba(255, 255, 255, 0.7);
-      padding: 6px 14px;
-      border-radius: 999px;
-      cursor: pointer;
-      font-size: 11px;
-      font-family: var(--font-sans);
-      transition: all 0.2s ease;
+    .chintwo-footer-motto {
+      font-family: 'Space Mono', monospace;
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      color: rgba(191, 161, 95, 0.6);
     }
-    .chintwo-footer-backtotop:hover {
-      background: rgba(255, 255, 255, 0.1);
+    .chintwo-footer-back-to-top {
+      background: transparent;
+      border: none;
+      color: rgba(255, 255, 255, 0.65);
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      cursor: pointer;
+      transition: color 0.2s ease;
+      padding: 0;
+    }
+    .chintwo-footer-back-to-top:hover {
       color: #ffffff;
+    }
+
+    @media (max-width: 600px) {
+      .chintwo-footer-bottom {
+        flex-direction: column;
+        gap: 14px;
+        text-align: center;
+      }
     }
   </style>
 </head>
@@ -528,51 +548,28 @@
   </main>
 
   <!-- LUXURY 4-COLUMN FOOTER -->
-  <footer class="chintwo-footer" role="contentinfo">
+  <!-- Universal Standardized Footer -->
+  <footer class="chintwo-footer" role="contentinfo" aria-label="Site footer">
     <div class="chintwo-footer-container">
-      <div class="chintwo-footer-grid">
-        <div class="chintwo-footer-col">
-          <a href="/" class="chintwo-footer-brand">CHINTWO</a>
-          <p class="chintwo-footer-desc">Contemporary visual artist &amp; storyteller exploring atmospheric narratives, memory, and myth.</p>
+      <div class="chintwo-footer-standard">
+        <div class="chintwo-footer-identity">
+          <a href="/" class="chintwo-footer-brand-wrap" aria-label="Chintwo Atelier">
+            <img src="/assets/images/chintwo_emblem.svg" alt="Chintwo Emblem" width="34" height="36" class="chintwo-footer-emblem">
+            <span class="chintwo-footer-brand">CHINTWO</span>
+          </a>
+          <p class="chintwo-footer-statement">Contemporary visual artist &amp; storyteller specializing in monumental oil canvases, atmospheric chiaroscuro compositions, and limited archival editions.</p>
+          <p class="chintwo-footer-substatement">London &amp; Kyoto Atelier • Private viewings by appointment • Inquiries: <a href="mailto:studio@chintwo.com" class="chintwo-footer-email-link">studio@chintwo.com</a></p>
           <div class="chintwo-footer-status">
             <span class="chintwo-status-dot"></span>
-            <span>Studio Active • Open for Commissions</span>
+            <span>Studio Active • Inquiries &amp; Commissions Open</span>
           </div>
-        </div>
-
-        <div class="chintwo-footer-col">
-          <span class="chintwo-footer-title">Index</span>
-          <ul class="chintwo-footer-list">
-            <li><a href="/portfolio">01 The Work</a></li>
-            <li><a href="/about">02 The Person</a></li>
-            <li><a href="/blog">03 Field Notes</a></li>
-            <li><a href="/portfolio/fine-art-editions">04 The Editions</a></li>
-            <li><a href="/contact">05 Get in Touch</a></li>
-          </ul>
-        </div>
-
-        <div class="chintwo-footer-col">
-          <span class="chintwo-footer-title">Dialogue</span>
-          <ul class="chintwo-footer-list">
-            <li><a href="mailto:studio@chintwo.com">studio@chintwo.com</a></li>
-            <li><a href="https://instagram.com" target="_blank" rel="noopener">Instagram ↗</a></li>
-            <li><a href="https://x.com" target="_blank" rel="noopener">X / Twitter ↗</a></li>
-            <li><a href="https://threads.net" target="_blank" rel="noopener">Threads ↗</a></li>
-            <li><a href="/contact">Studio Inquiries →</a></li>
-          </ul>
-        </div>
-
-        <div class="chintwo-footer-col">
-          <span class="chintwo-footer-title">Colophon</span>
-          <p class="chintwo-footer-desc" style="font-size: 12px; color: rgba(255, 255, 255, 0.5);">Set in Playfair Display and Inter. Art-directed for CHINTWO London Studio.</p>
-          <p class="chintwo-footer-desc" style="font-size: 12px; color: rgba(255, 255, 255, 0.35);">All original artworks, writings, and editions are protected under copyright.</p>
         </div>
       </div>
 
       <div class="chintwo-footer-bottom">
-        <span>© 2026 CHINTWO. All rights reserved.</span>
-        <span>THE ARTIST'S VISUAL UNIVERSE</span>
-        <button class="chintwo-footer-backtotop" onclick="window.scrollTo({top:0,behavior:'smooth'})">Back to top ↑</button>
+        <span class="chintwo-footer-copy">© 2026 CHINTWO STUDIO. All rights reserved.</span>
+        <span class="chintwo-footer-motto">FINE ART PROVENANCE • ARCHIVAL INTEGRITY</span>
+        <button class="chintwo-footer-back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">Back to top ↑</button>
       </div>
     </div>
   </footer>
