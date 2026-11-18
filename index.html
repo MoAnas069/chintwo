@@ -1084,27 +1084,220 @@
     color: #ffffff !important;
   }
 
+  .chintwo-inquire-btn,
   .chintwo-taskbar-cta {
-    font-family: 'Inter', sans-serif !important;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
     font-size: 12px !important;
     font-weight: 600 !important;
     background: #121316 !important;
-    color: #ffffff !important;
+    color: #f7f5f0 !important;
     padding: 8px 18px !important;
     border-radius: 999px !important;
     text-decoration: none !important;
-    letter-spacing: 0.02em !important;
+    letter-spacing: 0.06em !important;
+    text-transform: uppercase !important;
+    border: 1px solid rgba(18, 19, 22, 0.12) !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
+    cursor: pointer !important;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    white-space: nowrap !important;
+  }
+
+  .chintwo-inquire-btn:hover,
+  .chintwo-taskbar-cta:hover {
+    background: #bfa15f !important;
+    color: #121316 !important;
+    border-color: #bfa15f !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 4px 14px rgba(191, 161, 95, 0.35) !important;
+  }
+
+  .chintwo-inquire-btn:active,
+  .chintwo-taskbar-cta:active {
+    transform: translateY(0) !important;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15) !important;
+  }
+
+  /* Mobile Dropdown Button & Navigation Menu */
+  .chintwo-mobile-menu-btn {
+    display: none !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 4px !important;
+    width: 36px !important;
+    height: 36px !important;
+    border-radius: 50% !important;
+    border: 1px solid rgba(18, 19, 22, 0.12) !important;
+    background: rgba(255, 255, 255, 0.95) !important;
+    cursor: pointer !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06) !important;
+    transition: background 0.2s ease, transform 0.2s ease !important;
+  }
+
+  .chintwo-mobile-menu-btn:hover {
+    background: #ffffff !important;
+    transform: scale(1.05) !important;
+  }
+
+  .chintwo-menu-line {
+    display: block !important;
+    width: 16px !important;
+    height: 1.5px !important;
+    background: #121316 !important;
+    border-radius: 2px !important;
+    transition: transform 0.25s ease, opacity 0.25s ease !important;
+    transform-origin: center !important;
+  }
+
+  .chintwo-mobile-menu-btn.is-open .chintwo-menu-line:nth-child(1) {
+    transform: translateY(5.5px) rotate(45deg) !important;
+  }
+
+  .chintwo-mobile-menu-btn.is-open .chintwo-menu-line:nth-child(2) {
+    opacity: 0 !important;
+    transform: scaleX(0) !important;
+  }
+
+  .chintwo-mobile-menu-btn.is-open .chintwo-menu-line:nth-child(3) {
+    transform: translateY(-5.5px) rotate(-45deg) !important;
+  }
+
+  .chintwo-mobile-dropdown {
+    display: none;
+    position: absolute !important;
+    top: calc(100% + 10px) !important;
+    left: 0 !important;
+    right: 0 !important;
+    background: rgba(255, 255, 255, 0.97) !important;
+    backdrop-filter: blur(24px) !important;
+    -webkit-backdrop-filter: blur(24px) !important;
+    border: 1px solid rgba(18, 19, 22, 0.09) !important;
+    border-radius: 20px !important;
+    padding: 16px 20px !important;
+    box-shadow: 0 16px 40px -10px rgba(18, 19, 22, 0.16) !important;
+    opacity: 0 !important;
+    transform: translateY(-10px) scale(0.98) !important;
+    pointer-events: none !important;
+    transition: opacity 0.28s cubic-bezier(0.16, 1, 0.3, 1), transform 0.28s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    z-index: 10000 !important;
+  }
+
+  .chintwo-mobile-dropdown.is-open {
+    opacity: 1 !important;
+    transform: translateY(0) scale(1) !important;
+    pointer-events: auto !important;
+  }
+
+  .chintwo-mobile-dropdown-nav {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 2px !important;
+  }
+
+  .chintwo-mobile-dropdown-link {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    padding: 11px 14px !important;
+    font-family: 'Inter', sans-serif !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    color: #121316 !important;
+    text-decoration: none !important;
+    border-radius: 12px !important;
+    transition: background 0.18s ease, color 0.18s ease !important;
+  }
+
+  .chintwo-mobile-dropdown-link:hover,
+  .chintwo-mobile-dropdown-link:active {
+    background: rgba(18, 19, 22, 0.05) !important;
+    color: #bfa15f !important;
+  }
+
+  .chintwo-mobile-dropdown-link svg {
+    color: rgba(18, 19, 22, 0.4) !important;
+    transition: transform 0.2s ease, color 0.2s ease !important;
+  }
+
+  .chintwo-mobile-dropdown-link:hover svg {
+    color: #bfa15f !important;
+    transform: translateX(3px) !important;
+  }
+
+  .chintwo-admin-badge {
+    font-size: 10px !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.06em !important;
+    text-transform: uppercase !important;
+    background: rgba(191, 161, 95, 0.15) !important;
+    color: #8c733b !important;
+    padding: 3px 8px !important;
+    border-radius: 6px !important;
+  }
+
+  .chintwo-mobile-dropdown-footer {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    margin-top: 14px !important;
+    padding-top: 12px !important;
+    border-top: 1px solid rgba(18, 19, 22, 0.07) !important;
+  }
+
+  .chintwo-mobile-dropdown-socials {
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+  }
+
+  .chintwo-mobile-social-icon {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 32px !important;
+    height: 32px !important;
+    border-radius: 50% !important;
+    background: rgba(18, 19, 22, 0.05) !important;
+    color: #121316 !important;
+    text-decoration: none !important;
     transition: all 0.2s ease !important;
   }
 
-  .chintwo-taskbar-cta:hover {
-    background: #2b2c31 !important;
-    transform: translateY(-1px) !important;
+  .chintwo-mobile-social-icon:hover {
+    background: #121316 !important;
+    color: #ffffff !important;
   }
 
   @media (max-width: 810px) {
+    .chintwo-taskbar {
+      top: 12px !important;
+      width: calc(100% - 24px) !important;
+    }
+    .chintwo-taskbar-inner {
+      padding: 7px 14px !important;
+    }
     .chintwo-taskbar-nav {
       display: none !important;
+    }
+    .chintwo-taskbar-socials {
+      display: none !important;
+    }
+    .chintwo-mobile-menu-btn {
+      display: inline-flex !important;
+    }
+    .chintwo-mobile-dropdown {
+      display: block;
+    }
+    .chintwo-inquire-btn,
+    .chintwo-taskbar-cta {
+      padding: 6px 14px !important;
+      font-size: 11px !important;
     }
   }
 
@@ -1666,7 +1859,7 @@
 </head>
 <body>
 
-<!-- Chintwo Functional Top Taskbar with Socials -->
+<!-- Chintwo Functional Top Taskbar with Socials & Mobile Dropdown -->
 <header class="chintwo-taskbar" id="chintwo-taskbar" aria-label="Main Navigation">
   <div class="chintwo-taskbar-inner">
     <!-- Brand / Monogram -->
@@ -1683,7 +1876,7 @@
       <a href="/contact" class="chintwo-nav-link">Contact</a>
     </nav>
 
-    <!-- Socials & Inquire CTA -->
+    <!-- Socials & Inquire CTA & Mobile Toggle -->
     <div class="chintwo-taskbar-actions">
       <div class="chintwo-taskbar-socials">
         <a href="https://www.instagram.com/chintwo.com" target="_blank" rel="noopener noreferrer" class="chintwo-social-icon" title="Instagram" aria-label="Instagram">
@@ -1697,7 +1890,58 @@
         </a>
       </div>
 
-      <a href="#contact" class="chintwo-inquire-btn">INQUIRE</a>
+      <a href="/contact" class="chintwo-inquire-btn" aria-label="Inquire and Contact Artist">INQUIRE</a>
+
+      <!-- Mobile Dropdown Menu Toggle -->
+      <button class="chintwo-mobile-menu-btn" id="chintwo-mobile-menu-btn" aria-label="Toggle navigation menu" aria-expanded="false" type="button">
+        <span class="chintwo-menu-line"></span>
+        <span class="chintwo-menu-line"></span>
+        <span class="chintwo-menu-line"></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Dropdown Navigation Panel -->
+  <div class="chintwo-mobile-dropdown" id="chintwo-mobile-dropdown" aria-hidden="true">
+    <nav class="chintwo-mobile-dropdown-nav">
+      <a href="#work" class="chintwo-mobile-dropdown-link">
+        <span>Selected Works</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+      </a>
+      <a href="/portfolio" class="chintwo-mobile-dropdown-link">
+        <span>Portfolio Gallery</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+      </a>
+      <a href="#about" class="chintwo-mobile-dropdown-link">
+        <span>About Artist</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+      </a>
+      <a href="/blog" class="chintwo-mobile-dropdown-link">
+        <span>Journal &amp; Essays</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+      </a>
+      <a href="/contact" class="chintwo-mobile-dropdown-link">
+        <span>Contact &amp; Inquiries</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
+      </a>
+      <a href="/admin" class="chintwo-mobile-dropdown-link">
+        <span>Studio Admin</span>
+        <span class="chintwo-admin-badge">Admin</span>
+      </a>
+    </nav>
+    <div class="chintwo-mobile-dropdown-footer">
+      <span style="font-size: 11px; color: rgba(18, 19, 22, 0.5); font-family: 'Inter', sans-serif;">Follow Studio</span>
+      <div class="chintwo-mobile-dropdown-socials">
+        <a href="https://www.instagram.com/chintwo.com" target="_blank" rel="noopener noreferrer" class="chintwo-mobile-social-icon" aria-label="Instagram">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+        </a>
+        <a href="https://x.com/chintwo" target="_blank" rel="noopener noreferrer" class="chintwo-mobile-social-icon" aria-label="X (Twitter)">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+        <a href="https://www.linkedin.com/in/chintwosankeerthanam" target="_blank" rel="noopener noreferrer" class="chintwo-mobile-social-icon" aria-label="LinkedIn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+        </a>
+      </div>
     </div>
   </div>
 </header>
@@ -2056,7 +2300,7 @@
 
     // Taskbar: Reveals once the image almost merges and the logo reaches the center (progress >= 0.90)
     if (taskbar) {
-      if (progress >= 0.90 || currentScroll > mergeDistance * 0.95) {
+      if (progress >= 0.90 || currentScroll > mergeDistance * 0.95 || (window.innerWidth <= 810 && currentScroll > 150)) {
         taskbar.classList.add('chintwo-taskbar-visible');
       } else {
         taskbar.classList.remove('chintwo-taskbar-visible');
@@ -2238,28 +2482,76 @@
 
   const driftWallRoot = document.getElementById('drift-wall-root');
   if (driftWallRoot) {
+    const isSmallMobile = window.innerWidth <= 480;
+    const calcTileWidth = isSmallMobile ? Math.floor((window.innerWidth - 44) / 2) : 175;
     initDriftWall(driftWallRoot, {
       items: driftItems,
-      columns: 3,
-      tileWidth: 130,
-      tileHeight: 92,
-      gap: 12,
-      radius: 12,
-      tilt: 14,
-      turn: -10,
+      columns: 2,
+      tileWidth: Math.max(150, Math.min(calcTileWidth, 195)),
+      tileHeight: Math.max(110, Math.min(Math.round(calcTileWidth * 0.72), 140)),
+      gap: 14,
+      radius: 14,
+      tilt: 6,
+      turn: -4,
       roll: 0,
-      perspective: 1100,
-      depth: 90,
-      speed: 32,
+      perspective: 1200,
+      depth: 25,
+      speed: 28,
       direction: 'up',
-      variance: 0.45,
-      parallax: 0.5,
+      variance: 0.35,
+      parallax: 0.3,
       pauseOnHover: false,
-      lift: 44,
-      fade: 0.6,
-      dim: 0.55,
+      lift: 32,
+      fade: 0.15,
+      dim: 1,
       grayscale: false,
-      overlayColor: '#060010'
+      overlayColor: 'transparent'
+    });
+  }
+
+  // Mobile Dropdown Menu Controller
+  const menuBtn = document.getElementById('chintwo-mobile-menu-btn');
+  const dropdown = document.getElementById('chintwo-mobile-dropdown');
+  if (menuBtn && dropdown) {
+    const toggleMenu = (open) => {
+      const willOpen = typeof open === 'boolean' ? open : !dropdown.classList.contains('is-open');
+      if (willOpen) {
+        dropdown.classList.add('is-open');
+        menuBtn.classList.add('is-open');
+        menuBtn.setAttribute('aria-expanded', 'true');
+        dropdown.setAttribute('aria-hidden', 'false');
+      } else {
+        dropdown.classList.remove('is-open');
+        menuBtn.classList.remove('is-open');
+        menuBtn.setAttribute('aria-expanded', 'false');
+        dropdown.setAttribute('aria-hidden', 'true');
+      }
+    };
+
+    menuBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleMenu();
+    });
+
+    // Close on outside click
+    document.addEventListener('click', (e) => {
+      if (!dropdown.contains(e.target) && !menuBtn.contains(e.target)) {
+        toggleMenu(false);
+      }
+    });
+
+    // Close on link click
+    dropdown.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        toggleMenu(false);
+      });
+    });
+
+    // Close on Esc key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && dropdown.classList.contains('is-open')) {
+        toggleMenu(false);
+      }
     });
   }
 
