@@ -872,7 +872,7 @@
     overflow: hidden !important;
     will-change: transform, box-shadow, border-radius !important;
     z-index: 14 !important;
-    transform-origin: left center !important;
+    transform-origin: center center !important;
     border-radius: 16px;
     box-shadow: 18px 15px 45px rgba(18, 19, 22, 0.22);
   }
@@ -887,7 +887,7 @@
     overflow: hidden !important;
     will-change: transform, box-shadow, border-radius !important;
     z-index: 14 !important;
-    transform-origin: right center !important;
+    transform-origin: center center !important;
     border-radius: 16px;
     box-shadow: -18px 15px 45px rgba(18, 19, 22, 0.22);
   }
@@ -2282,19 +2282,26 @@
     return 0.72;
   }
 
-  function applyDiptychState(offset, scale, radius, shadowAlpha) {
+  function getMaxAngle() {
+    var w = window.innerWidth;
+    if (w > 1200) return 5.5;
+    if (w > 810) return 4.5;
+    return 3.5;
+  }
+
+  function applyDiptychState(offset, scale, rotation, radius, shadowAlpha) {
     if (!leftHalf || !rightHalf) return;
-    if (scale >= 0.995 && offset <= 1) {
-      // Perfectly merged full-screen fitting picture
-      leftHalf.style.transform = 'translateX(0px) scale(1)';
-      rightHalf.style.transform = 'translateX(0px) scale(1)';
+    if (scale >= 0.995 && offset <= 1 && Math.abs(rotation) <= 0.05) {
+      // Perfectly merged full-screen fitting picture (0deg flat, 100% full fit)
+      leftHalf.style.transform = 'translateX(0px) scale(1) rotate(0deg)';
+      rightHalf.style.transform = 'translateX(0px) scale(1) rotate(0deg)';
       leftHalf.style.borderRadius = '0px';
       rightHalf.style.borderRadius = '0px';
       leftHalf.style.boxShadow = 'none';
       rightHalf.style.boxShadow = 'none';
     } else {
-      leftHalf.style.transform = 'translateX(-' + offset.toFixed(2) + 'px) scale(' + scale.toFixed(4) + ')';
-      rightHalf.style.transform = 'translateX(' + offset.toFixed(2) + 'px) scale(' + scale.toFixed(4) + ')';
+      leftHalf.style.transform = 'translateX(-' + offset.toFixed(2) + 'px) scale(' + scale.toFixed(4) + ') rotate(-' + rotation.toFixed(2) + 'deg)';
+      rightHalf.style.transform = 'translateX(' + offset.toFixed(2) + 'px) scale(' + scale.toFixed(4) + ') rotate(' + rotation.toFixed(2) + 'deg)';
       leftHalf.style.borderRadius = radius.toFixed(1) + 'px';
       rightHalf.style.borderRadius = radius.toFixed(1) + 'px';
       var op = (0.24 * shadowAlpha).toFixed(3);
@@ -2313,13 +2320,15 @@
     var easeOut = 1 - Math.pow(1 - t, 4);
     var baseOffset = getBaseOffset();
     var minScale = getMinScale();
+    var maxAngle = getMaxAngle();
 
     var currentPartOffset = easeOut * baseOffset;
     var currentScale = 1.0 - easeOut * (1.0 - minScale);
+    var currentRotation = easeOut * maxAngle;
     var currentRadius = easeOut * 16;
     var shadowAlpha = easeOut;
 
-    applyDiptychState(currentPartOffset, currentScale, currentRadius, shadowAlpha);
+    applyDiptychState(currentPartOffset, currentScale, currentRotation, currentRadius, shadowAlpha);
 
     if (t < 1 && (window.scrollY || window.pageYOffset || 0) <= 15) {
       requestAnimationFrame(runIntroEntrance);
@@ -2348,13 +2357,15 @@
 
     var baseOffset = getBaseOffset();
     var minScale = getMinScale();
+    var maxAngle = getMaxAngle();
 
     var offset = (1 - ease) * baseOffset;
     var scale = minScale + (1.0 - minScale) * ease;
+    var rotation = (1 - ease) * maxAngle;
     var radius = (1 - ease) * 16;
     var shadowAlpha = 1 - ease;
 
-    applyDiptychState(offset, scale, radius, shadowAlpha);
+    applyDiptychState(offset, scale, rotation, radius, shadowAlpha);
 
     // Logo & Brand Lockup: Revealed in the artwork's upper whitespace as halves merge
     if (centerBrand) {
