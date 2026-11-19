@@ -24,6 +24,13 @@ export function initSiteContentSync() {
       if (heroBrand) heroBrand.textContent = settings.heroBrandName;
     }
 
+    if (settings.heroBrandFont) {
+      const heroBrand = document.querySelector('.chintwo-hero-center-name');
+      if (heroBrand) {
+        heroBrand.style.fontFamily = `${settings.heroBrandFont}, 'Over the Rainbow', 'Shadows Into Light Two', 'Covered By Your Grace', 'Patrick Hand', cursive, sans-serif`;
+      }
+    }
+
     if (settings.heroScrollCue) {
       const cue = document.querySelector('.chintwo-scroll-indicator-text');
       if (cue) cue.textContent = settings.heroScrollCue;

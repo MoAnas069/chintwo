@@ -93,7 +93,8 @@ export const DEFAULT_STUDIO_SETTINGS = {
   // 1. Cover / Hero Section
   heroCoverLandscape: "/assets/images/hero_landscape.webp",
   heroCoverPortrait: "/assets/images/hero_portrait.webp",
-  heroBrandName: "CHINTWO",
+  heroBrandName: "- Chintwo -",
+  heroBrandFont: "'Over the Rainbow', cursive",
   heroScrollCue: "SCROLL TO MERGE",
 
   // 2. Selected Works Section

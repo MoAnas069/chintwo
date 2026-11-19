@@ -964,7 +964,16 @@
               <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px;">
                 <div class="admin-form-group">
                   <label class="admin-form-label">Hero Brand Title</label>
-                  <input type="text" id="content-hero-brand" class="admin-form-input" value="CHINTWO">
+                  <input type="text" id="content-hero-brand" class="admin-form-input" value="- Chintwo -">
+                </div>
+                <div class="admin-form-group">
+                  <label class="admin-form-label">Brand Typography Font</label>
+                  <select id="content-hero-brand-font" class="admin-form-input" style="font-family:'Over the Rainbow', cursive; font-size:16px;">
+                    <option value="'Over the Rainbow', cursive">Over the Rainbow (Recommended — Sweeping 't' flourish)</option>
+                    <option value="'Shadows Into Light Two', cursive">Shadows Into Light Two (Clean artist handwriting)</option>
+                    <option value="'Covered By Your Grace', cursive">Covered By Your Grace (Tall casual sketch)</option>
+                    <option value="'Patrick Hand', cursive">Patrick Hand (Friendly rounded print)</option>
+                  </select>
                 </div>
                 <div class="admin-form-group">
                   <label class="admin-form-label">Scroll Cue Indicator Text</label>
@@ -1949,7 +1958,10 @@
         document.getElementById('content-hero-portrait').value = s.heroCoverPortrait || '/assets/images/hero_portrait.webp';
         document.getElementById('preview-hero-portrait').src = s.heroCoverPortrait || '/assets/images/hero_portrait.webp';
 
-        document.getElementById('content-hero-brand').value = s.heroBrandName || 'CHINTWO';
+        document.getElementById('content-hero-brand').value = s.heroBrandName || '- Chintwo -';
+        if (document.getElementById('content-hero-brand-font')) {
+          document.getElementById('content-hero-brand-font').value = s.heroBrandFont || "'Over the Rainbow', cursive";
+        }
         document.getElementById('content-hero-cue').value = s.heroScrollCue || 'SCROLL TO MERGE';
 
         document.getElementById('content-works-heading').value = s.worksHeading || 'Selected Works & Editions';
@@ -2008,6 +2020,7 @@
         heroCoverLandscape: document.getElementById('content-hero-landscape').value.trim(),
         heroCoverPortrait: document.getElementById('content-hero-portrait').value.trim(),
         heroBrandName: document.getElementById('content-hero-brand').value.trim(),
+        heroBrandFont: document.getElementById('content-hero-brand-font') ? document.getElementById('content-hero-brand-font').value : "'Over the Rainbow', cursive",
         heroScrollCue: document.getElementById('content-hero-cue').value.trim(),
         worksHeading: document.getElementById('content-works-heading').value.trim(),
         worksButtonText: document.getElementById('content-works-btn').value.trim(),
