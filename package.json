@@ -4,6 +4,7 @@
   "description": "Chintwo - Contemporary & Visual Artist, London - Official Website Portfolio",
   "main": "server.js",
   "scripts": {
+    "build": "echo 'Static build ready'",
     "start": "node server.js",
     "dev": "node server.js",
     "test": "node scripts/test_routes_offline.js"
