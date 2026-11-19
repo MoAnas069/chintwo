@@ -13,8 +13,11 @@
     "ignore": [
       "firebase.json",
       "**/.*",
+      "**/.git/**",
       "**/node_modules/**",
-      "scripts/**"
+      "scripts/**",
+      "*.log",
+      "*.tmp"
     ],
     "cleanUrls": true,
     "trailingSlash": false
