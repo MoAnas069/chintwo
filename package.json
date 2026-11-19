@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Chintwo - Contemporary & Visual Artist, London - Official Website Portfolio",
   "scripts": {
-    "build": "echo 'Deploying static files'",
+    "build": "node scripts/build.js",
     "start": "node scripts/server.js",
     "dev": "node scripts/server.js",
     "test": "node scripts/test_routes_offline.js",

@@ -1,5 +1,9 @@
 node_modules/
+public/
+.firebase/
 .DS_Store
 Thumbs.db
 *.log
+
+
 
