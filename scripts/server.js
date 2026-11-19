@@ -4,7 +4,7 @@ const path = require('path');
 const url = require('url');
 
 const PORT = process.env.PORT || 3000;
-const ROOT_DIR = __dirname;
+const ROOT_DIR = path.resolve(__dirname, '..');
 
 const MIME_TYPES = {
     '.html': 'text/html; charset=utf-8',
@@ -59,8 +59,7 @@ function resolveFilePath(reqPath) {
     const rel = reqPath.replace(/^[/\\]+/, '');
     const candidates = [
         path.join(ROOT_DIR, rel),
-        path.join(process.cwd(), rel),
-        path.resolve(__dirname, rel)
+        path.join(process.cwd(), rel)
     ];
     for (const c of candidates) {
         try {
@@ -124,7 +123,6 @@ const server = http.createServer((req, res) => {
     serve404(res);
 });
 
-// Export server for serverless environments (e.g. Vercel)
 module.exports = server;
 
 // Only listen if executed directly
@@ -136,4 +134,3 @@ if (require.main === module) {
         console.log(`======================================================\n`);
     });
 }
-
