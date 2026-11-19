@@ -1377,6 +1377,49 @@
     border-radius: 6px !important;
   }
 
+  .chintwo-mobile-dropdown-cta-wrap {
+    margin-top: 10px !important;
+    padding-top: 12px !important;
+    border-top: 1px solid rgba(18, 19, 22, 0.08) !important;
+  }
+
+  .chintwo-mobile-dropdown-inquire-btn {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    padding: 13px 18px !important;
+    background: #121316 !important;
+    color: #ffffff !important;
+    font-family: 'Inter', sans-serif !important;
+    font-size: 12px !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.08em !important;
+    text-transform: uppercase !important;
+    text-decoration: none !important;
+    border-radius: 12px !important;
+    box-shadow: 0 4px 14px rgba(18, 19, 22, 0.16) !important;
+    transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease !important;
+  }
+
+  .chintwo-mobile-dropdown-inquire-btn:hover,
+  .chintwo-mobile-dropdown-inquire-btn:active {
+    background: #2a2b30 !important;
+    color: #ffffff !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 6px 20px rgba(18, 19, 22, 0.24) !important;
+  }
+
+  .chintwo-mobile-dropdown-inquire-btn svg {
+    color: #ffffff !important;
+    transition: transform 0.2s ease !important;
+  }
+
+  .chintwo-mobile-dropdown-inquire-btn:hover svg {
+    transform: translateX(3px) !important;
+  }
+
   .chintwo-mobile-dropdown-footer {
     display: flex !important;
     align-items: center !important;
@@ -1420,12 +1463,14 @@
       padding: 8px 14px !important;
       display: flex !important;
       align-items: center !important;
-      justify-content: space-between !important;
+      justify-content: flex-end !important;
+      min-height: 44px !important;
     }
     .chintwo-taskbar-brand {
       position: absolute !important;
       left: 50% !important;
-      transform: translateX(-50%) !important;
+      top: 50% !important;
+      transform: translate(-50%, -50%) !important;
       display: flex !important;
       align-items: center !important;
       justify-content: center !important;
@@ -1448,15 +1493,16 @@
       display: none !important;
     }
     .chintwo-taskbar-actions {
-      width: 100% !important;
+      width: auto !important;
       display: flex !important;
       align-items: center !important;
-      justify-content: space-between !important;
+      justify-content: flex-end !important;
+      margin-left: auto !important;
       gap: 0 !important;
     }
     .chintwo-mobile-menu-btn {
       display: inline-flex !important;
-      order: 1 !important;
+      order: unset !important;
       position: relative !important;
       z-index: 3 !important;
     }
@@ -1465,12 +1511,7 @@
     }
     .chintwo-inquire-btn,
     .chintwo-taskbar-cta {
-      display: inline-flex !important;
-      order: 2 !important;
-      position: relative !important;
-      z-index: 3 !important;
-      padding: 6px 14px !important;
-      font-size: 11px !important;
+      display: none !important;
     }
   }
 
@@ -2105,6 +2146,12 @@
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
       </a>
     </nav>
+    <div class="chintwo-mobile-dropdown-cta-wrap">
+      <a href="/contact" class="chintwo-mobile-dropdown-inquire-btn" aria-label="Inquire and Contact Artist">
+        <span>INQUIRE</span>
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+      </a>
+    </div>
     <div class="chintwo-mobile-dropdown-footer">
       <span style="font-size: 11px; color: rgba(18, 19, 22, 0.5); font-family: 'Inter', sans-serif;">Follow Studio</span>
       <div class="chintwo-mobile-dropdown-socials">
