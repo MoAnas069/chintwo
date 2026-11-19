@@ -799,21 +799,6 @@
     background: rgba(18, 19, 22, 0.04) !important;
   }
 
-  /* MOBILE FOOTER & BRAND POLISH */
-  @media (max-width: 768px) {
-    .chintwo-footer {
-      padding: 50px 20px 30px !important;
-    }
-    .chintwo-footer-bottom {
-      flex-direction: column !important;
-      align-items: center !important;
-      gap: 16px !important;
-      margin-top: 36px !important;
-      padding-top: 24px !important;
-      text-align: center !important;
-    }
-  }
-
   /* Global Smooth Transitions */
   html {
     scroll-behavior: smooth;
@@ -1773,25 +1758,23 @@
 
   /* STANDARDIZED STUDIO FOOTER: Fine-Art Prussian Umber Velvet */
   .chintwo-footer {
-    width: 100vw !important;
-    position: relative !important;
-    left: 50% !important;
-    right: 50% !important;
-    margin-left: -50vw !important;
-    margin-right: -50vw !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
     box-sizing: border-box !important;
-    background-color: #222126 !important;
+    position: relative !important;
+    z-index: 2 !important;
+    overflow: hidden !important;
+    background-color: #161519 !important;
     background-image: 
-      radial-gradient(circle at 50% 0%, rgba(191, 161, 95, 0.14) 0%, transparent 65%),
-      linear-gradient(180deg, rgba(34, 33, 38, 0.98) 0%, rgba(22, 21, 26, 1) 100%),
+      radial-gradient(circle at 50% 0%, rgba(191, 161, 95, 0.12) 0%, transparent 65%),
+      linear-gradient(180deg, #18171b 0%, #121316 100%),
       url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='footerVelvet'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.035 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23footerVelvet)'/%3E%3C/svg%3E") !important;
     background-size: 100% 100%, 100% 100%, 200px 200px !important;
     border-top: 1px solid rgba(191, 161, 95, 0.28) !important;
     box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.22) inset !important;
     color: #f7f6f2 !important;
-    padding: 90px clamp(24px, 5vw, 80px) 40px !important;
-    z-index: 2 !important;
-    overflow: hidden !important;
+    padding: 80px clamp(24px, 4vw, 64px) 36px !important;
   }
 
   .chintwo-footer-container {
@@ -1799,7 +1782,7 @@
     max-width: 1600px !important;
     margin: 0 auto !important;
     box-sizing: border-box !important;
-    padding: 0 clamp(16px, 3vw, 40px) !important;
+    padding: 0 clamp(16px, 2.5vw, 36px) !important;
   }
 
   /* STANDARDIZED ATELIER FOOTER */
@@ -1862,11 +1845,6 @@
     margin: 0 0 24px 0 !important;
     max-width: 780px !important;
   }
-    font-size: 12.5px !important;
-    line-height: 1.6 !important;
-    color: rgba(255, 255, 255, 0.5) !important;
-    margin: 0 0 20px 0 !important;
-  }
 
   .chintwo-footer-email-link {
     color: #bfa15f !important;
@@ -1902,11 +1880,22 @@
   }
 
   .chintwo-footer-bottom {
+    width: 100% !important;
     display: flex !important;
     justify-content: space-between !important;
     align-items: center !important;
-    padding-top: 32px !important;
+    flex-wrap: wrap !important;
+    gap: 16px !important;
+    margin-top: 36px !important;
+    padding-top: 28px !important;
     border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+    font-family: 'Inter', sans-serif !important;
+    font-size: 12px !important;
+    color: rgba(255, 255, 255, 0.45) !important;
+    box-sizing: border-box !important;
+  }
+
+  .chintwo-footer-copy {
     font-family: 'Inter', sans-serif !important;
     font-size: 12px !important;
     color: rgba(255, 255, 255, 0.45) !important;
@@ -1934,11 +1923,20 @@
     color: #ffffff !important;
   }
 
-  @media (max-width: 600px) {
+  @media (max-width: 768px) {
+    .chintwo-footer {
+      padding: 60px 20px 32px !important;
+    }
+    .chintwo-footer-standard {
+      margin-bottom: 36px !important;
+    }
     .chintwo-footer-bottom {
       flex-direction: column !important;
-      gap: 16px !important;
+      align-items: center !important;
+      gap: 14px !important;
       text-align: center !important;
+      margin-top: 28px !important;
+      padding-top: 20px !important;
     }
   }
 </style>
