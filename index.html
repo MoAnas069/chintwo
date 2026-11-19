@@ -842,304 +842,411 @@
     overflow-x: hidden !important;
   }
 
-  /* PINNED HERO TRACK & FULL-SCREEN VIEWPORT STAGE */
-  .chintwo-hero-pinned-track {
+  /* =========================================================================
+     CHINTWO EDITORIAL HERO SECTION (Inspired by Artonaut Reference)
+     Aesthetic: Minimalist, sophisticated, pure white, layered fine art
+     ========================================================================= */
+  .chintwo-hero-editorial {
     position: relative !important;
-    height: 230vh !important;
     width: 100% !important;
-    background: transparent !important;
-    display: block !important;
-  }
-
-  .chintwo-hero-stage {
-    position: sticky !important;
-    top: 0 !important;
-    height: 100vh !important;
-    width: 100% !important;
+    min-height: 100vh !important;
+    background-color: #ffffff !important;
+    background-image: none !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding: clamp(95px, 12vh, 125px) clamp(24px, 4vw, 64px) clamp(40px, 5vh, 60px) !important;
+    box-sizing: border-box !important;
     overflow: hidden !important;
     z-index: 10 !important;
-    background-color: #f7f5f0 !important;
-    background-image: 
-      radial-gradient(ellipse at 50% 48%, rgba(255, 255, 255, 0.95) 0%, rgba(247, 245, 240, 0.75) 50%, rgba(235, 230, 220, 0.90) 100%),
-      linear-gradient(0deg, rgba(18, 19, 22, 0.02) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(18, 19, 22, 0.02) 1px, transparent 1px),
-      url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='canvasGrain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.78' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.1 0 0 0 0 0.1 0 0 0 0 0.1 0 0 0 0.04 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23canvasGrain)'/%3E%3C/svg%3E") !important;
-    background-size: 100% 100%, 32px 32px, 32px 32px, 200px 200px !important;
+  }
+
+  /* 1. Top Atelier Eyebrow Meta */
+  .chintwo-hero-top-meta {
+    width: 100% !important;
+    max-width: 1320px !important;
     display: flex !important;
     align-items: center !important;
-    justify-content: center !important;
+    justify-content: space-between !important;
+    padding-bottom: 22px !important;
+    border-bottom: 1px solid rgba(18, 19, 22, 0.08) !important;
+    margin-bottom: clamp(24px, 3.5vh, 40px) !important;
   }
 
-  /* DIPTYCH SPLIT VARIABLES */
-  :root {
-    --chintwo-diptych-split: 220px;
-  }
-  @media (max-width: 1200px) {
-    :root { --chintwo-diptych-split: 160px; }
-  }
-  @media (max-width: 810px) {
-    :root { --chintwo-diptych-split: 95px; }
-  }
-
-  /* FULL-SCREEN DIPTYCH UNIFICATION WRAPPER */
-  .chintwo-diptych-unification-wrapper {
-    position: absolute !important;
-    top: 0 !important;
-    left: 0 !important;
-    width: 100vw !important;
-    height: 100vh !important;
-    overflow: hidden !important;
-    pointer-events: none !important;
-    z-index: 12 !important;
-  }
-
-  /* LEFT HALF: Occupies left 50vw and full 100vh */
-  .chintwo-diptych-half.chintwo-diptych-left {
-    position: absolute !important;
-    top: 0 !important;
-    left: 0 !important;
-    width: 50.1vw !important;
-    height: 100vh !important;
-    overflow: hidden !important;
-    will-change: transform, box-shadow, border-radius !important;
-    z-index: 14 !important;
-    transform-origin: center center !important;
-    border-radius: 16px;
-    box-shadow: 18px 15px 45px rgba(18, 19, 22, 0.22);
-  }
-
-  /* RIGHT HALF: Occupies right 50vw and full 100vh */
-  .chintwo-diptych-half.chintwo-diptych-right {
-    position: absolute !important;
-    top: 0 !important;
-    left: 50vw !important;
-    width: 50.1vw !important;
-    height: 100vh !important;
-    overflow: hidden !important;
-    will-change: transform, box-shadow, border-radius !important;
-    z-index: 14 !important;
-    transform-origin: center center !important;
-    border-radius: 16px;
-    box-shadow: -18px 15px 45px rgba(18, 19, 22, 0.22);
-  }
-
-  /* IMAGE PANES: Full viewport cover (100vw x 100vh) */
-  .chintwo-diptych-img-pane {
-    position: absolute !important;
-    top: 0 !important;
-    width: 100vw !important;
-    height: 100vh !important;
-    background-size: cover !important;
-    background-position: center bottom !important;
-    background-repeat: no-repeat !important;
-    background-image: url('/assets/images/hero_landscape.webp') !important;
-    transform-origin: center bottom !important;
-    will-change: transform, filter !important;
-  }
-
-  /* Left half inner image starts at screen left (0) */
-  .chintwo-diptych-img-left {
-    left: 0 !important;
-  }
-
-  /* Right half inner image is offset by -50vw so its right half displays */
-  .chintwo-diptych-img-right {
-    left: -50vw !important;
-  }
-
-  @media (max-width: 810px) {
-    .chintwo-diptych-img-pane {
-      background-image: url('/assets/images/hero_portrait.webp') !important;
-      background-position: center bottom !important;
-    }
-  }
-
-  /* MINIMALIST FLOATING SCROLL CUE (ENTRANCE PROMPT) */
-  .chintwo-hero-scroll-cue {
-    position: absolute !important;
-    bottom: 34px !important;
-    left: 50% !important;
-    transform: translateX(-50%) translateY(0) !important;
-    display: flex !important;
-    flex-direction: column !important;
+  .chintwo-hero-meta-col {
+    display: inline-flex !important;
     align-items: center !important;
-    gap: 9px !important;
-    z-index: 25 !important;
-    pointer-events: none !important;
-    opacity: 0;
-    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1) !important;
-  }
-
-  .chintwo-hero-scroll-cue.is-visible {
-    opacity: 0.85 !important;
-    transform: translateX(-50%) translateY(0) !important;
-  }
-
-  .chintwo-hero-scroll-cue.is-hidden {
-    opacity: 0 !important;
-    transform: translateX(-50%) translateY(14px) !important;
-  }
-
-  .chintwo-scroll-indicator-mouse {
-    width: 20px !important;
-    height: 32px !important;
-    border: 1.5px solid rgba(18, 19, 22, 0.45) !important;
-    border-radius: 12px !important;
-    display: flex !important;
-    justify-content: center !important;
-    padding-top: 5px !important;
-    box-sizing: border-box !important;
-    background: rgba(255, 255, 255, 0.45) !important;
-    backdrop-filter: blur(6px) !important;
-    box-shadow: 0 4px 14px rgba(18, 19, 22, 0.08) !important;
-  }
-
-  .chintwo-scroll-indicator-wheel {
-    width: 3px !important;
-    height: 6px !important;
-    background: #121316 !important;
-    border-radius: 2px !important;
-    animation: chintwoWheelDrop 1.8s ease-in-out infinite !important;
-  }
-
-  @keyframes chintwoWheelDrop {
-    0% { transform: translateY(0); opacity: 1; }
-    55% { transform: translateY(8px); opacity: 0; }
-    56% { transform: translateY(0); opacity: 0; }
-    100% { transform: translateY(0); opacity: 1; }
-  }
-
-  .chintwo-scroll-indicator-text {
-    font-family: 'Space Mono', monospace !important;
-    font-size: 10px !important;
-    letter-spacing: 0.22em !important;
+    gap: 10px !important;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif !important;
+    font-size: 11px !important;
+    letter-spacing: 0.18em !important;
     text-transform: uppercase !important;
-    color: rgba(18, 19, 22, 0.70) !important;
-    text-shadow: 0 1px 8px rgba(255, 255, 255, 0.8) !important;
+    color: rgba(18, 19, 22, 0.55) !important;
   }
 
-  /* HERO BRAND LOCKUP: Prominently situated in the artwork's upper whitespace */
-  .chintwo-hero-center-brand {
-    position: absolute !important;
-    top: clamp(140px, 26vh, 280px) !important;
-    left: 50% !important;
-    transform: translate(-50%, -50%);
-    opacity: 0;
-    pointer-events: none;
-    z-index: 30 !important;
-    text-align: center !important;
-    width: auto !important;
-    max-width: 95vw !important;
-    transition: opacity 0.35s ease, transform 0.35s ease;
+  .chintwo-hero-meta-col.center {
+    justify-content: center !important;
   }
 
-  .chintwo-hero-center-brand-inner {
+  .chintwo-meta-tag {
+    font-weight: 600 !important;
+    color: #121316 !important;
+  }
+
+  .chintwo-meta-sep {
+    opacity: 0.3 !important;
+  }
+
+  .chintwo-hero-brand-mark {
     display: flex !important;
-    flex-direction: column !important;
     align-items: center !important;
     justify-content: center !important;
-    padding: 0 !important;
-    background: transparent !important;
-    border: none !important;
-    box-shadow: none !important;
   }
 
-  .chintwo-hero-center-emblem {
-    width: clamp(74px, 7.5vw, 110px) !important;
-    height: clamp(80px, 8vw, 118px) !important;
+  .chintwo-hero-brand-emblem {
+    width: 28px !important;
+    height: 30px !important;
     object-fit: contain !important;
-    margin: 0 auto 14px auto !important;
-    filter: drop-shadow(0 2px 10px rgba(18, 19, 22, 0.15)) !important;
-    display: block !important;
+    filter: drop-shadow(0 2px 6px rgba(18, 19, 22, 0.1)) !important;
   }
 
-  .chintwo-hero-center-name {
-    font-family: 'Over the Rainbow', 'Shadows Into Light Two', 'Covered By Your Grace', 'Patrick Hand', cursive, sans-serif !important;
-    font-size: clamp(68px, 9.5vw, 130px) !important;
+  /* 2. Oversized Editorial Typography */
+  .chintwo-hero-typography-wrap {
+    text-align: center !important;
+    width: 100% !important;
+    max-width: 1320px !important;
+    margin-bottom: clamp(20px, 3vh, 36px) !important;
+    position: relative !important;
+    z-index: 1 !important;
+  }
+
+  .chintwo-hero-oversized-title {
+    font-family: 'Playfair Display', Georgia, serif !important;
+    font-size: clamp(68px, 14vw, 190px) !important;
     font-weight: 400 !important;
     letter-spacing: 0.04em !important;
+    line-height: 0.92 !important;
     color: #121316 !important;
-    margin: 0 0 6px 0 !important;
-    line-height: 1.05 !important;
-    text-indent: 0 !important;
-    display: block !important;
-    text-shadow: 0 2px 20px rgba(255, 255, 255, 0.95), 0 0 30px rgba(255, 255, 255, 0.9) !important;
-    white-space: nowrap !important;
-  }
-
-  .chintwo-hero-center-sub {
-    font-family: 'Inter', sans-serif !important;
-    font-size: clamp(10px, 1.2vw, 12px) !important;
-    font-weight: 600 !important;
-    letter-spacing: 0.36em !important;
-    color: rgba(18, 19, 22, 0.75) !important;
+    margin: 0 0 14px 0 !important;
     text-transform: uppercase !important;
-    text-indent: 0.36em !important;
+    text-shadow: 0 10px 40px rgba(18, 19, 22, 0.04) !important;
+    user-select: none !important;
+  }
+
+  .chintwo-hero-sub-title {
+    font-family: 'Inter', sans-serif !important;
+    font-size: clamp(10px, 1.1vw, 12px) !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.28em !important;
+    text-transform: uppercase !important;
+    color: rgba(18, 19, 22, 0.55) !important;
+    margin: 0 !important;
+  }
+
+  /* 3. Layered Artwork Stage (Artonaut inspired layered overlapping presentation) */
+  .chintwo-hero-artwork-stage {
+    position: relative !important;
+    width: 100% !important;
+    max-width: 1180px !important;
+    height: clamp(340px, 48vh, 520px) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin: clamp(10px, 2vh, 24px) 0 clamp(30px, 4.5vh, 50px) !important;
+    perspective: 1200px !important;
+  }
+
+  .chintwo-hero-art-card {
+    position: absolute !important;
+    border-radius: 14px !important;
+    overflow: hidden !important;
+    background: #ffffff !important;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1), z-index 0.3s ease !important;
+    cursor: pointer !important;
+    will-change: transform, box-shadow !important;
+  }
+
+  .chintwo-art-inner {
+    position: relative !important;
+    width: 100% !important;
+    height: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  .chintwo-art-img {
     display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    border-radius: 14px !important;
+    transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1) !important;
   }
 
+  .chintwo-art-caption {
+    position: absolute !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    padding: 24px 18px 14px 18px !important;
+    background: linear-gradient(180deg, transparent 0%, rgba(18, 19, 22, 0.72) 100%) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    color: #ffffff !important;
+    font-family: 'Inter', sans-serif !important;
+    font-size: 11px !important;
+    letter-spacing: 0.08em !important;
+    opacity: 0 !important;
+    transform: translateY(6px) !important;
+    transition: opacity 0.35s ease, transform 0.35s ease !important;
+    pointer-events: none !important;
+  }
+
+  .art-caption-num {
+    font-size: 10px !important;
+    opacity: 0.75 !important;
+    font-variant-numeric: tabular-nums !important;
+  }
+
+  .art-caption-title {
+    font-weight: 500 !important;
+  }
+
+  .chintwo-hero-art-card:hover .chintwo-art-caption {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+  }
+
+  .chintwo-hero-art-card:hover .chintwo-art-img {
+    transform: scale(1.03) !important;
+  }
+
+  /* Center Focal Artwork */
+  .chintwo-hero-art-card.chintwo-art-center {
+    width: clamp(340px, 44vw, 580px) !important;
+    height: clamp(230px, 36vh, 380px) !important;
+    z-index: 5 !important;
+    transform: translate3d(0, 0, 20px) rotate(0deg) !important;
+    box-shadow: 0 30px 80px -15px rgba(18, 19, 22, 0.20), 0 12px 30px -8px rgba(18, 19, 22, 0.10), 0 0 0 1px rgba(18, 19, 22, 0.06) !important;
+  }
+
+  .chintwo-hero-art-card.chintwo-art-center:hover {
+    transform: translate3d(0, -10px, 40px) scale(1.02) !important;
+    box-shadow: 0 45px 100px -15px rgba(18, 19, 22, 0.26), 0 16px 40px -8px rgba(18, 19, 22, 0.14), 0 0 0 1px rgba(18, 19, 22, 0.08) !important;
+  }
+
+  /* Left Layered Artwork (Tilted & Overlapped behind left) */
+  .chintwo-hero-art-card.chintwo-art-left {
+    width: clamp(220px, 26vw, 340px) !important;
+    height: clamp(280px, 38vh, 420px) !important;
+    z-index: 3 !important;
+    left: calc(50% - clamp(280px, 36vw, 450px)) !important;
+    transform: translate3d(0, 15px, 0) rotate(-4.5deg) !important;
+    box-shadow: 0 24px 60px -12px rgba(18, 19, 22, 0.14), 0 0 0 1px rgba(18, 19, 22, 0.05) !important;
+  }
+
+  .chintwo-hero-art-card.chintwo-art-left:hover {
+    z-index: 6 !important;
+    transform: translate3d(0, -6px, 30px) rotate(-1.5deg) scale(1.03) !important;
+    box-shadow: 0 35px 80px -10px rgba(18, 19, 22, 0.22), 0 0 0 1px rgba(18, 19, 22, 0.08) !important;
+  }
+
+  /* Right Layered Artwork (Tilted & Overlapped behind right) */
+  .chintwo-hero-art-card.chintwo-art-right {
+    width: clamp(210px, 25vw, 330px) !important;
+    height: clamp(270px, 36vh, 400px) !important;
+    z-index: 3 !important;
+    right: calc(50% - clamp(280px, 36vw, 450px)) !important;
+    transform: translate3d(0, 20px, 0) rotate(4deg) !important;
+    box-shadow: 0 24px 60px -12px rgba(18, 19, 22, 0.14), 0 0 0 1px rgba(18, 19, 22, 0.05) !important;
+  }
+
+  .chintwo-hero-art-card.chintwo-art-right:hover {
+    z-index: 6 !important;
+    transform: translate3d(0, -6px, 30px) rotate(1.5deg) scale(1.03) !important;
+    box-shadow: 0 35px 80px -10px rgba(18, 19, 22, 0.22), 0 0 0 1px rgba(18, 19, 22, 0.08) !important;
+  }
+
+  /* 4. Bottom Editorial Details Row */
+  .chintwo-hero-bottom-row {
+    width: 100% !important;
+    max-width: 1320px !important;
+    display: grid !important;
+    grid-template-columns: 1fr auto !important;
+    align-items: flex-end !important;
+    gap: 40px !important;
+    padding-top: 24px !important;
+    border-top: 1px solid rgba(18, 19, 22, 0.08) !important;
+  }
+
+  .chintwo-hero-statement-col {
+    max-width: 680px !important;
+  }
+
+  .chintwo-hero-statement-text {
+    font-family: 'Playfair Display', Georgia, serif !important;
+    font-style: italic !important;
+    font-size: clamp(15px, 1.4vw, 19px) !important;
+    line-height: 1.55 !important;
+    color: rgba(18, 19, 22, 0.85) !important;
+    margin: 0 0 8px 0 !important;
+  }
+
+  .chintwo-hero-artist-sign {
+    font-family: 'Inter', sans-serif !important;
+    font-size: 11px !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.18em !important;
+    text-transform: uppercase !important;
+    color: rgba(18, 19, 22, 0.45) !important;
+  }
+
+  .chintwo-hero-action-col {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-end !important;
+    gap: 10px !important;
+  }
+
+  .chintwo-hero-explore-btn {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+    padding: 14px 28px !important;
+    background: #121316 !important;
+    color: #ffffff !important;
+    border-radius: 999px !important;
+    text-decoration: none !important;
+    font-family: 'Inter', sans-serif !important;
+    font-size: 11px !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.14em !important;
+    box-shadow: 0 8px 24px rgba(18, 19, 22, 0.14) !important;
+    transition: background 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease !important;
+  }
+
+  .chintwo-hero-explore-btn:hover {
+    background: #2a2b30 !important;
+    color: #ffffff !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 12px 32px rgba(18, 19, 22, 0.22) !important;
+  }
+
+  .chintwo-hero-explore-btn .btn-icon {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    transition: transform 0.25s ease !important;
+  }
+
+  .chintwo-hero-explore-btn:hover .btn-icon {
+    transform: translateY(3px) !important;
+  }
+
+  .chintwo-hero-archive-badge {
+    font-family: 'Inter', sans-serif !important;
+    font-size: 10px !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.15em !important;
+    text-transform: uppercase !important;
+    color: rgba(18, 19, 22, 0.42) !important;
+  }
+
+  /* 5. Mobile Responsiveness (max-width: 810px) */
   @media (max-width: 810px) {
-    .chintwo-hero-center-brand {
-      top: clamp(140px, 28vh, 260px) !important;
-      left: 50% !important;
-      transform: translate(-50%, -50%) !important;
-      width: 100% !important;
-      max-width: 96vw !important;
-      display: flex !important;
+    .chintwo-hero-editorial {
+      padding: 85px 18px 45px !important;
+      min-height: auto !important;
+    }
+
+    .chintwo-hero-top-meta {
       flex-direction: column !important;
-      align-items: center !important;
-      justify-content: center !important;
+      gap: 10px !important;
       text-align: center !important;
+      padding-bottom: 16px !important;
+      margin-bottom: 22px !important;
     }
-    .chintwo-hero-center-brand-inner {
-      display: flex !important;
-      flex-direction: column !important;
-      align-items: center !important;
-      justify-content: center !important;
-      margin: 0 auto !important;
-      text-align: center !important;
+
+    .chintwo-hero-meta-col {
+      font-size: 10px !important;
+      letter-spacing: 0.14em !important;
     }
-    .chintwo-hero-center-emblem {
-      width: clamp(72px, 18.5vw, 96px) !important;
-      height: clamp(76px, 19.5vw, 102px) !important;
-      margin: 0 auto 14px auto !important;
-      display: block !important;
-      align-self: center !important;
-    }
-    .chintwo-hero-center-name {
-      font-size: clamp(48px, 13.5vw, 76px) !important;
+
+    .chintwo-hero-oversized-title {
+      font-size: clamp(52px, 15vw, 84px) !important;
+      margin-bottom: 8px !important;
       letter-spacing: 0.02em !important;
-      text-indent: 0 !important;
-      margin: 0 auto 4px auto !important;
-      line-height: 1.05 !important;
-      white-space: nowrap !important;
-      text-align: center !important;
     }
-    .chintwo-hero-center-sub {
+
+    .chintwo-hero-sub-title {
       font-size: 9px !important;
-      letter-spacing: 0.28em !important;
-      text-indent: 0.28em !important;
+      letter-spacing: 0.20em !important;
+    }
+
+    .chintwo-hero-artwork-stage {
+      height: 380px !important;
+      margin: 15px 0 30px !important;
+    }
+
+    .chintwo-hero-art-card.chintwo-art-center {
+      width: 78vw !important;
+      max-width: 330px !important;
+      height: 250px !important;
+    }
+
+    .chintwo-hero-art-card.chintwo-art-left {
+      width: 50vw !important;
+      max-width: 210px !important;
+      height: 240px !important;
+      left: calc(50% - 150px) !important;
+      transform: translate3d(0, 10px, 0) rotate(-4deg) !important;
+    }
+
+    .chintwo-hero-art-card.chintwo-art-right {
+      width: 48vw !important;
+      max-width: 200px !important;
+      height: 230px !important;
+      right: calc(50% - 145px) !important;
+      transform: translate3d(0, 14px, 0) rotate(4deg) !important;
+    }
+
+    .chintwo-hero-bottom-row {
+      grid-template-columns: 1fr !important;
+      gap: 24px !important;
+      text-align: center !important;
+      padding-top: 20px !important;
+    }
+
+    .chintwo-hero-statement-col {
+      max-width: 100% !important;
+    }
+
+    .chintwo-hero-action-col {
+      align-items: center !important;
+      width: 100% !important;
+    }
+
+    .chintwo-hero-explore-btn {
+      width: 100% !important;
+      max-width: 320px !important;
+      justify-content: center !important;
     }
   }
 
-  /* FUNCTIONAL TOP TASKBAR: Hidden initially, reveals after merge */
+  /* FUNCTIONAL TOP TASKBAR: Visible immediately on pure white canvas */
   .chintwo-taskbar {
     position: fixed !important;
     top: 18px !important;
     left: 50% !important;
-    transform: translate(-50%, -30px) !important;
-    opacity: 0 !important;
-    pointer-events: none !important;
+    transform: translate(-50%, 0) !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
     width: calc(100% - 48px) !important;
     max-width: 1240px !important;
     z-index: 9999 !important;
     transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1), transform 0.45s cubic-bezier(0.16, 1, 0.3, 1) !important;
-  }
-
-  .chintwo-taskbar.chintwo-taskbar-visible {
-    opacity: 1 !important;
-    transform: translate(-50%, 0) !important;
-    pointer-events: auto !important;
   }
 
   .chintwo-taskbar-inner {
@@ -1899,16 +2006,46 @@
     position: relative !important;
     z-index: 2 !important;
     overflow: hidden !important;
-    background-color: #161519 !important;
-    background-image: 
-      radial-gradient(circle at 50% 0%, rgba(191, 161, 95, 0.12) 0%, transparent 65%),
-      linear-gradient(180deg, #18171b 0%, #121316 100%),
-      url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='footerVelvet'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.035 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23footerVelvet)'/%3E%3C/svg%3E") !important;
-    background-size: 100% 100%, 100% 100%, 200px 200px !important;
-    border-top: 1px solid rgba(191, 161, 95, 0.28) !important;
-    box-shadow: 0 -10px 40px rgba(0, 0, 0, 0.22) inset !important;
+    background-color: #000000 !important;
+    background-image: none !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.12) !important;
+    box-shadow: none !important;
     color: #f7f6f2 !important;
     padding: 80px clamp(24px, 4vw, 64px) 36px !important;
+  }
+
+  .chintwo-footer-statement {
+    color: rgba(255, 255, 255, 0.85) !important;
+  }
+  .chintwo-footer-substatement {
+    color: rgba(255, 255, 255, 0.65) !important;
+  }
+  .chintwo-footer-email-link {
+    color: #ffffff !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3) !important;
+    text-decoration: none !important;
+    transition: color 0.2s ease, border-color 0.2s ease !important;
+  }
+  .chintwo-footer-email-link:hover {
+    color: #bfa15f !important;
+    border-color: #bfa15f !important;
+  }
+  .chintwo-footer-copy {
+    color: rgba(255, 255, 255, 0.45) !important;
+  }
+  .chintwo-footer-back-to-top {
+    color: rgba(255, 255, 255, 0.75) !important;
+    background: rgba(255, 255, 255, 0.08) !important;
+    border: 1px solid rgba(255, 255, 255, 0.15) !important;
+    border-radius: 999px !important;
+    padding: 6px 14px !important;
+    font-size: 11px !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+  }
+  .chintwo-footer-back-to-top:hover {
+    color: #ffffff !important;
+    background: rgba(255, 255, 255, 0.18) !important;
   }
 
   .chintwo-footer-container {
@@ -2176,38 +2313,95 @@
     <!-- End of bodyStart -->
 	
 	<div id="main" data-framer-hydrate-v2="{&quot;routeId&quot;:&quot;augiA20Il&quot;,&quot;localeId&quot;:&quot;default&quot;,&quot;breakpoints&quot;:[{&quot;hash&quot;:&quot;x29ilp&quot;,&quot;mediaQuery&quot;:&quot;(min-width: 1400px)&quot;},{&quot;hash&quot;:&quot;57x94v&quot;,&quot;mediaQuery&quot;:&quot;(min-width: 810px) and (max-width: 1399.98px)&quot;},{&quot;hash&quot;:&quot;i58y18&quot;,&quot;mediaQuery&quot;:&quot;(max-width: 809.98px)&quot;},{&quot;hash&quot;:&quot;11m4sa3&quot;,&quot;mediaQuery&quot;:&quot;(max-width: 809.98px)&quot;},{&quot;hash&quot;:&quot;w3hve4&quot;,&quot;mediaQuery&quot;:&quot;(min-width: 810px) and (max-width: 1199.98px)&quot;},{&quot;hash&quot;:&quot;oja7hh&quot;,&quot;mediaQuery&quot;:&quot;(min-width: 1200px)&quot;}]}" data-framer-ssr-released-at="2026-07-07T10:12:38.451Z" data-framer-page-optimized-at="2026-07-07T13:35:02.993Z" data-framer-generated-page><!--$--><style data-framer-html-style>:root body { background: #f7f5f0; }</style><div class="framer-JYB5s framer-oja7hh" data-layout-template="true" style="min-height:100vh;width:auto"><style data-framer-html-style>html body { background: #f7f5f0; }</style><div data-framer-root class="framer-L7MJ5 framer-x29ilp" style="min-height:100vh;width:auto;display:contents"><div class="framer-1renmi9-container"><!--$--><div></div><!--/$--></div><main class="framer-s85uji" data-framer-name="Main">
-<!-- DEDICATED PINNED HERO TRACK: Seamless Scroll Diptych Unification -->
-<div class="chintwo-hero-pinned-track" id="chintwo-hero-track">
-  <section class="chintwo-hero-stage" id="chintwo-hero-stage" aria-label="Hero: Artwork Merging Stage">
-
-    <!-- The Diptych Canvas Stage (Unification) -->
-    <div class="chintwo-diptych-unification-wrapper" id="chintwo-diptych-wrapper">
-      <div class="chintwo-diptych-half chintwo-diptych-left" id="chintwo-diptych-left">
-        <div class="chintwo-diptych-img-pane chintwo-diptych-img-left"></div>
+<!-- REFINED EDITORIAL HERO SECTION (Inspired by Artonaut) -->
+<section class="chintwo-hero-editorial" id="chintwo-hero" aria-label="Chintwo Atelier Hero">
+  <!-- Top Eyebrow / Atelier Meta -->
+  <div class="chintwo-hero-top-meta">
+    <div class="chintwo-hero-meta-col left">
+      <span class="chintwo-meta-tag">LONDON ATELIER</span>
+      <span class="chintwo-meta-sep">•</span>
+      <span class="chintwo-meta-desc">CONTEMPORARY FINE ART</span>
+    </div>
+    <div class="chintwo-hero-meta-col center">
+      <div class="chintwo-hero-brand-mark">
+        <img src="/assets/images/chintwo_emblem.svg" alt="Chintwo Monogram" width="30" height="32" class="chintwo-hero-brand-emblem">
       </div>
-      <div class="chintwo-diptych-half chintwo-diptych-right" id="chintwo-diptych-right">
-        <div class="chintwo-diptych-img-pane chintwo-diptych-img-right"></div>
+    </div>
+    <div class="chintwo-hero-meta-col right">
+      <span class="chintwo-meta-tag">SELECTED WORKS</span>
+      <span class="chintwo-meta-sep">•</span>
+      <span class="chintwo-meta-desc">2024 — 2026</span>
+    </div>
+  </div>
+
+  <!-- Oversized Typography Header -->
+  <div class="chintwo-hero-typography-wrap">
+    <h1 class="chintwo-hero-oversized-title">CHINTWO</h1>
+    <p class="chintwo-hero-sub-title">ATMOSPHERIC STORYTELLING • MONUMENTAL CANVASES</p>
+  </div>
+
+  <!-- Layered Artwork Stage -->
+  <div class="chintwo-hero-artwork-stage" id="chintwo-hero-art-stage">
+    <!-- Left Layered Artwork -->
+    <div class="chintwo-hero-art-card chintwo-art-left" id="chintwo-art-left">
+      <div class="chintwo-art-inner">
+        <img src="/assets/images/art_silent_hour.webp" alt="The Silent Hour Canvas" class="chintwo-art-img" loading="eager">
+        <div class="chintwo-art-caption">
+          <span class="art-caption-num">01</span>
+          <span class="art-caption-title">The Silent Hour</span>
+        </div>
       </div>
     </div>
 
-    <!-- Center Brand: Revealed in the artwork's upper whitespace as halves merge -->
-    <div class="chintwo-hero-center-brand" id="chintwo-hero-center-brand" aria-label="Chintwo Brand">
-      <div class="chintwo-hero-center-brand-inner">
-        <img src="/assets/images/chintwo_emblem.svg" alt="Chintwo Emblem" width="96" height="102" class="chintwo-hero-center-emblem">
-        <h1 class="chintwo-hero-center-name">- Chintwo -</h1>
+    <!-- Center / Primary Focal Artwork -->
+    <div class="chintwo-hero-art-card chintwo-art-center" id="chintwo-art-center">
+      <div class="chintwo-art-inner">
+        <picture>
+          <source media="(max-width: 810px)" srcset="/assets/images/hero_portrait.webp">
+          <img src="/assets/images/hero_landscape.webp" alt="Primary Horizon Canvas by Chintwo" class="chintwo-art-img" loading="eager">
+        </picture>
+        <div class="chintwo-art-caption">
+          <span class="art-caption-num">02</span>
+          <span class="art-caption-title">Arrival in the Cold Mist</span>
+        </div>
       </div>
     </div>
 
-    <!-- Floating Minimalist Scroll Cue (Entrance Indicator) -->
-    <div class="chintwo-hero-scroll-cue" id="chintwo-hero-scroll-cue" aria-label="Scroll to unify artwork">
-      <div class="chintwo-scroll-indicator-mouse">
-        <div class="chintwo-scroll-indicator-wheel"></div>
+    <!-- Right Layered Artwork -->
+    <div class="chintwo-hero-art-card chintwo-art-right" id="chintwo-art-right">
+      <div class="chintwo-art-inner">
+        <img src="/assets/images/LcTxyeMFm5sIiiSm4Iop5zds.webp" alt="Textured Monoprint Canvas" class="chintwo-art-img" loading="eager">
+        <div class="chintwo-art-caption">
+          <span class="art-caption-num">03</span>
+          <span class="art-caption-title">Nocturne for Two Solitudes</span>
+        </div>
       </div>
-      <span class="chintwo-scroll-indicator-text">SCROLL TO MERGE</span>
+    </div>
+  </div>
+
+  <!-- Bottom Editorial Details & Direction -->
+  <div class="chintwo-hero-bottom-row">
+    <div class="chintwo-hero-statement-col">
+      <p class="chintwo-hero-statement-text">
+        “I translate negative space, atmospheric chiaroscuro, and quiet light into physical form. Every piece is an invitation to stillness.”
+      </p>
+      <span class="chintwo-hero-artist-sign">— Chintwo</span>
     </div>
 
-  </section>
-</div><section class="chintwo-work-section" id="work" aria-label="Selected Works">
+    <div class="chintwo-hero-action-col">
+      <a href="#work" class="chintwo-hero-explore-btn" aria-label="Explore Selected Works">
+        <span class="btn-text">EXPLORE SELECTED WORKS</span>
+        <span class="btn-icon">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <polyline points="19 12 12 19 5 12"></polyline>
+          </svg>
+        </span>
+      </a>
+      <span class="chintwo-hero-archive-badge">Archival Oil &amp; Mixed Medium</span>
+    </div>
+  </div>
+</section><section class="chintwo-work-section" id="work" aria-label="Selected Works">
   <div class="chintwo-work-container">
     <div class="chintwo-work-header">
       <h2 class="chintwo-section-heading">Selected Works &amp; Editions</h2>
@@ -2385,213 +2579,58 @@
     
     <!-- End of bodyEnd -->
 
-<!-- Chintwo Smooth Scroll Diptych Merge Controller -->
-
-
-<script id="chintwo-diptych-script">
+<!-- Chintwo Hero Subtle Parallax & Interactive Controller -->
+<script id="chintwo-hero-script">
 (function() {
-  var leftHalf = document.getElementById('chintwo-diptych-left');
-  var rightHalf = document.getElementById('chintwo-diptych-right');
-  var centerBrand = document.getElementById('chintwo-hero-center-brand');
-  var heroStage = document.getElementById('chintwo-hero-stage');
-  var track = document.getElementById('chintwo-hero-track');
-  var taskbar = document.getElementById('chintwo-taskbar');
-  var scrollCue = document.getElementById('chintwo-hero-scroll-cue');
+  const stage = document.getElementById('chintwo-hero-art-stage');
+  const cardCenter = document.getElementById('chintwo-art-center');
+  const cardLeft = document.getElementById('chintwo-art-left');
+  const cardRight = document.getElementById('chintwo-art-right');
 
-  var targetScroll = 0;
-  var currentScroll = 0;
-  var isTicking = false;
-  var isIntroPlaying = false;
-  var introStartTime = 0;
-  var introDuration = 1300; // ms for silky cinematic parting entrance
+  if (!stage || !cardCenter) return;
 
-  // Full-screen horizontal split distance & minimum scale when shrunk on the sides
-  function getBaseOffset() {
-    var w = window.innerWidth;
-    if (w > 1200) return 180;
-    if (w > 810) return 130;
-    return 70;
+  // Subtle interactive parallax on desktop
+  let mouseX = 0, mouseY = 0;
+  let currentX = 0, currentY = 0;
+  let isTicking = false;
+
+  function onMouseMove(e) {
+    if (window.innerWidth <= 810) return;
+    const rect = stage.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
+    const centerY = rect.top + rect.height / 2;
+    // Normalized between -1 and 1
+    mouseX = (e.clientX - centerX) / (window.innerWidth / 2);
+    mouseY = (e.clientY - centerY) / (window.innerHeight / 2);
+
+    if (!isTicking) {
+      isTicking = true;
+      requestAnimationFrame(updateParallax);
+    }
   }
 
-  function getMinScale() {
-    var w = window.innerWidth;
-    if (w > 1200) return 0.78;
-    if (w > 810) return 0.74;
-    return 0.72;
-  }
+  function updateParallax() {
+    currentX += (mouseX - currentX) * 0.08;
+    currentY += (mouseY - currentY) * 0.08;
 
-  function getMaxAngle() {
-    var w = window.innerWidth;
-    if (w > 1200) return 5.5;
-    if (w > 810) return 4.5;
-    return 3.5;
-  }
+    if (cardCenter) {
+      cardCenter.style.transform = 'translate3d(' + (-currentX * 8).toFixed(2) + 'px, ' + (-currentY * 8).toFixed(2) + 'px, 20px)';
+    }
+    if (cardLeft) {
+      cardLeft.style.transform = 'translate3d(' + (-currentX * 14).toFixed(2) + 'px, ' + (15 - currentY * 12).toFixed(2) + 'px, 0px) rotate(-4.5deg)';
+    }
+    if (cardRight) {
+      cardRight.style.transform = 'translate3d(' + (-currentX * 12).toFixed(2) + 'px, ' + (20 - currentY * 10).toFixed(2) + 'px, 0px) rotate(4deg)';
+    }
 
-  function applyDiptychState(offset, scale, rotation, radius, shadowAlpha) {
-    if (!leftHalf || !rightHalf) return;
-    if (scale >= 0.995 && offset <= 1 && Math.abs(rotation) <= 0.05) {
-      // Perfectly merged full-screen fitting picture (0deg flat, 100% full fit)
-      leftHalf.style.transform = 'translateX(0px) scale(1) rotate(0deg)';
-      rightHalf.style.transform = 'translateX(0px) scale(1) rotate(0deg)';
-      leftHalf.style.borderRadius = '0px';
-      rightHalf.style.borderRadius = '0px';
-      leftHalf.style.boxShadow = 'none';
-      rightHalf.style.boxShadow = 'none';
+    if (Math.abs(mouseX - currentX) > 0.005 || Math.abs(mouseY - currentY) > 0.005) {
+      requestAnimationFrame(updateParallax);
     } else {
-      leftHalf.style.transform = 'translateX(-' + offset.toFixed(2) + 'px) scale(' + scale.toFixed(4) + ') rotate(-' + rotation.toFixed(2) + 'deg)';
-      rightHalf.style.transform = 'translateX(' + offset.toFixed(2) + 'px) scale(' + scale.toFixed(4) + ') rotate(' + rotation.toFixed(2) + 'deg)';
-      leftHalf.style.borderRadius = radius.toFixed(1) + 'px';
-      rightHalf.style.borderRadius = radius.toFixed(1) + 'px';
-      var op = (0.24 * shadowAlpha).toFixed(3);
-      leftHalf.style.boxShadow = (18 * shadowAlpha).toFixed(1) + 'px 18px 45px rgba(18, 19, 22, ' + op + ')';
-      rightHalf.style.boxShadow = '-' + (18 * shadowAlpha).toFixed(1) + 'px 18px 45px rgba(18, 19, 22, ' + op + ')';
-    }
-  }
-
-  function runIntroEntrance(timestamp) {
-    if (!isIntroPlaying) return;
-    if (!introStartTime) introStartTime = timestamp;
-    var elapsed = timestamp - introStartTime;
-    var t = Math.min(1, elapsed / introDuration);
-
-    // Smooth quartic ease-out
-    var easeOut = 1 - Math.pow(1 - t, 4);
-    var baseOffset = getBaseOffset();
-    var minScale = getMinScale();
-    var maxAngle = getMaxAngle();
-
-    var currentPartOffset = easeOut * baseOffset;
-    var currentScale = 1.0 - easeOut * (1.0 - minScale);
-    var currentRotation = easeOut * maxAngle;
-    var currentRadius = easeOut * 16;
-    var shadowAlpha = easeOut;
-
-    applyDiptychState(currentPartOffset, currentScale, currentRotation, currentRadius, shadowAlpha);
-
-    if (t < 1 && (window.scrollY || window.pageYOffset || 0) <= 15) {
-      requestAnimationFrame(runIntroEntrance);
-    } else {
-      isIntroPlaying = false;
-      if (scrollCue && (window.scrollY || window.pageYOffset || 0) <= 20) {
-        scrollCue.classList.add('is-visible');
-      }
-    }
-  }
-
-  function cancelIntroIfActive() {
-    if (isIntroPlaying) {
-      isIntroPlaying = false;
-    }
-  }
-
-  function update() {
-    var mergeDistance = window.innerWidth <= 810 ? 440 : 560;
-    var progress = Math.min(1, Math.max(0, currentScroll / mergeDistance));
-
-    // Smooth cubic easing curve
-    var ease = progress < 0.5 
-      ? 4 * progress * progress * progress 
-      : 1 - Math.pow(-2 * progress + 2, 3) / 2;
-
-    var baseOffset = getBaseOffset();
-    var minScale = getMinScale();
-    var maxAngle = getMaxAngle();
-
-    var offset = (1 - ease) * baseOffset;
-    var scale = minScale + (1.0 - minScale) * ease;
-    var rotation = (1 - ease) * maxAngle;
-    var radius = (1 - ease) * 16;
-    var shadowAlpha = 1 - ease;
-
-    applyDiptychState(offset, scale, rotation, radius, shadowAlpha);
-
-    // Logo & Brand Lockup: Revealed in the artwork's upper whitespace as halves merge
-    if (centerBrand) {
-      var brandOpacity = 0;
-      if (progress > 0.16) {
-        brandOpacity = Math.min(1, (progress - 0.16) / 0.70);
-      }
-      var brandScale = 0.88 + 0.12 * Math.min(1, progress / 0.88);
-      var brandFloatY = (1 - ease) * 16;
-
-      centerBrand.style.opacity = brandOpacity.toFixed(3);
-      centerBrand.style.transform = 'translate(-50%, calc(-50% + ' + brandFloatY.toFixed(1) + 'px)) scale(' + brandScale.toFixed(3) + ')';
-      centerBrand.style.pointerEvents = brandOpacity > 0.5 ? 'auto' : 'none';
-    }
-
-    // Scroll Cue Indicator: visible at top, dissolves as user scrolls
-    if (scrollCue) {
-      if (currentScroll > 18) {
-        scrollCue.classList.remove('is-visible');
-        scrollCue.classList.add('is-hidden');
-      } else if (!isIntroPlaying) {
-        scrollCue.classList.remove('is-hidden');
-        scrollCue.classList.add('is-visible');
-      }
-    }
-
-    // Taskbar: Reveals once the image almost merges and the logo reaches the center (progress >= 0.90)
-    if (taskbar) {
-      if (progress >= 0.90 || currentScroll > mergeDistance * 0.92 || (window.innerWidth <= 810 && currentScroll > 160)) {
-        taskbar.classList.add('chintwo-taskbar-visible');
-      } else {
-        taskbar.classList.remove('chintwo-taskbar-visible');
-      }
-    }
-
-    // Stage merged class
-    if (heroStage) {
-      if (progress >= 0.97) {
-        heroStage.classList.add('is-merged');
-      } else {
-        heroStage.classList.remove('is-merged');
-      }
-    }
-
-    // Smooth lerp loop
-    if (Math.abs(targetScroll - currentScroll) > 0.35) {
-      currentScroll += (targetScroll - currentScroll) * 0.22;
-      requestAnimationFrame(update);
-    } else {
-      currentScroll = targetScroll;
       isTicking = false;
     }
   }
 
-  function onScroll() {
-    cancelIntroIfActive();
-    targetScroll = window.scrollY || window.pageYOffset || 0;
-    if (!isTicking) {
-      isTicking = true;
-      requestAnimationFrame(update);
-    }
-  }
-
-  // User input immediately takes over intro
-  window.addEventListener('wheel', cancelIntroIfActive, { passive: true });
-  window.addEventListener('touchmove', cancelIntroIfActive, { passive: true });
-  window.addEventListener('keydown', cancelIntroIfActive, { passive: true });
-  window.addEventListener('scroll', onScroll, { passive: true });
-  window.addEventListener('resize', onScroll, { passive: true });
-
-  function init() {
-    var initialScroll = window.scrollY || window.pageYOffset || 0;
-    if (initialScroll <= 15) {
-      isIntroPlaying = true;
-      applyOffset(0);
-      requestAnimationFrame(runIntroEntrance);
-    } else {
-      targetScroll = initialScroll;
-      currentScroll = targetScroll;
-      update();
-    }
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    init();
-  }
+  window.addEventListener('mousemove', onMouseMove, { passive: true });
 })();
 </script>
 
