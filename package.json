@@ -6,7 +6,8 @@
     "build": "echo 'Deploying static files'",
     "start": "node scripts/server.js",
     "dev": "node scripts/server.js",
-    "test": "node scripts/test_routes_offline.js"
+    "test": "node scripts/test_routes_offline.js",
+    "verify": "node scripts/verify_all_pages_mobile_nav.js"
   },
   "keywords": [
     "chintwo",
