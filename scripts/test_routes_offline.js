@@ -35,7 +35,10 @@ const routesToTest = [
   '/assets/images/Jh0aZZUumY8rCVh8diGYoi30lAU.webp',
   '/assets/images/bg5zKXacbxF9hxgxh95vSeYyKHM.webp',
   '/assets/images/coNU5GEVyZAGUw45WDGQjFl1OPI.webp',
-  '/assets/images/art_process.webp'
+  '/assets/images/art_process.webp',
+  '/assets/images/hero_landscape.webp',
+  '/assets/images/hero_portrait.webp',
+  '/assets/fonts/OverTheRainbow-Regular.ttf'
 ];
 
 function resolveRoute(urlPath) {
