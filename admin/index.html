@@ -787,6 +787,9 @@
             <span>Journal &amp; Essays</span>
             <span class="admin-tab-count" id="count-journals">0</span>
           </button>
+          <button class="admin-tab-btn" data-tab="tab-content">
+            <span>Site Content &amp; Headings</span>
+          </button>
           <button class="admin-tab-btn" data-tab="tab-subscribers">
             <span>Subscribers</span>
             <span class="admin-tab-count" id="count-subscribers">0</span>
@@ -917,6 +920,253 @@
                 </tr>
               </tbody>
             </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB: SITE CONTENT & HEADINGS (Universal Live Editor) -->
+      <div class="admin-panel" id="tab-content">
+        <div class="admin-card">
+          <div class="admin-card-header">
+            <div>
+              <h2 class="admin-card-title">Live Site Content &amp; Headings Editor</h2>
+              <p style="font-size: 12.5px; color: var(--muted); margin-top: 2px;">Edit every image, heading, subheading, and story text across the entire website in real time.</p>
+            </div>
+          </div>
+          <div style="padding: 24px; max-width: 900px;">
+            <form id="site-content-form">
+
+              <!-- SECTION 1: HERO & LANDING COVER -->
+              <h3 style="font-family:'Playfair Display',serif; font-size:18px; margin-bottom:14px; border-bottom:1px solid var(--border); padding-bottom:6px;">1. Landing Page Cover Images &amp; Brand Entrance</h3>
+              
+              <div class="admin-form-group">
+                <label class="admin-form-label">Desktop Cover Image (Landscape Artwork)</label>
+                <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
+                  <img id="preview-hero-landscape" src="/assets/images/hero_landscape.webp" alt="Desktop cover preview" style="width: 100px; height: 60px; object-fit: cover; border-radius: 6px; border: 1px solid var(--border); background: #eee;">
+                  <input type="text" id="content-hero-landscape" class="admin-form-input" style="flex: 1; min-width: 220px;" placeholder="/assets/images/hero_landscape.webp">
+                  <input type="file" id="upload-hero-landscape" accept="image/*" style="display: none;">
+                  <button type="button" class="admin-btn-sm" onclick="document.getElementById('upload-hero-landscape').click()">Upload Image</button>
+                </div>
+                <small style="color: var(--muted); font-size: 11px;">Shown on desktop/tablet. Shrinks to sides and merges to full screen as you scroll.</small>
+              </div>
+
+              <div class="admin-form-group">
+                <label class="admin-form-label">Mobile Cover Image (Portrait Artwork)</label>
+                <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
+                  <img id="preview-hero-portrait" src="/assets/images/hero_portrait.webp" alt="Mobile cover preview" style="width: 60px; height: 80px; object-fit: cover; border-radius: 6px; border: 1px solid var(--border); background: #eee;">
+                  <input type="text" id="content-hero-portrait" class="admin-form-input" style="flex: 1; min-width: 220px;" placeholder="/assets/images/hero_portrait.webp">
+                  <input type="file" id="upload-hero-portrait" accept="image/*" style="display: none;">
+                  <button type="button" class="admin-btn-sm" onclick="document.getElementById('upload-hero-portrait').click()">Upload Image</button>
+                </div>
+                <small style="color: var(--muted); font-size: 11px;">Shown on mobile viewports (&le; 810px). Shrinks to sides and expands to full screen on scroll.</small>
+              </div>
+
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px;">
+                <div class="admin-form-group">
+                  <label class="admin-form-label">Hero Brand Title</label>
+                  <input type="text" id="content-hero-brand" class="admin-form-input" value="CHINTWO">
+                </div>
+                <div class="admin-form-group">
+                  <label class="admin-form-label">Scroll Cue Indicator Text</label>
+                  <input type="text" id="content-hero-cue" class="admin-form-input" value="SCROLL TO MERGE">
+                </div>
+              </div>
+
+              <!-- SECTION 2: SELECTED WORKS -->
+              <h3 style="font-family:'Playfair Display',serif; font-size:18px; margin:32px 0 14px; border-bottom:1px solid var(--border); padding-bottom:6px;">2. Selected Works Section</h3>
+              
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px;">
+                <div class="admin-form-group">
+                  <label class="admin-form-label">Section Heading</label>
+                  <input type="text" id="content-works-heading" class="admin-form-input" value="Selected Works &amp; Editions">
+                </div>
+                <div class="admin-form-group">
+                  <label class="admin-form-label">Portfolio CTA Button Text</label>
+                  <input type="text" id="content-works-btn" class="admin-form-input" value="Explore Full Portfolio Archive →">
+                </div>
+              </div>
+
+              <!-- SECTION 3: ABOUT THE ARTIST & CHAPTERS -->
+              <h3 style="font-family:'Playfair Display',serif; font-size:18px; margin:32px 0 14px; border-bottom:1px solid var(--border); padding-bottom:6px;">3. About The Artist &amp; Practice Chapters</h3>
+              
+              <div class="admin-form-group">
+                <label class="admin-form-label">Teaser Heading</label>
+                <input type="text" id="content-about-teaser-heading" class="admin-form-input" value="A Story in Ink, Atmosphere &amp; Memory">
+              </div>
+
+              <div class="admin-form-group">
+                <label class="admin-form-label">Artist Bio &amp; Philosophy (Overview)</label>
+                <textarea id="content-about-teaser-text" class="admin-form-textarea" style="min-height: 100px;"></textarea>
+              </div>
+
+              <div class="admin-form-group">
+                <label class="admin-form-label">Atelier Practice Image (About Teaser)</label>
+                <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
+                  <img id="preview-about-teaser-image" src="/assets/images/art_process.webp" alt="Atelier practice preview" style="width: 80px; height: 60px; object-fit: cover; border-radius: 6px; border: 1px solid var(--border); background: #eee;">
+                  <input type="text" id="content-about-teaser-image" class="admin-form-input" style="flex: 1; min-width: 220px;" placeholder="/assets/images/art_process.webp">
+                  <input type="file" id="upload-about-teaser-image" accept="image/*" style="display: none;">
+                  <button type="button" class="admin-btn-sm" onclick="document.getElementById('upload-about-teaser-image').click()">Upload Image</button>
+                </div>
+              </div>
+
+              <!-- Metrics -->
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; margin-bottom: 20px;">
+                <div class="admin-form-group">
+                  <label class="admin-form-label">Metric 1 (e.g. 14+)</label>
+                  <input type="text" id="content-metric-val-1" class="admin-form-input" value="14+">
+                  <input type="text" id="content-metric-lbl-1" class="admin-form-input" value="Years Practice" style="margin-top: 6px;">
+                </div>
+                <div class="admin-form-group">
+                  <label class="admin-form-label">Metric 2 (e.g. 28+)</label>
+                  <input type="text" id="content-metric-val-2" class="admin-form-input" value="28+">
+                  <input type="text" id="content-metric-lbl-2" class="admin-form-input" value="Archival Editions" style="margin-top: 6px;">
+                </div>
+                <div class="admin-form-group">
+                  <label class="admin-form-label">Metric 3 (e.g. 180+)</label>
+                  <input type="text" id="content-metric-val-3" class="admin-form-input" value="180+">
+                  <input type="text" id="content-metric-lbl-3" class="admin-form-input" value="Private Collections" style="margin-top: 6px;">
+                </div>
+              </div>
+
+              <!-- Chapter 1 -->
+              <div style="background: rgba(18, 19, 22, 0.02); border: 1px solid var(--border); border-radius: 8px; padding: 16px; margin-bottom: 16px;">
+                <h4 style="font-family:'Playfair Display',serif; font-size:15px; margin-bottom: 10px;">About Chapter 1</h4>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; margin-bottom: 10px;">
+                  <div>
+                    <label class="admin-form-label">Title</label>
+                    <input type="text" id="content-ch1-title" class="admin-form-input" value="Ma: The Architecture of Negative Space">
+                  </div>
+                  <div>
+                    <label class="admin-form-label">Subtitle</label>
+                    <input type="text" id="content-ch1-sub" class="admin-form-input" value="Kyoto Practice • 2018–Present">
+                  </div>
+                </div>
+                <div class="admin-form-group">
+                  <label class="admin-form-label">Narrative Text</label>
+                  <textarea id="content-ch1-text" class="admin-form-textarea" style="min-height: 80px;"></textarea>
+                </div>
+                <div class="admin-form-group">
+                  <label class="admin-form-label">Chapter 1 Image</label>
+                  <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
+                    <img id="preview-ch1-img" src="/assets/images/fDh0jZF0V8L0VApCB9oAHIFgd8.webp" alt="Chapter 1 preview" style="width: 80px; height: 60px; object-fit: cover; border-radius: 6px; border: 1px solid var(--border); background: #eee;">
+                    <input type="text" id="content-ch1-img" class="admin-form-input" style="flex: 1; min-width: 220px;" placeholder="/assets/images/fDh0jZF0V8L0VApCB9oAHIFgd8.webp">
+                    <input type="file" id="upload-ch1-img" accept="image/*" style="display: none;">
+                    <button type="button" class="admin-btn-sm" onclick="document.getElementById('upload-ch1-img').click()">Upload Image</button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Chapter 2 -->
+              <div style="background: rgba(18, 19, 22, 0.02); border: 1px solid var(--border); border-radius: 8px; padding: 16px; margin-bottom: 16px;">
+                <h4 style="font-family:'Playfair Display',serif; font-size:15px; margin-bottom: 10px;">About Chapter 2</h4>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; margin-bottom: 10px;">
+                  <div>
+                    <label class="admin-form-label">Title</label>
+                    <input type="text" id="content-ch2-title" class="admin-form-input" value="Mineral Pigments &amp; Echizen Washi">
+                  </div>
+                  <div>
+                    <label class="admin-form-label">Subtitle</label>
+                    <input type="text" id="content-ch2-sub" class="admin-form-input" value="Material Philosophy • Natural Pigments">
+                  </div>
+                </div>
+                <div class="admin-form-group">
+                  <label class="admin-form-label">Narrative Text</label>
+                  <textarea id="content-ch2-text" class="admin-form-textarea" style="min-height: 80px;"></textarea>
+                </div>
+                <div class="admin-form-group">
+                  <label class="admin-form-label">Chapter 2 Image</label>
+                  <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
+                    <img id="preview-ch2-img" src="/assets/images/peaa6VBBdWRSL3icJ2tpwsIXZI.webp" alt="Chapter 2 preview" style="width: 80px; height: 60px; object-fit: cover; border-radius: 6px; border: 1px solid var(--border); background: #eee;">
+                    <input type="text" id="content-ch2-img" class="admin-form-input" style="flex: 1; min-width: 220px;" placeholder="/assets/images/peaa6VBBdWRSL3icJ2tpwsIXZI.webp">
+                    <input type="file" id="upload-ch2-img" accept="image/*" style="display: none;">
+                    <button type="button" class="admin-btn-sm" onclick="document.getElementById('upload-ch2-img').click()">Upload Image</button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Chapter 3 -->
+              <div style="background: rgba(18, 19, 22, 0.02); border: 1px solid var(--border); border-radius: 8px; padding: 16px; margin-bottom: 16px;">
+                <h4 style="font-family:'Playfair Display',serif; font-size:15px; margin-bottom: 10px;">About Chapter 3</h4>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; margin-bottom: 10px;">
+                  <div>
+                    <label class="admin-form-label">Title</label>
+                    <input type="text" id="content-ch3-title" class="admin-form-input" value="The Silent Geometry of Solitude">
+                  </div>
+                  <div>
+                    <label class="admin-form-label">Subtitle</label>
+                    <input type="text" id="content-ch3-sub" class="admin-form-input" value="Atmospheric Storytelling • Contemporary Chiaroscuro">
+                  </div>
+                </div>
+                <div class="admin-form-group">
+                  <label class="admin-form-label">Narrative Text</label>
+                  <textarea id="content-ch3-text" class="admin-form-textarea" style="min-height: 80px;"></textarea>
+                </div>
+                <div class="admin-form-group">
+                  <label class="admin-form-label">Chapter 3 Image</label>
+                  <div style="display: flex; gap: 12px; align-items: center; flex-wrap: wrap;">
+                    <img id="preview-ch3-img" src="/assets/images/LcTxyeMFm5sIiiSm4Iop5zds.webp" alt="Chapter 3 preview" style="width: 80px; height: 60px; object-fit: cover; border-radius: 6px; border: 1px solid var(--border); background: #eee;">
+                    <input type="text" id="content-ch3-img" class="admin-form-input" style="flex: 1; min-width: 220px;" placeholder="/assets/images/LcTxyeMFm5sIiiSm4Iop5zds.webp">
+                    <input type="file" id="upload-ch3-img" accept="image/*" style="display: none;">
+                    <button type="button" class="admin-btn-sm" onclick="document.getElementById('upload-ch3-img').click()">Upload Image</button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- SECTION 4: JOURNAL & FIELD NOTES -->
+              <h3 style="font-family:'Playfair Display',serif; font-size:18px; margin:32px 0 14px; border-bottom:1px solid var(--border); padding-bottom:6px;">4. Field Notes &amp; Essays (Journal Section)</h3>
+              
+              <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px;">
+                <div class="admin-form-group">
+                  <label class="admin-form-label">Section Heading</label>
+                  <input type="text" id="content-journal-heading" class="admin-form-input" value="Dispatches from the Atelier">
+                </div>
+                <div class="admin-form-group">
+                  <label class="admin-form-label">View All Button Text</label>
+                  <input type="text" id="content-journal-btn" class="admin-form-input" value="View All Field Notes →">
+                </div>
+              </div>
+
+              <div class="admin-form-group">
+                <label class="admin-form-label">Section Subheading</label>
+                <input type="text" id="content-journal-sub" class="admin-form-input" value="Explorations in Japanese aesthetics, the philosophy of solitude, and raw materiality.">
+              </div>
+
+              <!-- SECTION 5: FOOTER & ATELIER STATEMENT -->
+              <h3 style="font-family:'Playfair Display',serif; font-size:18px; margin:32px 0 14px; border-bottom:1px solid var(--border); padding-bottom:6px;">5. Footer &amp; Studio Provenance</h3>
+
+              <div class="admin-form-group">
+                <label class="admin-form-label">Atelier Statement</label>
+                <textarea id="content-footer-statement" class="admin-form-textarea" style="min-height: 80px;"></textarea>
+              </div>
+
+              <div class="admin-form-group">
+                <label class="admin-form-label">Atelier Substatement &amp; Email</label>
+                <input type="text" id="content-footer-substatement" class="admin-form-input" value="London &amp; Kyoto Atelier • Private viewings by appointment • Inquiries: studio@chintwo.com">
+              </div>
+
+              <div class="admin-form-group">
+                <label class="admin-form-label">Copyright Notice</label>
+                <input type="text" id="content-footer-copy" class="admin-form-input" value="© 2026 CHINTWO STUDIO. All rights reserved.">
+              </div>
+
+              <!-- SECTION 6: CONTACT PAGE -->
+              <h3 style="font-family:'Playfair Display',serif; font-size:18px; margin:32px 0 14px; border-bottom:1px solid var(--border); padding-bottom:6px;">6. Contact Page Dialogue</h3>
+
+              <div class="admin-form-group">
+                <label class="admin-form-label">Contact Heading</label>
+                <input type="text" id="content-contact-heading" class="admin-form-input" value="Direct Inquiries &amp; Private Commissions">
+              </div>
+
+              <div class="admin-form-group">
+                <label class="admin-form-label">Contact Subheading</label>
+                <textarea id="content-contact-sub" class="admin-form-textarea" style="min-height: 70px;"></textarea>
+              </div>
+
+              <div style="margin-top: 32px; display: flex; align-items: center; gap: 16px; flex-wrap: wrap;">
+                <button type="submit" class="admin-btn-primary">Save All Site Content &amp; Publish Live</button>
+                <span id="content-save-feedback" style="font-weight: 600; color: var(--success); display: none;">✓ All Headings, Subheadings &amp; Images Saved Live to Backend!</span>
+              </div>
+            </form>
           </div>
         </div>
       </div>
@@ -1179,7 +1429,8 @@
       seedInitialBackendData,
       adminSignIn,
       verifyAdminCredentials,
-      changeAdminPassword
+      changeAdminPassword,
+      uploadImageFile
     } from '/assets/scripts/firebase-service.js';
 
     let allInquiries = [];
@@ -1634,10 +1885,49 @@
       alert(allSubscribers.length ? `Copied ${allSubscribers.length} email addresses to clipboard!` : 'No subscribers to copy.');
     });
 
-    // --- 7. STUDIO SETTINGS & CUSTOMIZER ---
+    // --- 7. STUDIO SETTINGS & SITE CONTENT CUSTOMIZER ---
+    function setupImageUpload(fileInputId, textInputId, previewImgId) {
+      const fileInput = document.getElementById(fileInputId);
+      const textInput = document.getElementById(textInputId);
+      const previewImg = document.getElementById(previewImgId);
+      if (!fileInput || !textInput) return;
+
+      fileInput.addEventListener('change', async (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+        try {
+          if (previewImg) previewImg.style.opacity = '0.4';
+          const url = await uploadImageFile(file, 'site-content');
+          textInput.value = url;
+          if (previewImg) {
+            previewImg.src = url;
+            previewImg.style.opacity = '1';
+          }
+        } catch (err) {
+          alert('Upload failed: ' + err.message);
+          if (previewImg) previewImg.style.opacity = '1';
+        }
+      });
+
+      textInput.addEventListener('input', () => {
+        if (previewImg && textInput.value) {
+          previewImg.src = textInput.value;
+        }
+      });
+    }
+
+    // Initialize all image file uploaders
+    setupImageUpload('upload-hero-landscape', 'content-hero-landscape', 'preview-hero-landscape');
+    setupImageUpload('upload-hero-portrait', 'content-hero-portrait', 'preview-hero-portrait');
+    setupImageUpload('upload-about-teaser-image', 'content-about-teaser-image', 'preview-about-teaser-image');
+    setupImageUpload('upload-ch1-img', 'content-ch1-img', 'preview-ch1-img');
+    setupImageUpload('upload-ch2-img', 'content-ch2-img', 'preview-ch2-img');
+    setupImageUpload('upload-ch3-img', 'content-ch3-img', 'preview-ch3-img');
+
     async function loadSettings() {
       try {
         const s = await getStudioSettings();
+        // Studio settings
         document.getElementById('setting-artist-name').value = s.artistName || 'Chintwo';
         document.getElementById('setting-atelier-title').value = s.atelierTitle || 'Contemporary Visual Artist & Illustrator';
         document.getElementById('setting-hero-statement').value = s.heroStatement || '';
@@ -1651,10 +1941,111 @@
         document.getElementById('setting-instagram').value = s.socialInstagram || '';
         document.getElementById('setting-x').value = s.socialX || '';
         document.getElementById('setting-linkedin').value = s.socialLinkedIn || '';
+
+        // Live Site Content & Headings
+        document.getElementById('content-hero-landscape').value = s.heroCoverLandscape || '/assets/images/hero_landscape.webp';
+        document.getElementById('preview-hero-landscape').src = s.heroCoverLandscape || '/assets/images/hero_landscape.webp';
+
+        document.getElementById('content-hero-portrait').value = s.heroCoverPortrait || '/assets/images/hero_portrait.webp';
+        document.getElementById('preview-hero-portrait').src = s.heroCoverPortrait || '/assets/images/hero_portrait.webp';
+
+        document.getElementById('content-hero-brand').value = s.heroBrandName || 'CHINTWO';
+        document.getElementById('content-hero-cue').value = s.heroScrollCue || 'SCROLL TO MERGE';
+
+        document.getElementById('content-works-heading').value = s.worksHeading || 'Selected Works & Editions';
+        document.getElementById('content-works-btn').value = s.worksButtonText || 'Explore Full Portfolio Archive →';
+
+        document.getElementById('content-about-teaser-heading').value = s.aboutTeaserHeading || 'A Story in Ink, Atmosphere & Memory';
+        document.getElementById('content-about-teaser-text').value = s.aboutTeaserText || s.artistBio || '';
+        document.getElementById('content-about-teaser-image').value = s.aboutTeaserImage || '/assets/images/art_process.webp';
+        document.getElementById('preview-about-teaser-image').src = s.aboutTeaserImage || '/assets/images/art_process.webp';
+
+        document.getElementById('content-metric-val-1').value = s.aboutMetric1Val || '14+';
+        document.getElementById('content-metric-lbl-1').value = s.aboutMetric1Lbl || 'Years Practice';
+        document.getElementById('content-metric-val-2').value = s.aboutMetric2Val || '28+';
+        document.getElementById('content-metric-lbl-2').value = s.aboutMetric2Lbl || 'Archival Editions';
+        document.getElementById('content-metric-val-3').value = s.aboutMetric3Val || '180+';
+        document.getElementById('content-metric-lbl-3').value = s.aboutMetric3Lbl || 'Private Collections';
+
+        document.getElementById('content-ch1-title').value = s.aboutChapter1Title || 'Ma: The Architecture of Negative Space';
+        document.getElementById('content-ch1-sub').value = s.aboutChapter1Subtitle || 'Kyoto Practice • 2018–Present';
+        document.getElementById('content-ch1-text').value = s.aboutChapter1Text || '';
+        document.getElementById('content-ch1-img').value = s.aboutChapter1Image || '/assets/images/fDh0jZF0V8L0VApCB9oAHIFgd8.webp';
+        document.getElementById('preview-ch1-img').src = s.aboutChapter1Image || '/assets/images/fDh0jZF0V8L0VApCB9oAHIFgd8.webp';
+
+        document.getElementById('content-ch2-title').value = s.aboutChapter2Title || 'Mineral Pigments & Echizen Washi';
+        document.getElementById('content-ch2-sub').value = s.aboutChapter2Subtitle || 'Material Philosophy • Natural Pigments';
+        document.getElementById('content-ch2-text').value = s.aboutChapter2Text || '';
+        document.getElementById('content-ch2-img').value = s.aboutChapter2Image || '/assets/images/peaa6VBBdWRSL3icJ2tpwsIXZI.webp';
+        document.getElementById('preview-ch2-img').src = s.aboutChapter2Image || '/assets/images/peaa6VBBdWRSL3icJ2tpwsIXZI.webp';
+
+        document.getElementById('content-ch3-title').value = s.aboutChapter3Title || 'The Silent Geometry of Solitude';
+        document.getElementById('content-ch3-sub').value = s.aboutChapter3Subtitle || 'Atmospheric Storytelling • Contemporary Chiaroscuro';
+        document.getElementById('content-ch3-text').value = s.aboutChapter3Text || '';
+        document.getElementById('content-ch3-img').value = s.aboutChapter3Image || '/assets/images/LcTxyeMFm5sIiiSm4Iop5zds.webp';
+        document.getElementById('preview-ch3-img').src = s.aboutChapter3Image || '/assets/images/LcTxyeMFm5sIiiSm4Iop5zds.webp';
+
+        document.getElementById('content-journal-heading').value = s.journalHeading || 'Dispatches from the Atelier';
+        document.getElementById('content-journal-sub').value = s.journalSubheading || 'Explorations in Japanese aesthetics, the philosophy of solitude, and raw materiality.';
+        document.getElementById('content-journal-btn').value = s.journalButtonText || 'View All Field Notes →';
+
+        document.getElementById('content-footer-statement').value = s.footerStatement || '';
+        document.getElementById('content-footer-substatement').value = s.footerSubstatement || 'London & Kyoto Atelier • Private viewings by appointment • Inquiries: studio@chintwo.com';
+        document.getElementById('content-footer-copy').value = s.footerCopyright || '© 2026 CHINTWO STUDIO. All rights reserved.';
+
+        document.getElementById('content-contact-heading').value = s.contactHeading || 'Direct Inquiries & Private Commissions';
+        document.getElementById('content-contact-sub').value = s.contactSubheading || '';
       } catch (err) {
         console.warn('Error loading settings:', err);
       }
     }
+
+    // Submit handler for Site Content & Headings Form
+    document.getElementById('site-content-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const feedback = document.getElementById('content-save-feedback');
+      const updated = {
+        heroCoverLandscape: document.getElementById('content-hero-landscape').value.trim(),
+        heroCoverPortrait: document.getElementById('content-hero-portrait').value.trim(),
+        heroBrandName: document.getElementById('content-hero-brand').value.trim(),
+        heroScrollCue: document.getElementById('content-hero-cue').value.trim(),
+        worksHeading: document.getElementById('content-works-heading').value.trim(),
+        worksButtonText: document.getElementById('content-works-btn').value.trim(),
+        aboutTeaserHeading: document.getElementById('content-about-teaser-heading').value.trim(),
+        aboutTeaserText: document.getElementById('content-about-teaser-text').value.trim(),
+        aboutTeaserImage: document.getElementById('content-about-teaser-image').value.trim(),
+        aboutMetric1Val: document.getElementById('content-metric-val-1').value.trim(),
+        aboutMetric1Lbl: document.getElementById('content-metric-lbl-1').value.trim(),
+        aboutMetric2Val: document.getElementById('content-metric-val-2').value.trim(),
+        aboutMetric2Lbl: document.getElementById('content-metric-lbl-2').value.trim(),
+        aboutMetric3Val: document.getElementById('content-metric-val-3').value.trim(),
+        aboutMetric3Lbl: document.getElementById('content-metric-lbl-3').value.trim(),
+        aboutChapter1Title: document.getElementById('content-ch1-title').value.trim(),
+        aboutChapter1Subtitle: document.getElementById('content-ch1-sub').value.trim(),
+        aboutChapter1Text: document.getElementById('content-ch1-text').value.trim(),
+        aboutChapter1Image: document.getElementById('content-ch1-img').value.trim(),
+        aboutChapter2Title: document.getElementById('content-ch2-title').value.trim(),
+        aboutChapter2Subtitle: document.getElementById('content-ch2-sub').value.trim(),
+        aboutChapter2Text: document.getElementById('content-ch2-text').value.trim(),
+        aboutChapter2Image: document.getElementById('content-ch2-img').value.trim(),
+        aboutChapter3Title: document.getElementById('content-ch3-title').value.trim(),
+        aboutChapter3Subtitle: document.getElementById('content-ch3-sub').value.trim(),
+        aboutChapter3Text: document.getElementById('content-ch3-text').value.trim(),
+        aboutChapter3Image: document.getElementById('content-ch3-img').value.trim(),
+        journalHeading: document.getElementById('content-journal-heading').value.trim(),
+        journalSubheading: document.getElementById('content-journal-sub').value.trim(),
+        journalButtonText: document.getElementById('content-journal-btn').value.trim(),
+        footerStatement: document.getElementById('content-footer-statement').value.trim(),
+        footerSubstatement: document.getElementById('content-footer-substatement').value.trim(),
+        footerCopyright: document.getElementById('content-footer-copy').value.trim(),
+        contactHeading: document.getElementById('content-contact-heading').value.trim(),
+        contactSubheading: document.getElementById('content-contact-sub').value.trim()
+      };
+
+      await saveStudioSettings(updated);
+      feedback.style.display = 'inline';
+      setTimeout(() => { feedback.style.display = 'none'; }, 4000);
+    });
 
     document.getElementById('studio-settings-form').addEventListener('submit', async (e) => {
       e.preventDefault();

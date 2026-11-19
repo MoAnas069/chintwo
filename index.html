@@ -870,10 +870,11 @@
     width: 50.1vw !important;
     height: 100vh !important;
     overflow: hidden !important;
-    will-change: transform, box-shadow !important;
+    will-change: transform, box-shadow, border-radius !important;
     z-index: 14 !important;
-    transform: translateX(0);
-    box-shadow: 18px 0 45px rgba(18, 19, 22, 0.22);
+    transform-origin: left center !important;
+    border-radius: 16px;
+    box-shadow: 18px 15px 45px rgba(18, 19, 22, 0.22);
   }
 
   /* RIGHT HALF: Occupies right 50vw and full 100vh */
@@ -884,10 +885,11 @@
     width: 50.1vw !important;
     height: 100vh !important;
     overflow: hidden !important;
-    will-change: transform, box-shadow !important;
+    will-change: transform, box-shadow, border-radius !important;
     z-index: 14 !important;
-    transform: translateX(0);
-    box-shadow: -18px 0 45px rgba(18, 19, 22, 0.22);
+    transform-origin: right center !important;
+    border-radius: 16px;
+    box-shadow: -18px 15px 45px rgba(18, 19, 22, 0.22);
   }
 
   /* IMAGE PANES: Full viewport cover (100vw x 100vh) */
@@ -2265,24 +2267,39 @@
   var introStartTime = 0;
   var introDuration = 1300; // ms for silky cinematic parting entrance
 
-  // Full-screen horizontal split distance
+  // Full-screen horizontal split distance & minimum scale when shrunk on the sides
   function getBaseOffset() {
     var w = window.innerWidth;
-    if (w > 1200) return 220;
-    if (w > 810) return 160;
-    return 95;
+    if (w > 1200) return 180;
+    if (w > 810) return 130;
+    return 70;
   }
 
-  function applyOffset(offset) {
-    if (leftHalf && rightHalf) {
-      leftHalf.style.transform = 'translateX(-' + offset.toFixed(2) + 'px)';
-      rightHalf.style.transform = 'translateX(' + offset.toFixed(2) + 'px)';
+  function getMinScale() {
+    var w = window.innerWidth;
+    if (w > 1200) return 0.78;
+    if (w > 810) return 0.74;
+    return 0.72;
+  }
 
-      var base = getBaseOffset();
-      var shadowFactor = Math.min(1, Math.max(0, offset / base));
-      var shadowOp = (0.22 * shadowFactor).toFixed(3);
-      leftHalf.style.boxShadow = (18 * shadowFactor).toFixed(1) + 'px 0 45px rgba(18, 19, 22, ' + shadowOp + ')';
-      rightHalf.style.boxShadow = '-' + (18 * shadowFactor).toFixed(1) + 'px 0 45px rgba(18, 19, 22, ' + shadowOp + ')';
+  function applyDiptychState(offset, scale, radius, shadowAlpha) {
+    if (!leftHalf || !rightHalf) return;
+    if (scale >= 0.995 && offset <= 1) {
+      // Perfectly merged full-screen fitting picture
+      leftHalf.style.transform = 'translateX(0px) scale(1)';
+      rightHalf.style.transform = 'translateX(0px) scale(1)';
+      leftHalf.style.borderRadius = '0px';
+      rightHalf.style.borderRadius = '0px';
+      leftHalf.style.boxShadow = 'none';
+      rightHalf.style.boxShadow = 'none';
+    } else {
+      leftHalf.style.transform = 'translateX(-' + offset.toFixed(2) + 'px) scale(' + scale.toFixed(4) + ')';
+      rightHalf.style.transform = 'translateX(' + offset.toFixed(2) + 'px) scale(' + scale.toFixed(4) + ')';
+      leftHalf.style.borderRadius = radius.toFixed(1) + 'px';
+      rightHalf.style.borderRadius = radius.toFixed(1) + 'px';
+      var op = (0.24 * shadowAlpha).toFixed(3);
+      leftHalf.style.boxShadow = (18 * shadowAlpha).toFixed(1) + 'px 18px 45px rgba(18, 19, 22, ' + op + ')';
+      rightHalf.style.boxShadow = '-' + (18 * shadowAlpha).toFixed(1) + 'px 18px 45px rgba(18, 19, 22, ' + op + ')';
     }
   }
 
@@ -2295,9 +2312,14 @@
     // Smooth quartic ease-out
     var easeOut = 1 - Math.pow(1 - t, 4);
     var baseOffset = getBaseOffset();
-    var currentPartOffset = easeOut * baseOffset;
+    var minScale = getMinScale();
 
-    applyOffset(currentPartOffset);
+    var currentPartOffset = easeOut * baseOffset;
+    var currentScale = 1.0 - easeOut * (1.0 - minScale);
+    var currentRadius = easeOut * 16;
+    var shadowAlpha = easeOut;
+
+    applyDiptychState(currentPartOffset, currentScale, currentRadius, shadowAlpha);
 
     if (t < 1 && (window.scrollY || window.pageYOffset || 0) <= 15) {
       requestAnimationFrame(runIntroEntrance);
@@ -2316,7 +2338,7 @@
   }
 
   function update() {
-    var mergeDistance = 500;
+    var mergeDistance = window.innerWidth <= 810 ? 440 : 560;
     var progress = Math.min(1, Math.max(0, currentScroll / mergeDistance));
 
     // Smooth cubic easing curve
@@ -2325,17 +2347,22 @@
       : 1 - Math.pow(-2 * progress + 2, 3) / 2;
 
     var baseOffset = getBaseOffset();
-    var offset = (1 - ease) * baseOffset;
+    var minScale = getMinScale();
 
-    applyOffset(offset);
+    var offset = (1 - ease) * baseOffset;
+    var scale = minScale + (1.0 - minScale) * ease;
+    var radius = (1 - ease) * 16;
+    var shadowAlpha = 1 - ease;
+
+    applyDiptychState(offset, scale, radius, shadowAlpha);
 
     // Logo & Brand Lockup: Revealed in the artwork's upper whitespace as halves merge
     if (centerBrand) {
       var brandOpacity = 0;
-      if (progress > 0.18) {
-        brandOpacity = Math.min(1, (progress - 0.18) / 0.70);
+      if (progress > 0.16) {
+        brandOpacity = Math.min(1, (progress - 0.16) / 0.70);
       }
-      var brandScale = 0.90 + 0.10 * Math.min(1, progress / 0.88);
+      var brandScale = 0.88 + 0.12 * Math.min(1, progress / 0.88);
       var brandFloatY = (1 - ease) * 16;
 
       centerBrand.style.opacity = brandOpacity.toFixed(3);
@@ -2694,5 +2721,6 @@
   }
 })();
 </script>
+<script type="module" src="/assets/scripts/site-content-sync.js"></script>
 </body>
 </html>

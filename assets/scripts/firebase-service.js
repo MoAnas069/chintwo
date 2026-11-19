@@ -50,6 +50,28 @@ export const db = getFirestore(app);
 export const auth = getAuth(app);
 export const storage = getStorage(app);
 
+/**
+ * Upload image to Firebase Storage with automatic base64 Data URL fallback
+ */
+export async function uploadImageFile(file, folder = 'uploads') {
+  if (!file) throw new Error("No file selected.");
+  try {
+    const filename = `${folder}/${Date.now()}_${file.name.replace(/[^a-zA-Z0-9.-]/g, '_')}`;
+    const storageRef = ref(storage, filename);
+    const snap = await uploadBytes(storageRef, file);
+    const downloadUrl = await getDownloadURL(snap.ref);
+    return downloadUrl;
+  } catch (err) {
+    console.warn("Storage upload fallback to base64 data URL:", err);
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = (e) => resolve(e.target.result);
+      reader.onerror = (e) => reject(e);
+      reader.readAsDataURL(file);
+    });
+  }
+}
+
 // Default Studio Settings
 export const DEFAULT_STUDIO_SETTINGS = {
   artistName: "Chintwo",
@@ -67,6 +89,54 @@ export const DEFAULT_STUDIO_SETTINGS = {
   socialInstagram: "https://www.instagram.com/chintwo.com",
   socialX: "https://x.com/chintwo",
   socialLinkedIn: "https://www.linkedin.com/in/chintwosankeerthanam",
+
+  // 1. Cover / Hero Section
+  heroCoverLandscape: "/assets/images/hero_landscape.webp",
+  heroCoverPortrait: "/assets/images/hero_portrait.webp",
+  heroBrandName: "CHINTWO",
+  heroScrollCue: "SCROLL TO MERGE",
+
+  // 2. Selected Works Section
+  worksHeading: "Selected Works & Editions",
+  worksButtonText: "Explore Full Portfolio Archive →",
+
+  // 3. About Section
+  aboutTeaserHeading: "A Story in Ink, Atmosphere & Memory",
+  aboutTeaserText: "Chintwo is a contemporary visual artist working at the intersection of traditional East Asian sumi printmaking and atmospheric narrative. Rooted in the Kyoto concept of Ma—the charged stillness between forms—each creation investigates negative space, tactile washi fibers, and the emotional resonance of solitude.",
+  aboutTeaserImage: "/assets/images/art_process.webp",
+  aboutChapter1Title: "Ma: The Architecture of Negative Space",
+  aboutChapter1Subtitle: "Kyoto Practice • 2018–Present",
+  aboutChapter1Text: "In traditional Japanese aesthetics, Ma is not merely absence, but the pregnant pause that gives structure to speech, the quiet ground that allows form to exist. In every composition, the negative space is treated as an active participant—a field of vibrating restraint where the viewer's imagination completes the narrative.",
+  aboutChapter1Image: "/assets/images/fDh0jZF0V8L0VApCB9oAHIFgd8.webp",
+  aboutChapter2Title: "Mineral Pigments & Echizen Washi",
+  aboutChapter2Subtitle: "Material Philosophy • Natural Pigments",
+  aboutChapter2Text: "Working with raw lapis lazuli, crushed malachite, and Badakhshan slate requires a dialogue with gravity and water. Sized with deer hide nikawa across handmade Echizen mulberry paper, the mineral particles settle in natural sedimentations that no digital raster or chemical ink can replicate.",
+  aboutChapter2Image: "/assets/images/peaa6VBBdWRSL3icJ2tpwsIXZI.webp",
+  aboutChapter3Title: "The Silent Geometry of Solitude",
+  aboutChapter3Subtitle: "Atmospheric Storytelling • Contemporary Chiaroscuro",
+  aboutChapter3Text: "The solitary traveler, the distant mountain ridgeline, the solitary lantern in twilight—these archetypes recur as emotional coordinates. The work invites the viewer to step out of contemporary velocity into an expansive, contemplative stillness.",
+  aboutChapter3Image: "/assets/images/LcTxyeMFm5sIiiSm4Iop5zds.webp",
+  aboutMetric1Val: "14+",
+  aboutMetric1Lbl: "Years Practice",
+  aboutMetric2Val: "28+",
+  aboutMetric2Lbl: "Archival Editions",
+  aboutMetric3Val: "180+",
+  aboutMetric3Lbl: "Private Collections",
+
+  // 4. Journal / Field Notes Section
+  journalHeading: "Dispatches from the Atelier",
+  journalSubheading: "Explorations in Japanese aesthetics, the philosophy of solitude, and raw materiality.",
+  journalButtonText: "View All Field Notes →",
+
+  // 5. Footer & Provenance
+  footerStatement: "Contemporary visual artist & storyteller specializing in monumental oil canvases, atmospheric chiaroscuro compositions, and limited archival editions.",
+  footerSubstatement: "London & Kyoto Atelier • Private viewings by appointment • Inquiries: studio@chintwo.com",
+  footerCopyright: "© 2026 CHINTWO STUDIO. All rights reserved.",
+
+  // 6. Contact Page
+  contactHeading: "Direct Inquiries & Private Commissions",
+  contactSubheading: "The London and Kyoto ateliers welcome dialogues with collectors, museum curators, architectural practices, and private commissioners worldwide.",
+
   updatedAt: new Date().toISOString()
 };
 
