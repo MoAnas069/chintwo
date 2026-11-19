@@ -2,9 +2,10 @@
   "name": "chintwo-artist-portfolio",
   "version": "1.0.0",
   "description": "Chintwo - Contemporary & Visual Artist, London - Official Website Portfolio",
+  "main": "server.js",
   "scripts": {
-    "dev": "node scripts/local-dev-server.js",
-    "serve": "node scripts/local-dev-server.js",
+    "start": "node server.js",
+    "dev": "node server.js",
     "test": "node scripts/test_routes_offline.js"
   },
   "keywords": [

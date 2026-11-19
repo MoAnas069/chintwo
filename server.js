@@ -4,7 +4,7 @@ const path = require('path');
 const url = require('url');
 
 const PORT = process.env.PORT || 3000;
-const ROOT_DIR = path.resolve(__dirname, '..');
+const ROOT_DIR = __dirname;
 
 const MIME_TYPES = {
     '.html': 'text/html; charset=utf-8',
@@ -37,9 +37,8 @@ function serveFile(res, filePath, statusCode = 200) {
         res.writeHead(statusCode, {
             'Content-Type': contentType,
             'Access-Control-Allow-Origin': '*',
-            'Cache-Control': 'no-cache, no-store, must-revalidate, max-age=0',
-            'Pragma': 'no-cache',
-            'Expires': '0'
+            'Cache-Control': 'public, max-age=3600',
+            'Pragma': 'no-cache'
         });
         res.end(data);
     });
@@ -53,6 +52,24 @@ function serve404(res) {
         res.writeHead(404, { 'Content-Type': 'text/plain' });
         res.end('404 Not Found');
     }
+}
+
+function resolveFilePath(reqPath) {
+    // Strip leading slash
+    const rel = reqPath.replace(/^[/\\]+/, '');
+    const candidates = [
+        path.join(ROOT_DIR, rel),
+        path.join(process.cwd(), rel),
+        path.resolve(__dirname, rel)
+    ];
+    for (const c of candidates) {
+        try {
+            if (fs.existsSync(c) && fs.statSync(c).isFile()) {
+                return c;
+            }
+        } catch (e) {}
+    }
+    return null;
 }
 
 const server = http.createServer((req, res) => {
@@ -75,27 +92,30 @@ const server = http.createServer((req, res) => {
     }
 
     // 1. Direct file check
-    let potentialPath = path.join(ROOT_DIR, pathname);
-    if (fs.existsSync(potentialPath) && fs.statSync(potentialPath).isFile()) {
-        serveFile(res, potentialPath);
+    const directFile = resolveFilePath(pathname);
+    if (directFile) {
+        serveFile(res, directFile);
         return;
     }
 
     // 2. Root check
-    if (pathname === '/') {
-        serveFile(res, path.join(ROOT_DIR, 'index.html'));
-        return;
+    if (pathname === '/' || pathname === '') {
+        const indexFile = resolveFilePath('index.html');
+        if (indexFile) {
+            serveFile(res, indexFile);
+            return;
+        }
     }
 
     // 3. Clean route check: e.g. /about -> about/index.html or about.html
-    const dirIndex = path.join(ROOT_DIR, pathname, 'index.html');
-    if (fs.existsSync(dirIndex)) {
+    const dirIndex = resolveFilePath(path.join(pathname, 'index.html'));
+    if (dirIndex) {
         serveFile(res, dirIndex);
         return;
     }
 
-    const htmlFile = path.join(ROOT_DIR, pathname + '.html');
-    if (fs.existsSync(htmlFile)) {
+    const htmlFile = resolveFilePath(pathname + '.html');
+    if (htmlFile) {
         serveFile(res, htmlFile);
         return;
     }
@@ -104,10 +124,15 @@ const server = http.createServer((req, res) => {
     serve404(res);
 });
 
-server.listen(PORT, () => {
-    console.log(`\n======================================================`);
-    console.log(` Chintwo Website Replica running successfully!`);
-    console.log(` URL: http://localhost:${PORT}`);
-    console.log(`======================================================\n`);
-});
+// Export server for serverless environments (e.g. Vercel)
+module.exports = server;
 
+// Only listen if executed directly
+if (require.main === module) {
+    server.listen(PORT, () => {
+        console.log(`\n======================================================`);
+        console.log(` Chintwo Website Replica running successfully!`);
+        console.log(` URL: http://localhost:${PORT}`);
+        console.log(`======================================================\n`);
+    });
+}
